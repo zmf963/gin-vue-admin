@@ -8,38 +8,38 @@ networks:
         - subnet: '177.7.0.0/16'
 
 services:
-  web:
-    build:
-      context: ./web
-      dockerfile: ./Dockerfile
-    container_name: gva-web
-    restart: always
-    ports:
-      - '8080:8080'
-    depends_on:
-      - server
-    command: [ 'nginx-debug', '-g', 'daemon off;' ]
-    networks:
-      network:
-        ipv4_address: 177.7.0.11
+  # web:
+  #   build:
+  #     context: ./web
+  #     dockerfile: ./Dockerfile
+  #   container_name: gva-web
+  #   restart: always
+  #   ports:
+  #     - '8080:8080'
+  #   depends_on:
+  #     - server
+  #   command: [ 'nginx-debug', '-g', 'daemon off;' ]
+  #   networks:
+  #     network:
+  #       ipv4_address: 177.7.0.11
 
-  server:
-    build:
-      context: ./server
-      dockerfile: ./Dockerfile
-    container_name: gva-server
-    restart: always
-    ports:
-      - '8888:8888'
-    depends_on:
-      - mysql
-      - redis
-    links:
-      - mysql
-      - redis
-    networks:
-      network:
-        ipv4_address: 177.7.0.12
+  # server:
+  #   build:
+  #     context: ./server
+  #     dockerfile: ./Dockerfile
+  #   container_name: gva-server
+  #   restart: always
+  #   ports:
+  #     - '8888:8888'
+  #   depends_on:
+  #     - mysql
+  #     - redis
+  #   links:
+  #     - mysql
+  #     - redis
+  #   networks:
+  #     network:
+  #       ipv4_address: 177.7.0.12
 
   mysql:
     image: mysql:8.0.21

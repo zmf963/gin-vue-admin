@@ -9,7 +9,7 @@
           <div>
             <el-row>
               <el-col :span="8" :offset="8">
-                <a href="https://github.com/flipped-aurora/gin-vue-admin">
+                <a href="https://github.com/zmf963/gin-vue-admin">
                   <img
                     class="org-img dom-center"
                     src="@/assets/logo.png"
@@ -20,28 +20,28 @@
             </el-row>
             <el-row :gutter="10">
               <el-col :span="8">
-                <a href="https://github.com/flipped-aurora/gin-vue-admin">
+                <a href="https://github.com/zmf963/gin-vue-admin">
                   <img
                     class="dom-center"
-                    src="https://img.shields.io/github/watchers/flipped-aurora/gin-vue-admin.svg?label=Watch"
+                    src="https://img.shields.io/github/watchers/zmf963/gin-vue-admin.svg?label=Watch"
                     alt=""
                   >
                 </a>
               </el-col>
               <el-col :span="8">
-                <a href="https://github.com/flipped-aurora/gin-vue-admin">
+                <a href="https://github.com/zmf963/gin-vue-admin">
                   <img
                     class="dom-center"
-                    src="https://img.shields.io/github/stars/flipped-aurora/gin-vue-admin.svg?style=social"
+                    src="https://img.shields.io/github/stars/zmf963/gin-vue-admin.svg?style=social"
                     alt=""
                   >
                 </a>
               </el-col>
               <el-col :span="8">
-                <a href="https://github.com/flipped-aurora/gin-vue-admin">
+                <a href="https://github.com/zmf963/gin-vue-admin">
                   <img
                     class="dom-center"
-                    src="https://img.shields.io/github/forks/flipped-aurora/gin-vue-admin.svg?label=Fork"
+                    src="https://img.shields.io/github/forks/zmf963/gin-vue-admin.svg?label=Fork"
                     alt=""
                   >
                 </a>
@@ -51,7 +51,7 @@
         </el-card>
         <el-card style="margin-top: 20px">
           <template #header>
-            <div>flipped-aurora团队</div>
+            <div>团队</div>
           </template>
           <div>
             <el-row>
@@ -86,7 +86,7 @@
               <el-timeline-item
                 v-for="(item,index) in dataTimeline"
                 :key="index"
-                timestamp="2018/4/12"
+                :timestamp="item.from"
                 placement="top"
               >
                 <el-card>
@@ -129,7 +129,7 @@ const loadCommits = () => {
     data.forEach((element) => {
       if (element.commit.message) {
         dataTimeline.value.push({
-          from: new Date(element.commit.author.date),
+          from: element.commit.author.date,
           title: element.commit.author.name,
           showDayAndMonth: true,
           message: element.commit.message,
@@ -144,6 +144,8 @@ const loadMembers = () => {
   Members().then(({ data }) => {
     members.value = data
     members.value.sort()
+  }).catch(() => {
+    members.value = []
   })
 }
 

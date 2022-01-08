@@ -87,7 +87,7 @@
             <img src="@/assets/kefu.png" class="link-icon">
           </a>
           <a
-            href="https://github.com/flipped-aurora/gin-vue-admin"
+            href="https://github.com/zmf963/gin-vue-admin"
             target="_blank"
           >
             <img src="@/assets/github.png" class="link-icon">

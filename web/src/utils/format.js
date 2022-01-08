@@ -1,5 +1,5 @@
 import { formatTimeToStr } from '@/utils/date'
-import { getDict } from '@/utils/dictionary'
+// import { getDict } from '@/utils/dictionary'
 
 export const formatBoolean = (bool) => {
   if (bool !== null) {
@@ -22,7 +22,7 @@ export const filterDict = (value, options) => {
   return rowLabel && rowLabel[0] && rowLabel[0].label
 }
 
-export const getDictFunc = async(type) => {
-  const dicts = await getDict(type)
-  return dicts
-}
+// export const getDictFunc = async(type) => {
+//   const dicts = await getDict(type)
+//   return dicts
+// }

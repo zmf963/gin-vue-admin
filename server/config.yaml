@@ -6,13 +6,8 @@ aliyun-oss:
   bucket-url: yourBucketUrl
   base-path: yourBasePath
 autocode:
-  transfer-restart: true
   root: /opt/code/gin-vue-admin
-  server: /server
   server-api: /api/v1/autocode
-  server-initialize: /initialize
-  server-model: /model/autocode
-  server-request: /model/autocode/request/
   server-router: /router/autocode
   server-service: /service/autocode
   web: /web/src
@@ -78,10 +73,9 @@ hua-wei-obs:
   access-key: you-access-key
   secret-key: you-secret-key
 jwt:
-  buffer-time: 86400
   expires-time: 604800
   issuer: qmPlus
-  signing-key: 59cf93a9-e363-4e80-a532-c06ce97fac52
+  signing-key: 57fdc6f5-dfdd-48a2-9ccc-bf3081b053d2
 local:
   path: uploads/file
 mysql:

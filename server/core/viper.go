@@ -4,7 +4,6 @@ import (
 	"flag"
 	"fmt"
 	"os"
-	"path/filepath"
 	"time"
 
 	"github.com/songzhibin97/gkit/cache/local_cache"
@@ -56,9 +55,7 @@ func Viper(path ...string) *viper.Viper {
 	if err := v.Unmarshal(&global.GVA_CONFIG); err != nil {
 		fmt.Println(err)
 	}
-	// root 适配性
-	// 根据root位置去找到对应迁移位置,保证root路径有效
-	global.GVA_CONFIG.AutoCode.Root, _ = filepath.Abs("..")
+
 	global.BlackCache = local_cache.NewCache(
 		local_cache.SetDefaultExpire(time.Second * time.Duration(global.GVA_CONFIG.JWT.ExpiresTime)),
 	)

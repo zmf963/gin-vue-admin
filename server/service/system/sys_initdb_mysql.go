@@ -2,7 +2,6 @@ package system
 
 import (
 	"fmt"
-	"path/filepath"
 
 	"github.com/flipped-aurora/gin-vue-admin/server/config"
 	"github.com/flipped-aurora/gin-vue-admin/server/global"
@@ -68,7 +67,7 @@ func (initDBService *InitDBService) initMsqlDB(conf request.InitDB) error {
 		return err
 	}
 
-	global.GVA_CONFIG.AutoCode.Root, _ = filepath.Abs("..")
+	// global.GVA_CONFIG.AutoCode.Root, _ = filepath.Abs("..")
 	return nil
 }
 
@@ -82,11 +81,10 @@ func (initDBService *InitDBService) initMysqlData() error {
 		system.Casbin,
 		system.BaseMenu,
 		system.Authority,
-		system.Dictionary,
 		system.UserAuthority,
 		system.DataAuthorities,
 		system.AuthoritiesMenus,
-		system.DictionaryDetail,
 		system.ViewAuthorityMenuMysql,
+		system.FileMysql,
 	)
 }

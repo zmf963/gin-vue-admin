@@ -273,47 +273,6 @@
           </el-form-item>
         </el-collapse-item>
 
-        <el-collapse-item title="自动化代码配置" name="12">
-          <el-form-item label="是否自动重启(linux)">
-            <el-checkbox v-model="config.autoCode.transferRestart" />
-          </el-form-item>
-          <el-form-item label="root(项目根路径)">
-            <el-input v-model="config.autoCode.root" disabled />
-          </el-form-item>
-          <el-form-item label="Server(后端代码地址)">
-            <el-input v-model="config.autoCode.transferRestart" />
-          </el-form-item>
-          <el-form-item label="SApi(后端api文件夹地址)">
-            <el-input v-model="config.autoCode.serverApi" />
-          </el-form-item>
-          <el-form-item label="SInitialize(后端Initialize文件夹)">
-            <el-input v-model="config.autoCode.serverInitialize" />
-          </el-form-item>
-          <el-form-item label="SModel(后端Model文件地址)">
-            <el-input v-model="config.autoCode.serverModel" />
-          </el-form-item>
-          <el-form-item label="SRequest(后端Request文件夹地址)">
-            <el-input v-model="config.autoCode.serverRequest" />
-          </el-form-item>
-          <el-form-item label="SRouter(后端Router文件夹地址)">
-            <el-input v-model="config.autoCode.serverRouter" />
-          </el-form-item>
-          <el-form-item label="SService(后端Service文件夹地址)">
-            <el-input v-model="config.autoCode.serverService" />
-          </el-form-item>
-          <el-form-item label="Web(前端文件夹地址)">
-            <el-input v-model="config.autoCode.web" />
-          </el-form-item>
-          <el-form-item label="WApi(后端WApi文件夹地址)">
-            <el-input v-model="config.autoCode.webApi" />
-          </el-form-item>
-          <el-form-item label="WForm(后端WForm文件夹地址)">
-            <el-input v-model="config.autoCode.webForm" />
-          </el-form-item>
-          <el-form-item label="WTable(后端WTable文件夹地址)">
-            <el-input v-model="config.autoCode.webTable" />
-          </el-form-item>
-        </el-collapse-item>
 
         <el-collapse-item title="Timer(定时任务)" name="13">
           <el-form-item label="Start（是否启用）">

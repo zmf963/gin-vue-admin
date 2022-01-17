@@ -6,7 +6,6 @@ import (
 
 	adapter "github.com/casbin/gorm-adapter/v3"
 	"github.com/flipped-aurora/gin-vue-admin/server/global"
-	"github.com/flipped-aurora/gin-vue-admin/server/model/example"
 	"github.com/flipped-aurora/gin-vue-admin/server/model/system"
 	"github.com/flipped-aurora/gin-vue-admin/server/model/system/request"
 )
@@ -45,10 +44,6 @@ func (initDBService *InitDBService) initTables() error {
 
 		adapter.CasbinRule{},
 
-		example.ExaFile{},
-		example.ExaCustomer{},
-		example.ExaFileChunk{},
-		example.ExaFileUploadAndDownload{},
 	)
 }
 

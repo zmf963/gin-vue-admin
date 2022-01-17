@@ -7,7 +7,6 @@ import (
 	"github.com/flipped-aurora/gin-vue-admin/server/global"
 	model "github.com/flipped-aurora/gin-vue-admin/server/model/system"
 	"github.com/flipped-aurora/gin-vue-admin/server/model/system/request"
-	"github.com/flipped-aurora/gin-vue-admin/server/source/example"
 	"github.com/flipped-aurora/gin-vue-admin/server/source/system"
 	"github.com/flipped-aurora/gin-vue-admin/server/utils"
 	uuid "github.com/satori/go.uuid"
@@ -83,6 +82,5 @@ func (initDBService *InitDBService) initPgsqlData() error {
 		system.DictionaryDetail,
 		system.ViewAuthorityMenuPostgres,
 
-		example.FilePgsql,
 	)
 }

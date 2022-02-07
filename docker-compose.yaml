@@ -44,6 +44,8 @@ services:
     container_name: online-mysql
     command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci #设置utf8字符集
     restart: always
+    volumes:
+      - $PWD/data/mysql/data:/var/lib/mysql
     ports:
       - "127.0.0.1:3306:3306"  # host物理直接映射端口为13306
     environment:

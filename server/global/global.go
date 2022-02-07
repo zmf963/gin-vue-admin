@@ -15,9 +15,11 @@ import (
 	"github.com/go-redis/redis/v8"
 	"github.com/spf13/viper"
 	"gorm.io/gorm"
+	"go.mongodb.org/mongo-driver/mongo"
 )
 
 var (
+	Mongo_DB   *mongo.Database
 	GVA_DB     *gorm.DB
 	GVA_DBList map[string]*gorm.DB
 	GVA_REDIS  *redis.Client

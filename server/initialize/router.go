@@ -39,6 +39,10 @@ func Routers() *gin.Engine {
 
 	// 获取路由组实例
 	systemRouter := router.RouterGroupApp.System
+	
+	projectRouter := router.RouterGroupApp.Project
+	poc_managerRouter := router.RouterGroupApp.Poc_manager
+
 	PublicGroup := Router.Group("")
 	{
 		// 健康监测
@@ -62,6 +66,22 @@ func Routers() *gin.Engine {
 		systemRouter.InitAuthorityRouter(PrivateGroup)           // 注册角色路由
 		systemRouter.InitSysOperationRecordRouter(PrivateGroup)  // 操作记录
 		systemRouter.InitFileUploadAndDownloadRouter(PrivateGroup)// 文件上传相关路由
+		
+		
+		projectRouter.InitProjectInfoRouter(PublicGroup)
+		projectRouter.InitTaskRouter(PublicGroup)
+		projectRouter.InitTargetRouter(PublicGroup)
+		projectRouter.InitTargetRelationRouter(PublicGroup)
+		projectRouter.InitDomainRouter(PublicGroup)
+		projectRouter.InitPortInfoRouter(PublicGroup)
+		projectRouter.InitPathInfoRouter(PublicGroup)
+		projectRouter.InitEmailInfoRouter(PublicGroup)
+		projectRouter.InitDocInfoRouter(PublicGroup)
+		projectRouter.InitKeysRouter(PublicGroup)
+		projectRouter.InitWechatOfficialAccountRouter(PublicGroup)
+		projectRouter.InitAppInfoRouter(PublicGroup)
+		
+		poc_managerRouter.InitPocInfoRouter(PublicGroup)
 	}
 
 	InstallPlugin(PublicGroup, PrivateGroup) // 安装插件

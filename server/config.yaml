@@ -75,12 +75,15 @@ hua-wei-obs:
 jwt:
   expires-time: 604800
   issuer: qmPlus
-  signing-key: 57fdc6f5-dfdd-48a2-9ccc-bf3081b053d2
+  signing-key: 6a3f8d56-fd8e-43e9-8910-50dba7076706
 local:
   path: uploads/file
+mongo:
+  db: hotdast
+  url: mongodb://hotdast:o43iXVVAF4v2@localhost:27017/hotdast?authSource=admin
 mysql:
   path: 127.0.0.1
-  port: "3306"
+  port: "13306"
   config: charset=utf8mb4&parseTime=True&loc=Local
   db-name: qmPlus
   username: root
@@ -142,7 +145,7 @@ zap:
   format: console
   prefix: '[github.com/flipped-aurora/gin-vue-admin/server]'
   director: log
-  showLine: true
+  showLine: false
   encode-level: LowercaseColorLevelEncoder
   stacktrace-key: stacktrace
   log-in-console: true

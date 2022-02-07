@@ -1,5 +1,7 @@
 package request
 
+import "go.mongodb.org/mongo-driver/bson/primitive"
+
 // PageInfo Paging common input parameter structure
 type PageInfo struct {
 	Page     int `json:"page" form:"page"`         // 页码
@@ -25,3 +27,11 @@ type GetAuthorityId struct {
 }
 
 type Empty struct{}
+
+type MIdReq struct {
+	Id primitive.ObjectID `json:"_id" form:"_id" bson:"_id"`
+}
+
+type MIdsReq struct {
+	Ids []primitive.ObjectID `json:"ids" form:"ids" bson:"ids"`
+}

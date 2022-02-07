@@ -183,6 +183,15 @@ definitions:
         description: 本地文件路径
         type: string
     type: object
+  config.Mongo:
+    properties:
+      db:
+        description: 数据库名
+        type: string
+      url:
+        description: Mongo_URL
+        type: string
+    type: object
   config.Mysql:
     properties:
       config:
@@ -313,6 +322,8 @@ definitions:
       local:
         $ref: '#/definitions/config.Local'
         description: oss
+      mongo:
+        $ref: '#/definitions/config.Mongo'
       mysql:
         $ref: '#/definitions/config.Mysql'
         description: gorm
@@ -408,6 +419,431 @@ definitions:
         description: 栈名
         type: string
     type: object
+  poc_manager.PocManager:
+    properties:
+      _id:
+        type: string
+      create_at:
+        type: string
+      delete_at:
+        type: string
+      poc_level:
+        type: string
+      poc_name:
+        type: string
+      poc_type:
+        type: string
+      remarks:
+        type: string
+      tags:
+        items:
+          type: string
+        type: array
+      update_at:
+        type: string
+    type: object
+  project.AppInfo:
+    properties:
+      _id:
+        type: string
+      create_at:
+        type: string
+      delete_at:
+        type: string
+      desc:
+        type: string
+      developer:
+        type: string
+      link:
+        type: string
+      name:
+        type: string
+      remarks:
+        type: string
+      source:
+        type: string
+      tags:
+        items:
+          type: string
+        type: array
+      target_id:
+        type: string
+      update_at:
+        type: string
+    type: object
+  project.DocInfo:
+    properties:
+      _id:
+        type: string
+      create_at:
+        type: string
+      delete_at:
+        type: string
+      doc_name:
+        type: string
+      link:
+        type: string
+      remarks:
+        type: string
+      source:
+        type: string
+      tags:
+        items:
+          type: string
+        type: array
+      target_id:
+        type: string
+      update_at:
+        type: string
+    type: object
+  project.Domain:
+    properties:
+      _id:
+        type: string
+      addr:
+        type: string
+      alive:
+        type: integer
+      asn:
+        type: string
+      cdn:
+        type: integer
+      cidr:
+        type: string
+      cname:
+        type: string
+      create_at:
+        type: string
+      delete_at:
+        type: string
+      domain:
+        type: string
+      hostnames:
+        items:
+          type: string
+        type: array
+      ips:
+        items:
+          type: string
+        type: array
+      isp:
+        type: string
+      org:
+        type: string
+      os:
+        type: string
+      port_ids:
+        items:
+          type: string
+        type: array
+      remarks:
+        type: string
+      source:
+        type: string
+      tags:
+        items:
+          type: string
+        type: array
+      target_id:
+        type: string
+      target_id_is_verify:
+        type: boolean
+      update_at:
+        type: string
+      whois:
+        additionalProperties: true
+        type: object
+    type: object
+  project.Email:
+    properties:
+      _id:
+        type: string
+      create_at:
+        type: string
+      delete_at:
+        type: string
+      email:
+        type: string
+      remarks:
+        type: string
+      source:
+        type: string
+      tags:
+        items:
+          type: string
+        type: array
+      target_id:
+        type: string
+      update_at:
+        type: string
+    type: object
+  project.Keys:
+    properties:
+      _id:
+        type: string
+      content:
+        type: string
+      create_at:
+        type: string
+      delete_at:
+        type: string
+      password:
+        type: string
+      password_type:
+        type: string
+      remarks:
+        type: string
+      source:
+        type: string
+      tags:
+        items:
+          type: string
+        type: array
+      target_id:
+        type: string
+      update_at:
+        type: string
+      username:
+        type: string
+    type: object
+  project.PathInfo:
+    properties:
+      _id:
+        type: string
+      create_at:
+        type: string
+      delete_at:
+        type: string
+      hostinfo:
+        type: string
+      path:
+        type: string
+      port_id:
+        type: string
+      remarks:
+        type: string
+      response_size:
+        type: integer
+      status:
+        type: string
+      tags:
+        items:
+          type: string
+        type: array
+      title:
+        type: string
+      update_at:
+        type: string
+      url:
+        type: string
+    type: object
+  project.PortInfo:
+    properties:
+      _id:
+        type: string
+      alive:
+        type: integer
+      banner:
+        type: string
+      create_at:
+        type: string
+      delete_at:
+        type: string
+      domain_id:
+        type: string
+      favicons:
+        type: string
+      host:
+        type: string
+      hostinfo:
+        type: string
+      path_ids:
+        items:
+          type: string
+        type: array
+      port:
+        type: string
+      products:
+        items:
+          type: string
+        type: array
+      protocols:
+        items:
+          type: string
+        type: array
+      remarks:
+        type: string
+      screenshot:
+        type: string
+      status:
+        type: string
+      tags:
+        items:
+          type: string
+        type: array
+      title:
+        type: string
+      update_at:
+        type: string
+      url:
+        type: string
+    type: object
+  project.Project:
+    properties:
+      _id:
+        type: string
+      create_at:
+        type: string
+      delete_at:
+        type: string
+      end_time:
+        type: string
+      project_desc:
+        type: string
+      project_name:
+        type: string
+      remarks:
+        type: string
+      start_time:
+        type: string
+      tags:
+        items:
+          type: string
+        type: array
+      target_ids:
+        items:
+          type: string
+        type: array
+      task_ids:
+        items:
+          type: string
+        type: array
+      update_at:
+        type: string
+    type: object
+  project.Target:
+    properties:
+      _id:
+        type: string
+      create_at:
+        type: string
+      delete_at:
+        type: string
+      domain_ids:
+        items:
+          type: string
+        type: array
+      project_ids:
+        type: string
+      remarks:
+        type: string
+      tags:
+        items:
+          type: string
+        type: array
+      target_name:
+        type: string
+      task_ids:
+        items:
+          type: string
+        type: array
+      update_at:
+        type: string
+    type: object
+  project.TargetRelation:
+    properties:
+      _id:
+        type: string
+      create_at:
+        type: string
+      delete_at:
+        type: string
+      parent_target_id:
+        type: string
+      reg_rate:
+        type: number
+      remarks:
+        type: string
+      tags:
+        items:
+          type: string
+        type: array
+      target_id:
+        type: string
+      target_name:
+        type: string
+      update_at:
+        type: string
+    type: object
+  project.Task:
+    properties:
+      _id:
+        type: string
+      create_at:
+        type: string
+      delete_at:
+        type: string
+      hosts:
+        type: string
+      keyword:
+        type: string
+      ports:
+        type: string
+      project_id:
+        type: string
+      remarks:
+        type: string
+      status:
+        type: string
+      tags:
+        items:
+          type: string
+        type: array
+      target_id:
+        type: string
+      task_name:
+        type: string
+      tool_ext:
+        additionalProperties: true
+        type: object
+      tools:
+        items:
+          type: string
+        type: array
+      update_at:
+        type: string
+    type: object
+  project.WechatOfficialAccount:
+    properties:
+      _id:
+        type: string
+      account_principal:
+        type: string
+      create_at:
+        type: string
+      delete_at:
+        type: string
+      desc:
+        type: string
+      link:
+        type: string
+      remarks:
+        type: string
+      source:
+        type: string
+      tags:
+        items:
+          type: string
+        type: array
+      target_id:
+        type: string
+      update_at:
+        type: string
+      wechat_name:
+        type: string
+      wechat_number:
+        type: string
+    type: object
   request.AddMenuAuthorityInfo:
     properties:
       authorityId:
@@ -417,6 +853,43 @@ definitions:
         items:
           $ref: '#/definitions/system.SysBaseMenu'
         type: array
+    type: object
+  request.AppInfoSearch:
+    properties:
+      _id:
+        type: string
+      create_at:
+        type: string
+      delete_at:
+        type: string
+      desc:
+        type: boolean
+      developer:
+        type: string
+      link:
+        type: string
+      name:
+        type: string
+      orderKey:
+        type: string
+      page:
+        description: 页码
+        type: integer
+      pageSize:
+        description: 每页大小
+        type: integer
+      remarks:
+        type: string
+      source:
+        type: string
+      tags:
+        items:
+          type: string
+        type: array
+      target_id:
+        type: string
+      update_at:
+        type: string
     type: object
   request.CasbinInReceive:
     properties:
@@ -447,6 +920,142 @@ definitions:
         type: string
       username:
         description: 用户名
+        type: string
+    type: object
+  request.DocInfoSearch:
+    properties:
+      _id:
+        type: string
+      create_at:
+        type: string
+      delete_at:
+        type: string
+      desc:
+        type: boolean
+      doc_name:
+        type: string
+      link:
+        type: string
+      orderKey:
+        type: string
+      page:
+        description: 页码
+        type: integer
+      pageSize:
+        description: 每页大小
+        type: integer
+      remarks:
+        type: string
+      source:
+        type: string
+      tags:
+        items:
+          type: string
+        type: array
+      target_id:
+        type: string
+      update_at:
+        type: string
+    type: object
+  request.DomainSearch:
+    properties:
+      _id:
+        type: string
+      addr:
+        type: string
+      alive:
+        type: integer
+      asn:
+        type: string
+      cdn:
+        type: integer
+      cidr:
+        type: string
+      cname:
+        type: string
+      create_at:
+        type: string
+      delete_at:
+        type: string
+      desc:
+        type: boolean
+      domain:
+        type: string
+      hostnames:
+        items:
+          type: string
+        type: array
+      ips:
+        items:
+          type: string
+        type: array
+      isp:
+        type: string
+      orderKey:
+        type: string
+      org:
+        type: string
+      os:
+        type: string
+      page:
+        description: 页码
+        type: integer
+      pageSize:
+        description: 每页大小
+        type: integer
+      port_ids:
+        items:
+          type: string
+        type: array
+      remarks:
+        type: string
+      source:
+        type: string
+      tags:
+        items:
+          type: string
+        type: array
+      target_id:
+        type: string
+      target_id_is_verify:
+        type: boolean
+      update_at:
+        type: string
+      whois:
+        additionalProperties: true
+        type: object
+    type: object
+  request.EmailSearch:
+    properties:
+      _id:
+        type: string
+      create_at:
+        type: string
+      delete_at:
+        type: string
+      desc:
+        type: boolean
+      email:
+        type: string
+      orderKey:
+        type: string
+      page:
+        description: 页码
+        type: integer
+      pageSize:
+        description: 每页大小
+        type: integer
+      remarks:
+        type: string
+      source:
+        type: string
+      tags:
+        items:
+          type: string
+        type: array
+      target_id:
+        type: string
+      update_at:
         type: string
     type: object
   request.Empty:
@@ -494,6 +1103,45 @@ definitions:
     - dbName
     - userName
     type: object
+  request.KeysSearch:
+    properties:
+      _id:
+        type: string
+      content:
+        type: string
+      create_at:
+        type: string
+      delete_at:
+        type: string
+      desc:
+        type: boolean
+      orderKey:
+        type: string
+      page:
+        description: 页码
+        type: integer
+      pageSize:
+        description: 每页大小
+        type: integer
+      password:
+        type: string
+      password_type:
+        type: string
+      remarks:
+        type: string
+      source:
+        type: string
+      tags:
+        items:
+          type: string
+        type: array
+      target_id:
+        type: string
+      update_at:
+        type: string
+      username:
+        type: string
+    type: object
   request.Login:
     properties:
       captcha:
@@ -517,6 +1165,184 @@ definitions:
       pageSize:
         description: 每页大小
         type: integer
+    type: object
+  request.PathInfoSearch:
+    properties:
+      _id:
+        type: string
+      create_at:
+        type: string
+      delete_at:
+        type: string
+      desc:
+        type: boolean
+      hostinfo:
+        type: string
+      orderKey:
+        type: string
+      page:
+        description: 页码
+        type: integer
+      pageSize:
+        description: 每页大小
+        type: integer
+      path:
+        type: string
+      port_id:
+        type: string
+      remarks:
+        type: string
+      response_size:
+        type: integer
+      status:
+        type: string
+      tags:
+        items:
+          type: string
+        type: array
+      title:
+        type: string
+      update_at:
+        type: string
+      url:
+        type: string
+    type: object
+  request.PocManagerSearch:
+    properties:
+      _id:
+        type: string
+      create_at:
+        type: string
+      delete_at:
+        type: string
+      desc:
+        type: boolean
+      orderKey:
+        type: string
+      page:
+        description: 页码
+        type: integer
+      pageSize:
+        description: 每页大小
+        type: integer
+      poc_level:
+        type: string
+      poc_name:
+        type: string
+      poc_type:
+        type: string
+      remarks:
+        type: string
+      tags:
+        items:
+          type: string
+        type: array
+      update_at:
+        type: string
+    type: object
+  request.PortInfoSearch:
+    properties:
+      _id:
+        type: string
+      alive:
+        type: integer
+      banner:
+        type: string
+      create_at:
+        type: string
+      delete_at:
+        type: string
+      desc:
+        type: boolean
+      domain_id:
+        type: string
+      favicons:
+        type: string
+      host:
+        type: string
+      hostinfo:
+        type: string
+      orderKey:
+        type: string
+      page:
+        description: 页码
+        type: integer
+      pageSize:
+        description: 每页大小
+        type: integer
+      path_ids:
+        items:
+          type: string
+        type: array
+      port:
+        type: string
+      products:
+        items:
+          type: string
+        type: array
+      protocols:
+        items:
+          type: string
+        type: array
+      remarks:
+        type: string
+      screenshot:
+        type: string
+      status:
+        type: string
+      tags:
+        items:
+          type: string
+        type: array
+      title:
+        type: string
+      update_at:
+        type: string
+      url:
+        type: string
+    type: object
+  request.ProjectSearch:
+    properties:
+      _id:
+        type: string
+      create_at:
+        type: string
+      delete_at:
+        type: string
+      desc:
+        type: boolean
+      end_time:
+        type: string
+      orderKey:
+        type: string
+      page:
+        description: 页码
+        type: integer
+      pageSize:
+        description: 每页大小
+        type: integer
+      project_desc:
+        type: string
+      project_name:
+        type: string
+      remarks:
+        type: string
+      start_time:
+        type: string
+      tags:
+        items:
+          type: string
+        type: array
+      target_ids:
+        items:
+          type: string
+        type: array
+      task_ids:
+        items:
+          type: string
+        type: array
+      update_at:
+        type: string
     type: object
   request.Register:
     properties:
@@ -586,6 +1412,167 @@ definitions:
         type: array
       id:
         type: integer
+    type: object
+  request.TargetRelationSearch:
+    properties:
+      _id:
+        type: string
+      create_at:
+        type: string
+      delete_at:
+        type: string
+      desc:
+        type: boolean
+      orderKey:
+        type: string
+      page:
+        description: 页码
+        type: integer
+      pageSize:
+        description: 每页大小
+        type: integer
+      parent_target_id:
+        type: string
+      reg_rate:
+        type: number
+      remarks:
+        type: string
+      tags:
+        items:
+          type: string
+        type: array
+      target_id:
+        type: string
+      target_name:
+        type: string
+      update_at:
+        type: string
+    type: object
+  request.TargetSearch:
+    properties:
+      _id:
+        type: string
+      create_at:
+        type: string
+      delete_at:
+        type: string
+      desc:
+        type: boolean
+      domain_ids:
+        items:
+          type: string
+        type: array
+      orderKey:
+        type: string
+      page:
+        description: 页码
+        type: integer
+      pageSize:
+        description: 每页大小
+        type: integer
+      project_ids:
+        type: string
+      remarks:
+        type: string
+      tags:
+        items:
+          type: string
+        type: array
+      target_name:
+        type: string
+      task_ids:
+        items:
+          type: string
+        type: array
+      update_at:
+        type: string
+    type: object
+  request.TaskSearch:
+    properties:
+      _id:
+        type: string
+      create_at:
+        type: string
+      delete_at:
+        type: string
+      desc:
+        type: boolean
+      hosts:
+        type: string
+      keyword:
+        type: string
+      orderKey:
+        type: string
+      page:
+        description: 页码
+        type: integer
+      pageSize:
+        description: 每页大小
+        type: integer
+      ports:
+        type: string
+      project_id:
+        type: string
+      remarks:
+        type: string
+      status:
+        type: string
+      tags:
+        items:
+          type: string
+        type: array
+      target_id:
+        type: string
+      task_name:
+        type: string
+      tool_ext:
+        additionalProperties: true
+        type: object
+      tools:
+        items:
+          type: string
+        type: array
+      update_at:
+        type: string
+    type: object
+  request.WechatOfficialAccountSearch:
+    properties:
+      _id:
+        type: string
+      account_principal:
+        type: string
+      create_at:
+        type: string
+      delete_at:
+        type: string
+      desc:
+        type: boolean
+      link:
+        type: string
+      orderKey:
+        type: string
+      page:
+        description: 页码
+        type: integer
+      pageSize:
+        description: 每页大小
+        type: integer
+      remarks:
+        type: string
+      source:
+        type: string
+      tags:
+        items:
+          type: string
+        type: array
+      target_id:
+        type: string
+      update_at:
+        type: string
+      wechat_name:
+        type: string
+      wechat_number:
+        type: string
     type: object
   response.Email:
     properties:
@@ -1021,6 +2008,145 @@ paths:
       summary: 创建基础api
       tags:
       - SysApi
+  /app_info/createAppInfo:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: 创建AppInfo
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/project.AppInfo'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"code":0,"data":{},"msg":"获取成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 创建AppInfo
+      tags:
+      - AppInfo
+  /app_info/deleteAppInfo:
+    delete:
+      consumes:
+      - application/json
+      parameters:
+      - description: 删除AppInfo
+        in: body
+        name: data
+        required: true
+        schema:
+          type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"删除成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 删除AppInfo
+      tags:
+      - AppInfo
+  /app_info/deleteAppInfoByIds:
+    delete:
+      consumes:
+      - application/json
+      parameters:
+      - description: 批量删除AppInfo
+        in: body
+        name: data
+        required: true
+        schema:
+          items:
+            type: string
+          type: array
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"批量删除成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 批量删除AppInfo
+      tags:
+      - AppInfo
+  /app_info/findAppInfo:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: 用id查询AppInfo
+        in: query
+        name: data
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"查询成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 用id查询AppInfo
+      tags:
+      - AppInfo
+  /app_info/getAppInfoList:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: 分页获取AppInfo列表
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/request.AppInfoSearch'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"code":0,"data":{},"msg":"获取成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 分页获取AppInfo列表
+      tags:
+      - AppInfo
+  /app_info/updateAppInfo:
+    put:
+      consumes:
+      - application/json
+      parameters:
+      - description: 更新AppInfo
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/project.AppInfo'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"更新成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 更新AppInfo
+      tags:
+      - AppInfo
   /authority/copyAuthority:
     post:
       consumes:
@@ -1240,6 +2366,355 @@ paths:
       summary: 获取权限列表
       tags:
       - Casbin
+  /doc_info/createDocInfo:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: 创建DocInfo
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/project.DocInfo'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"code":0,"data":{},"msg":"获取成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 创建DocInfo
+      tags:
+      - DocInfo
+  /doc_info/deleteDocInfo:
+    delete:
+      consumes:
+      - application/json
+      parameters:
+      - description: 删除DocInfo
+        in: body
+        name: data
+        required: true
+        schema:
+          type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"删除成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 删除DocInfo
+      tags:
+      - DocInfo
+  /doc_info/deleteDocInfoByIds:
+    delete:
+      consumes:
+      - application/json
+      parameters:
+      - description: 批量删除DocInfo
+        in: body
+        name: data
+        required: true
+        schema:
+          items:
+            type: string
+          type: array
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"批量删除成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 批量删除DocInfo
+      tags:
+      - DocInfo
+  /doc_info/findDocInfo:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: 用id查询DocInfo
+        in: query
+        name: data
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"查询成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 用id查询DocInfo
+      tags:
+      - DocInfo
+  /doc_info/getDocInfoList:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: 分页获取DocInfo列表
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/request.DocInfoSearch'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"code":0,"data":{},"msg":"获取成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 分页获取DocInfo列表
+      tags:
+      - DocInfo
+  /doc_info/updateDocInfo:
+    put:
+      consumes:
+      - application/json
+      parameters:
+      - description: 更新DocInfo
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/project.DocInfo'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"更新成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 更新DocInfo
+      tags:
+      - DocInfo
+  /domain/createDomain:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: 创建Domain
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/project.Domain'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"code":0,"data":{},"msg":"获取成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 创建Domain
+      tags:
+      - Domain
+  /domain/deleteDomain:
+    delete:
+      consumes:
+      - application/json
+      parameters:
+      - description: 删除Domain
+        in: body
+        name: data
+        required: true
+        schema:
+          type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"删除成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 删除Domain
+      tags:
+      - Domain
+  /domain/deleteDomainByIds:
+    delete:
+      consumes:
+      - application/json
+      parameters:
+      - description: 批量删除Domain
+        in: body
+        name: data
+        required: true
+        schema:
+          items:
+            type: string
+          type: array
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"批量删除成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 批量删除Domain
+      tags:
+      - Domain
+  /domain/findDomain:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: 用id查询Domain
+        in: query
+        name: data
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"查询成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 用id查询Domain
+      tags:
+      - Domain
+  /domain/getDomainList:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: 分页获取Domain列表
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/request.DomainSearch'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"code":0,"data":{},"msg":"获取成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 分页获取Domain列表
+      tags:
+      - Domain
+  /domain/updateDomain:
+    put:
+      consumes:
+      - application/json
+      parameters:
+      - description: 更新Domain
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/project.Domain'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"更新成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 更新Domain
+      tags:
+      - Domain
+  /email/createEmail:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: 创建Email
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/project.Email'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"code":0,"data":{},"msg":"获取成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 创建Email
+      tags:
+      - Email
+  /email/deleteEmail:
+    delete:
+      consumes:
+      - application/json
+      parameters:
+      - description: 删除Email
+        in: body
+        name: data
+        required: true
+        schema:
+          type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"删除成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 删除Email
+      tags:
+      - Email
+  /email/deleteEmailByIds:
+    delete:
+      consumes:
+      - application/json
+      parameters:
+      - description: 批量删除Email
+        in: body
+        name: data
+        required: true
+        schema:
+          items:
+            type: string
+          type: array
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"批量删除成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 批量删除Email
+      tags:
+      - Email
   /email/emailTest:
     post:
       produces:
@@ -1254,6 +2729,51 @@ paths:
       summary: 发送测试邮件
       tags:
       - System
+  /email/findEmail:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: 用id查询Email
+        in: query
+        name: data
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"查询成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 用id查询Email
+      tags:
+      - Email
+  /email/getEmailList:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: 分页获取Email列表
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/request.EmailSearch'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"code":0,"data":{},"msg":"获取成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 分页获取Email列表
+      tags:
+      - Email
   /email/sendEmail:
     post:
       parameters:
@@ -1275,6 +2795,29 @@ paths:
       summary: 发送邮件
       tags:
       - System
+  /email/updateEmail:
+    put:
+      consumes:
+      - application/json
+      parameters:
+      - description: 更新Email
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/project.Email'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"更新成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 更新Email
+      tags:
+      - Email
   /fileUploadAndDownload/deleteFile:
     post:
       parameters:
@@ -1388,6 +2931,145 @@ paths:
       summary: jwt加入黑名单
       tags:
       - Jwt
+  /keys/createKeys:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: 创建Keys
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/project.Keys'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"code":0,"data":{},"msg":"获取成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 创建Keys
+      tags:
+      - Keys
+  /keys/deleteKeys:
+    delete:
+      consumes:
+      - application/json
+      parameters:
+      - description: 删除Keys
+        in: body
+        name: data
+        required: true
+        schema:
+          type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"删除成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 删除Keys
+      tags:
+      - Keys
+  /keys/deleteKeysByIds:
+    delete:
+      consumes:
+      - application/json
+      parameters:
+      - description: 批量删除Keys
+        in: body
+        name: data
+        required: true
+        schema:
+          items:
+            type: string
+          type: array
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"批量删除成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 批量删除Keys
+      tags:
+      - Keys
+  /keys/findKeys:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: 用id查询Keys
+        in: query
+        name: data
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"查询成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 用id查询Keys
+      tags:
+      - Keys
+  /keys/getKeysList:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: 分页获取Keys列表
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/request.KeysSearch'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"code":0,"data":{},"msg":"获取成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 分页获取Keys列表
+      tags:
+      - Keys
+  /keys/updateKeys:
+    put:
+      consumes:
+      - application/json
+      parameters:
+      - description: 更新Keys
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/project.Keys'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"更新成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 更新Keys
+      tags:
+      - Keys
   /menu/addBaseMenu:
     post:
       consumes:
@@ -1591,6 +3273,562 @@ paths:
       summary: 更新菜单
       tags:
       - Menu
+  /path_info/createPathInfo:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: 创建PathInfo
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/project.PathInfo'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"code":0,"data":{},"msg":"获取成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 创建PathInfo
+      tags:
+      - PathInfo
+  /path_info/deletePathInfo:
+    delete:
+      consumes:
+      - application/json
+      parameters:
+      - description: 删除PathInfo
+        in: body
+        name: data
+        required: true
+        schema:
+          type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"删除成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 删除PathInfo
+      tags:
+      - PathInfo
+  /path_info/deletePathInfoByIds:
+    delete:
+      consumes:
+      - application/json
+      parameters:
+      - description: 批量删除PathInfo
+        in: body
+        name: data
+        required: true
+        schema:
+          items:
+            type: string
+          type: array
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"批量删除成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 批量删除PathInfo
+      tags:
+      - PathInfo
+  /path_info/findPathInfo:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: 用id查询PathInfo
+        in: query
+        name: data
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"查询成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 用id查询PathInfo
+      tags:
+      - PathInfo
+  /path_info/getPathInfoList:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: 分页获取PathInfo列表
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/request.PathInfoSearch'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"code":0,"data":{},"msg":"获取成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 分页获取PathInfo列表
+      tags:
+      - PathInfo
+  /path_info/updatePathInfo:
+    put:
+      consumes:
+      - application/json
+      parameters:
+      - description: 更新PathInfo
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/project.PathInfo'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"更新成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 更新PathInfo
+      tags:
+      - PathInfo
+  /poc_manager/createPocManager:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: 创建PocManager
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/poc_manager.PocManager'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"code":0,"data":{},"msg":"获取成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 创建PocManager
+      tags:
+      - PocManager
+  /poc_manager/deletePocManager:
+    delete:
+      consumes:
+      - application/json
+      parameters:
+      - description: 删除PocManager
+        in: body
+        name: data
+        required: true
+        schema:
+          type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"删除成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 删除PocManager
+      tags:
+      - PocManager
+  /poc_manager/deletePocManagerByIds:
+    delete:
+      consumes:
+      - application/json
+      parameters:
+      - description: 批量删除PocManager
+        in: body
+        name: data
+        required: true
+        schema:
+          items:
+            type: string
+          type: array
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"批量删除成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 批量删除PocManager
+      tags:
+      - PocManager
+  /poc_manager/findPocManager:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: 用id查询PocManager
+        in: query
+        name: data
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"查询成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 用id查询PocManager
+      tags:
+      - PocManager
+  /poc_manager/getPocManagerList:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: 分页获取PocManager列表
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/request.PocManagerSearch'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"code":0,"data":{},"msg":"获取成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 分页获取PocManager列表
+      tags:
+      - PocManager
+  /poc_manager/updatePocManager:
+    put:
+      consumes:
+      - application/json
+      parameters:
+      - description: 更新PocManager
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/poc_manager.PocManager'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"更新成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 更新PocManager
+      tags:
+      - PocManager
+  /port_info/createPortInfo:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: 创建PortInfo
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/project.PortInfo'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"code":0,"data":{},"msg":"获取成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 创建PortInfo
+      tags:
+      - PortInfo
+  /port_info/deletePortInfo:
+    delete:
+      consumes:
+      - application/json
+      parameters:
+      - description: 删除PortInfo
+        in: body
+        name: data
+        required: true
+        schema:
+          type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"删除成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 删除PortInfo
+      tags:
+      - PortInfo
+  /port_info/deletePortInfoByIds:
+    delete:
+      consumes:
+      - application/json
+      parameters:
+      - description: 批量删除PortInfo
+        in: body
+        name: data
+        required: true
+        schema:
+          items:
+            type: string
+          type: array
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"批量删除成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 批量删除PortInfo
+      tags:
+      - PortInfo
+  /port_info/findPortInfo:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: 用id查询PortInfo
+        in: query
+        name: data
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"查询成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 用id查询PortInfo
+      tags:
+      - PortInfo
+  /port_info/getPortInfoList:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: 分页获取PortInfo列表
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/request.PortInfoSearch'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"code":0,"data":{},"msg":"获取成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 分页获取PortInfo列表
+      tags:
+      - PortInfo
+  /port_info/updatePortInfo:
+    put:
+      consumes:
+      - application/json
+      parameters:
+      - description: 更新PortInfo
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/project.PortInfo'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"更新成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 更新PortInfo
+      tags:
+      - PortInfo
+  /project/createProject:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: 创建Project
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/project.Project'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"code":0,"data":{},"msg":"获取成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 创建Project
+      tags:
+      - Project
+  /project/deleteProject:
+    delete:
+      consumes:
+      - application/json
+      parameters:
+      - description: 删除Project
+        in: body
+        name: data
+        required: true
+        schema:
+          type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"删除成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 删除Project
+      tags:
+      - Project
+  /project/deleteProjectByIds:
+    delete:
+      consumes:
+      - application/json
+      parameters:
+      - description: 批量删除Project
+        in: body
+        name: data
+        required: true
+        schema:
+          items:
+            type: string
+          type: array
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"批量删除成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 批量删除Project
+      tags:
+      - Project
+  /project/findProject:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: 用id查询Project
+        in: query
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"查询成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 用id查询Project
+      tags:
+      - Project
+  /project/getProjectList:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: 分页获取Project列表
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/request.ProjectSearch'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"code":0,"data":{},"msg":"获取成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 分页获取Project列表
+      tags:
+      - Project
+  /project/updateProject:
+    put:
+      consumes:
+      - application/json
+      parameters:
+      - description: 更新Project
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/project.Project'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"更新成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 更新Project
+      tags:
+      - Project
   /sysOperationRecord/createSysOperationRecord:
     post:
       consumes:
@@ -1869,6 +4107,423 @@ paths:
       summary: 设置配置文件内容
       tags:
       - System
+  /target/createTarget:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: 创建Target
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/project.Target'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"code":0,"data":{},"msg":"获取成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 创建Target
+      tags:
+      - Target
+  /target/deleteTarget:
+    delete:
+      consumes:
+      - application/json
+      parameters:
+      - description: 删除Target
+        in: body
+        name: data
+        required: true
+        schema:
+          type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"删除成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 删除Target
+      tags:
+      - Target
+  /target/deleteTargetByIds:
+    delete:
+      consumes:
+      - application/json
+      parameters:
+      - description: 批量删除Target
+        in: body
+        name: data
+        required: true
+        schema:
+          items:
+            type: string
+          type: array
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"批量删除成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 批量删除Target
+      tags:
+      - Target
+  /target/findTarget:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: 用id查询Target
+        in: query
+        name: data
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"查询成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 用id查询Target
+      tags:
+      - Target
+  /target/getTargetList:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: 分页获取Target列表
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/request.TargetSearch'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"code":0,"data":{},"msg":"获取成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 分页获取Target列表
+      tags:
+      - Target
+  /target/updateTarget:
+    put:
+      consumes:
+      - application/json
+      parameters:
+      - description: 更新Target
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/project.Target'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"更新成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 更新Target
+      tags:
+      - Target
+  /target_relation/createTargetRelation:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: 创建TargetRelation
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/project.TargetRelation'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"code":0,"data":{},"msg":"获取成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 创建TargetRelation
+      tags:
+      - TargetRelation
+  /target_relation/deleteTargetRelation:
+    delete:
+      consumes:
+      - application/json
+      parameters:
+      - description: 删除TargetRelation
+        in: body
+        name: data
+        required: true
+        schema:
+          type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"删除成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 删除TargetRelation
+      tags:
+      - TargetRelation
+  /target_relation/deleteTargetRelationByIds:
+    delete:
+      consumes:
+      - application/json
+      parameters:
+      - description: 批量删除TargetRelation
+        in: body
+        name: data
+        required: true
+        schema:
+          items:
+            type: string
+          type: array
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"批量删除成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 批量删除TargetRelation
+      tags:
+      - TargetRelation
+  /target_relation/findTargetRelation:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: 用id查询TargetRelation
+        in: query
+        name: data
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"查询成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 用id查询TargetRelation
+      tags:
+      - TargetRelation
+  /target_relation/getTargetRelationList:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: 分页获取TargetRelation列表
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/request.TargetRelationSearch'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"code":0,"data":{},"msg":"获取成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 分页获取TargetRelation列表
+      tags:
+      - TargetRelation
+  /target_relation/updateTargetRelation:
+    put:
+      consumes:
+      - application/json
+      parameters:
+      - description: 更新TargetRelation
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/project.TargetRelation'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"更新成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 更新TargetRelation
+      tags:
+      - TargetRelation
+  /task/createTask:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: 创建Task
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/project.Task'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"code":0,"data":{},"msg":"获取成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 创建Task
+      tags:
+      - Task
+  /task/deleteTask:
+    delete:
+      consumes:
+      - application/json
+      parameters:
+      - description: 删除Task
+        in: body
+        name: data
+        required: true
+        schema:
+          type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"删除成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 删除Task
+      tags:
+      - Task
+  /task/deleteTaskByIds:
+    delete:
+      consumes:
+      - application/json
+      parameters:
+      - description: 批量删除Task
+        in: body
+        name: data
+        required: true
+        schema:
+          items:
+            type: string
+          type: array
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"批量删除成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 批量删除Task
+      tags:
+      - Task
+  /task/findTask:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: 用id查询Task
+        in: query
+        name: data
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"查询成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 用id查询Task
+      tags:
+      - Task
+  /task/getTaskList:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: 分页获取Task列表
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/request.TaskSearch'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"code":0,"data":{},"msg":"获取成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 分页获取Task列表
+      tags:
+      - Task
+  /task/updateTask:
+    put:
+      consumes:
+      - application/json
+      parameters:
+      - description: 更新Task
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/project.Task'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"更新成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 更新Task
+      tags:
+      - Task
   /user/SetSelfInfo:
     put:
       consumes:
@@ -2084,6 +4739,145 @@ paths:
       summary: 设置用户信息
       tags:
       - SysUser
+  /wechat_official_account/createWechatOfficialAccount:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: 创建WechatOfficialAccount
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/project.WechatOfficialAccount'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"code":0,"data":{},"msg":"获取成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 创建WechatOfficialAccount
+      tags:
+      - WechatOfficialAccount
+  /wechat_official_account/deleteWechatOfficialAccount:
+    delete:
+      consumes:
+      - application/json
+      parameters:
+      - description: 删除WechatOfficialAccount
+        in: body
+        name: data
+        required: true
+        schema:
+          type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"删除成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 删除WechatOfficialAccount
+      tags:
+      - WechatOfficialAccount
+  /wechat_official_account/deleteWechatOfficialAccountByIds:
+    delete:
+      consumes:
+      - application/json
+      parameters:
+      - description: 批量删除WechatOfficialAccount
+        in: body
+        name: data
+        required: true
+        schema:
+          items:
+            type: string
+          type: array
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"批量删除成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 批量删除WechatOfficialAccount
+      tags:
+      - WechatOfficialAccount
+  /wechat_official_account/findWechatOfficialAccount:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: 用id查询WechatOfficialAccount
+        in: query
+        name: data
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"查询成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 用id查询WechatOfficialAccount
+      tags:
+      - WechatOfficialAccount
+  /wechat_official_account/getWechatOfficialAccountList:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: 分页获取WechatOfficialAccount列表
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/request.WechatOfficialAccountSearch'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"code":0,"data":{},"msg":"获取成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 分页获取WechatOfficialAccount列表
+      tags:
+      - WechatOfficialAccount
+  /wechat_official_account/updateWechatOfficialAccount:
+    put:
+      consumes:
+      - application/json
+      parameters:
+      - description: 更新WechatOfficialAccount
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/project.WechatOfficialAccount'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"更新成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 更新WechatOfficialAccount
+      tags:
+      - WechatOfficialAccount
 securityDefinitions:
   ApiKeyAuth:
     in: header

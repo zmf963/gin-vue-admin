@@ -3,8 +3,8 @@
  */
 
 const config = {
-  appName: 'Gin-Vue-Admin',
-  appLogo: 'https://www.gin-vue-admin.com/img/logo.png',
+  appName: '协同平台',
+  appLogo: 'http://nuc.local:8080/assets/github.png',
   showViteLogo: true
 }
 

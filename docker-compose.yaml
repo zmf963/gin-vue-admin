@@ -64,3 +64,16 @@ services:
     networks:
       network:
         ipv4_address: 177.7.0.14
+  mongodb:
+    image: mongo:latest
+    restart: always
+    container_name: mongodb
+    volumes:
+      - $PWD/data/mongo/db:/data/db
+      - $PWD/data/mongo/log:/var/log/mongodb
+    ports:
+      - '27017:27017'
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: hotdast
+      MONGO_INITDB_ROOT_PASSWORD: o43iXVVAF4v2
+      MONGO_INITDB_DATABASE: dev

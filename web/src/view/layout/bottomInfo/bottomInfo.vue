@@ -8,7 +8,7 @@
       <el-divider direction="vertical" />
       <span>Copyright</span>
       <span>
-        <a href="https://github.com/flipped-aurora">flipped-aurora团队</a>
+        <a href="#">2021-2022</a>
       </span>
     </div>
   </div>

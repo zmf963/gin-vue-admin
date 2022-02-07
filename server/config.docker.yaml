@@ -65,6 +65,10 @@ mysql:
   log-mode: ""
   log-zap: false
 
+mongo:
+  db: online
+  url: mongodb://online:43invVDwfsd4@177.7.0.15:27017/hotdast?authSource=admin
+
 # local configuration
 local:
   path: 'uploads/file'

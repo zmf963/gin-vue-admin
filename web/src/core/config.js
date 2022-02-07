@@ -4,9 +4,9 @@
 
 const config = {
   appName: '协同平台',
-  appLogo: 'http://nuc.local:8080/assets/github.png',
+  appLogo: '#',
   showViteLogo: true
-}
+} 
 
 export const viteLogo = (env) => {
   if (config.showViteLogo) {

@@ -12,8 +12,6 @@ RUN go env -w GO111MODULE=on \
 
 FROM alpine:latest
 
-LABEL MAINTAINER="SliverHorn@sliver_horn@qq.com"
-
 WORKDIR /go/src/github.com/flipped-aurora/gin-vue-admin/server
 
 COPY --from=0 /go/src/github.com/flipped-aurora/gin-vue-admin/server/server ./

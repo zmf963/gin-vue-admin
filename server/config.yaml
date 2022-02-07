@@ -79,8 +79,8 @@ jwt:
 local:
   path: uploads/file
 mongo:
-  db: hotdast
-  url: mongodb://hotdast:o43iXVVAF4v2@localhost:27017/hotdast?authSource=admin
+  db: online
+  url: mongodb://online:43invVDwfsd4@177.7.0.15:27017/hotdast?authSource=admin
 mysql:
   path: 127.0.0.1
   port: "13306"

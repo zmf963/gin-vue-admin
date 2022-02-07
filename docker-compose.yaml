@@ -13,23 +13,9 @@ services:
       context: ./web
       dockerfile: ./Dockerfile
     container_name: online-web
-    restart: version: "3"
-
-services:
-  web:
-    build:
-      context: .
-      dockerfile: ./Dockerfile
-    container_name: hotdast-web
     restart: always
     ports:
       - '443:443'
-    command: [ 'nginx-debug', '-g', 'daemon off;' ]
-
-    ports:
-      - '8080:8080'
-    depends_on:
-      - server
     command: [ 'nginx-debug', '-g', 'daemon off;' ]
     networks:
       network:
@@ -79,7 +65,7 @@ services:
   mongodb:
     image: mongo:latest
     restart: always
-    container_name: mongodb
+    container_name: online-mongodb
     volumes:
       - $PWD/data/mongo/db:/data/db
       - $PWD/data/mongo/log:/var/log/mongodb
@@ -89,3 +75,6 @@ services:
       MONGO_INITDB_ROOT_USERNAME: online
       MONGO_INITDB_ROOT_PASSWORD: 43invVDwfsd4
       MONGO_INITDB_DATABASE: online
+    networks:
+      network:
+        ipv4_address: 177.7.0.15

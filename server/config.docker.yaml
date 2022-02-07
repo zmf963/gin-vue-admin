@@ -22,7 +22,7 @@ zap:
 redis:
   db: 0
   addr: '177.7.0.14:6379'
-  password: ''
+  password: 'xsC4sdf43aX'
 
 # email configuration
 email:

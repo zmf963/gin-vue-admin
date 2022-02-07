@@ -114,7 +114,7 @@ qiniu:
 redis:
   db: 0
   addr: 127.0.0.1:6379
-  password: ""
+  password: "xsC4sdf43aX"
 system:
   env: public
   addr: 8888

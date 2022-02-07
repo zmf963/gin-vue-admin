@@ -28,7 +28,7 @@ services:
     container_name: online-server
     restart: always
     ports:
-      - '8888:8888'
+      - '127.0.0.1:8888:8888'
     depends_on:
       - mysql
       - redis
@@ -45,7 +45,7 @@ services:
     command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci #设置utf8字符集
     restart: always
     ports:
-      - "3306:3306"  # host物理直接映射端口为13306
+      - "127.0.0.1:3306:3306"  # host物理直接映射端口为13306
     environment:
       MYSQL_DATABASE: 'online' # 初始化启动时要创建的数据库的名称
       MYSQL_ROOT_PASSWORD: 'xsC4sdf43aX' # root管理员用户密码
@@ -57,8 +57,11 @@ services:
     image: redis:6.0.6
     container_name: online-redis # 容器名
     restart: always
+    command: redis-server --requirepass xsC4sdf43aX
     ports:
       - '6379:6379'
+    volumes:
+      - $PWD/data/redis:/data
     networks:
       network:
         ipv4_address: 177.7.0.14
@@ -70,7 +73,7 @@ services:
       - $PWD/data/mongo/db:/data/db
       - $PWD/data/mongo/log:/var/log/mongodb
     ports:
-      - '27017:27017'
+      - '127.0.0.1:27017:27017'
     environment:
       MONGO_INITDB_ROOT_USERNAME: online
       MONGO_INITDB_ROOT_PASSWORD: 43invVDwfsd4

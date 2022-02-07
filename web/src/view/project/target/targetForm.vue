@@ -49,7 +49,7 @@ import {
   createTarget,
   updateTarget,
   findTarget
-} from '@/apitarget'
+} from '@/api/target'
 
 import { useRoute, useRouter } from "vue-router"
 import { ElMessage } from 'element-plus'

@@ -61,7 +61,7 @@ import {
   createAppInfo,
   updateAppInfo,
   findAppInfo
-} from '@/apiapp_info'
+} from '@/api/app_info'
 
 import { useRoute, useRouter } from "vue-router"
 import { ElMessage } from 'element-plus'

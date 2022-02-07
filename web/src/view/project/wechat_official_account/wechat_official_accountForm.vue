@@ -67,7 +67,7 @@ import {
   createWechatOfficialAccount,
   updateWechatOfficialAccount,
   findWechatOfficialAccount
-} from '@/apiwechat_official_account'
+} from '@/api/wechat_official_account'
 
 import { useRoute, useRouter } from "vue-router"
 import { ElMessage } from 'element-plus'

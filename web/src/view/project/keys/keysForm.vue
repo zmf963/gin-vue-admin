@@ -61,7 +61,7 @@ import {
   createKeys,
   updateKeys,
   findKeys
-} from '@/apikeys'
+} from '@/api/keys'
 
 import { useRoute, useRouter } from "vue-router"
 import { ElMessage } from 'element-plus'

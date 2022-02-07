@@ -49,7 +49,7 @@ import {
   createDocInfo,
   updateDocInfo,
   findDocInfo
-} from '@/apidoc_info'
+} from '@/api/doc_info'
 
 import { useRoute, useRouter } from "vue-router"
 import { ElMessage } from 'element-plus'

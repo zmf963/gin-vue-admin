@@ -1,0 +1,12 @@
+version: "3"
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    container_name: web
+    restart: always
+    ports:
+      - '443:443'
+    command: [ 'nginx-debug', '-g', 'daemon off;' ]

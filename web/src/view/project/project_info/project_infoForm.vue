@@ -61,7 +61,7 @@ import {
   createProjectInfo,
   updateProjectInfo,
   findProjectInfo
-} from '@/apiproject_info'
+} from '@/api/project_info'
 
 import { useRoute, useRouter } from "vue-router"
 import { ElMessage } from 'element-plus'

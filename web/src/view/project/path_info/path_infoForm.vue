@@ -65,7 +65,7 @@ import {
   createPathInfo,
   updatePathInfo,
   findPathInfo
-} from '@/apipath_info'
+} from '@/api/path_info'
 
 import { useRoute, useRouter } from "vue-router"
 import { ElMessage } from 'element-plus'

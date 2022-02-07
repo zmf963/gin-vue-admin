@@ -1,15 +1,17 @@
-FROM node:16
+FROM node:16.13.2
 
-WORKDIR /gva_web/
+WORKDIR /web/
 COPY . .
 
-RUN yarn && yarn build
+RUN npm install  --registry=https://registry.npm.taobao.org
+RUN npm run build
 
 FROM nginx:alpine
-LABEL MAINTAINER="SliverHorn@sliver_horn@qq.com"
 
-COPY .docker-compose/nginx/conf.d/my.conf /etc/nginx/conf.d/my.conf
-COPY --from=0 /gva_web/dist /usr/share/nginx/html
+COPY .docker-compose/nginx/conf.d /etc/nginx/conf.d
+
+COPY --from=0 /web/dist /usr/share/nginx/html
+# COPY ./dist /usr/share/nginx/html
 RUN cat /etc/nginx/nginx.conf
 RUN cat /etc/nginx/conf.d/my.conf
 RUN ls -al /usr/share/nginx/html

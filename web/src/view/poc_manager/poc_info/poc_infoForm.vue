@@ -43,7 +43,7 @@ import {
   createPocInfo,
   updatePocInfo,
   findPocInfo
-} from '@/apipoc_info'
+} from '@/api/poc_info'
 
 import { useRoute, useRouter } from "vue-router"
 import { ElMessage } from 'element-plus'

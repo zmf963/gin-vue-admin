@@ -133,7 +133,7 @@ import {
   createDomain,
   updateDomain,
   findDomain
-} from '@/apidomain'
+} from '@/api/domain'
 
 import { useRoute, useRouter } from "vue-router"
 import { ElMessage } from 'element-plus'

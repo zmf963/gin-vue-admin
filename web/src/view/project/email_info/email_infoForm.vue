@@ -43,7 +43,7 @@ import {
   createEmailInfo,
   updateEmailInfo,
   findEmailInfo
-} from '@/apiemail_info'
+} from '@/api/email_info'
 
 import { useRoute, useRouter } from "vue-router"
 import { ElMessage } from 'element-plus'

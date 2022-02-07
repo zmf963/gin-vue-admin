@@ -75,7 +75,7 @@ hua-wei-obs:
 jwt:
   expires-time: 604800
   issuer: qmPlus
-  signing-key: 6a3f8d56-fd8e-43e9-8910-50dba7076706
+  signing-key: da1569cc-1914-4cf7-8ab1-c58d732aef40
 local:
   path: uploads/file
 mongo:
@@ -85,7 +85,7 @@ mysql:
   path: 127.0.0.1
   port: "13306"
   config: charset=utf8mb4&parseTime=True&loc=Local
-  db-name: qmPlus
+  db-name: gva
   username: root
   password: Aa@6447985
   max-idle-conns: 0

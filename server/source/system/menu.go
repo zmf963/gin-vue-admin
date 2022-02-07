@@ -35,7 +35,7 @@ func (m *menu) Initialize() error {
 		{MenuLevel: 0, Hidden: false, ParentId: "0", Path: "poc_manager", Name: "poc_manager", Component: "view/poc_manager/index.vue", Sort: 1, Meta: system.Meta{Title: "POC", Icon: "operation"}},
 		
 		
-		{MenuLevel: 0, Hidden: false, ParentId: "13", Path: "project_info", Name: "project_info", Component: "view/project/project_info/project_info.vue", Sort: 1, Meta: system.Meta{Title: "项目管理", Icon: "operation", KeepAlive: true}},
+		{MenuLevel: 0, Hidden: false, ParentId: "13", Path: "project_info", Name: "project_info", Component: "view/project/project_info/project_info.vue", Sort: 1, Meta: system.Meta{Title: "项目信息", Icon: "operation", KeepAlive: true}},
 		{MenuLevel: 0, Hidden: false, ParentId: "13", Path: "task", Name: "task", Component: "view/project/task/task.vue", Sort: 1, Meta: system.Meta{Title: "任务", Icon: "operation", KeepAlive: true}},
 		{MenuLevel: 0, Hidden: false, ParentId: "13", Path: "target", Name: "target", Component: "view/project/target/target.vue", Sort: 1, Meta: system.Meta{Title: "目标管理", Icon: "operation", KeepAlive: true}},
 		{MenuLevel: 0, Hidden: false, ParentId: "13", Path: "target_relation", Name: "target_relation", Component: "view/project/target_relation/target_relation.vue", Sort: 1, Meta: system.Meta{Title: "TargetRelation", Icon: "operation", KeepAlive: true}},

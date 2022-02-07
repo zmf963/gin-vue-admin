@@ -119,6 +119,110 @@ func (a *api) Initialize() error {
 		{ApiGroup: "excel", Method: "GET", Path: "/excel/loadExcel", Description: "下载excel"},
 		{ApiGroup: "excel", Method: "POST", Path: "/excel/exportExcel", Description: "导出excel"},
 		{ApiGroup: "excel", Method: "GET", Path: "/excel/downloadTemplate", Description: "下载excel模板"},
+
+		{ApiGroup: "ProjectInfo", Method: "POST", Path: "/project_info/createProjectInfo", Description: "新增项目信息"},
+		{ApiGroup: "ProjectInfo", Method: "DELETE", Path: "/project_info/deleteProjectInfo", Description: "删除项目信息"},
+		{ApiGroup: "ProjectInfo", Method: "DELETE", Path: "/project_info/delteProjectInfoByIds", Description: "批量删除项目信息"},
+		{ApiGroup: "ProjectInfo", Method: "PUT", Path: "/project_info/updateProjectInfo", Description: "更新项目信息"},
+		{ApiGroup: "ProjectInfo", Method: "GET", Path: "/project_info/findProjectInfo", Description: "根据ID获取项目信息"},
+		{ApiGroup: "ProjectInfo", Method: "POST", Path: "/project_info/getProjectInfoList", Description: "获取项目信息列表"},
+
+		
+		
+		{ApiGroup: "项目信息", Method: "POST", Path: "/project_info/createProjectInfo", Description: "新增项目信息"},
+		{ApiGroup: "项目信息", Method: "DELETE", Path: "/project_info/deleteProjectInfo", Description: "删除项目信息"},
+		{ApiGroup: "项目信息", Method: "DELETE", Path: "/project_info/delteProjectInfoByIds", Description: "批量删除项目信息"},
+		{ApiGroup: "项目信息", Method: "PUT", Path: "/project_info/updateProjectInfo", Description: "更新项目信息"},
+		{ApiGroup: "项目信息", Method: "GET", Path: "/project_info/findProjectInfo", Description: "根据ID获取项目信息"},
+		{ApiGroup: "项目信息", Method: "POST", Path: "/project_info/getProjectInfoList", Description: "获取项目信息列表"},
+		
+		{ApiGroup: "任务", Method: "POST", Path: "/task/createTask", Description: "新增任务"},
+		{ApiGroup: "任务", Method: "DELETE", Path: "/task/deleteTask", Description: "删除任务"},
+		{ApiGroup: "任务", Method: "DELETE", Path: "/task/delteTaskByIds", Description: "批量删除任务"},
+		{ApiGroup: "任务", Method: "PUT", Path: "/task/updateTask", Description: "更新任务"},
+		{ApiGroup: "任务", Method: "GET", Path: "/task/findTask", Description: "根据ID获取任务"},
+		{ApiGroup: "任务", Method: "POST", Path: "/task/getTaskList", Description: "获取任务列表"},
+		
+		{ApiGroup: "目标管理", Method: "POST", Path: "/target/createTarget", Description: "新增目标管理"},
+		{ApiGroup: "目标管理", Method: "DELETE", Path: "/target/deleteTarget", Description: "删除目标管理"},
+		{ApiGroup: "目标管理", Method: "DELETE", Path: "/target/delteTargetByIds", Description: "批量删除目标管理"},
+		{ApiGroup: "目标管理", Method: "PUT", Path: "/target/updateTarget", Description: "更新目标管理"},
+		{ApiGroup: "目标管理", Method: "GET", Path: "/target/findTarget", Description: "根据ID获取目标管理"},
+		{ApiGroup: "目标管理", Method: "POST", Path: "/target/getTargetList", Description: "获取目标管理列表"},
+		
+		{ApiGroup: "TargetRelation", Method: "POST", Path: "/target_relation/createTargetRelation", Description: "新增TargetRelation"},
+		{ApiGroup: "TargetRelation", Method: "DELETE", Path: "/target_relation/deleteTargetRelation", Description: "删除TargetRelation"},
+		{ApiGroup: "TargetRelation", Method: "DELETE", Path: "/target_relation/delteTargetRelationByIds", Description: "批量删除TargetRelation"},
+		{ApiGroup: "TargetRelation", Method: "PUT", Path: "/target_relation/updateTargetRelation", Description: "更新TargetRelation"},
+		{ApiGroup: "TargetRelation", Method: "GET", Path: "/target_relation/findTargetRelation", Description: "根据ID获取TargetRelation"},
+		{ApiGroup: "TargetRelation", Method: "POST", Path: "/target_relation/getTargetRelationList", Description: "获取TargetRelation列表"},
+		
+		{ApiGroup: "Domain", Method: "POST", Path: "/domain/createDomain", Description: "新增Domain"},
+		{ApiGroup: "Domain", Method: "DELETE", Path: "/domain/deleteDomain", Description: "删除Domain"},
+		{ApiGroup: "Domain", Method: "DELETE", Path: "/domain/delteDomainByIds", Description: "批量删除Domain"},
+		{ApiGroup: "Domain", Method: "PUT", Path: "/domain/updateDomain", Description: "更新Domain"},
+		{ApiGroup: "Domain", Method: "GET", Path: "/domain/findDomain", Description: "根据ID获取Domain"},
+		{ApiGroup: "Domain", Method: "POST", Path: "/domain/getDomainList", Description: "获取Domain列表"},
+		
+		{ApiGroup: "端口信息", Method: "POST", Path: "/port_info/createPortInfo", Description: "新增端口信息"},
+		{ApiGroup: "端口信息", Method: "DELETE", Path: "/port_info/deletePortInfo", Description: "删除端口信息"},
+		{ApiGroup: "端口信息", Method: "DELETE", Path: "/port_info/deltePortInfoByIds", Description: "批量删除端口信息"},
+		{ApiGroup: "端口信息", Method: "PUT", Path: "/port_info/updatePortInfo", Description: "更新端口信息"},
+		{ApiGroup: "端口信息", Method: "GET", Path: "/port_info/findPortInfo", Description: "根据ID获取端口信息"},
+		{ApiGroup: "端口信息", Method: "POST", Path: "/port_info/getPortInfoList", Description: "获取端口信息列表"},
+		
+		{ApiGroup: "路径信息", Method: "POST", Path: "/path_info/createPathInfo", Description: "新增路径信息"},
+		{ApiGroup: "路径信息", Method: "DELETE", Path: "/path_info/deletePathInfo", Description: "删除路径信息"},
+		{ApiGroup: "路径信息", Method: "DELETE", Path: "/path_info/deltePathInfoByIds", Description: "批量删除路径信息"},
+		{ApiGroup: "路径信息", Method: "PUT", Path: "/path_info/updatePathInfo", Description: "更新路径信息"},
+		{ApiGroup: "路径信息", Method: "GET", Path: "/path_info/findPathInfo", Description: "根据ID获取路径信息"},
+		{ApiGroup: "路径信息", Method: "POST", Path: "/path_info/getPathInfoList", Description: "获取路径信息列表"},
+		
+		{ApiGroup: "Email信息", Method: "POST", Path: "/email_info/createEmailInfo", Description: "新增Email信息"},
+		{ApiGroup: "Email信息", Method: "DELETE", Path: "/email_info/deleteEmailInfo", Description: "删除Email信息"},
+		{ApiGroup: "Email信息", Method: "DELETE", Path: "/email_info/delteEmailInfoByIds", Description: "批量删除Email信息"},
+		{ApiGroup: "Email信息", Method: "PUT", Path: "/email_info/updateEmailInfo", Description: "更新Email信息"},
+		{ApiGroup: "Email信息", Method: "GET", Path: "/email_info/findEmailInfo", Description: "根据ID获取Email信息"},
+		{ApiGroup: "Email信息", Method: "POST", Path: "/email_info/getEmailInfoList", Description: "获取Email信息列表"},
+		
+		{ApiGroup: "文档信息", Method: "POST", Path: "/doc_info/createDocInfo", Description: "新增文档信息"},
+		{ApiGroup: "文档信息", Method: "DELETE", Path: "/doc_info/deleteDocInfo", Description: "删除文档信息"},
+		{ApiGroup: "文档信息", Method: "DELETE", Path: "/doc_info/delteDocInfoByIds", Description: "批量删除文档信息"},
+		{ApiGroup: "文档信息", Method: "PUT", Path: "/doc_info/updateDocInfo", Description: "更新文档信息"},
+		{ApiGroup: "文档信息", Method: "GET", Path: "/doc_info/findDocInfo", Description: "根据ID获取文档信息"},
+		{ApiGroup: "文档信息", Method: "POST", Path: "/doc_info/getDocInfoList", Description: "获取文档信息列表"},
+		
+		{ApiGroup: "Keys", Method: "POST", Path: "/keys/createKeys", Description: "新增Keys"},
+		{ApiGroup: "Keys", Method: "DELETE", Path: "/keys/deleteKeys", Description: "删除Keys"},
+		{ApiGroup: "Keys", Method: "DELETE", Path: "/keys/delteKeysByIds", Description: "批量删除Keys"},
+		{ApiGroup: "Keys", Method: "PUT", Path: "/keys/updateKeys", Description: "更新Keys"},
+		{ApiGroup: "Keys", Method: "GET", Path: "/keys/findKeys", Description: "根据ID获取Keys"},
+		{ApiGroup: "Keys", Method: "POST", Path: "/keys/getKeysList", Description: "获取Keys列表"},
+		
+		{ApiGroup: "公众号", Method: "POST", Path: "/wechat_official_account/createWechatOfficialAccount", Description: "新增公众号"},
+		{ApiGroup: "公众号", Method: "DELETE", Path: "/wechat_official_account/deleteWechatOfficialAccount", Description: "删除公众号"},
+		{ApiGroup: "公众号", Method: "DELETE", Path: "/wechat_official_account/delteWechatOfficialAccountByIds", Description: "批量删除公众号"},
+		{ApiGroup: "公众号", Method: "PUT", Path: "/wechat_official_account/updateWechatOfficialAccount", Description: "更新公众号"},
+		{ApiGroup: "公众号", Method: "GET", Path: "/wechat_official_account/findWechatOfficialAccount", Description: "根据ID获取公众号"},
+		{ApiGroup: "公众号", Method: "POST", Path: "/wechat_official_account/getWechatOfficialAccountList", Description: "获取公众号列表"},
+		
+		{ApiGroup: "应用信息", Method: "POST", Path: "/app_info/createAppInfo", Description: "新增应用信息"},
+		{ApiGroup: "应用信息", Method: "DELETE", Path: "/app_info/deleteAppInfo", Description: "删除应用信息"},
+		{ApiGroup: "应用信息", Method: "DELETE", Path: "/app_info/delteAppInfoByIds", Description: "批量删除应用信息"},
+		{ApiGroup: "应用信息", Method: "PUT", Path: "/app_info/updateAppInfo", Description: "更新应用信息"},
+		{ApiGroup: "应用信息", Method: "GET", Path: "/app_info/findAppInfo", Description: "根据ID获取应用信息"},
+		{ApiGroup: "应用信息", Method: "POST", Path: "/app_info/getAppInfoList", Description: "获取应用信息列表"},
+		
+		
+		{ApiGroup: "POC", Method: "POST", Path: "/poc_info/createPocInfo", Description: "新增POC"},
+		{ApiGroup: "POC", Method: "DELETE", Path: "/poc_info/deletePocInfo", Description: "删除POC"},
+		{ApiGroup: "POC", Method: "DELETE", Path: "/poc_info/deltePocInfoByIds", Description: "批量删除POC"},
+		{ApiGroup: "POC", Method: "PUT", Path: "/poc_info/updatePocInfo", Description: "更新POC"},
+		{ApiGroup: "POC", Method: "GET", Path: "/poc_info/findPocInfo", Description: "根据ID获取POC"},
+		{ApiGroup: "POC", Method: "POST", Path: "/poc_info/getPocInfoList", Description: "获取POC列表"},
+		
+
+
 	}
 	if err := global.GVA_DB.Create(&entities).Error; err != nil {
 		return errors.Wrap(err, a.TableName()+"表数据初始化失败!")

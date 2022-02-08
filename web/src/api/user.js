@@ -50,6 +50,7 @@ export const changePassword = (data) => {
 // @Tags User
 // @Summary 分页获取用户列表
 // @Security ApiKeyAuth
+// @Security BasicAuth
 // @accept application/json
 // @Produce application/json
 // @Param data body modelInterface.PageInfo true "分页获取用户列表"
@@ -66,6 +67,7 @@ export const getUserList = (data) => {
 // @Tags User
 // @Summary 设置用户权限
 // @Security ApiKeyAuth
+// @Security BasicAuth
 // @accept application/json
 // @Produce application/json
 // @Param data body api.SetUserAuth true "设置用户权限"
@@ -82,6 +84,7 @@ export const setUserAuthority = (data) => {
 // @Tags SysUser
 // @Summary 删除用户
 // @Security ApiKeyAuth
+// @Security BasicAuth
 // @accept application/json
 // @Produce application/json
 // @Param data body request.SetUserAuth true "删除用户"
@@ -98,6 +101,7 @@ export const deleteUser = (data) => {
 // @Tags SysUser
 // @Summary 设置用户信息
 // @Security ApiKeyAuth
+// @Security BasicAuth
 // @accept application/json
 // @Produce application/json
 // @Param data body model.SysUser true "设置用户信息"
@@ -114,6 +118,7 @@ export const setUserInfo = (data) => {
 // @Tags SysUser
 // @Summary 设置用户信息
 // @Security ApiKeyAuth
+// @Security BasicAuth
 // @accept application/json
 // @Produce application/json
 // @Param data body model.SysUser true "设置用户信息"
@@ -130,6 +135,7 @@ export const setSelfInfo = (data) => {
 // @Tags User
 // @Summary 设置用户权限
 // @Security ApiKeyAuth
+// @Security BasicAuth
 // @accept application/json
 // @Produce application/json
 // @Param data body api.setUserAuthorities true "设置用户权限"
@@ -146,6 +152,7 @@ export const setUserAuthorities = (data) => {
 // @Tags User
 // @Summary 获取用户信息
 // @Security ApiKeyAuth
+// @Security BasicAuth
 // @accept application/json
 // @Produce application/json
 // @Success 200 {string} json "{"success":true,"data":{},"msg":"获取成功"}"

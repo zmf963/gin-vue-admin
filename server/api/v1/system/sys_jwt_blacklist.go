@@ -13,6 +13,7 @@ type JwtApi struct{}
 // @Tags Jwt
 // @Summary jwt加入黑名单
 // @Security ApiKeyAuth
+// @Security BasicAuth
 // @accept application/json
 // @Produce application/json
 // @Success 200 {string} string "{"success":true,"data":{},"msg":"拉黑成功"}"

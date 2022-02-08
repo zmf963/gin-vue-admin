@@ -3,6 +3,7 @@ import service from '@/utils/request'
 // @Tags {{.StructName}}
 // @Summary 创建{{.StructName}}
 // @Security ApiKeyAuth
+// @Security BasicAuth
 // @accept application/json
 // @Produce application/json
 // @Param data body model.{{.StructName}} true "创建{{.StructName}}"
@@ -19,6 +20,7 @@ export const create{{.StructName}} = (data) => {
 // @Tags {{.StructName}}
 // @Summary 删除{{.StructName}}
 // @Security ApiKeyAuth
+// @Security BasicAuth
 // @accept application/json
 // @Produce application/json
 // @Param data body model.{{.StructName}} true "删除{{.StructName}}"
@@ -35,6 +37,7 @@ export const delete{{.StructName}} = (data) => {
 // @Tags {{.StructName}}
 // @Summary 删除{{.StructName}}
 // @Security ApiKeyAuth
+// @Security BasicAuth
 // @accept application/json
 // @Produce application/json
 // @Param data body request.IdsReq true "批量删除{{.StructName}}"
@@ -51,6 +54,7 @@ export const delete{{.StructName}}ByIds = (data) => {
 // @Tags {{.StructName}}
 // @Summary 更新{{.StructName}}
 // @Security ApiKeyAuth
+// @Security BasicAuth
 // @accept application/json
 // @Produce application/json
 // @Param data body model.{{.StructName}} true "更新{{.StructName}}"
@@ -67,6 +71,7 @@ export const update{{.StructName}} = (data) => {
 // @Tags {{.StructName}}
 // @Summary 用id查询{{.StructName}}
 // @Security ApiKeyAuth
+// @Security BasicAuth
 // @accept application/json
 // @Produce application/json
 // @Param data query model.{{.StructName}} true "用id查询{{.StructName}}"
@@ -83,6 +88,7 @@ export const find{{.StructName}} = (params) => {
 // @Tags {{.StructName}}
 // @Summary 分页获取{{.StructName}}列表
 // @Security ApiKeyAuth
+// @Security BasicAuth
 // @accept application/json
 // @Produce application/json
 // @Param data query request.PageInfo true "分页获取{{.StructName}}列表"

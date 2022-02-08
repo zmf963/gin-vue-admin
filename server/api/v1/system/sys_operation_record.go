@@ -16,6 +16,7 @@ type OperationRecordApi struct{}
 // @Tags SysOperationRecord
 // @Summary 创建SysOperationRecord
 // @Security ApiKeyAuth
+// @Security BasicAuth
 // @accept application/json
 // @Produce application/json
 // @Param data body system.SysOperationRecord true "创建SysOperationRecord"
@@ -35,6 +36,7 @@ func (s *OperationRecordApi) CreateSysOperationRecord(c *gin.Context) {
 // @Tags SysOperationRecord
 // @Summary 删除SysOperationRecord
 // @Security ApiKeyAuth
+// @Security BasicAuth
 // @accept application/json
 // @Produce application/json
 // @Param data body system.SysOperationRecord true "SysOperationRecord模型"
@@ -54,6 +56,7 @@ func (s *OperationRecordApi) DeleteSysOperationRecord(c *gin.Context) {
 // @Tags SysOperationRecord
 // @Summary 批量删除SysOperationRecord
 // @Security ApiKeyAuth
+// @Security BasicAuth
 // @accept application/json
 // @Produce application/json
 // @Param data body request.IdsReq true "批量删除SysOperationRecord"
@@ -73,6 +76,7 @@ func (s *OperationRecordApi) DeleteSysOperationRecordByIds(c *gin.Context) {
 // @Tags SysOperationRecord
 // @Summary 用id查询SysOperationRecord
 // @Security ApiKeyAuth
+// @Security BasicAuth
 // @accept application/json
 // @Produce application/json
 // @Param data query system.SysOperationRecord true "Id"
@@ -96,6 +100,7 @@ func (s *OperationRecordApi) FindSysOperationRecord(c *gin.Context) {
 // @Tags SysOperationRecord
 // @Summary 分页获取SysOperationRecord列表
 // @Security ApiKeyAuth
+// @Security BasicAuth
 // @accept application/json
 // @Produce application/json
 // @Param data query request.SysOperationRecordSearch true "页码, 每页大小, 搜索条件"

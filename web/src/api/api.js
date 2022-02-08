@@ -2,6 +2,7 @@ import service from '@/utils/request'
 // @Tags api
 // @Summary 分页获取角色列表
 // @Security ApiKeyAuth
+// @Security BasicAuth
 // @accept application/json
 // @Produce application/json
 // @Param data body modelInterface.PageInfo true "分页获取用户列表"
@@ -22,6 +23,7 @@ export const getApiList = (data) => {
 // @Tags Api
 // @Summary 创建基础api
 // @Security ApiKeyAuth
+// @Security BasicAuth
 // @accept application/json
 // @Produce application/json
 // @Param data body api.CreateApiParams true "创建api"
@@ -38,6 +40,7 @@ export const createApi = (data) => {
 // @Tags menu
 // @Summary 根据id获取菜单
 // @Security ApiKeyAuth
+// @Security BasicAuth
 // @accept application/json
 // @Produce application/json
 // @Param data body api.GetById true "根据id获取菜单"
@@ -54,6 +57,7 @@ export const getApiById = (data) => {
 // @Tags Api
 // @Summary 更新api
 // @Security ApiKeyAuth
+// @Security BasicAuth
 // @accept application/json
 // @Produce application/json
 // @Param data body api.CreateApiParams true "更新api"
@@ -70,6 +74,7 @@ export const updateApi = (data) => {
 // @Tags Api
 // @Summary 更新api
 // @Security ApiKeyAuth
+// @Security BasicAuth
 // @accept application/json
 // @Produce application/json
 // @Param data body api.CreateApiParams true "更新api"
@@ -86,6 +91,7 @@ export const setAuthApi = (data) => {
 // @Tags Api
 // @Summary 获取所有的Api 不分页
 // @Security ApiKeyAuth
+// @Security BasicAuth
 // @accept application/json
 // @Produce application/json
 // @Success 200 {string} json "{"success":true,"data":{},"msg":"获取成功"}"
@@ -101,6 +107,7 @@ export const getAllApis = (data) => {
 // @Tags Api
 // @Summary 删除指定api
 // @Security ApiKeyAuth
+// @Security BasicAuth
 // @accept application/json
 // @Produce application/json
 // @Param data body dbModel.Api true "删除api"
@@ -117,6 +124,7 @@ export const deleteApi = (data) => {
 // @Tags SysApi
 // @Summary 删除选中Api
 // @Security ApiKeyAuth
+// @Security BasicAuth
 // @accept application/json
 // @Produce application/json
 // @Param data body request.IdsReq true "ID"

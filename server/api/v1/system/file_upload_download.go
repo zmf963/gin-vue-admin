@@ -15,6 +15,7 @@ type FileUploadAndDownloadApi struct{}
 // @Tags ExaFileUploadAndDownload
 // @Summary 上传文件示例
 // @Security ApiKeyAuth
+// @Security BasicAuth
 // @accept multipart/form-data
 // @Produce  application/json
 // @Param file formData file true "上传文件示例"
@@ -41,6 +42,7 @@ func (u *FileUploadAndDownloadApi) UploadFile(c *gin.Context) {
 // @Tags ExaFileUploadAndDownload
 // @Summary 删除文件
 // @Security ApiKeyAuth
+// @Security BasicAuth
 // @Produce  application/json
 // @Param data body system.ExaFileUploadAndDownload true "传入文件里面id即可"
 // @Success 200 {string} string "{"success":true,"data":{},"msg":"删除成功"}"
@@ -59,6 +61,7 @@ func (u *FileUploadAndDownloadApi) DeleteFile(c *gin.Context) {
 // @Tags ExaFileUploadAndDownload
 // @Summary 分页文件列表
 // @Security ApiKeyAuth
+// @Security BasicAuth
 // @accept application/json
 // @Produce application/json
 // @Param data body request.PageInfo true "页码, 每页大小"

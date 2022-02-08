@@ -29,4 +29,4 @@ yarn-error.log*
 *.iml
 
 data/
-server/server
+/server/server

@@ -13,6 +13,9 @@
                 "security": [
                     {
                         "ApiKeyAuth": []
+                    },
+                    {
+                        "BasicAuth": []
                     }
                 ],
                 "consumes": [
@@ -51,6 +54,9 @@
                 "security": [
                     {
                         "ApiKeyAuth": []
+                    },
+                    {
+                        "BasicAuth": []
                     }
                 ],
                 "consumes": [
@@ -89,6 +95,9 @@
                 "security": [
                     {
                         "ApiKeyAuth": []
+                    },
+                    {
+                        "BasicAuth": []
                     }
                 ],
                 "consumes": [
@@ -127,6 +136,9 @@
                 "security": [
                     {
                         "ApiKeyAuth": []
+                    },
+                    {
+                        "BasicAuth": []
                     }
                 ],
                 "consumes": [
@@ -154,6 +166,9 @@
                 "security": [
                     {
                         "ApiKeyAuth": []
+                    },
+                    {
+                        "BasicAuth": []
                     }
                 ],
                 "consumes": [
@@ -192,6 +207,9 @@
                 "security": [
                     {
                         "ApiKeyAuth": []
+                    },
+                    {
+                        "BasicAuth": []
                     }
                 ],
                 "consumes": [
@@ -230,6 +248,9 @@
                 "security": [
                     {
                         "ApiKeyAuth": []
+                    },
+                    {
+                        "BasicAuth": []
                     }
                 ],
                 "consumes": [
@@ -268,6 +289,9 @@
                 "security": [
                     {
                         "ApiKeyAuth": []
+                    },
+                    {
+                        "BasicAuth": []
                     }
                 ],
                 "consumes": [
@@ -306,6 +330,9 @@
                 "security": [
                     {
                         "ApiKeyAuth": []
+                    },
+                    {
+                        "BasicAuth": []
                     }
                 ],
                 "consumes": [
@@ -320,13 +347,11 @@
                 "summary": "删除AppInfo",
                 "parameters": [
                     {
+                        "type": "string",
                         "description": "删除AppInfo",
                         "name": "data",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
+                        "in": "query",
+                        "required": true
                     }
                 ],
                 "responses": {
@@ -344,6 +369,9 @@
                 "security": [
                     {
                         "ApiKeyAuth": []
+                    },
+                    {
+                        "BasicAuth": []
                     }
                 ],
                 "consumes": [
@@ -385,6 +413,9 @@
                 "security": [
                     {
                         "ApiKeyAuth": []
+                    },
+                    {
+                        "BasicAuth": []
                     }
                 ],
                 "consumes": [
@@ -421,6 +452,9 @@
                 "security": [
                     {
                         "ApiKeyAuth": []
+                    },
+                    {
+                        "BasicAuth": []
                     }
                 ],
                 "consumes": [
@@ -459,6 +493,9 @@
                 "security": [
                     {
                         "ApiKeyAuth": []
+                    },
+                    {
+                        "BasicAuth": []
                     }
                 ],
                 "consumes": [
@@ -497,6 +534,9 @@
                 "security": [
                     {
                         "ApiKeyAuth": []
+                    },
+                    {
+                        "BasicAuth": []
                     }
                 ],
                 "consumes": [
@@ -535,6 +575,9 @@
                 "security": [
                     {
                         "ApiKeyAuth": []
+                    },
+                    {
+                        "BasicAuth": []
                     }
                 ],
                 "consumes": [
@@ -573,6 +616,9 @@
                 "security": [
                     {
                         "ApiKeyAuth": []
+                    },
+                    {
+                        "BasicAuth": []
                     }
                 ],
                 "consumes": [
@@ -611,6 +657,9 @@
                 "security": [
                     {
                         "ApiKeyAuth": []
+                    },
+                    {
+                        "BasicAuth": []
                     }
                 ],
                 "consumes": [
@@ -649,6 +698,9 @@
                 "security": [
                     {
                         "ApiKeyAuth": []
+                    },
+                    {
+                        "BasicAuth": []
                     }
                 ],
                 "consumes": [
@@ -687,6 +739,9 @@
                 "security": [
                     {
                         "ApiKeyAuth": []
+                    },
+                    {
+                        "BasicAuth": []
                     }
                 ],
                 "consumes": [
@@ -725,6 +780,9 @@
                 "security": [
                     {
                         "ApiKeyAuth": []
+                    },
+                    {
+                        "BasicAuth": []
                     }
                 ],
                 "consumes": [
@@ -782,6 +840,9 @@
                 "security": [
                     {
                         "ApiKeyAuth": []
+                    },
+                    {
+                        "BasicAuth": []
                     }
                 ],
                 "consumes": [
@@ -820,6 +881,9 @@
                 "security": [
                     {
                         "ApiKeyAuth": []
+                    },
+                    {
+                        "BasicAuth": []
                     }
                 ],
                 "consumes": [
@@ -858,6 +922,9 @@
                 "security": [
                     {
                         "ApiKeyAuth": []
+                    },
+                    {
+                        "BasicAuth": []
                     }
                 ],
                 "consumes": [
@@ -896,6 +963,9 @@
                 "security": [
                     {
                         "ApiKeyAuth": []
+                    },
+                    {
+                        "BasicAuth": []
                     }
                 ],
                 "consumes": [
@@ -910,13 +980,11 @@
                 "summary": "删除DocInfo",
                 "parameters": [
                     {
+                        "type": "string",
                         "description": "删除DocInfo",
                         "name": "data",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
+                        "in": "query",
+                        "required": true
                     }
                 ],
                 "responses": {
@@ -934,6 +1002,9 @@
                 "security": [
                     {
                         "ApiKeyAuth": []
+                    },
+                    {
+                        "BasicAuth": []
                     }
                 ],
                 "consumes": [
@@ -975,6 +1046,9 @@
                 "security": [
                     {
                         "ApiKeyAuth": []
+                    },
+                    {
+                        "BasicAuth": []
                     }
                 ],
                 "consumes": [
@@ -1011,6 +1085,9 @@
                 "security": [
                     {
                         "ApiKeyAuth": []
+                    },
+                    {
+                        "BasicAuth": []
                     }
                 ],
                 "consumes": [
@@ -1049,6 +1126,9 @@
                 "security": [
                     {
                         "ApiKeyAuth": []
+                    },
+                    {
+                        "BasicAuth": []
                     }
                 ],
                 "consumes": [
@@ -1087,6 +1167,9 @@
                 "security": [
                     {
                         "ApiKeyAuth": []
+                    },
+                    {
+                        "BasicAuth": []
                     }
                 ],
                 "consumes": [
@@ -1125,6 +1208,9 @@
                 "security": [
                     {
                         "ApiKeyAuth": []
+                    },
+                    {
+                        "BasicAuth": []
                     }
                 ],
                 "consumes": [
@@ -1139,13 +1225,11 @@
                 "summary": "删除Domain",
                 "parameters": [
                     {
+                        "type": "string",
                         "description": "删除Domain",
                         "name": "data",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
+                        "in": "query",
+                        "required": true
                     }
                 ],
                 "responses": {
@@ -1163,6 +1247,9 @@
                 "security": [
                     {
                         "ApiKeyAuth": []
+                    },
+                    {
+                        "BasicAuth": []
                     }
                 ],
                 "consumes": [
@@ -1204,6 +1291,9 @@
                 "security": [
                     {
                         "ApiKeyAuth": []
+                    },
+                    {
+                        "BasicAuth": []
                     }
                 ],
                 "consumes": [
@@ -1240,6 +1330,9 @@
                 "security": [
                     {
                         "ApiKeyAuth": []
+                    },
+                    {
+                        "BasicAuth": []
                     }
                 ],
                 "consumes": [
@@ -1278,6 +1371,9 @@
                 "security": [
                     {
                         "ApiKeyAuth": []
+                    },
+                    {
+                        "BasicAuth": []
                     }
                 ],
                 "consumes": [
@@ -1311,128 +1407,14 @@
                 }
             }
         },
-        "/email/createEmail": {
-            "post": {
-                "security": [
-                    {
-                        "ApiKeyAuth": []
-                    }
-                ],
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "Email"
-                ],
-                "summary": "创建Email",
-                "parameters": [
-                    {
-                        "description": "创建Email",
-                        "name": "data",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/project.Email"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "{\"code\":0,\"data\":{},\"msg\":\"获取成功\"}",
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                }
-            }
-        },
-        "/email/deleteEmail": {
-            "delete": {
-                "security": [
-                    {
-                        "ApiKeyAuth": []
-                    }
-                ],
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "Email"
-                ],
-                "summary": "删除Email",
-                "parameters": [
-                    {
-                        "description": "删除Email",
-                        "name": "data",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "{\"success\":true,\"data\":{},\"msg\":\"删除成功\"}",
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                }
-            }
-        },
-        "/email/deleteEmailByIds": {
-            "delete": {
-                "security": [
-                    {
-                        "ApiKeyAuth": []
-                    }
-                ],
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "Email"
-                ],
-                "summary": "批量删除Email",
-                "parameters": [
-                    {
-                        "description": "批量删除Email",
-                        "name": "data",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "type": "array",
-                            "items": {
-                                "type": "string"
-                            }
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "{\"success\":true,\"data\":{},\"msg\":\"批量删除成功\"}",
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                }
-            }
-        },
         "/email/emailTest": {
             "post": {
                 "security": [
                     {
                         "ApiKeyAuth": []
+                    },
+                    {
+                        "BasicAuth": []
                     }
                 ],
                 "produces": [
@@ -1452,85 +1434,14 @@
                 }
             }
         },
-        "/email/findEmail": {
-            "get": {
-                "security": [
-                    {
-                        "ApiKeyAuth": []
-                    }
-                ],
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "Email"
-                ],
-                "summary": "用id查询Email",
-                "parameters": [
-                    {
-                        "type": "string",
-                        "description": "用id查询Email",
-                        "name": "data",
-                        "in": "query",
-                        "required": true
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "{\"success\":true,\"data\":{},\"msg\":\"查询成功\"}",
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                }
-            }
-        },
-        "/email/getEmailList": {
-            "post": {
-                "security": [
-                    {
-                        "ApiKeyAuth": []
-                    }
-                ],
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "Email"
-                ],
-                "summary": "分页获取Email列表",
-                "parameters": [
-                    {
-                        "description": "分页获取Email列表",
-                        "name": "data",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/request.EmailSearch"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "{\"code\":0,\"data\":{},\"msg\":\"获取成功\"}",
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                }
-            }
-        },
         "/email/sendEmail": {
             "post": {
                 "security": [
                     {
                         "ApiKeyAuth": []
+                    },
+                    {
+                        "BasicAuth": []
                     }
                 ],
                 "produces": [
@@ -1561,11 +1472,14 @@
                 }
             }
         },
-        "/email/updateEmail": {
-            "put": {
+        "/email_info/createEmailInfo": {
+            "post": {
                 "security": [
                     {
                         "ApiKeyAuth": []
+                    },
+                    {
+                        "BasicAuth": []
                     }
                 ],
                 "consumes": [
@@ -1575,17 +1489,221 @@
                     "application/json"
                 ],
                 "tags": [
-                    "Email"
+                    "EmailInfo"
                 ],
-                "summary": "更新Email",
+                "summary": "创建EmailInfo",
                 "parameters": [
                     {
-                        "description": "更新Email",
+                        "description": "创建EmailInfo",
                         "name": "data",
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/project.Email"
+                            "$ref": "#/definitions/project.EmailInfo"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{\"code\":0,\"data\":{},\"msg\":\"获取成功\"}",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/email_info/deleteEmailInfo": {
+            "delete": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    },
+                    {
+                        "BasicAuth": []
+                    }
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "EmailInfo"
+                ],
+                "summary": "删除EmailInfo",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "删除EmailInfo",
+                        "name": "data",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{\"success\":true,\"data\":{},\"msg\":\"删除成功\"}",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/email_info/deleteEmailInfoByIds": {
+            "delete": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    },
+                    {
+                        "BasicAuth": []
+                    }
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "EmailInfo"
+                ],
+                "summary": "批量删除EmailInfo",
+                "parameters": [
+                    {
+                        "description": "批量删除EmailInfo",
+                        "name": "data",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{\"success\":true,\"data\":{},\"msg\":\"批量删除成功\"}",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/email_info/findEmailInfo": {
+            "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    },
+                    {
+                        "BasicAuth": []
+                    }
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "EmailInfo"
+                ],
+                "summary": "用id查询EmailInfo",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "用id查询EmailInfo",
+                        "name": "data",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{\"success\":true,\"data\":{},\"msg\":\"查询成功\"}",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/email_info/getEmailInfoList": {
+            "post": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    },
+                    {
+                        "BasicAuth": []
+                    }
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "EmailInfo"
+                ],
+                "summary": "分页获取EmailInfo列表",
+                "parameters": [
+                    {
+                        "description": "分页获取EmailInfo列表",
+                        "name": "data",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/request.EmailInfoSearch"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{\"code\":0,\"data\":{},\"msg\":\"获取成功\"}",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/email_info/updateEmailInfo": {
+            "put": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    },
+                    {
+                        "BasicAuth": []
+                    }
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "EmailInfo"
+                ],
+                "summary": "更新EmailInfo",
+                "parameters": [
+                    {
+                        "description": "更新EmailInfo",
+                        "name": "data",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/project.EmailInfo"
                         }
                     }
                 ],
@@ -1604,6 +1722,9 @@
                 "security": [
                     {
                         "ApiKeyAuth": []
+                    },
+                    {
+                        "BasicAuth": []
                     }
                 ],
                 "produces": [
@@ -1639,6 +1760,9 @@
                 "security": [
                     {
                         "ApiKeyAuth": []
+                    },
+                    {
+                        "BasicAuth": []
                     }
                 ],
                 "consumes": [
@@ -1677,6 +1801,9 @@
                 "security": [
                     {
                         "ApiKeyAuth": []
+                    },
+                    {
+                        "BasicAuth": []
                     }
                 ],
                 "consumes": [
@@ -1762,6 +1889,9 @@
                 "security": [
                     {
                         "ApiKeyAuth": []
+                    },
+                    {
+                        "BasicAuth": []
                     }
                 ],
                 "consumes": [
@@ -1789,6 +1919,9 @@
                 "security": [
                     {
                         "ApiKeyAuth": []
+                    },
+                    {
+                        "BasicAuth": []
                     }
                 ],
                 "consumes": [
@@ -1827,6 +1960,9 @@
                 "security": [
                     {
                         "ApiKeyAuth": []
+                    },
+                    {
+                        "BasicAuth": []
                     }
                 ],
                 "consumes": [
@@ -1841,13 +1977,11 @@
                 "summary": "删除Keys",
                 "parameters": [
                     {
+                        "type": "string",
                         "description": "删除Keys",
                         "name": "data",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
+                        "in": "query",
+                        "required": true
                     }
                 ],
                 "responses": {
@@ -1865,6 +1999,9 @@
                 "security": [
                     {
                         "ApiKeyAuth": []
+                    },
+                    {
+                        "BasicAuth": []
                     }
                 ],
                 "consumes": [
@@ -1906,6 +2043,9 @@
                 "security": [
                     {
                         "ApiKeyAuth": []
+                    },
+                    {
+                        "BasicAuth": []
                     }
                 ],
                 "consumes": [
@@ -1942,6 +2082,9 @@
                 "security": [
                     {
                         "ApiKeyAuth": []
+                    },
+                    {
+                        "BasicAuth": []
                     }
                 ],
                 "consumes": [
@@ -1980,6 +2123,9 @@
                 "security": [
                     {
                         "ApiKeyAuth": []
+                    },
+                    {
+                        "BasicAuth": []
                     }
                 ],
                 "consumes": [
@@ -2018,6 +2164,9 @@
                 "security": [
                     {
                         "ApiKeyAuth": []
+                    },
+                    {
+                        "BasicAuth": []
                     }
                 ],
                 "consumes": [
@@ -2056,6 +2205,9 @@
                 "security": [
                     {
                         "ApiKeyAuth": []
+                    },
+                    {
+                        "BasicAuth": []
                     }
                 ],
                 "consumes": [
@@ -2094,6 +2246,9 @@
                 "security": [
                     {
                         "ApiKeyAuth": []
+                    },
+                    {
+                        "BasicAuth": []
                     }
                 ],
                 "consumes": [
@@ -2132,6 +2287,9 @@
                 "security": [
                     {
                         "ApiKeyAuth": []
+                    },
+                    {
+                        "BasicAuth": []
                     }
                 ],
                 "consumes": [
@@ -2170,6 +2328,9 @@
                 "security": [
                     {
                         "ApiKeyAuth": []
+                    },
+                    {
+                        "BasicAuth": []
                     }
                 ],
                 "produces": [
@@ -2205,6 +2366,9 @@
                 "security": [
                     {
                         "ApiKeyAuth": []
+                    },
+                    {
+                        "BasicAuth": []
                     }
                 ],
                 "produces": [
@@ -2240,6 +2404,9 @@
                 "security": [
                     {
                         "ApiKeyAuth": []
+                    },
+                    {
+                        "BasicAuth": []
                     }
                 ],
                 "consumes": [
@@ -2278,6 +2445,9 @@
                 "security": [
                     {
                         "ApiKeyAuth": []
+                    },
+                    {
+                        "BasicAuth": []
                     }
                 ],
                 "consumes": [
@@ -2316,6 +2486,9 @@
                 "security": [
                     {
                         "ApiKeyAuth": []
+                    },
+                    {
+                        "BasicAuth": []
                     }
                 ],
                 "consumes": [
@@ -2354,6 +2527,9 @@
                 "security": [
                     {
                         "ApiKeyAuth": []
+                    },
+                    {
+                        "BasicAuth": []
                     }
                 ],
                 "consumes": [
@@ -2392,6 +2568,9 @@
                 "security": [
                     {
                         "ApiKeyAuth": []
+                    },
+                    {
+                        "BasicAuth": []
                     }
                 ],
                 "consumes": [
@@ -2406,13 +2585,11 @@
                 "summary": "删除PathInfo",
                 "parameters": [
                     {
+                        "type": "string",
                         "description": "删除PathInfo",
                         "name": "data",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
+                        "in": "query",
+                        "required": true
                     }
                 ],
                 "responses": {
@@ -2430,6 +2607,9 @@
                 "security": [
                     {
                         "ApiKeyAuth": []
+                    },
+                    {
+                        "BasicAuth": []
                     }
                 ],
                 "consumes": [
@@ -2471,6 +2651,9 @@
                 "security": [
                     {
                         "ApiKeyAuth": []
+                    },
+                    {
+                        "BasicAuth": []
                     }
                 ],
                 "consumes": [
@@ -2507,6 +2690,9 @@
                 "security": [
                     {
                         "ApiKeyAuth": []
+                    },
+                    {
+                        "BasicAuth": []
                     }
                 ],
                 "consumes": [
@@ -2545,6 +2731,9 @@
                 "security": [
                     {
                         "ApiKeyAuth": []
+                    },
+                    {
+                        "BasicAuth": []
                     }
                 ],
                 "consumes": [
@@ -2578,11 +2767,14 @@
                 }
             }
         },
-        "/poc_manager/createPocManager": {
+        "/poc_info/createPocInfo": {
             "post": {
                 "security": [
                     {
                         "ApiKeyAuth": []
+                    },
+                    {
+                        "BasicAuth": []
                     }
                 ],
                 "consumes": [
@@ -2592,17 +2784,17 @@
                     "application/json"
                 ],
                 "tags": [
-                    "PocManager"
+                    "PocInfo"
                 ],
-                "summary": "创建PocManager",
+                "summary": "创建PocInfo",
                 "parameters": [
                     {
-                        "description": "创建PocManager",
+                        "description": "创建PocInfo",
                         "name": "data",
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/poc_manager.PocManager"
+                            "$ref": "#/definitions/poc_manager.PocInfo"
                         }
                     }
                 ],
@@ -2616,11 +2808,14 @@
                 }
             }
         },
-        "/poc_manager/deletePocManager": {
+        "/poc_info/deletePocInfo": {
             "delete": {
                 "security": [
                     {
                         "ApiKeyAuth": []
+                    },
+                    {
+                        "BasicAuth": []
                     }
                 ],
                 "consumes": [
@@ -2630,18 +2825,16 @@
                     "application/json"
                 ],
                 "tags": [
-                    "PocManager"
+                    "PocInfo"
                 ],
-                "summary": "删除PocManager",
+                "summary": "删除PocInfo",
                 "parameters": [
                     {
-                        "description": "删除PocManager",
+                        "type": "string",
+                        "description": "删除PocInfo",
                         "name": "data",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
+                        "in": "query",
+                        "required": true
                     }
                 ],
                 "responses": {
@@ -2654,11 +2847,14 @@
                 }
             }
         },
-        "/poc_manager/deletePocManagerByIds": {
+        "/poc_info/deletePocInfoByIds": {
             "delete": {
                 "security": [
                     {
                         "ApiKeyAuth": []
+                    },
+                    {
+                        "BasicAuth": []
                     }
                 ],
                 "consumes": [
@@ -2668,12 +2864,12 @@
                     "application/json"
                 ],
                 "tags": [
-                    "PocManager"
+                    "PocInfo"
                 ],
-                "summary": "批量删除PocManager",
+                "summary": "批量删除PocInfo",
                 "parameters": [
                     {
-                        "description": "批量删除PocManager",
+                        "description": "批量删除PocInfo",
                         "name": "data",
                         "in": "body",
                         "required": true,
@@ -2695,11 +2891,14 @@
                 }
             }
         },
-        "/poc_manager/findPocManager": {
+        "/poc_info/findPocInfo": {
             "get": {
                 "security": [
                     {
                         "ApiKeyAuth": []
+                    },
+                    {
+                        "BasicAuth": []
                     }
                 ],
                 "consumes": [
@@ -2709,13 +2908,13 @@
                     "application/json"
                 ],
                 "tags": [
-                    "PocManager"
+                    "PocInfo"
                 ],
-                "summary": "用id查询PocManager",
+                "summary": "用id查询PocInfo",
                 "parameters": [
                     {
                         "type": "string",
-                        "description": "用id查询PocManager",
+                        "description": "用id查询PocInfo",
                         "name": "data",
                         "in": "query",
                         "required": true
@@ -2731,11 +2930,14 @@
                 }
             }
         },
-        "/poc_manager/getPocManagerList": {
+        "/poc_info/getPocInfoList": {
             "post": {
                 "security": [
                     {
                         "ApiKeyAuth": []
+                    },
+                    {
+                        "BasicAuth": []
                     }
                 ],
                 "consumes": [
@@ -2745,17 +2947,17 @@
                     "application/json"
                 ],
                 "tags": [
-                    "PocManager"
+                    "PocInfo"
                 ],
-                "summary": "分页获取PocManager列表",
+                "summary": "分页获取PocInfo列表",
                 "parameters": [
                     {
-                        "description": "分页获取PocManager列表",
+                        "description": "分页获取PocInfo列表",
                         "name": "data",
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/request.PocManagerSearch"
+                            "$ref": "#/definitions/request.PocInfoSearch"
                         }
                     }
                 ],
@@ -2769,11 +2971,14 @@
                 }
             }
         },
-        "/poc_manager/updatePocManager": {
+        "/poc_info/updatePocInfo": {
             "put": {
                 "security": [
                     {
                         "ApiKeyAuth": []
+                    },
+                    {
+                        "BasicAuth": []
                     }
                 ],
                 "consumes": [
@@ -2783,17 +2988,17 @@
                     "application/json"
                 ],
                 "tags": [
-                    "PocManager"
+                    "PocInfo"
                 ],
-                "summary": "更新PocManager",
+                "summary": "更新PocInfo",
                 "parameters": [
                     {
-                        "description": "更新PocManager",
+                        "description": "更新PocInfo",
                         "name": "data",
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/poc_manager.PocManager"
+                            "$ref": "#/definitions/poc_manager.PocInfo"
                         }
                     }
                 ],
@@ -2812,6 +3017,9 @@
                 "security": [
                     {
                         "ApiKeyAuth": []
+                    },
+                    {
+                        "BasicAuth": []
                     }
                 ],
                 "consumes": [
@@ -2850,6 +3058,9 @@
                 "security": [
                     {
                         "ApiKeyAuth": []
+                    },
+                    {
+                        "BasicAuth": []
                     }
                 ],
                 "consumes": [
@@ -2864,13 +3075,11 @@
                 "summary": "删除PortInfo",
                 "parameters": [
                     {
+                        "type": "string",
                         "description": "删除PortInfo",
                         "name": "data",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
+                        "in": "query",
+                        "required": true
                     }
                 ],
                 "responses": {
@@ -2888,6 +3097,9 @@
                 "security": [
                     {
                         "ApiKeyAuth": []
+                    },
+                    {
+                        "BasicAuth": []
                     }
                 ],
                 "consumes": [
@@ -2929,6 +3141,9 @@
                 "security": [
                     {
                         "ApiKeyAuth": []
+                    },
+                    {
+                        "BasicAuth": []
                     }
                 ],
                 "consumes": [
@@ -2965,6 +3180,9 @@
                 "security": [
                     {
                         "ApiKeyAuth": []
+                    },
+                    {
+                        "BasicAuth": []
                     }
                 ],
                 "consumes": [
@@ -3003,6 +3221,9 @@
                 "security": [
                     {
                         "ApiKeyAuth": []
+                    },
+                    {
+                        "BasicAuth": []
                     }
                 ],
                 "consumes": [
@@ -3036,11 +3257,14 @@
                 }
             }
         },
-        "/project/createProject": {
+        "/project_info/createProjectInfo": {
             "post": {
                 "security": [
                     {
                         "ApiKeyAuth": []
+                    },
+                    {
+                        "BasicAuth": []
                     }
                 ],
                 "consumes": [
@@ -3050,17 +3274,17 @@
                     "application/json"
                 ],
                 "tags": [
-                    "Project"
+                    "ProjectInfo"
                 ],
-                "summary": "创建Project",
+                "summary": "创建ProjectInfo",
                 "parameters": [
                     {
-                        "description": "创建Project",
+                        "description": "创建ProjectInfo",
                         "name": "data",
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/project.Project"
+                            "$ref": "#/definitions/project.ProjectInfo"
                         }
                     }
                 ],
@@ -3074,11 +3298,14 @@
                 }
             }
         },
-        "/project/deleteProject": {
+        "/project_info/deleteProjectInfo": {
             "delete": {
                 "security": [
                     {
                         "ApiKeyAuth": []
+                    },
+                    {
+                        "BasicAuth": []
                     }
                 ],
                 "consumes": [
@@ -3088,18 +3315,16 @@
                     "application/json"
                 ],
                 "tags": [
-                    "Project"
+                    "ProjectInfo"
                 ],
-                "summary": "删除Project",
+                "summary": "删除ProjectInfo",
                 "parameters": [
                     {
-                        "description": "删除Project",
+                        "type": "string",
+                        "description": "删除ProjectInfo",
                         "name": "data",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
+                        "in": "query",
+                        "required": true
                     }
                 ],
                 "responses": {
@@ -3112,11 +3337,14 @@
                 }
             }
         },
-        "/project/deleteProjectByIds": {
+        "/project_info/deleteProjectInfoByIds": {
             "delete": {
                 "security": [
                     {
                         "ApiKeyAuth": []
+                    },
+                    {
+                        "BasicAuth": []
                     }
                 ],
                 "consumes": [
@@ -3126,12 +3354,12 @@
                     "application/json"
                 ],
                 "tags": [
-                    "Project"
+                    "ProjectInfo"
                 ],
-                "summary": "批量删除Project",
+                "summary": "批量删除ProjectInfo",
                 "parameters": [
                     {
-                        "description": "批量删除Project",
+                        "description": "批量删除ProjectInfo",
                         "name": "data",
                         "in": "body",
                         "required": true,
@@ -3153,11 +3381,14 @@
                 }
             }
         },
-        "/project/findProject": {
+        "/project_info/findProjectInfo": {
             "get": {
                 "security": [
                     {
                         "ApiKeyAuth": []
+                    },
+                    {
+                        "BasicAuth": []
                     }
                 ],
                 "consumes": [
@@ -3167,14 +3398,14 @@
                     "application/json"
                 ],
                 "tags": [
-                    "Project"
+                    "ProjectInfo"
                 ],
-                "summary": "用id查询Project",
+                "summary": "用id查询ProjectInfo",
                 "parameters": [
                     {
                         "type": "string",
-                        "description": "用id查询Project",
-                        "name": "id",
+                        "description": "用id查询ProjectInfo",
+                        "name": "data",
                         "in": "query",
                         "required": true
                     }
@@ -3189,11 +3420,14 @@
                 }
             }
         },
-        "/project/getProjectList": {
+        "/project_info/getProjectInfoList": {
             "post": {
                 "security": [
                     {
                         "ApiKeyAuth": []
+                    },
+                    {
+                        "BasicAuth": []
                     }
                 ],
                 "consumes": [
@@ -3203,17 +3437,17 @@
                     "application/json"
                 ],
                 "tags": [
-                    "Project"
+                    "ProjectInfo"
                 ],
-                "summary": "分页获取Project列表",
+                "summary": "分页获取ProjectInfo列表",
                 "parameters": [
                     {
-                        "description": "分页获取Project列表",
+                        "description": "分页获取ProjectInfo列表",
                         "name": "data",
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/request.ProjectSearch"
+                            "$ref": "#/definitions/request.ProjectInfoSearch"
                         }
                     }
                 ],
@@ -3227,11 +3461,14 @@
                 }
             }
         },
-        "/project/updateProject": {
+        "/project_info/updateProjectInfo": {
             "put": {
                 "security": [
                     {
                         "ApiKeyAuth": []
+                    },
+                    {
+                        "BasicAuth": []
                     }
                 ],
                 "consumes": [
@@ -3241,17 +3478,17 @@
                     "application/json"
                 ],
                 "tags": [
-                    "Project"
+                    "ProjectInfo"
                 ],
-                "summary": "更新Project",
+                "summary": "更新ProjectInfo",
                 "parameters": [
                     {
-                        "description": "更新Project",
+                        "description": "更新ProjectInfo",
                         "name": "data",
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/project.Project"
+                            "$ref": "#/definitions/project.ProjectInfo"
                         }
                     }
                 ],
@@ -3270,6 +3507,9 @@
                 "security": [
                     {
                         "ApiKeyAuth": []
+                    },
+                    {
+                        "BasicAuth": []
                     }
                 ],
                 "consumes": [
@@ -3308,6 +3548,9 @@
                 "security": [
                     {
                         "ApiKeyAuth": []
+                    },
+                    {
+                        "BasicAuth": []
                     }
                 ],
                 "consumes": [
@@ -3346,6 +3589,9 @@
                 "security": [
                     {
                         "ApiKeyAuth": []
+                    },
+                    {
+                        "BasicAuth": []
                     }
                 ],
                 "consumes": [
@@ -3384,6 +3630,9 @@
                 "security": [
                     {
                         "ApiKeyAuth": []
+                    },
+                    {
+                        "BasicAuth": []
                     }
                 ],
                 "consumes": [
@@ -3491,6 +3740,9 @@
                 "security": [
                     {
                         "ApiKeyAuth": []
+                    },
+                    {
+                        "BasicAuth": []
                     }
                 ],
                 "consumes": [
@@ -3610,6 +3862,9 @@
                 "security": [
                     {
                         "ApiKeyAuth": []
+                    },
+                    {
+                        "BasicAuth": []
                     }
                 ],
                 "produces": [
@@ -3634,6 +3889,9 @@
                 "security": [
                     {
                         "ApiKeyAuth": []
+                    },
+                    {
+                        "BasicAuth": []
                     }
                 ],
                 "produces": [
@@ -3658,6 +3916,9 @@
                 "security": [
                     {
                         "ApiKeyAuth": []
+                    },
+                    {
+                        "BasicAuth": []
                     }
                 ],
                 "produces": [
@@ -3682,6 +3943,9 @@
                 "security": [
                     {
                         "ApiKeyAuth": []
+                    },
+                    {
+                        "BasicAuth": []
                     }
                 ],
                 "produces": [
@@ -3717,6 +3981,9 @@
                 "security": [
                     {
                         "ApiKeyAuth": []
+                    },
+                    {
+                        "BasicAuth": []
                     }
                 ],
                 "consumes": [
@@ -3755,6 +4022,9 @@
                 "security": [
                     {
                         "ApiKeyAuth": []
+                    },
+                    {
+                        "BasicAuth": []
                     }
                 ],
                 "consumes": [
@@ -3769,13 +4039,11 @@
                 "summary": "删除Target",
                 "parameters": [
                     {
+                        "type": "string",
                         "description": "删除Target",
                         "name": "data",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
+                        "in": "query",
+                        "required": true
                     }
                 ],
                 "responses": {
@@ -3793,6 +4061,9 @@
                 "security": [
                     {
                         "ApiKeyAuth": []
+                    },
+                    {
+                        "BasicAuth": []
                     }
                 ],
                 "consumes": [
@@ -3834,6 +4105,9 @@
                 "security": [
                     {
                         "ApiKeyAuth": []
+                    },
+                    {
+                        "BasicAuth": []
                     }
                 ],
                 "consumes": [
@@ -3870,6 +4144,9 @@
                 "security": [
                     {
                         "ApiKeyAuth": []
+                    },
+                    {
+                        "BasicAuth": []
                     }
                 ],
                 "consumes": [
@@ -3908,6 +4185,9 @@
                 "security": [
                     {
                         "ApiKeyAuth": []
+                    },
+                    {
+                        "BasicAuth": []
                     }
                 ],
                 "consumes": [
@@ -3946,6 +4226,9 @@
                 "security": [
                     {
                         "ApiKeyAuth": []
+                    },
+                    {
+                        "BasicAuth": []
                     }
                 ],
                 "consumes": [
@@ -3984,6 +4267,9 @@
                 "security": [
                     {
                         "ApiKeyAuth": []
+                    },
+                    {
+                        "BasicAuth": []
                     }
                 ],
                 "consumes": [
@@ -3998,13 +4284,11 @@
                 "summary": "删除TargetRelation",
                 "parameters": [
                     {
+                        "type": "string",
                         "description": "删除TargetRelation",
                         "name": "data",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
+                        "in": "query",
+                        "required": true
                     }
                 ],
                 "responses": {
@@ -4022,6 +4306,9 @@
                 "security": [
                     {
                         "ApiKeyAuth": []
+                    },
+                    {
+                        "BasicAuth": []
                     }
                 ],
                 "consumes": [
@@ -4063,6 +4350,9 @@
                 "security": [
                     {
                         "ApiKeyAuth": []
+                    },
+                    {
+                        "BasicAuth": []
                     }
                 ],
                 "consumes": [
@@ -4099,6 +4389,9 @@
                 "security": [
                     {
                         "ApiKeyAuth": []
+                    },
+                    {
+                        "BasicAuth": []
                     }
                 ],
                 "consumes": [
@@ -4137,6 +4430,9 @@
                 "security": [
                     {
                         "ApiKeyAuth": []
+                    },
+                    {
+                        "BasicAuth": []
                     }
                 ],
                 "consumes": [
@@ -4175,6 +4471,9 @@
                 "security": [
                     {
                         "ApiKeyAuth": []
+                    },
+                    {
+                        "BasicAuth": []
                     }
                 ],
                 "consumes": [
@@ -4213,6 +4512,9 @@
                 "security": [
                     {
                         "ApiKeyAuth": []
+                    },
+                    {
+                        "BasicAuth": []
                     }
                 ],
                 "consumes": [
@@ -4227,13 +4529,11 @@
                 "summary": "删除Task",
                 "parameters": [
                     {
+                        "type": "string",
                         "description": "删除Task",
                         "name": "data",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
+                        "in": "query",
+                        "required": true
                     }
                 ],
                 "responses": {
@@ -4251,6 +4551,9 @@
                 "security": [
                     {
                         "ApiKeyAuth": []
+                    },
+                    {
+                        "BasicAuth": []
                     }
                 ],
                 "consumes": [
@@ -4292,6 +4595,9 @@
                 "security": [
                     {
                         "ApiKeyAuth": []
+                    },
+                    {
+                        "BasicAuth": []
                     }
                 ],
                 "consumes": [
@@ -4328,6 +4634,9 @@
                 "security": [
                     {
                         "ApiKeyAuth": []
+                    },
+                    {
+                        "BasicAuth": []
                     }
                 ],
                 "consumes": [
@@ -4366,6 +4675,9 @@
                 "security": [
                     {
                         "ApiKeyAuth": []
+                    },
+                    {
+                        "BasicAuth": []
                     }
                 ],
                 "consumes": [
@@ -4404,6 +4716,9 @@
                 "security": [
                     {
                         "ApiKeyAuth": []
+                    },
+                    {
+                        "BasicAuth": []
                     }
                 ],
                 "consumes": [
@@ -4442,6 +4757,9 @@
                 "security": [
                     {
                         "ApiKeyAuth": []
+                    },
+                    {
+                        "BasicAuth": []
                     }
                 ],
                 "produces": [
@@ -4477,6 +4795,9 @@
                 "security": [
                     {
                         "ApiKeyAuth": []
+                    },
+                    {
+                        "BasicAuth": []
                     }
                 ],
                 "consumes": [
@@ -4515,6 +4836,9 @@
                 "security": [
                     {
                         "ApiKeyAuth": []
+                    },
+                    {
+                        "BasicAuth": []
                     }
                 ],
                 "consumes": [
@@ -4542,6 +4866,9 @@
                 "security": [
                     {
                         "ApiKeyAuth": []
+                    },
+                    {
+                        "BasicAuth": []
                     }
                 ],
                 "consumes": [
@@ -4610,6 +4937,9 @@
                 "security": [
                     {
                         "ApiKeyAuth": []
+                    },
+                    {
+                        "BasicAuth": []
                     }
                 ],
                 "produces": [
@@ -4645,6 +4975,9 @@
                 "security": [
                     {
                         "ApiKeyAuth": []
+                    },
+                    {
+                        "BasicAuth": []
                     }
                 ],
                 "consumes": [
@@ -4683,6 +5016,9 @@
                 "security": [
                     {
                         "ApiKeyAuth": []
+                    },
+                    {
+                        "BasicAuth": []
                     }
                 ],
                 "consumes": [
@@ -4721,6 +5057,9 @@
                 "security": [
                     {
                         "ApiKeyAuth": []
+                    },
+                    {
+                        "BasicAuth": []
                     }
                 ],
                 "consumes": [
@@ -4759,6 +5098,9 @@
                 "security": [
                     {
                         "ApiKeyAuth": []
+                    },
+                    {
+                        "BasicAuth": []
                     }
                 ],
                 "consumes": [
@@ -4797,6 +5139,9 @@
                 "security": [
                     {
                         "ApiKeyAuth": []
+                    },
+                    {
+                        "BasicAuth": []
                     }
                 ],
                 "consumes": [
@@ -4811,13 +5156,11 @@
                 "summary": "删除WechatOfficialAccount",
                 "parameters": [
                     {
+                        "type": "string",
                         "description": "删除WechatOfficialAccount",
                         "name": "data",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
+                        "in": "query",
+                        "required": true
                     }
                 ],
                 "responses": {
@@ -4835,6 +5178,9 @@
                 "security": [
                     {
                         "ApiKeyAuth": []
+                    },
+                    {
+                        "BasicAuth": []
                     }
                 ],
                 "consumes": [
@@ -4876,6 +5222,9 @@
                 "security": [
                     {
                         "ApiKeyAuth": []
+                    },
+                    {
+                        "BasicAuth": []
                     }
                 ],
                 "consumes": [
@@ -4912,6 +5261,9 @@
                 "security": [
                     {
                         "ApiKeyAuth": []
+                    },
+                    {
+                        "BasicAuth": []
                     }
                 ],
                 "consumes": [
@@ -4950,6 +5302,9 @@
                 "security": [
                     {
                         "ApiKeyAuth": []
+                    },
+                    {
+                        "BasicAuth": []
                     }
                 ],
                 "consumes": [
@@ -5586,7 +5941,7 @@
                 }
             }
         },
-        "poc_manager.PocManager": {
+        "poc_manager.PocInfo": {
             "type": "object",
             "properties": {
                 "_id": {
@@ -5790,7 +6145,7 @@
                 }
             }
         },
-        "project.Email": {
+        "project.EmailInfo": {
             "type": "object",
             "properties": {
                 "_id": {
@@ -5993,7 +6348,7 @@
                 }
             }
         },
-        "project.Project": {
+        "project.ProjectInfo": {
             "type": "object",
             "properties": {
                 "_id": {
@@ -6497,7 +6852,7 @@
                 }
             }
         },
-        "request.EmailSearch": {
+        "request.EmailInfoSearch": {
             "type": "object",
             "properties": {
                 "_id": {
@@ -6764,7 +7119,7 @@
                 }
             }
         },
-        "request.PocManagerSearch": {
+        "request.PocInfoSearch": {
             "type": "object",
             "properties": {
                 "_id": {
@@ -6904,7 +7259,7 @@
                 }
             }
         },
-        "request.ProjectSearch": {
+        "request.ProjectInfoSearch": {
             "type": "object",
             "properties": {
                 "_id": {
@@ -7692,8 +8047,11 @@
     "securityDefinitions": {
         "ApiKeyAuth": {
             "type": "apiKey",
-            "name": "x-token",
+            "name": "X-API-Key",
             "in": "header"
+        },
+        "BasicAuth": {
+            "type": "basic"
         }
     }
 }

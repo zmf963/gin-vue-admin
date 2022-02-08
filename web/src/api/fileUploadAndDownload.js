@@ -2,6 +2,7 @@ import service from '@/utils/request'
 // @Tags FileUploadAndDownload
 // @Summary 分页文件列表
 // @Security ApiKeyAuth
+// @Security BasicAuth
 // @accept application/json
 // @Produce application/json
 // @Param data body modelInterface.PageInfo true "分页获取文件户列表"
@@ -18,6 +19,7 @@ export const getFileList = (data) => {
 // @Tags FileUploadAndDownload
 // @Summary 删除文件
 // @Security ApiKeyAuth
+// @Security BasicAuth
 // @Produce  application/json
 // @Param data body dbModel.FileUploadAndDownload true "传入文件里面id即可"
 // @Success 200 {string} json "{"success":true,"data":{},"msg":"返回成功"}"

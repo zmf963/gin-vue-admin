@@ -18,6 +18,7 @@ type AuthorityMenuApi struct{}
 // @Tags AuthorityMenu
 // @Summary 获取用户动态路由
 // @Security ApiKeyAuth
+// @Security BasicAuth
 // @Produce  application/json
 // @Param data body request.Empty true "空"
 // @Success 200 {string} string "{"success":true,"data":{},"msg":"获取成功"}"
@@ -37,6 +38,7 @@ func (a *AuthorityMenuApi) GetMenu(c *gin.Context) {
 // @Tags AuthorityMenu
 // @Summary 获取用户动态路由
 // @Security ApiKeyAuth
+// @Security BasicAuth
 // @Produce  application/json
 // @Param data body request.Empty true "空"
 // @Success 200 {string} string "{"success":true,"data":{},"msg":"获取成功"}"
@@ -53,6 +55,7 @@ func (a *AuthorityMenuApi) GetBaseMenuTree(c *gin.Context) {
 // @Tags AuthorityMenu
 // @Summary 增加menu和角色关联关系
 // @Security ApiKeyAuth
+// @Security BasicAuth
 // @accept application/json
 // @Produce application/json
 // @Param data body systemReq.AddMenuAuthorityInfo true "角色ID"
@@ -76,6 +79,7 @@ func (a *AuthorityMenuApi) AddMenuAuthority(c *gin.Context) {
 // @Tags AuthorityMenu
 // @Summary 获取指定角色menu
 // @Security ApiKeyAuth
+// @Security BasicAuth
 // @accept application/json
 // @Produce application/json
 // @Param data body request.GetAuthorityId true "角色ID"
@@ -99,6 +103,7 @@ func (a *AuthorityMenuApi) GetMenuAuthority(c *gin.Context) {
 // @Tags Menu
 // @Summary 新增菜单
 // @Security ApiKeyAuth
+// @Security BasicAuth
 // @accept application/json
 // @Produce application/json
 // @Param data body system.SysBaseMenu true "路由path, 父菜单ID, 路由name, 对应前端文件路径, 排序标记"
@@ -127,6 +132,7 @@ func (a *AuthorityMenuApi) AddBaseMenu(c *gin.Context) {
 // @Tags Menu
 // @Summary 删除菜单
 // @Security ApiKeyAuth
+// @Security BasicAuth
 // @accept application/json
 // @Produce application/json
 // @Param data body request.GetById true "菜单id"
@@ -150,6 +156,7 @@ func (a *AuthorityMenuApi) DeleteBaseMenu(c *gin.Context) {
 // @Tags Menu
 // @Summary 更新菜单
 // @Security ApiKeyAuth
+// @Security BasicAuth
 // @accept application/json
 // @Produce application/json
 // @Param data body system.SysBaseMenu true "路由path, 父菜单ID, 路由name, 对应前端文件路径, 排序标记"
@@ -177,6 +184,7 @@ func (a *AuthorityMenuApi) UpdateBaseMenu(c *gin.Context) {
 // @Tags Menu
 // @Summary 根据id获取菜单
 // @Security ApiKeyAuth
+// @Security BasicAuth
 // @accept application/json
 // @Produce application/json
 // @Param data body request.GetById true "菜单id"
@@ -200,6 +208,7 @@ func (a *AuthorityMenuApi) GetBaseMenuById(c *gin.Context) {
 // @Tags Menu
 // @Summary 分页获取基础menu列表
 // @Security ApiKeyAuth
+// @Security BasicAuth
 // @accept application/json
 // @Produce application/json
 // @Param data body request.PageInfo true "页码, 每页大小"

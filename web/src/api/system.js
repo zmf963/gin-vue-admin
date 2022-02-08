@@ -2,6 +2,7 @@ import service from '@/utils/request'
 // @Tags systrm
 // @Summary 获取配置文件内容
 // @Security ApiKeyAuth
+// @Security BasicAuth
 // @Produce  application/json
 // @Success 200 {string} string "{"success":true,"data":{},"msg":"返回成功"}"
 // @Router /system/getSystemConfig [post]
@@ -15,6 +16,7 @@ export const getSystemConfig = () => {
 // @Tags system
 // @Summary 设置配置文件内容
 // @Security ApiKeyAuth
+// @Security BasicAuth
 // @Produce  application/json
 // @Param data body sysModel.System true
 // @Success 200 {string} string "{"success":true,"data":{},"msg":"返回成功"}"
@@ -30,6 +32,7 @@ export const setSystemConfig = (data) => {
 // @Tags system
 // @Summary 获取服务器运行状态
 // @Security ApiKeyAuth
+// @Security BasicAuth
 // @Produce  application/json
 // @Success 200 {string} string "{"success":true,"data":{},"msg":"返回成功"}"
 // @Router /system/getServerInfo [post]

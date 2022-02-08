@@ -99,6 +99,7 @@ export const updateBaseMenu = (data) => {
 // @Tags menu
 // @Summary 根据id获取菜单
 // @Security ApiKeyAuth
+// @Security BasicAuth
 // @accept application/json
 // @Produce application/json
 // @Param data body api.GetById true "根据id获取菜单"

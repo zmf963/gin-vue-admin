@@ -10,6 +10,7 @@ export const getAuthorityList = (data) => {
 
 // @Summary 删除角色
 // @Security ApiKeyAuth
+// @Security BasicAuth
 // @accept application/json
 // @Produce application/json
 // @Param data body {authorityId uint} true "删除角色"
@@ -25,6 +26,7 @@ export const deleteAuthority = (data) => {
 
 // @Summary 创建角色
 // @Security ApiKeyAuth
+// @Security BasicAuth
 // @accept application/json
 // @Produce application/json
 // @Param data body api.CreateAuthorityPatams true "创建角色"
@@ -41,6 +43,7 @@ export const createAuthority = (data) => {
 // @Tags authority
 // @Summary 拷贝角色
 // @Security ApiKeyAuth
+// @Security BasicAuth
 // @accept application/json
 // @Produce application/json
 // @Param data body api.CreateAuthorityPatams true "拷贝角色"
@@ -56,6 +59,7 @@ export const copyAuthority = (data) => {
 
 // @Summary 设置角色资源权限
 // @Security ApiKeyAuth
+// @Security BasicAuth
 // @accept application/json
 // @Produce application/json
 // @Param data body sysModel.SysAuthority true "设置角色资源权限"
@@ -71,6 +75,7 @@ export const setDataAuthority = (data) => {
 
 // @Summary 修改角色
 // @Security ApiKeyAuth
+// @Security BasicAuth
 // @accept application/json
 // @Produce application/json
 // @Param data body model.SysAuthority true "修改角色"

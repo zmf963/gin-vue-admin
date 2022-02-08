@@ -15,6 +15,7 @@ type CasbinApi struct{}
 // @Tags Casbin
 // @Summary 更新角色api权限
 // @Security ApiKeyAuth
+// @Security BasicAuth
 // @accept application/json
 // @Produce application/json
 // @Param data body request.CasbinInReceive true "权限id, 权限模型列表"
@@ -38,6 +39,7 @@ func (cas *CasbinApi) UpdateCasbin(c *gin.Context) {
 // @Tags Casbin
 // @Summary 获取权限列表
 // @Security ApiKeyAuth
+// @Security BasicAuth
 // @accept application/json
 // @Produce application/json
 // @Param data body request.CasbinInReceive true "权限id, 权限模型列表"

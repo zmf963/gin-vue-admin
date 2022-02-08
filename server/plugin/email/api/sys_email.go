@@ -14,6 +14,7 @@ type EmailApi struct{}
 // @Tags System
 // @Summary 发送测试邮件
 // @Security ApiKeyAuth
+// @Security BasicAuth
 // @Produce  application/json
 // @Success 200 {string} string "{"success":true,"data":{},"msg":"发送成功"}"
 // @Router /email/emailTest [post]
@@ -29,6 +30,7 @@ func (s *EmailApi) EmailTest(c *gin.Context) {
 // @Tags System
 // @Summary 发送邮件
 // @Security ApiKeyAuth
+// @Security BasicAuth
 // @Produce  application/json
 // @Param data body email_response.Email true "发送邮件必须的参数"
 // @Success 200 {string} string "{"success":true,"data":{},"msg":"发送成功"}"

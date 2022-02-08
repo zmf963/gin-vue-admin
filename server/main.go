@@ -1,3 +1,13 @@
+/*
+ * @Version: 0.1
+ * @Autor: zmf96
+ * @Email: zmf96@qq.com
+ * @Date: 2022-02-01 21:23:50
+ * @LastEditors: zmf96
+ * @LastEditTime: 2022-02-08 17:14:05
+ * @FilePath: /server/main.go
+ * @Description:
+ */
 package main
 
 import (
@@ -16,12 +26,13 @@ import (
 // @description This is a sample Server pets
 // @securityDefinitions.apikey ApiKeyAuth
 // @in header
-// @name x-token
+// @name X-API-Key
+// @securityDefinitions.basic BasicAuth
 // @BasePath /
 func main() {
-	global.GVA_VP = core.Viper()      // 初始化Viper
-	global.GVA_LOG = core.Zap()       // 初始化zap日志库
-	global.GVA_DB = initialize.Gorm() // gorm连接数据库
+	global.GVA_VP = core.Viper()                    // 初始化Viper
+	global.GVA_LOG = core.Zap()                     // 初始化zap日志库
+	global.GVA_DB = initialize.Gorm()               // gorm连接数据库
 	global.Mongo_DB = initialize.MongoInitConnect() // mongo连接数据库
 	initialize.Timer()
 	initialize.DBList()

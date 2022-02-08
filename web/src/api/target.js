@@ -3,6 +3,7 @@ import service from '@/utils/request'
 // @Tags Target
 // @Summary 创建Target
 // @Security ApiKeyAuth
+// @Security BasicAuth
 // @accept application/json
 // @Produce application/json
 // @Param data body model.Target true "创建Target"
@@ -19,6 +20,7 @@ export const createTarget = (data) => {
 // @Tags Target
 // @Summary 删除Target
 // @Security ApiKeyAuth
+// @Security BasicAuth
 // @accept application/json
 // @Produce application/json
 // @Param data query model.Target true "删除Target"
@@ -35,6 +37,7 @@ export const deleteTarget = (params) => {
 // @Tags Target
 // @Summary 批量删除Target
 // @Security ApiKeyAuth
+// @Security BasicAuth
 // @accept application/json
 // @Produce application/json
 // @Param data body request.IdsReq true "批量删除Target"
@@ -51,6 +54,7 @@ export const deleteTargetByIds = (data) => {
 // @Tags Target
 // @Summary 更新Target
 // @Security ApiKeyAuth
+// @Security BasicAuth
 // @accept application/json
 // @Produce application/json
 // @Param data body model.Target true "更新Target"
@@ -67,6 +71,7 @@ export const updateTarget = (data) => {
 // @Tags Target
 // @Summary 用id查询Target
 // @Security ApiKeyAuth
+// @Security BasicAuth
 // @accept application/json
 // @Produce application/json
 // @Param data query model.Target true "用id查询Target"
@@ -83,6 +88,7 @@ export const findTarget = (params) => {
 // @Tags Target
 // @Summary 分页获取Target列表
 // @Security ApiKeyAuth
+// @Security BasicAuth
 // @accept application/json
 // @Produce application/json
 // @Param data query request.PageInfo true "分页获取Target列表"

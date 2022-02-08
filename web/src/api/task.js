@@ -3,6 +3,7 @@ import service from '@/utils/request'
 // @Tags Task
 // @Summary 创建Task
 // @Security ApiKeyAuth
+// @Security BasicAuth
 // @accept application/json
 // @Produce application/json
 // @Param data body model.Task true "创建Task"
@@ -19,6 +20,7 @@ export const createTask = (data) => {
 // @Tags Task
 // @Summary 删除Task
 // @Security ApiKeyAuth
+// @Security BasicAuth
 // @accept application/json
 // @Produce application/json
 // @Param data query model.Task true "删除Task"
@@ -35,6 +37,7 @@ export const deleteTask = (params) => {
 // @Tags Task
 // @Summary 批量删除Task
 // @Security ApiKeyAuth
+// @Security BasicAuth
 // @accept application/json
 // @Produce application/json
 // @Param data body request.IdsReq true "批量删除Task"
@@ -51,6 +54,7 @@ export const deleteTaskByIds = (data) => {
 // @Tags Task
 // @Summary 更新Task
 // @Security ApiKeyAuth
+// @Security BasicAuth
 // @accept application/json
 // @Produce application/json
 // @Param data body model.Task true "更新Task"
@@ -67,6 +71,7 @@ export const updateTask = (data) => {
 // @Tags Task
 // @Summary 用id查询Task
 // @Security ApiKeyAuth
+// @Security BasicAuth
 // @accept application/json
 // @Produce application/json
 // @Param data query model.Task true "用id查询Task"
@@ -83,6 +88,7 @@ export const findTask = (params) => {
 // @Tags Task
 // @Summary 分页获取Task列表
 // @Security ApiKeyAuth
+// @Security BasicAuth
 // @accept application/json
 // @Produce application/json
 // @Param data query request.PageInfo true "分页获取Task列表"

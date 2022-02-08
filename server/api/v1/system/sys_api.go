@@ -18,6 +18,7 @@ type SystemApiApi struct{}
 // @Tags SysApi
 // @Summary 创建基础api
 // @Security ApiKeyAuth
+// @Security BasicAuth
 // @accept application/json
 // @Produce application/json
 // @Param data body system.SysApi true "api路径, api中文描述, api组, 方法"
@@ -41,6 +42,7 @@ func (s *SystemApiApi) CreateApi(c *gin.Context) {
 // @Tags SysApi
 // @Summary 删除api
 // @Security ApiKeyAuth
+// @Security BasicAuth
 // @accept application/json
 // @Produce application/json
 // @Param data body system.SysApi true "ID"
@@ -64,6 +66,7 @@ func (s *SystemApiApi) DeleteApi(c *gin.Context) {
 // @Tags SysApi
 // @Summary 分页获取API列表
 // @Security ApiKeyAuth
+// @Security BasicAuth
 // @accept application/json
 // @Produce application/json
 // @Param data body systemReq.SearchApiParams true "分页获取API列表"
@@ -92,6 +95,7 @@ func (s *SystemApiApi) GetApiList(c *gin.Context) {
 // @Tags SysApi
 // @Summary 根据id获取api
 // @Security ApiKeyAuth
+// @Security BasicAuth
 // @accept application/json
 // @Produce application/json
 // @Param data body request.GetById true "根据id获取api"
@@ -116,6 +120,7 @@ func (s *SystemApiApi) GetApiById(c *gin.Context) {
 // @Tags SysApi
 // @Summary 创建基础api
 // @Security ApiKeyAuth
+// @Security BasicAuth
 // @accept application/json
 // @Produce application/json
 // @Param data body system.SysApi true "api路径, api中文描述, api组, 方法"
@@ -139,6 +144,7 @@ func (s *SystemApiApi) UpdateApi(c *gin.Context) {
 // @Tags SysApi
 // @Summary 获取所有的Api 不分页
 // @Security ApiKeyAuth
+// @Security BasicAuth
 // @accept application/json
 // @Produce application/json
 // @Success 200 {string} string "{"success":true,"data":{},"msg":"获取成功"}"
@@ -155,6 +161,7 @@ func (s *SystemApiApi) GetAllApis(c *gin.Context) {
 // @Tags SysApi
 // @Summary 删除选中Api
 // @Security ApiKeyAuth
+// @Security BasicAuth
 // @accept application/json
 // @Produce application/json
 // @Param data body request.IdsReq true "ID"

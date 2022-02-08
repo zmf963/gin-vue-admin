@@ -419,7 +419,7 @@ definitions:
         description: 栈名
         type: string
     type: object
-  poc_manager.PocManager:
+  poc_manager.PocInfo:
     properties:
       _id:
         type: string
@@ -554,7 +554,7 @@ definitions:
         additionalProperties: true
         type: object
     type: object
-  project.Email:
+  project.EmailInfo:
     properties:
       _id:
         type: string
@@ -688,7 +688,7 @@ definitions:
       url:
         type: string
     type: object
-  project.Project:
+  project.ProjectInfo:
     properties:
       _id:
         type: string
@@ -1025,7 +1025,7 @@ definitions:
         additionalProperties: true
         type: object
     type: object
-  request.EmailSearch:
+  request.EmailInfoSearch:
     properties:
       _id:
         type: string
@@ -1207,7 +1207,7 @@ definitions:
       url:
         type: string
     type: object
-  request.PocManagerSearch:
+  request.PocInfoSearch:
     properties:
       _id:
         type: string
@@ -1301,7 +1301,7 @@ definitions:
       url:
         type: string
     type: object
-  request.ProjectSearch:
+  request.ProjectInfoSearch:
     properties:
       _id:
         type: string
@@ -1874,6 +1874,7 @@ paths:
             type: string
       security:
       - ApiKeyAuth: []
+      - BasicAuth: []
       summary: 创建基础api
       tags:
       - SysApi
@@ -1897,6 +1898,7 @@ paths:
             type: string
       security:
       - ApiKeyAuth: []
+      - BasicAuth: []
       summary: 删除api
       tags:
       - SysApi
@@ -1920,6 +1922,7 @@ paths:
             type: string
       security:
       - ApiKeyAuth: []
+      - BasicAuth: []
       summary: 删除选中Api
       tags:
       - SysApi
@@ -1936,6 +1939,7 @@ paths:
             type: string
       security:
       - ApiKeyAuth: []
+      - BasicAuth: []
       summary: 获取所有的Api 不分页
       tags:
       - SysApi
@@ -1959,6 +1963,7 @@ paths:
             type: string
       security:
       - ApiKeyAuth: []
+      - BasicAuth: []
       summary: 根据id获取api
       tags:
       - SysApi
@@ -1982,6 +1987,7 @@ paths:
             type: string
       security:
       - ApiKeyAuth: []
+      - BasicAuth: []
       summary: 分页获取API列表
       tags:
       - SysApi
@@ -2005,6 +2011,7 @@ paths:
             type: string
       security:
       - ApiKeyAuth: []
+      - BasicAuth: []
       summary: 创建基础api
       tags:
       - SysApi
@@ -2028,6 +2035,7 @@ paths:
             type: string
       security:
       - ApiKeyAuth: []
+      - BasicAuth: []
       summary: 创建AppInfo
       tags:
       - AppInfo
@@ -2037,11 +2045,10 @@ paths:
       - application/json
       parameters:
       - description: 删除AppInfo
-        in: body
+        in: query
         name: data
         required: true
-        schema:
-          type: string
+        type: string
       produces:
       - application/json
       responses:
@@ -2051,6 +2058,7 @@ paths:
             type: string
       security:
       - ApiKeyAuth: []
+      - BasicAuth: []
       summary: 删除AppInfo
       tags:
       - AppInfo
@@ -2076,6 +2084,7 @@ paths:
             type: string
       security:
       - ApiKeyAuth: []
+      - BasicAuth: []
       summary: 批量删除AppInfo
       tags:
       - AppInfo
@@ -2098,6 +2107,7 @@ paths:
             type: string
       security:
       - ApiKeyAuth: []
+      - BasicAuth: []
       summary: 用id查询AppInfo
       tags:
       - AppInfo
@@ -2121,6 +2131,7 @@ paths:
             type: string
       security:
       - ApiKeyAuth: []
+      - BasicAuth: []
       summary: 分页获取AppInfo列表
       tags:
       - AppInfo
@@ -2144,6 +2155,7 @@ paths:
             type: string
       security:
       - ApiKeyAuth: []
+      - BasicAuth: []
       summary: 更新AppInfo
       tags:
       - AppInfo
@@ -2167,6 +2179,7 @@ paths:
             type: string
       security:
       - ApiKeyAuth: []
+      - BasicAuth: []
       summary: 拷贝角色
       tags:
       - Authority
@@ -2190,6 +2203,7 @@ paths:
             type: string
       security:
       - ApiKeyAuth: []
+      - BasicAuth: []
       summary: 创建角色
       tags:
       - Authority
@@ -2213,6 +2227,7 @@ paths:
             type: string
       security:
       - ApiKeyAuth: []
+      - BasicAuth: []
       summary: 删除角色
       tags:
       - Authority
@@ -2236,6 +2251,7 @@ paths:
             type: string
       security:
       - ApiKeyAuth: []
+      - BasicAuth: []
       summary: 分页获取角色列表
       tags:
       - Authority
@@ -2259,6 +2275,7 @@ paths:
             type: string
       security:
       - ApiKeyAuth: []
+      - BasicAuth: []
       summary: 设置角色资源权限
       tags:
       - Authority
@@ -2282,6 +2299,7 @@ paths:
             type: string
       security:
       - ApiKeyAuth: []
+      - BasicAuth: []
       summary: 更新角色信息
       tags:
       - Authority
@@ -2298,6 +2316,7 @@ paths:
             type: string
       security:
       - ApiKeyAuth: []
+      - BasicAuth: []
       summary: 生成验证码
       tags:
       - Base
@@ -2340,6 +2359,7 @@ paths:
             type: string
       security:
       - ApiKeyAuth: []
+      - BasicAuth: []
       summary: 更新角色api权限
       tags:
       - Casbin
@@ -2363,6 +2383,7 @@ paths:
             type: string
       security:
       - ApiKeyAuth: []
+      - BasicAuth: []
       summary: 获取权限列表
       tags:
       - Casbin
@@ -2386,6 +2407,7 @@ paths:
             type: string
       security:
       - ApiKeyAuth: []
+      - BasicAuth: []
       summary: 创建DocInfo
       tags:
       - DocInfo
@@ -2395,11 +2417,10 @@ paths:
       - application/json
       parameters:
       - description: 删除DocInfo
-        in: body
+        in: query
         name: data
         required: true
-        schema:
-          type: string
+        type: string
       produces:
       - application/json
       responses:
@@ -2409,6 +2430,7 @@ paths:
             type: string
       security:
       - ApiKeyAuth: []
+      - BasicAuth: []
       summary: 删除DocInfo
       tags:
       - DocInfo
@@ -2434,6 +2456,7 @@ paths:
             type: string
       security:
       - ApiKeyAuth: []
+      - BasicAuth: []
       summary: 批量删除DocInfo
       tags:
       - DocInfo
@@ -2456,6 +2479,7 @@ paths:
             type: string
       security:
       - ApiKeyAuth: []
+      - BasicAuth: []
       summary: 用id查询DocInfo
       tags:
       - DocInfo
@@ -2479,6 +2503,7 @@ paths:
             type: string
       security:
       - ApiKeyAuth: []
+      - BasicAuth: []
       summary: 分页获取DocInfo列表
       tags:
       - DocInfo
@@ -2502,6 +2527,7 @@ paths:
             type: string
       security:
       - ApiKeyAuth: []
+      - BasicAuth: []
       summary: 更新DocInfo
       tags:
       - DocInfo
@@ -2525,6 +2551,7 @@ paths:
             type: string
       security:
       - ApiKeyAuth: []
+      - BasicAuth: []
       summary: 创建Domain
       tags:
       - Domain
@@ -2534,11 +2561,10 @@ paths:
       - application/json
       parameters:
       - description: 删除Domain
-        in: body
+        in: query
         name: data
         required: true
-        schema:
-          type: string
+        type: string
       produces:
       - application/json
       responses:
@@ -2548,6 +2574,7 @@ paths:
             type: string
       security:
       - ApiKeyAuth: []
+      - BasicAuth: []
       summary: 删除Domain
       tags:
       - Domain
@@ -2573,6 +2600,7 @@ paths:
             type: string
       security:
       - ApiKeyAuth: []
+      - BasicAuth: []
       summary: 批量删除Domain
       tags:
       - Domain
@@ -2595,6 +2623,7 @@ paths:
             type: string
       security:
       - ApiKeyAuth: []
+      - BasicAuth: []
       summary: 用id查询Domain
       tags:
       - Domain
@@ -2618,6 +2647,7 @@ paths:
             type: string
       security:
       - ApiKeyAuth: []
+      - BasicAuth: []
       summary: 分页获取Domain列表
       tags:
       - Domain
@@ -2641,80 +2671,10 @@ paths:
             type: string
       security:
       - ApiKeyAuth: []
+      - BasicAuth: []
       summary: 更新Domain
       tags:
       - Domain
-  /email/createEmail:
-    post:
-      consumes:
-      - application/json
-      parameters:
-      - description: 创建Email
-        in: body
-        name: data
-        required: true
-        schema:
-          $ref: '#/definitions/project.Email'
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: '{"code":0,"data":{},"msg":"获取成功"}'
-          schema:
-            type: string
-      security:
-      - ApiKeyAuth: []
-      summary: 创建Email
-      tags:
-      - Email
-  /email/deleteEmail:
-    delete:
-      consumes:
-      - application/json
-      parameters:
-      - description: 删除Email
-        in: body
-        name: data
-        required: true
-        schema:
-          type: string
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: '{"success":true,"data":{},"msg":"删除成功"}'
-          schema:
-            type: string
-      security:
-      - ApiKeyAuth: []
-      summary: 删除Email
-      tags:
-      - Email
-  /email/deleteEmailByIds:
-    delete:
-      consumes:
-      - application/json
-      parameters:
-      - description: 批量删除Email
-        in: body
-        name: data
-        required: true
-        schema:
-          items:
-            type: string
-          type: array
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: '{"success":true,"data":{},"msg":"批量删除成功"}'
-          schema:
-            type: string
-      security:
-      - ApiKeyAuth: []
-      summary: 批量删除Email
-      tags:
-      - Email
   /email/emailTest:
     post:
       produces:
@@ -2726,54 +2686,10 @@ paths:
             type: string
       security:
       - ApiKeyAuth: []
+      - BasicAuth: []
       summary: 发送测试邮件
       tags:
       - System
-  /email/findEmail:
-    get:
-      consumes:
-      - application/json
-      parameters:
-      - description: 用id查询Email
-        in: query
-        name: data
-        required: true
-        type: string
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: '{"success":true,"data":{},"msg":"查询成功"}'
-          schema:
-            type: string
-      security:
-      - ApiKeyAuth: []
-      summary: 用id查询Email
-      tags:
-      - Email
-  /email/getEmailList:
-    post:
-      consumes:
-      - application/json
-      parameters:
-      - description: 分页获取Email列表
-        in: body
-        name: data
-        required: true
-        schema:
-          $ref: '#/definitions/request.EmailSearch'
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: '{"code":0,"data":{},"msg":"获取成功"}'
-          schema:
-            type: string
-      security:
-      - ApiKeyAuth: []
-      summary: 分页获取Email列表
-      tags:
-      - Email
   /email/sendEmail:
     post:
       parameters:
@@ -2792,20 +2708,141 @@ paths:
             type: string
       security:
       - ApiKeyAuth: []
+      - BasicAuth: []
       summary: 发送邮件
       tags:
       - System
-  /email/updateEmail:
-    put:
+  /email_info/createEmailInfo:
+    post:
       consumes:
       - application/json
       parameters:
-      - description: 更新Email
+      - description: 创建EmailInfo
         in: body
         name: data
         required: true
         schema:
-          $ref: '#/definitions/project.Email'
+          $ref: '#/definitions/project.EmailInfo'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"code":0,"data":{},"msg":"获取成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      - BasicAuth: []
+      summary: 创建EmailInfo
+      tags:
+      - EmailInfo
+  /email_info/deleteEmailInfo:
+    delete:
+      consumes:
+      - application/json
+      parameters:
+      - description: 删除EmailInfo
+        in: query
+        name: data
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"删除成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      - BasicAuth: []
+      summary: 删除EmailInfo
+      tags:
+      - EmailInfo
+  /email_info/deleteEmailInfoByIds:
+    delete:
+      consumes:
+      - application/json
+      parameters:
+      - description: 批量删除EmailInfo
+        in: body
+        name: data
+        required: true
+        schema:
+          items:
+            type: string
+          type: array
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"批量删除成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      - BasicAuth: []
+      summary: 批量删除EmailInfo
+      tags:
+      - EmailInfo
+  /email_info/findEmailInfo:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: 用id查询EmailInfo
+        in: query
+        name: data
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"查询成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      - BasicAuth: []
+      summary: 用id查询EmailInfo
+      tags:
+      - EmailInfo
+  /email_info/getEmailInfoList:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: 分页获取EmailInfo列表
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/request.EmailInfoSearch'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"code":0,"data":{},"msg":"获取成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      - BasicAuth: []
+      summary: 分页获取EmailInfo列表
+      tags:
+      - EmailInfo
+  /email_info/updateEmailInfo:
+    put:
+      consumes:
+      - application/json
+      parameters:
+      - description: 更新EmailInfo
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/project.EmailInfo'
       produces:
       - application/json
       responses:
@@ -2815,9 +2852,10 @@ paths:
             type: string
       security:
       - ApiKeyAuth: []
-      summary: 更新Email
+      - BasicAuth: []
+      summary: 更新EmailInfo
       tags:
-      - Email
+      - EmailInfo
   /fileUploadAndDownload/deleteFile:
     post:
       parameters:
@@ -2836,6 +2874,7 @@ paths:
             type: string
       security:
       - ApiKeyAuth: []
+      - BasicAuth: []
       summary: 删除文件
       tags:
       - ExaFileUploadAndDownload
@@ -2859,6 +2898,7 @@ paths:
             type: string
       security:
       - ApiKeyAuth: []
+      - BasicAuth: []
       summary: 分页文件列表
       tags:
       - ExaFileUploadAndDownload
@@ -2881,6 +2921,7 @@ paths:
             type: string
       security:
       - ApiKeyAuth: []
+      - BasicAuth: []
       summary: 上传文件示例
       tags:
       - ExaFileUploadAndDownload
@@ -2928,6 +2969,7 @@ paths:
             type: string
       security:
       - ApiKeyAuth: []
+      - BasicAuth: []
       summary: jwt加入黑名单
       tags:
       - Jwt
@@ -2951,6 +2993,7 @@ paths:
             type: string
       security:
       - ApiKeyAuth: []
+      - BasicAuth: []
       summary: 创建Keys
       tags:
       - Keys
@@ -2960,11 +3003,10 @@ paths:
       - application/json
       parameters:
       - description: 删除Keys
-        in: body
+        in: query
         name: data
         required: true
-        schema:
-          type: string
+        type: string
       produces:
       - application/json
       responses:
@@ -2974,6 +3016,7 @@ paths:
             type: string
       security:
       - ApiKeyAuth: []
+      - BasicAuth: []
       summary: 删除Keys
       tags:
       - Keys
@@ -2999,6 +3042,7 @@ paths:
             type: string
       security:
       - ApiKeyAuth: []
+      - BasicAuth: []
       summary: 批量删除Keys
       tags:
       - Keys
@@ -3021,6 +3065,7 @@ paths:
             type: string
       security:
       - ApiKeyAuth: []
+      - BasicAuth: []
       summary: 用id查询Keys
       tags:
       - Keys
@@ -3044,6 +3089,7 @@ paths:
             type: string
       security:
       - ApiKeyAuth: []
+      - BasicAuth: []
       summary: 分页获取Keys列表
       tags:
       - Keys
@@ -3067,6 +3113,7 @@ paths:
             type: string
       security:
       - ApiKeyAuth: []
+      - BasicAuth: []
       summary: 更新Keys
       tags:
       - Keys
@@ -3090,6 +3137,7 @@ paths:
             type: string
       security:
       - ApiKeyAuth: []
+      - BasicAuth: []
       summary: 新增菜单
       tags:
       - Menu
@@ -3113,6 +3161,7 @@ paths:
             type: string
       security:
       - ApiKeyAuth: []
+      - BasicAuth: []
       summary: 增加menu和角色关联关系
       tags:
       - AuthorityMenu
@@ -3136,6 +3185,7 @@ paths:
             type: string
       security:
       - ApiKeyAuth: []
+      - BasicAuth: []
       summary: 删除菜单
       tags:
       - Menu
@@ -3159,6 +3209,7 @@ paths:
             type: string
       security:
       - ApiKeyAuth: []
+      - BasicAuth: []
       summary: 根据id获取菜单
       tags:
       - Menu
@@ -3180,6 +3231,7 @@ paths:
             type: string
       security:
       - ApiKeyAuth: []
+      - BasicAuth: []
       summary: 获取用户动态路由
       tags:
       - AuthorityMenu
@@ -3201,6 +3253,7 @@ paths:
             type: string
       security:
       - ApiKeyAuth: []
+      - BasicAuth: []
       summary: 获取用户动态路由
       tags:
       - AuthorityMenu
@@ -3224,6 +3277,7 @@ paths:
             type: string
       security:
       - ApiKeyAuth: []
+      - BasicAuth: []
       summary: 获取指定角色menu
       tags:
       - AuthorityMenu
@@ -3247,6 +3301,7 @@ paths:
             type: string
       security:
       - ApiKeyAuth: []
+      - BasicAuth: []
       summary: 分页获取基础menu列表
       tags:
       - Menu
@@ -3270,6 +3325,7 @@ paths:
             type: string
       security:
       - ApiKeyAuth: []
+      - BasicAuth: []
       summary: 更新菜单
       tags:
       - Menu
@@ -3293,6 +3349,7 @@ paths:
             type: string
       security:
       - ApiKeyAuth: []
+      - BasicAuth: []
       summary: 创建PathInfo
       tags:
       - PathInfo
@@ -3302,11 +3359,10 @@ paths:
       - application/json
       parameters:
       - description: 删除PathInfo
-        in: body
+        in: query
         name: data
         required: true
-        schema:
-          type: string
+        type: string
       produces:
       - application/json
       responses:
@@ -3316,6 +3372,7 @@ paths:
             type: string
       security:
       - ApiKeyAuth: []
+      - BasicAuth: []
       summary: 删除PathInfo
       tags:
       - PathInfo
@@ -3341,6 +3398,7 @@ paths:
             type: string
       security:
       - ApiKeyAuth: []
+      - BasicAuth: []
       summary: 批量删除PathInfo
       tags:
       - PathInfo
@@ -3363,6 +3421,7 @@ paths:
             type: string
       security:
       - ApiKeyAuth: []
+      - BasicAuth: []
       summary: 用id查询PathInfo
       tags:
       - PathInfo
@@ -3386,6 +3445,7 @@ paths:
             type: string
       security:
       - ApiKeyAuth: []
+      - BasicAuth: []
       summary: 分页获取PathInfo列表
       tags:
       - PathInfo
@@ -3409,20 +3469,21 @@ paths:
             type: string
       security:
       - ApiKeyAuth: []
+      - BasicAuth: []
       summary: 更新PathInfo
       tags:
       - PathInfo
-  /poc_manager/createPocManager:
+  /poc_info/createPocInfo:
     post:
       consumes:
       - application/json
       parameters:
-      - description: 创建PocManager
+      - description: 创建PocInfo
         in: body
         name: data
         required: true
         schema:
-          $ref: '#/definitions/poc_manager.PocManager'
+          $ref: '#/definitions/poc_manager.PocInfo'
       produces:
       - application/json
       responses:
@@ -3432,20 +3493,20 @@ paths:
             type: string
       security:
       - ApiKeyAuth: []
-      summary: 创建PocManager
+      - BasicAuth: []
+      summary: 创建PocInfo
       tags:
-      - PocManager
-  /poc_manager/deletePocManager:
+      - PocInfo
+  /poc_info/deletePocInfo:
     delete:
       consumes:
       - application/json
       parameters:
-      - description: 删除PocManager
-        in: body
+      - description: 删除PocInfo
+        in: query
         name: data
         required: true
-        schema:
-          type: string
+        type: string
       produces:
       - application/json
       responses:
@@ -3455,15 +3516,16 @@ paths:
             type: string
       security:
       - ApiKeyAuth: []
-      summary: 删除PocManager
+      - BasicAuth: []
+      summary: 删除PocInfo
       tags:
-      - PocManager
-  /poc_manager/deletePocManagerByIds:
+      - PocInfo
+  /poc_info/deletePocInfoByIds:
     delete:
       consumes:
       - application/json
       parameters:
-      - description: 批量删除PocManager
+      - description: 批量删除PocInfo
         in: body
         name: data
         required: true
@@ -3480,15 +3542,16 @@ paths:
             type: string
       security:
       - ApiKeyAuth: []
-      summary: 批量删除PocManager
+      - BasicAuth: []
+      summary: 批量删除PocInfo
       tags:
-      - PocManager
-  /poc_manager/findPocManager:
+      - PocInfo
+  /poc_info/findPocInfo:
     get:
       consumes:
       - application/json
       parameters:
-      - description: 用id查询PocManager
+      - description: 用id查询PocInfo
         in: query
         name: data
         required: true
@@ -3502,20 +3565,21 @@ paths:
             type: string
       security:
       - ApiKeyAuth: []
-      summary: 用id查询PocManager
+      - BasicAuth: []
+      summary: 用id查询PocInfo
       tags:
-      - PocManager
-  /poc_manager/getPocManagerList:
+      - PocInfo
+  /poc_info/getPocInfoList:
     post:
       consumes:
       - application/json
       parameters:
-      - description: 分页获取PocManager列表
+      - description: 分页获取PocInfo列表
         in: body
         name: data
         required: true
         schema:
-          $ref: '#/definitions/request.PocManagerSearch'
+          $ref: '#/definitions/request.PocInfoSearch'
       produces:
       - application/json
       responses:
@@ -3525,20 +3589,21 @@ paths:
             type: string
       security:
       - ApiKeyAuth: []
-      summary: 分页获取PocManager列表
+      - BasicAuth: []
+      summary: 分页获取PocInfo列表
       tags:
-      - PocManager
-  /poc_manager/updatePocManager:
+      - PocInfo
+  /poc_info/updatePocInfo:
     put:
       consumes:
       - application/json
       parameters:
-      - description: 更新PocManager
+      - description: 更新PocInfo
         in: body
         name: data
         required: true
         schema:
-          $ref: '#/definitions/poc_manager.PocManager'
+          $ref: '#/definitions/poc_manager.PocInfo'
       produces:
       - application/json
       responses:
@@ -3548,9 +3613,10 @@ paths:
             type: string
       security:
       - ApiKeyAuth: []
-      summary: 更新PocManager
+      - BasicAuth: []
+      summary: 更新PocInfo
       tags:
-      - PocManager
+      - PocInfo
   /port_info/createPortInfo:
     post:
       consumes:
@@ -3571,6 +3637,7 @@ paths:
             type: string
       security:
       - ApiKeyAuth: []
+      - BasicAuth: []
       summary: 创建PortInfo
       tags:
       - PortInfo
@@ -3580,11 +3647,10 @@ paths:
       - application/json
       parameters:
       - description: 删除PortInfo
-        in: body
+        in: query
         name: data
         required: true
-        schema:
-          type: string
+        type: string
       produces:
       - application/json
       responses:
@@ -3594,6 +3660,7 @@ paths:
             type: string
       security:
       - ApiKeyAuth: []
+      - BasicAuth: []
       summary: 删除PortInfo
       tags:
       - PortInfo
@@ -3619,6 +3686,7 @@ paths:
             type: string
       security:
       - ApiKeyAuth: []
+      - BasicAuth: []
       summary: 批量删除PortInfo
       tags:
       - PortInfo
@@ -3641,6 +3709,7 @@ paths:
             type: string
       security:
       - ApiKeyAuth: []
+      - BasicAuth: []
       summary: 用id查询PortInfo
       tags:
       - PortInfo
@@ -3664,6 +3733,7 @@ paths:
             type: string
       security:
       - ApiKeyAuth: []
+      - BasicAuth: []
       summary: 分页获取PortInfo列表
       tags:
       - PortInfo
@@ -3687,20 +3757,21 @@ paths:
             type: string
       security:
       - ApiKeyAuth: []
+      - BasicAuth: []
       summary: 更新PortInfo
       tags:
       - PortInfo
-  /project/createProject:
+  /project_info/createProjectInfo:
     post:
       consumes:
       - application/json
       parameters:
-      - description: 创建Project
+      - description: 创建ProjectInfo
         in: body
         name: data
         required: true
         schema:
-          $ref: '#/definitions/project.Project'
+          $ref: '#/definitions/project.ProjectInfo'
       produces:
       - application/json
       responses:
@@ -3710,20 +3781,20 @@ paths:
             type: string
       security:
       - ApiKeyAuth: []
-      summary: 创建Project
+      - BasicAuth: []
+      summary: 创建ProjectInfo
       tags:
-      - Project
-  /project/deleteProject:
+      - ProjectInfo
+  /project_info/deleteProjectInfo:
     delete:
       consumes:
       - application/json
       parameters:
-      - description: 删除Project
-        in: body
+      - description: 删除ProjectInfo
+        in: query
         name: data
         required: true
-        schema:
-          type: string
+        type: string
       produces:
       - application/json
       responses:
@@ -3733,15 +3804,16 @@ paths:
             type: string
       security:
       - ApiKeyAuth: []
-      summary: 删除Project
+      - BasicAuth: []
+      summary: 删除ProjectInfo
       tags:
-      - Project
-  /project/deleteProjectByIds:
+      - ProjectInfo
+  /project_info/deleteProjectInfoByIds:
     delete:
       consumes:
       - application/json
       parameters:
-      - description: 批量删除Project
+      - description: 批量删除ProjectInfo
         in: body
         name: data
         required: true
@@ -3758,17 +3830,18 @@ paths:
             type: string
       security:
       - ApiKeyAuth: []
-      summary: 批量删除Project
+      - BasicAuth: []
+      summary: 批量删除ProjectInfo
       tags:
-      - Project
-  /project/findProject:
+      - ProjectInfo
+  /project_info/findProjectInfo:
     get:
       consumes:
       - application/json
       parameters:
-      - description: 用id查询Project
+      - description: 用id查询ProjectInfo
         in: query
-        name: id
+        name: data
         required: true
         type: string
       produces:
@@ -3780,20 +3853,21 @@ paths:
             type: string
       security:
       - ApiKeyAuth: []
-      summary: 用id查询Project
+      - BasicAuth: []
+      summary: 用id查询ProjectInfo
       tags:
-      - Project
-  /project/getProjectList:
+      - ProjectInfo
+  /project_info/getProjectInfoList:
     post:
       consumes:
       - application/json
       parameters:
-      - description: 分页获取Project列表
+      - description: 分页获取ProjectInfo列表
         in: body
         name: data
         required: true
         schema:
-          $ref: '#/definitions/request.ProjectSearch'
+          $ref: '#/definitions/request.ProjectInfoSearch'
       produces:
       - application/json
       responses:
@@ -3803,20 +3877,21 @@ paths:
             type: string
       security:
       - ApiKeyAuth: []
-      summary: 分页获取Project列表
+      - BasicAuth: []
+      summary: 分页获取ProjectInfo列表
       tags:
-      - Project
-  /project/updateProject:
+      - ProjectInfo
+  /project_info/updateProjectInfo:
     put:
       consumes:
       - application/json
       parameters:
-      - description: 更新Project
+      - description: 更新ProjectInfo
         in: body
         name: data
         required: true
         schema:
-          $ref: '#/definitions/project.Project'
+          $ref: '#/definitions/project.ProjectInfo'
       produces:
       - application/json
       responses:
@@ -3826,9 +3901,10 @@ paths:
             type: string
       security:
       - ApiKeyAuth: []
-      summary: 更新Project
+      - BasicAuth: []
+      summary: 更新ProjectInfo
       tags:
-      - Project
+      - ProjectInfo
   /sysOperationRecord/createSysOperationRecord:
     post:
       consumes:
@@ -3849,6 +3925,7 @@ paths:
             type: string
       security:
       - ApiKeyAuth: []
+      - BasicAuth: []
       summary: 创建SysOperationRecord
       tags:
       - SysOperationRecord
@@ -3872,6 +3949,7 @@ paths:
             type: string
       security:
       - ApiKeyAuth: []
+      - BasicAuth: []
       summary: 删除SysOperationRecord
       tags:
       - SysOperationRecord
@@ -3895,6 +3973,7 @@ paths:
             type: string
       security:
       - ApiKeyAuth: []
+      - BasicAuth: []
       summary: 批量删除SysOperationRecord
       tags:
       - SysOperationRecord
@@ -3964,6 +4043,7 @@ paths:
             type: string
       security:
       - ApiKeyAuth: []
+      - BasicAuth: []
       summary: 用id查询SysOperationRecord
       tags:
       - SysOperationRecord
@@ -4041,6 +4121,7 @@ paths:
             type: string
       security:
       - ApiKeyAuth: []
+      - BasicAuth: []
       summary: 分页获取SysOperationRecord列表
       tags:
       - SysOperationRecord
@@ -4055,6 +4136,7 @@ paths:
             type: string
       security:
       - ApiKeyAuth: []
+      - BasicAuth: []
       summary: 获取服务器信息
       tags:
       - System
@@ -4069,6 +4151,7 @@ paths:
             type: string
       security:
       - ApiKeyAuth: []
+      - BasicAuth: []
       summary: 获取配置文件内容
       tags:
       - System
@@ -4083,6 +4166,7 @@ paths:
             type: string
       security:
       - ApiKeyAuth: []
+      - BasicAuth: []
       summary: 重启系统
       tags:
       - System
@@ -4104,6 +4188,7 @@ paths:
             type: string
       security:
       - ApiKeyAuth: []
+      - BasicAuth: []
       summary: 设置配置文件内容
       tags:
       - System
@@ -4127,6 +4212,7 @@ paths:
             type: string
       security:
       - ApiKeyAuth: []
+      - BasicAuth: []
       summary: 创建Target
       tags:
       - Target
@@ -4136,11 +4222,10 @@ paths:
       - application/json
       parameters:
       - description: 删除Target
-        in: body
+        in: query
         name: data
         required: true
-        schema:
-          type: string
+        type: string
       produces:
       - application/json
       responses:
@@ -4150,6 +4235,7 @@ paths:
             type: string
       security:
       - ApiKeyAuth: []
+      - BasicAuth: []
       summary: 删除Target
       tags:
       - Target
@@ -4175,6 +4261,7 @@ paths:
             type: string
       security:
       - ApiKeyAuth: []
+      - BasicAuth: []
       summary: 批量删除Target
       tags:
       - Target
@@ -4197,6 +4284,7 @@ paths:
             type: string
       security:
       - ApiKeyAuth: []
+      - BasicAuth: []
       summary: 用id查询Target
       tags:
       - Target
@@ -4220,6 +4308,7 @@ paths:
             type: string
       security:
       - ApiKeyAuth: []
+      - BasicAuth: []
       summary: 分页获取Target列表
       tags:
       - Target
@@ -4243,6 +4332,7 @@ paths:
             type: string
       security:
       - ApiKeyAuth: []
+      - BasicAuth: []
       summary: 更新Target
       tags:
       - Target
@@ -4266,6 +4356,7 @@ paths:
             type: string
       security:
       - ApiKeyAuth: []
+      - BasicAuth: []
       summary: 创建TargetRelation
       tags:
       - TargetRelation
@@ -4275,11 +4366,10 @@ paths:
       - application/json
       parameters:
       - description: 删除TargetRelation
-        in: body
+        in: query
         name: data
         required: true
-        schema:
-          type: string
+        type: string
       produces:
       - application/json
       responses:
@@ -4289,6 +4379,7 @@ paths:
             type: string
       security:
       - ApiKeyAuth: []
+      - BasicAuth: []
       summary: 删除TargetRelation
       tags:
       - TargetRelation
@@ -4314,6 +4405,7 @@ paths:
             type: string
       security:
       - ApiKeyAuth: []
+      - BasicAuth: []
       summary: 批量删除TargetRelation
       tags:
       - TargetRelation
@@ -4336,6 +4428,7 @@ paths:
             type: string
       security:
       - ApiKeyAuth: []
+      - BasicAuth: []
       summary: 用id查询TargetRelation
       tags:
       - TargetRelation
@@ -4359,6 +4452,7 @@ paths:
             type: string
       security:
       - ApiKeyAuth: []
+      - BasicAuth: []
       summary: 分页获取TargetRelation列表
       tags:
       - TargetRelation
@@ -4382,6 +4476,7 @@ paths:
             type: string
       security:
       - ApiKeyAuth: []
+      - BasicAuth: []
       summary: 更新TargetRelation
       tags:
       - TargetRelation
@@ -4405,6 +4500,7 @@ paths:
             type: string
       security:
       - ApiKeyAuth: []
+      - BasicAuth: []
       summary: 创建Task
       tags:
       - Task
@@ -4414,11 +4510,10 @@ paths:
       - application/json
       parameters:
       - description: 删除Task
-        in: body
+        in: query
         name: data
         required: true
-        schema:
-          type: string
+        type: string
       produces:
       - application/json
       responses:
@@ -4428,6 +4523,7 @@ paths:
             type: string
       security:
       - ApiKeyAuth: []
+      - BasicAuth: []
       summary: 删除Task
       tags:
       - Task
@@ -4453,6 +4549,7 @@ paths:
             type: string
       security:
       - ApiKeyAuth: []
+      - BasicAuth: []
       summary: 批量删除Task
       tags:
       - Task
@@ -4475,6 +4572,7 @@ paths:
             type: string
       security:
       - ApiKeyAuth: []
+      - BasicAuth: []
       summary: 用id查询Task
       tags:
       - Task
@@ -4498,6 +4596,7 @@ paths:
             type: string
       security:
       - ApiKeyAuth: []
+      - BasicAuth: []
       summary: 分页获取Task列表
       tags:
       - Task
@@ -4521,6 +4620,7 @@ paths:
             type: string
       security:
       - ApiKeyAuth: []
+      - BasicAuth: []
       summary: 更新Task
       tags:
       - Task
@@ -4544,6 +4644,7 @@ paths:
             type: string
       security:
       - ApiKeyAuth: []
+      - BasicAuth: []
       summary: 设置用户信息
       tags:
       - SysUser
@@ -4565,6 +4666,7 @@ paths:
             type: string
       security:
       - ApiKeyAuth: []
+      - BasicAuth: []
       summary: 用户修改密码
       tags:
       - SysUser
@@ -4588,6 +4690,7 @@ paths:
             type: string
       security:
       - ApiKeyAuth: []
+      - BasicAuth: []
       summary: 删除用户
       tags:
       - SysUser
@@ -4604,6 +4707,7 @@ paths:
             type: string
       security:
       - ApiKeyAuth: []
+      - BasicAuth: []
       summary: 获取用户信息
       tags:
       - SysUser
@@ -4627,6 +4731,7 @@ paths:
             type: string
       security:
       - ApiKeyAuth: []
+      - BasicAuth: []
       summary: 分页获取用户列表
       tags:
       - SysUser
@@ -4667,6 +4772,7 @@ paths:
             type: string
       security:
       - ApiKeyAuth: []
+      - BasicAuth: []
       summary: 用户修改密码
       tags:
       - SysUser
@@ -4690,6 +4796,7 @@ paths:
             type: string
       security:
       - ApiKeyAuth: []
+      - BasicAuth: []
       summary: 设置用户权限
       tags:
       - SysUser
@@ -4713,6 +4820,7 @@ paths:
             type: string
       security:
       - ApiKeyAuth: []
+      - BasicAuth: []
       summary: 更改用户权限
       tags:
       - SysUser
@@ -4736,6 +4844,7 @@ paths:
             type: string
       security:
       - ApiKeyAuth: []
+      - BasicAuth: []
       summary: 设置用户信息
       tags:
       - SysUser
@@ -4759,6 +4868,7 @@ paths:
             type: string
       security:
       - ApiKeyAuth: []
+      - BasicAuth: []
       summary: 创建WechatOfficialAccount
       tags:
       - WechatOfficialAccount
@@ -4768,11 +4878,10 @@ paths:
       - application/json
       parameters:
       - description: 删除WechatOfficialAccount
-        in: body
+        in: query
         name: data
         required: true
-        schema:
-          type: string
+        type: string
       produces:
       - application/json
       responses:
@@ -4782,6 +4891,7 @@ paths:
             type: string
       security:
       - ApiKeyAuth: []
+      - BasicAuth: []
       summary: 删除WechatOfficialAccount
       tags:
       - WechatOfficialAccount
@@ -4807,6 +4917,7 @@ paths:
             type: string
       security:
       - ApiKeyAuth: []
+      - BasicAuth: []
       summary: 批量删除WechatOfficialAccount
       tags:
       - WechatOfficialAccount
@@ -4829,6 +4940,7 @@ paths:
             type: string
       security:
       - ApiKeyAuth: []
+      - BasicAuth: []
       summary: 用id查询WechatOfficialAccount
       tags:
       - WechatOfficialAccount
@@ -4852,6 +4964,7 @@ paths:
             type: string
       security:
       - ApiKeyAuth: []
+      - BasicAuth: []
       summary: 分页获取WechatOfficialAccount列表
       tags:
       - WechatOfficialAccount
@@ -4875,12 +4988,15 @@ paths:
             type: string
       security:
       - ApiKeyAuth: []
+      - BasicAuth: []
       summary: 更新WechatOfficialAccount
       tags:
       - WechatOfficialAccount
 securityDefinitions:
   ApiKeyAuth:
     in: header
-    name: x-token
+    name: X-API-Key
     type: apiKey
+  BasicAuth:
+    type: basic
 swagger: "2.0"

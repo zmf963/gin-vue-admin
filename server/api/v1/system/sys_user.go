@@ -132,6 +132,7 @@ func (b *BaseApi) Register(c *gin.Context) {
 // @Tags SysUser
 // @Summary 用户修改密码
 // @Security ApiKeyAuth
+// @Security BasicAuth
 // @Produce  application/json
 // @Param data body systemReq.ChangePasswordStruct true "用户名, 原密码, 新密码"
 // @Success 200 {string} string "{"success":true,"data":{},"msg":"修改成功"}"
@@ -155,6 +156,7 @@ func (b *BaseApi) ChangePassword(c *gin.Context) {
 // @Tags SysUser
 // @Summary 分页获取用户列表
 // @Security ApiKeyAuth
+// @Security BasicAuth
 // @accept application/json
 // @Produce application/json
 // @Param data body request.PageInfo true "页码, 每页大小"
@@ -183,6 +185,7 @@ func (b *BaseApi) GetUserList(c *gin.Context) {
 // @Tags SysUser
 // @Summary 更改用户权限
 // @Security ApiKeyAuth
+// @Security BasicAuth
 // @accept application/json
 // @Produce application/json
 // @Param data body systemReq.SetUserAuth true "用户UUID, 角色ID"
@@ -219,6 +222,7 @@ func (b *BaseApi) SetUserAuthority(c *gin.Context) {
 // @Tags SysUser
 // @Summary 设置用户权限
 // @Security ApiKeyAuth
+// @Security BasicAuth
 // @accept application/json
 // @Produce application/json
 // @Param data body systemReq.SetUserAuthorities true "用户UUID, 角色ID"
@@ -238,6 +242,7 @@ func (b *BaseApi) SetUserAuthorities(c *gin.Context) {
 // @Tags SysUser
 // @Summary 删除用户
 // @Security ApiKeyAuth
+// @Security BasicAuth
 // @accept application/json
 // @Produce application/json
 // @Param data body request.GetById true "用户ID"
@@ -266,6 +271,7 @@ func (b *BaseApi) DeleteUser(c *gin.Context) {
 // @Tags SysUser
 // @Summary 设置用户信息
 // @Security ApiKeyAuth
+// @Security BasicAuth
 // @accept application/json
 // @Produce application/json
 // @Param data body system.SysUser true "ID, 用户名, 昵称, 头像链接"
@@ -289,6 +295,7 @@ func (b *BaseApi) SetUserInfo(c *gin.Context) {
 // @Tags SysUser
 // @Summary 设置用户信息
 // @Security ApiKeyAuth
+// @Security BasicAuth
 // @accept application/json
 // @Produce application/json
 // @Param data body system.SysUser true "ID, 用户名, 昵称, 头像链接"
@@ -309,6 +316,7 @@ func (b *BaseApi) SetSelfInfo(c *gin.Context) {
 // @Tags SysUser
 // @Summary 获取用户信息
 // @Security ApiKeyAuth
+// @Security BasicAuth
 // @accept application/json
 // @Produce application/json
 // @Success 200 {string} string "{"success":true,"data":{},"msg":"获取成功"}"
@@ -326,6 +334,7 @@ func (b *BaseApi) GetUserInfo(c *gin.Context) {
 // @Tags SysUser
 // @Summary 用户修改密码
 // @Security ApiKeyAuth
+// @Security BasicAuth
 // @Produce  application/json
 // @Param data body system.SysUser true "ID"
 // @Success 200 {string} string "{"success":true,"data":{},"msg":"修改成功"}"

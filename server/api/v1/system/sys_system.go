@@ -16,6 +16,7 @@ type SystemApi struct{}
 // @Tags System
 // @Summary 获取配置文件内容
 // @Security ApiKeyAuth
+// @Security BasicAuth
 // @Produce  application/json
 // @Success 200 {string} string "{"success":true,"data":{},"msg":"获取成功"}"
 // @Router /system/getSystemConfig [post]
@@ -31,6 +32,7 @@ func (s *SystemApi) GetSystemConfig(c *gin.Context) {
 // @Tags System
 // @Summary 设置配置文件内容
 // @Security ApiKeyAuth
+// @Security BasicAuth
 // @Produce  application/json
 // @Param data body system.System true "设置配置文件内容"
 // @Success 200 {string} string "{"success":true,"data":{},"msg":"设置成功"}"
@@ -49,6 +51,7 @@ func (s *SystemApi) SetSystemConfig(c *gin.Context) {
 // @Tags System
 // @Summary 重启系统
 // @Security ApiKeyAuth
+// @Security BasicAuth
 // @Produce  application/json
 // @Success 200 {string} string "{"code":0,"data":{},"msg":"重启系统成功"}"
 // @Router /system/reloadSystem [post]
@@ -65,6 +68,7 @@ func (s *SystemApi) ReloadSystem(c *gin.Context) {
 // @Tags System
 // @Summary 获取服务器信息
 // @Security ApiKeyAuth
+// @Security BasicAuth
 // @Produce  application/json
 // @Success 200 {string} string "{"success":true,"data":{},"msg":"获取成功"}"
 // @Router /system/getServerInfo [post]

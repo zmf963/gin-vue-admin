@@ -3,6 +3,7 @@ import service from '@/utils/request'
 // @Tags Domain
 // @Summary 创建Domain
 // @Security ApiKeyAuth
+// @Security BasicAuth
 // @accept application/json
 // @Produce application/json
 // @Param data body model.Domain true "创建Domain"
@@ -19,6 +20,7 @@ export const createDomain = (data) => {
 // @Tags Domain
 // @Summary 删除Domain
 // @Security ApiKeyAuth
+// @Security BasicAuth
 // @accept application/json
 // @Produce application/json
 // @Param data query model.Domain true "删除Domain"
@@ -35,6 +37,7 @@ export const deleteDomain = (params) => {
 // @Tags Domain
 // @Summary 批量删除Domain
 // @Security ApiKeyAuth
+// @Security BasicAuth
 // @accept application/json
 // @Produce application/json
 // @Param data body request.IdsReq true "批量删除Domain"
@@ -51,6 +54,7 @@ export const deleteDomainByIds = (data) => {
 // @Tags Domain
 // @Summary 更新Domain
 // @Security ApiKeyAuth
+// @Security BasicAuth
 // @accept application/json
 // @Produce application/json
 // @Param data body model.Domain true "更新Domain"
@@ -67,6 +71,7 @@ export const updateDomain = (data) => {
 // @Tags Domain
 // @Summary 用id查询Domain
 // @Security ApiKeyAuth
+// @Security BasicAuth
 // @accept application/json
 // @Produce application/json
 // @Param data query model.Domain true "用id查询Domain"
@@ -83,6 +88,7 @@ export const findDomain = (params) => {
 // @Tags Domain
 // @Summary 分页获取Domain列表
 // @Security ApiKeyAuth
+// @Security BasicAuth
 // @accept application/json
 // @Produce application/json
 // @Param data query request.PageInfo true "分页获取Domain列表"

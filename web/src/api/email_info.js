@@ -3,6 +3,7 @@ import service from '@/utils/request'
 // @Tags EmailInfo
 // @Summary 创建EmailInfo
 // @Security ApiKeyAuth
+// @Security BasicAuth
 // @accept application/json
 // @Produce application/json
 // @Param data body model.EmailInfo true "创建EmailInfo"
@@ -19,6 +20,7 @@ export const createEmailInfo = (data) => {
 // @Tags EmailInfo
 // @Summary 删除EmailInfo
 // @Security ApiKeyAuth
+// @Security BasicAuth
 // @accept application/json
 // @Produce application/json
 // @Param data query model.EmailInfo true "删除EmailInfo"
@@ -35,6 +37,7 @@ export const deleteEmailInfo = (params) => {
 // @Tags EmailInfo
 // @Summary 批量删除EmailInfo
 // @Security ApiKeyAuth
+// @Security BasicAuth
 // @accept application/json
 // @Produce application/json
 // @Param data body request.IdsReq true "批量删除EmailInfo"
@@ -51,6 +54,7 @@ export const deleteEmailInfoByIds = (data) => {
 // @Tags EmailInfo
 // @Summary 更新EmailInfo
 // @Security ApiKeyAuth
+// @Security BasicAuth
 // @accept application/json
 // @Produce application/json
 // @Param data body model.EmailInfo true "更新EmailInfo"
@@ -67,6 +71,7 @@ export const updateEmailInfo = (data) => {
 // @Tags EmailInfo
 // @Summary 用id查询EmailInfo
 // @Security ApiKeyAuth
+// @Security BasicAuth
 // @accept application/json
 // @Produce application/json
 // @Param data query model.EmailInfo true "用id查询EmailInfo"
@@ -83,6 +88,7 @@ export const findEmailInfo = (params) => {
 // @Tags EmailInfo
 // @Summary 分页获取EmailInfo列表
 // @Security ApiKeyAuth
+// @Security BasicAuth
 // @accept application/json
 // @Produce application/json
 // @Param data query request.PageInfo true "分页获取EmailInfo列表"

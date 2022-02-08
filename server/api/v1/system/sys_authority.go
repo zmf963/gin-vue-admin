@@ -18,6 +18,7 @@ type AuthorityApi struct{}
 // @Tags Authority
 // @Summary 创建角色
 // @Security ApiKeyAuth
+// @Security BasicAuth
 // @accept application/json
 // @Produce application/json
 // @Param data body system.SysAuthority true "权限id, 权限名, 父角色id"
@@ -43,6 +44,7 @@ func (a *AuthorityApi) CreateAuthority(c *gin.Context) {
 // @Tags Authority
 // @Summary 拷贝角色
 // @Security ApiKeyAuth
+// @Security BasicAuth
 // @accept application/json
 // @Produce application/json
 // @Param data body response.SysAuthorityCopyResponse true "旧角色id, 新权限id, 新权限名, 新父角色id"
@@ -70,6 +72,7 @@ func (a *AuthorityApi) CopyAuthority(c *gin.Context) {
 // @Tags Authority
 // @Summary 删除角色
 // @Security ApiKeyAuth
+// @Security BasicAuth
 // @accept application/json
 // @Produce application/json
 // @Param data body system.SysAuthority true "删除角色"
@@ -93,6 +96,7 @@ func (a *AuthorityApi) DeleteAuthority(c *gin.Context) {
 // @Tags Authority
 // @Summary 更新角色信息
 // @Security ApiKeyAuth
+// @Security BasicAuth
 // @accept application/json
 // @Produce application/json
 // @Param data body system.SysAuthority true "权限id, 权限名, 父角色id"
@@ -116,6 +120,7 @@ func (a *AuthorityApi) UpdateAuthority(c *gin.Context) {
 // @Tags Authority
 // @Summary 分页获取角色列表
 // @Security ApiKeyAuth
+// @Security BasicAuth
 // @accept application/json
 // @Produce application/json
 // @Param data body request.PageInfo true "页码, 每页大小"
@@ -144,6 +149,7 @@ func (a *AuthorityApi) GetAuthorityList(c *gin.Context) {
 // @Tags Authority
 // @Summary 设置角色资源权限
 // @Security ApiKeyAuth
+// @Security BasicAuth
 // @accept application/json
 // @Produce application/json
 // @Param data body system.SysAuthority true "设置角色资源权限"

@@ -21,6 +21,7 @@ var {{.Abbreviation}}Service = service.ServiceGroupApp.AutoCodeServiceGroup.{{.S
 // @Tags {{.StructName}}
 // @Summary 创建{{.StructName}}
 // @Security ApiKeyAuth
+// @Security BasicAuth
 // @accept application/json
 // @Produce application/json
 // @Param data body autocode.{{.StructName}} true "创建{{.StructName}}"
@@ -41,6 +42,7 @@ func ({{.Abbreviation}}Api *{{.StructName}}Api) Create{{.StructName}}(c *gin.Con
 // @Tags {{.StructName}}
 // @Summary 删除{{.StructName}}
 // @Security ApiKeyAuth
+// @Security BasicAuth
 // @accept application/json
 // @Produce application/json
 // @Param data body autocode.{{.StructName}} true "删除{{.StructName}}"
@@ -61,6 +63,7 @@ func ({{.Abbreviation}}Api *{{.StructName}}Api) Delete{{.StructName}}(c *gin.Con
 // @Tags {{.StructName}}
 // @Summary 批量删除{{.StructName}}
 // @Security ApiKeyAuth
+// @Security BasicAuth
 // @accept application/json
 // @Produce application/json
 // @Param data body request.IdsReq true "批量删除{{.StructName}}"
@@ -81,6 +84,7 @@ func ({{.Abbreviation}}Api *{{.StructName}}Api) Delete{{.StructName}}ByIds(c *gi
 // @Tags {{.StructName}}
 // @Summary 更新{{.StructName}}
 // @Security ApiKeyAuth
+// @Security BasicAuth
 // @accept application/json
 // @Produce application/json
 // @Param data body autocode.{{.StructName}} true "更新{{.StructName}}"
@@ -101,6 +105,7 @@ func ({{.Abbreviation}}Api *{{.StructName}}Api) Update{{.StructName}}(c *gin.Con
 // @Tags {{.StructName}}
 // @Summary 用id查询{{.StructName}}
 // @Security ApiKeyAuth
+// @Security BasicAuth
 // @accept application/json
 // @Produce application/json
 // @Param data query autocode.{{.StructName}} true "用id查询{{.StructName}}"
@@ -121,6 +126,7 @@ func ({{.Abbreviation}}Api *{{.StructName}}Api) Find{{.StructName}}(c *gin.Conte
 // @Tags {{.StructName}}
 // @Summary 分页获取{{.StructName}}列表
 // @Security ApiKeyAuth
+// @Security BasicAuth
 // @accept application/json
 // @Produce application/json
 // @Param data query autocodeReq.{{.StructName}}Search true "分页获取{{.StructName}}列表"

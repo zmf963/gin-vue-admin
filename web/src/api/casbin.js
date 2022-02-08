@@ -2,6 +2,7 @@ import service from '@/utils/request'
 // @Tags authority
 // @Summary 更改角色api权限
 // @Security ApiKeyAuth
+// @Security BasicAuth
 // @accept application/json
 // @Produce application/json
 // @Param data body api.CreateAuthorityPatams true "更改角色api权限"
@@ -18,6 +19,7 @@ export const UpdateCasbin = (data) => {
 // @Tags casbin
 // @Summary 获取权限列表
 // @Security ApiKeyAuth
+// @Security BasicAuth
 // @accept application/json
 // @Produce application/json
 // @Param data body api.CreateAuthorityPatams true "获取权限列表"

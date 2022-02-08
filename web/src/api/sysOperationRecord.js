@@ -2,6 +2,7 @@ import service from '@/utils/request'
 // @Tags SysOperationRecord
 // @Summary 删除SysOperationRecord
 // @Security ApiKeyAuth
+// @Security BasicAuth
 // @accept application/json
 // @Produce application/json
 // @Param data body model.SysOperationRecord true "删除SysOperationRecord"
@@ -18,6 +19,7 @@ export const deleteSysOperationRecord = (data) => {
 // @Tags SysOperationRecord
 // @Summary 删除SysOperationRecord
 // @Security ApiKeyAuth
+// @Security BasicAuth
 // @accept application/json
 // @Produce application/json
 // @Param data body request.IdsReq true "删除SysOperationRecord"
@@ -34,6 +36,7 @@ export const deleteSysOperationRecordByIds = (data) => {
 // @Tags SysOperationRecord
 // @Summary 分页获取SysOperationRecord列表
 // @Security ApiKeyAuth
+// @Security BasicAuth
 // @accept application/json
 // @Produce application/json
 // @Param data body request.PageInfo true "分页获取SysOperationRecord列表"

@@ -7,12 +7,14 @@ require (
 	github.com/aws/aws-sdk-go v1.42.27
 	github.com/casbin/casbin/v2 v2.11.0
 	github.com/casbin/gorm-adapter/v3 v3.0.2
+	github.com/cpuguy83/go-md2man/v2 v2.0.1 // indirect
 	github.com/dgrijalva/jwt-go v3.2.0+incompatible
 	github.com/flipped-aurora/gva-plugins v0.0.0-20210828060501-fc8b729b9a4a
 	github.com/flipped-aurora/ws v1.0.2
 	github.com/fsnotify/fsnotify v1.4.9
 	github.com/fvbock/endless v0.0.0-20170109170031-447134032cb6
 	github.com/gin-gonic/gin v1.6.3
+	github.com/go-openapi/swag v0.21.1 // indirect
 	github.com/go-redis/redis/v8 v8.11.0
 	github.com/go-sql-driver/mysql v1.5.0
 	github.com/gookit/color v1.3.1
@@ -29,13 +31,16 @@ require (
 	github.com/spf13/viper v1.7.0
 	github.com/stretchr/testify v1.7.0
 	github.com/swaggo/gin-swagger v1.3.0
-	github.com/swaggo/swag v1.7.0
+	github.com/swaggo/swag v1.7.9
 	github.com/tencentyun/cos-go-sdk-v5 v0.7.19
 	github.com/tklauser/go-sysconf v0.3.9 // indirect
 	github.com/unrolled/secure v1.0.7
 	go.mongodb.org/mongo-driver v1.8.2
 	go.uber.org/zap v1.16.0
+	golang.org/x/net v0.0.0-20220127200216-cd36cc0744dd // indirect
 	golang.org/x/sync v0.0.0-20210220032951-036812b2e83c
+	golang.org/x/sys v0.0.0-20220207234003-57398862261d // indirect
+	golang.org/x/tools v0.1.9 // indirect
 	gopkg.in/natefinch/lumberjack.v2 v2.0.0 // indirect
 	gorm.io/driver/mysql v1.0.1
 	gorm.io/driver/postgres v0.2.6

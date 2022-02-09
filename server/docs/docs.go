@@ -8068,7 +8068,7 @@ const docTemplate_swagger = `{
 var SwaggerInfo_swagger = &swag.Spec{
 	Version:          "0.0.1",
 	Host:             "",
-	BasePath:         "/",
+	BasePath:         "/api",
 	Schemes:          []string{},
 	Title:            "Swagger Example API",
 	Description:      "This is a sample Server pets",

@@ -30,3 +30,6 @@ yarn-error.log*
 
 data/
 /server/server
+core/.gitignore
+core/dist/
+logs/

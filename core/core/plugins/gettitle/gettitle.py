@@ -1,0 +1,39 @@
+import requests
+from requests.models import ReadTimeoutError
+import urllib3
+from bs4 import BeautifulSoup
+
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
+
+
+def get_title(url):
+    try:
+        headers = {
+            "Connection": "keep-alive",
+            "sec-ch-ua": "Microsoft Edge",
+            "sec-ch-ua-platform": "macOS",
+            "Upgrade-Insecure-Requests": "1",
+            "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.69 Safari/537.36 Edg/95.0.1020.44",
+            "Accept": "text/html,application/xhtml+xml,application/xml;",
+            "Accept-Language": "zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6",
+            'Connection': 'close'
+        }
+        response = requests.get(url, headers=headers,
+                                timeout=7, verify=False, stream=False)
+        soup = BeautifulSoup(response.text, 'lxml')
+        title = soup.find('title')
+        if title and len(title.text) > 0:
+            return title.text, response.headers, response.text
+        return response.text[:100], response.headers, response.text
+    except requests.exceptions.ReadTimeout as e:
+        return "Timeout", "", ""
+    except requests.exceptions.ConnectTimeout as e:
+        return "Timeout", "", ""
+    except Exception as e:
+        return str(e), "", ""
+
+
+if __name__ == "__main__":
+    url = "https://39.107.234.43"
+    # url = "http://39.107.234.104"
+    print(get_title(url))

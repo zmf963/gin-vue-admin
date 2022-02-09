@@ -4,7 +4,7 @@
  * @Email: zmf96@qq.com
  * @Date: 2022-02-01 21:23:50
  * @LastEditors: zmf96
- * @LastEditTime: 2022-02-08 17:14:05
+ * @LastEditTime: 2022-02-08 19:02:07
  * @FilePath: /server/main.go
  * @Description:
  */
@@ -28,7 +28,7 @@ import (
 // @in header
 // @name X-API-Key
 // @securityDefinitions.basic BasicAuth
-// @BasePath /
+// @BasePath /api
 func main() {
 	global.GVA_VP = core.Viper()                    // 初始化Viper
 	global.GVA_LOG = core.Zap()                     // 初始化zap日志库

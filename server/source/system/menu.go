@@ -33,6 +33,7 @@ func (m *menu) Initialize() error {
 		
 		{MenuLevel: 0, Hidden: false, ParentId: "0", Path: "project", Name: "project", Component: "view/project/index.vue", Sort: 1, Meta: system.Meta{Title: "项目", Icon: "operation"}},
 		{MenuLevel: 0, Hidden: false, ParentId: "0", Path: "poc_manager", Name: "poc_manager", Component: "view/poc_manager/index.vue", Sort: 1, Meta: system.Meta{Title: "POC", Icon: "operation"}},
+		{MenuLevel: 0, Hidden: false, ParentId: "0", Path: "finger_manager", Name: "finger_manager", Component: "view/finger_manager/index.vue", Sort: 1, Meta: system.Meta{Title: "指纹管理", Icon: "operation"}},
 		
 		
 		{MenuLevel: 0, Hidden: false, ParentId: "13", Path: "project_info", Name: "project_info", Component: "view/project/project_info/project_info.vue", Sort: 1, Meta: system.Meta{Title: "项目信息", Icon: "operation", KeepAlive: true}},
@@ -49,6 +50,8 @@ func (m *menu) Initialize() error {
 		{MenuLevel: 0, Hidden: false, ParentId: "13", Path: "app_info", Name: "app_info", Component: "view/project/app_info/app_info.vue", Sort: 1, Meta: system.Meta{Title: "应用信息", Icon: "operation", KeepAlive: true}},
 		
 		{MenuLevel: 0, Hidden: false, ParentId: "14", Path: "poc_info", Name: "poc_info", Component: "view/poc_manager/poc_info/poc_info.vue", Sort: 1, Meta: system.Meta{Title: "POC", Icon: "operation", KeepAlive: true}},
+		
+		{MenuLevel: 0, Hidden: false, ParentId: "15", Path: "finger_info", Name: "finger_info", Component: "view/finger_manager/finger_info/finger_info.vue", Sort: 1, Meta: system.Meta{Title: "指纹", Icon: "operation", KeepAlive: true}},
 	}
 	if err := global.GVA_DB.Create(&entities).Error; err != nil { // 创建 model.User 初始化数据
 		return errors.Wrap(err, m.TableName()+"表数据初始化失败!")

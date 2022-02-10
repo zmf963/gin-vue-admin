@@ -221,6 +221,14 @@ func (a *api) Initialize() error {
 		{ApiGroup: "POC", Method: "GET", Path: "/poc_info/findPocInfo", Description: "根据ID获取POC"},
 		{ApiGroup: "POC", Method: "POST", Path: "/poc_info/getPocInfoList", Description: "获取POC列表"},
 		
+		
+		{ApiGroup: "指纹", Method: "POST", Path: "/finger_info/createFingerInfo", Description: "新增指纹"},
+		{ApiGroup: "指纹", Method: "DELETE", Path: "/finger_info/deleteFingerInfo", Description: "删除指纹"},
+		{ApiGroup: "指纹", Method: "DELETE", Path: "/finger_info/delteFingerInfoByIds", Description: "批量删除指纹"},
+		{ApiGroup: "指纹", Method: "PUT", Path: "/finger_info/updateFingerInfo", Description: "更新指纹"},
+		{ApiGroup: "指纹", Method: "GET", Path: "/finger_info/findFingerInfo", Description: "根据ID获取指纹"},
+		{ApiGroup: "指纹", Method: "POST", Path: "/finger_info/getFingerInfoList", Description: "获取指纹列表"},
+		
 
 
 	}

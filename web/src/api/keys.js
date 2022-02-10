@@ -3,7 +3,6 @@ import service from '@/utils/request'
 // @Tags Keys
 // @Summary 创建Keys
 // @Security ApiKeyAuth
-// @Security BasicAuth
 // @accept application/json
 // @Produce application/json
 // @Param data body model.Keys true "创建Keys"
@@ -20,7 +19,6 @@ export const createKeys = (data) => {
 // @Tags Keys
 // @Summary 删除Keys
 // @Security ApiKeyAuth
-// @Security BasicAuth
 // @accept application/json
 // @Produce application/json
 // @Param data query model.Keys true "删除Keys"
@@ -37,7 +35,6 @@ export const deleteKeys = (params) => {
 // @Tags Keys
 // @Summary 批量删除Keys
 // @Security ApiKeyAuth
-// @Security BasicAuth
 // @accept application/json
 // @Produce application/json
 // @Param data body request.IdsReq true "批量删除Keys"
@@ -54,7 +51,6 @@ export const deleteKeysByIds = (data) => {
 // @Tags Keys
 // @Summary 更新Keys
 // @Security ApiKeyAuth
-// @Security BasicAuth
 // @accept application/json
 // @Produce application/json
 // @Param data body model.Keys true "更新Keys"
@@ -71,7 +67,6 @@ export const updateKeys = (data) => {
 // @Tags Keys
 // @Summary 用id查询Keys
 // @Security ApiKeyAuth
-// @Security BasicAuth
 // @accept application/json
 // @Produce application/json
 // @Param data query model.Keys true "用id查询Keys"
@@ -88,7 +83,6 @@ export const findKeys = (params) => {
 // @Tags Keys
 // @Summary 分页获取Keys列表
 // @Security ApiKeyAuth
-// @Security BasicAuth
 // @accept application/json
 // @Produce application/json
 // @Param data query request.PageInfo true "分页获取Keys列表"

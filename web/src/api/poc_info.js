@@ -3,7 +3,6 @@ import service from '@/utils/request'
 // @Tags PocInfo
 // @Summary 创建PocInfo
 // @Security ApiKeyAuth
-// @Security BasicAuth
 // @accept application/json
 // @Produce application/json
 // @Param data body model.PocInfo true "创建PocInfo"
@@ -20,7 +19,6 @@ export const createPocInfo = (data) => {
 // @Tags PocInfo
 // @Summary 删除PocInfo
 // @Security ApiKeyAuth
-// @Security BasicAuth
 // @accept application/json
 // @Produce application/json
 // @Param data query model.PocInfo true "删除PocInfo"
@@ -37,7 +35,6 @@ export const deletePocInfo = (params) => {
 // @Tags PocInfo
 // @Summary 批量删除PocInfo
 // @Security ApiKeyAuth
-// @Security BasicAuth
 // @accept application/json
 // @Produce application/json
 // @Param data body request.IdsReq true "批量删除PocInfo"
@@ -54,7 +51,6 @@ export const deletePocInfoByIds = (data) => {
 // @Tags PocInfo
 // @Summary 更新PocInfo
 // @Security ApiKeyAuth
-// @Security BasicAuth
 // @accept application/json
 // @Produce application/json
 // @Param data body model.PocInfo true "更新PocInfo"
@@ -71,7 +67,6 @@ export const updatePocInfo = (data) => {
 // @Tags PocInfo
 // @Summary 用id查询PocInfo
 // @Security ApiKeyAuth
-// @Security BasicAuth
 // @accept application/json
 // @Produce application/json
 // @Param data query model.PocInfo true "用id查询PocInfo"
@@ -88,7 +83,6 @@ export const findPocInfo = (params) => {
 // @Tags PocInfo
 // @Summary 分页获取PocInfo列表
 // @Security ApiKeyAuth
-// @Security BasicAuth
 // @accept application/json
 // @Produce application/json
 // @Param data query request.PageInfo true "分页获取PocInfo列表"

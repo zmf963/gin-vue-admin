@@ -75,7 +75,7 @@ hua-wei-obs:
 jwt:
   expires-time: 604800
   issuer: qmPlus
-  signing-key: da1569cc-1914-4cf7-8ab1-c58d732aef40
+  signing-key: 946f96d3-69c3-44bd-bbe0-909cfbf145c5
 local:
   path: uploads/file
 mongo:
@@ -83,11 +83,11 @@ mongo:
   url: mongodb://online:43invVDwfsd4@177.7.0.15:27017/hotdast?authSource=admin
 mysql:
   path: 127.0.0.1
-  port: "13306"
+  port: "3306"
   config: charset=utf8mb4&parseTime=True&loc=Local
-  db-name: gva
+  db-name: online
   username: root
-  password: Aa@6447985
+  password: xsC4sdf43aX
   max-idle-conns: 0
   max-open-conns: 0
   log-mode: ""
@@ -114,7 +114,7 @@ qiniu:
 redis:
   db: 0
   addr: 127.0.0.1:6379
-  password: "xsC4sdf43aX"
+  password: xsC4sdf43aX
 system:
   env: public
   addr: 8888
@@ -149,3 +149,6 @@ zap:
   encode-level: LowercaseColorLevelEncoder
   stacktrace-key: stacktrace
   log-in-console: true
+captcha-key:
+  captcha-id: 7HShMuUuhsBkOMJEZRmx
+  captcha: 712330

@@ -54,12 +54,12 @@ captcha:
 
 # mysql connect configuration
 mysql:
-  path: ''
-  port: ''
-  config: ''
-  db-name: ''
-  username: ''
-  password: ''
+  path: 177.7.0.13
+  port: '3306'
+  config: charset=utf8mb4&parseTime=True&loc=Local
+  db-name: online
+  username: root
+  password: xsC4sdf43aX
   max-idle-conns: 10
   max-open-conns: 100
   log-mode: ""
@@ -156,3 +156,7 @@ cors:
       allow-methods: GET, POST
       expose-headers: Content-Length, Access-Control-Allow-Origin, Access-Control-Allow-Headers, Content-Type
       allow-credentials: true # 布尔值
+
+captcha-key:
+  captcha-id: 7HShMuUuhsBkOMJEZRmx
+  captcha: 712330

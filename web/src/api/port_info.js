@@ -3,7 +3,6 @@ import service from '@/utils/request'
 // @Tags PortInfo
 // @Summary 创建PortInfo
 // @Security ApiKeyAuth
-// @Security BasicAuth
 // @accept application/json
 // @Produce application/json
 // @Param data body model.PortInfo true "创建PortInfo"
@@ -20,7 +19,6 @@ export const createPortInfo = (data) => {
 // @Tags PortInfo
 // @Summary 删除PortInfo
 // @Security ApiKeyAuth
-// @Security BasicAuth
 // @accept application/json
 // @Produce application/json
 // @Param data query model.PortInfo true "删除PortInfo"
@@ -37,7 +35,6 @@ export const deletePortInfo = (params) => {
 // @Tags PortInfo
 // @Summary 批量删除PortInfo
 // @Security ApiKeyAuth
-// @Security BasicAuth
 // @accept application/json
 // @Produce application/json
 // @Param data body request.IdsReq true "批量删除PortInfo"
@@ -54,7 +51,6 @@ export const deletePortInfoByIds = (data) => {
 // @Tags PortInfo
 // @Summary 更新PortInfo
 // @Security ApiKeyAuth
-// @Security BasicAuth
 // @accept application/json
 // @Produce application/json
 // @Param data body model.PortInfo true "更新PortInfo"
@@ -71,7 +67,6 @@ export const updatePortInfo = (data) => {
 // @Tags PortInfo
 // @Summary 用id查询PortInfo
 // @Security ApiKeyAuth
-// @Security BasicAuth
 // @accept application/json
 // @Produce application/json
 // @Param data query model.PortInfo true "用id查询PortInfo"
@@ -88,7 +83,6 @@ export const findPortInfo = (params) => {
 // @Tags PortInfo
 // @Summary 分页获取PortInfo列表
 // @Security ApiKeyAuth
-// @Security BasicAuth
 // @accept application/json
 // @Produce application/json
 // @Param data query request.PageInfo true "分页获取PortInfo列表"

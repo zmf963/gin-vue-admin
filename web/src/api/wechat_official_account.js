@@ -3,7 +3,6 @@ import service from '@/utils/request'
 // @Tags WechatOfficialAccount
 // @Summary 创建WechatOfficialAccount
 // @Security ApiKeyAuth
-// @Security BasicAuth
 // @accept application/json
 // @Produce application/json
 // @Param data body model.WechatOfficialAccount true "创建WechatOfficialAccount"
@@ -20,7 +19,6 @@ export const createWechatOfficialAccount = (data) => {
 // @Tags WechatOfficialAccount
 // @Summary 删除WechatOfficialAccount
 // @Security ApiKeyAuth
-// @Security BasicAuth
 // @accept application/json
 // @Produce application/json
 // @Param data query model.WechatOfficialAccount true "删除WechatOfficialAccount"
@@ -37,7 +35,6 @@ export const deleteWechatOfficialAccount = (params) => {
 // @Tags WechatOfficialAccount
 // @Summary 批量删除WechatOfficialAccount
 // @Security ApiKeyAuth
-// @Security BasicAuth
 // @accept application/json
 // @Produce application/json
 // @Param data body request.IdsReq true "批量删除WechatOfficialAccount"
@@ -54,7 +51,6 @@ export const deleteWechatOfficialAccountByIds = (data) => {
 // @Tags WechatOfficialAccount
 // @Summary 更新WechatOfficialAccount
 // @Security ApiKeyAuth
-// @Security BasicAuth
 // @accept application/json
 // @Produce application/json
 // @Param data body model.WechatOfficialAccount true "更新WechatOfficialAccount"
@@ -71,7 +67,6 @@ export const updateWechatOfficialAccount = (data) => {
 // @Tags WechatOfficialAccount
 // @Summary 用id查询WechatOfficialAccount
 // @Security ApiKeyAuth
-// @Security BasicAuth
 // @accept application/json
 // @Produce application/json
 // @Param data query model.WechatOfficialAccount true "用id查询WechatOfficialAccount"
@@ -88,7 +83,6 @@ export const findWechatOfficialAccount = (params) => {
 // @Tags WechatOfficialAccount
 // @Summary 分页获取WechatOfficialAccount列表
 // @Security ApiKeyAuth
-// @Security BasicAuth
 // @accept application/json
 // @Produce application/json
 // @Param data query request.PageInfo true "分页获取WechatOfficialAccount列表"

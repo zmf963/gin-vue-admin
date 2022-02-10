@@ -3,7 +3,6 @@ import service from '@/utils/request'
 // @Tags TargetRelation
 // @Summary 创建TargetRelation
 // @Security ApiKeyAuth
-// @Security BasicAuth
 // @accept application/json
 // @Produce application/json
 // @Param data body model.TargetRelation true "创建TargetRelation"
@@ -20,7 +19,6 @@ export const createTargetRelation = (data) => {
 // @Tags TargetRelation
 // @Summary 删除TargetRelation
 // @Security ApiKeyAuth
-// @Security BasicAuth
 // @accept application/json
 // @Produce application/json
 // @Param data query model.TargetRelation true "删除TargetRelation"
@@ -37,7 +35,6 @@ export const deleteTargetRelation = (params) => {
 // @Tags TargetRelation
 // @Summary 批量删除TargetRelation
 // @Security ApiKeyAuth
-// @Security BasicAuth
 // @accept application/json
 // @Produce application/json
 // @Param data body request.IdsReq true "批量删除TargetRelation"
@@ -54,7 +51,6 @@ export const deleteTargetRelationByIds = (data) => {
 // @Tags TargetRelation
 // @Summary 更新TargetRelation
 // @Security ApiKeyAuth
-// @Security BasicAuth
 // @accept application/json
 // @Produce application/json
 // @Param data body model.TargetRelation true "更新TargetRelation"
@@ -71,7 +67,6 @@ export const updateTargetRelation = (data) => {
 // @Tags TargetRelation
 // @Summary 用id查询TargetRelation
 // @Security ApiKeyAuth
-// @Security BasicAuth
 // @accept application/json
 // @Produce application/json
 // @Param data query model.TargetRelation true "用id查询TargetRelation"
@@ -88,7 +83,6 @@ export const findTargetRelation = (params) => {
 // @Tags TargetRelation
 // @Summary 分页获取TargetRelation列表
 // @Security ApiKeyAuth
-// @Security BasicAuth
 // @accept application/json
 // @Produce application/json
 // @Param data query request.PageInfo true "分页获取TargetRelation列表"

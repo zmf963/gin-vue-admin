@@ -42,6 +42,7 @@ func Routers() *gin.Engine {
 	
 	projectRouter := router.RouterGroupApp.Project
 	poc_managerRouter := router.RouterGroupApp.Poc_manager
+	finger_managerRouter := router.RouterGroupApp.Finger_manager
 
 	PublicGroup := Router.Group("")
 	{
@@ -82,6 +83,8 @@ func Routers() *gin.Engine {
 		projectRouter.InitAppInfoRouter(PublicGroup)
 		
 		poc_managerRouter.InitPocInfoRouter(PublicGroup)
+		
+		finger_managerRouter.InitFingerInfoRouter(PublicGroup)
 	}
 
 	InstallPlugin(PublicGroup, PrivateGroup) // 安装插件

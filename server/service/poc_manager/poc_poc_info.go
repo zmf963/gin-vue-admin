@@ -111,14 +111,41 @@ func (poc_infoService *PocInfoService) GetPocInfoInfoList(poc poc_manager.PocInf
 	filter := bson.M{}
 	// TODO 处理搜索条件
 	
-	if poc.PocName != "" {
-		filter["poc_name"] = bson.M{"$regex": poc.PocName }
+	if poc.VulName != "" {
+		filter["vul_name"] = bson.M{"$regex": poc.VulName }
+	}
+	if poc.VulType != "" {
+		filter["vul_type"] = bson.M{"$regex": poc.VulType }
+	}
+	if poc.VulId != "" {
+		filter["vul_id"] = bson.M{"$regex": poc.VulId }
+	}
+	if poc.VulManufacturer != "" {
+		filter["vul_manufacturer"] = bson.M{"$regex": poc.VulManufacturer }
+	}
+	if poc.VulSystem != "" {
+		filter["vul_system"] = bson.M{"$regex": poc.VulSystem }
+	}
+	if poc.Language != "" {
+		filter["language"] = bson.M{"$regex": poc.Language }
+	}
+	if poc.Version != "" {
+		filter["version"] = bson.M{"$regex": poc.Version }
+	}
+	if len(poc.LinkUrl) > 0 {
+		filter["link_url"] = bson.M{"$in": poc.LinkUrl }
 	}
 	if poc.PocType != "" {
 		filter["poc_type"] = bson.M{"$regex": poc.PocType }
 	}
-	if poc.PocLevel != "" {
-		filter["poc_level"] = bson.M{"$regex": poc.PocLevel }
+	if poc.PocContent != "" {
+		filter["poc_content"] = bson.M{"$regex": poc.PocContent }
+	}
+	if len(poc.PocArgs) > 0 {
+		filter["poc_args"] = bson.M{"$in": poc.PocArgs }
+	}
+	if poc.VulFingerId != "" {
+		filter["vul_finger_id"] = bson.M{"$regex": poc.VulFingerId }
 	}
 
 	if len(poc.Tags) > 0 {

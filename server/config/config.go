@@ -1,3 +1,13 @@
+/*
+ * @Version: 0.1
+ * @Autor: zmf96
+ * @Email: zmf96@qq.com
+ * @Date: 2022-02-01 21:23:50
+ * @LastEditors: zmf96
+ * @LastEditTime: 2022-02-10 12:49:17
+ * @FilePath: /server/config/config.go
+ * @Description:
+ */
 package config
 
 type Server struct {
@@ -27,4 +37,6 @@ type Server struct {
 	Cors CORS `mapstructure:"cors" json:"cors" yaml:"cors"`
 
 	Mongo Mongo `mapstructure:"mongo" json:"mongo" yaml:"mongo"`
+
+	CaptchaKey CaptchaKey `mapstructure:"captcha-key" json:"captchaKey" yaml:"captcha-key"`
 }

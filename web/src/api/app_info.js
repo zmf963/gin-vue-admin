@@ -3,7 +3,6 @@ import service from '@/utils/request'
 // @Tags AppInfo
 // @Summary 创建AppInfo
 // @Security ApiKeyAuth
-// @Security BasicAuth
 // @accept application/json
 // @Produce application/json
 // @Param data body model.AppInfo true "创建AppInfo"
@@ -20,7 +19,6 @@ export const createAppInfo = (data) => {
 // @Tags AppInfo
 // @Summary 删除AppInfo
 // @Security ApiKeyAuth
-// @Security BasicAuth
 // @accept application/json
 // @Produce application/json
 // @Param data query model.AppInfo true "删除AppInfo"
@@ -37,7 +35,6 @@ export const deleteAppInfo = (params) => {
 // @Tags AppInfo
 // @Summary 批量删除AppInfo
 // @Security ApiKeyAuth
-// @Security BasicAuth
 // @accept application/json
 // @Produce application/json
 // @Param data body request.IdsReq true "批量删除AppInfo"
@@ -54,7 +51,6 @@ export const deleteAppInfoByIds = (data) => {
 // @Tags AppInfo
 // @Summary 更新AppInfo
 // @Security ApiKeyAuth
-// @Security BasicAuth
 // @accept application/json
 // @Produce application/json
 // @Param data body model.AppInfo true "更新AppInfo"
@@ -71,7 +67,6 @@ export const updateAppInfo = (data) => {
 // @Tags AppInfo
 // @Summary 用id查询AppInfo
 // @Security ApiKeyAuth
-// @Security BasicAuth
 // @accept application/json
 // @Produce application/json
 // @Param data query model.AppInfo true "用id查询AppInfo"
@@ -88,7 +83,6 @@ export const findAppInfo = (params) => {
 // @Tags AppInfo
 // @Summary 分页获取AppInfo列表
 // @Security ApiKeyAuth
-// @Security BasicAuth
 // @accept application/json
 // @Produce application/json
 // @Param data query request.PageInfo true "分页获取AppInfo列表"

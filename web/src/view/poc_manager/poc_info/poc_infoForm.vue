@@ -4,21 +4,81 @@
       <el-form :model="formData" label-position="right" label-width="80px">
    
       
-        <el-form-item label="POC名称:">
+        <el-form-item label="漏洞名称:">
           
-            <el-input v-model="formData.poc_name" clearable placeholder="请输入" />
+            <el-input v-model="formData.vul_name" clearable placeholder="请输入" />
           
         </el-form-item>
       
-        <el-form-item label="POC类型:">
+        <el-form-item label="漏洞类型:">
+          
+            <el-input v-model="formData.vul_type" clearable placeholder="请输入" />
+          
+        </el-form-item>
+      
+        <el-form-item label="是否登录:">
+          
+            <el-switch v-model="formData.is_login" active-color="#13ce66" inactive-color="#ff4949" active-text="是" inactive-text="否" clearable ></el-switch>
+          
+        </el-form-item>
+      
+        <el-form-item label="漏洞编号:">
+          
+            <el-input v-model="formData.vul_id" clearable placeholder="请输入" />
+          
+        </el-form-item>
+      
+        <el-form-item label="漏洞厂商:">
+          
+            <el-input v-model="formData.vul_manufacturer" clearable placeholder="请输入" />
+          
+        </el-form-item>
+      
+        <el-form-item label="漏洞系统:">
+          
+            <el-input v-model="formData.vul_system" clearable placeholder="请输入" />
+          
+        </el-form-item>
+      
+        <el-form-item label="系统语言:">
+          
+            <el-input v-model="formData.language" clearable placeholder="请输入" />
+          
+        </el-form-item>
+      
+        <el-form-item label="系统版本:">
+          
+            <el-input v-model="formData.version" clearable placeholder="请输入" />
+          
+        </el-form-item>
+      
+        <el-form-item label="相关文章:">
+          
+            <el-input v-model="formData.link_url" clearable placeholder="请输入" />
+          
+        </el-form-item>
+      
+        <el-form-item label="poc类型:">
           
             <el-input v-model="formData.poc_type" clearable placeholder="请输入" />
           
         </el-form-item>
       
-        <el-form-item label="POC等级:">
+        <el-form-item label="poc内容:">
           
-            <el-input v-model="formData.poc_level" clearable placeholder="请输入" />
+            <el-input v-model="formData.poc_content" clearable placeholder="请输入" />
+          
+        </el-form-item>
+      
+        <el-form-item label="poc参数:">
+          
+            <el-input v-model="formData.poc_args" clearable placeholder="请输入" />
+          
+        </el-form-item>
+      
+        <el-form-item label="漏洞指纹id:">
+          
+            <el-input v-model="formData.vul_finger_id" clearable placeholder="请输入" />
           
         </el-form-item>
       
@@ -56,11 +116,31 @@ const type = ref('')
 
 const formData = ref({
         
-            poc_name: "", 
+            vul_name: "", 
+          
+            vul_type: "", 
+          
+            is_login: false, 
+          
+            vul_id: "", 
+          
+            vul_manufacturer: "", 
+          
+            vul_system: "", 
+          
+            language: "", 
+          
+            version: "", 
+          
+            link_url: [], 
           
             poc_type: "", 
           
-            poc_level: "", 
+            poc_content: "", 
+          
+            poc_args: [], 
+          
+            vul_finger_id: "", 
           
         })
 

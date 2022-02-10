@@ -3,7 +3,6 @@ import service from '@/utils/request'
 // @Tags ProjectInfo
 // @Summary 创建ProjectInfo
 // @Security ApiKeyAuth
-// @Security BasicAuth
 // @accept application/json
 // @Produce application/json
 // @Param data body model.ProjectInfo true "创建ProjectInfo"
@@ -20,7 +19,6 @@ export const createProjectInfo = (data) => {
 // @Tags ProjectInfo
 // @Summary 删除ProjectInfo
 // @Security ApiKeyAuth
-// @Security BasicAuth
 // @accept application/json
 // @Produce application/json
 // @Param data query model.ProjectInfo true "删除ProjectInfo"
@@ -37,7 +35,6 @@ export const deleteProjectInfo = (params) => {
 // @Tags ProjectInfo
 // @Summary 批量删除ProjectInfo
 // @Security ApiKeyAuth
-// @Security BasicAuth
 // @accept application/json
 // @Produce application/json
 // @Param data body request.IdsReq true "批量删除ProjectInfo"
@@ -54,7 +51,6 @@ export const deleteProjectInfoByIds = (data) => {
 // @Tags ProjectInfo
 // @Summary 更新ProjectInfo
 // @Security ApiKeyAuth
-// @Security BasicAuth
 // @accept application/json
 // @Produce application/json
 // @Param data body model.ProjectInfo true "更新ProjectInfo"
@@ -71,7 +67,6 @@ export const updateProjectInfo = (data) => {
 // @Tags ProjectInfo
 // @Summary 用id查询ProjectInfo
 // @Security ApiKeyAuth
-// @Security BasicAuth
 // @accept application/json
 // @Produce application/json
 // @Param data query model.ProjectInfo true "用id查询ProjectInfo"
@@ -88,7 +83,6 @@ export const findProjectInfo = (params) => {
 // @Tags ProjectInfo
 // @Summary 分页获取ProjectInfo列表
 // @Security ApiKeyAuth
-// @Security BasicAuth
 // @accept application/json
 // @Produce application/json
 // @Param data query request.PageInfo true "分页获取ProjectInfo列表"

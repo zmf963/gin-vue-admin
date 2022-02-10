@@ -5,20 +5,91 @@
 
         
           
-            <el-form-item label="POC名称">
-              <el-input v-model="searchInfo.poc_name" placeholder="搜索条件" />
+            <el-form-item label="漏洞名称">
+              <el-input v-model="searchInfo.vul_name" placeholder="搜索条件" />
             </el-form-item>
           
         
           
-            <el-form-item label="POC类型">
+            <el-form-item label="漏洞类型">
+              <el-input v-model="searchInfo.vul_type" placeholder="搜索条件" />
+            </el-form-item>
+          
+        
+          
+            <el-form-item label="是否登录" prop="is_login">
+              <el-select v-model="searchInfo.is_login" clearable placeholder="请选择">
+                <el-option
+                  key="true"
+                  label="是"
+                  value="true">
+                </el-option>
+                <el-option
+                  key="false"
+                  label="否"
+                  value="false">
+                </el-option>
+              </el-select>
+            </el-form-item>
+          
+        
+          
+            <el-form-item label="漏洞编号">
+              <el-input v-model="searchInfo.vul_id" placeholder="搜索条件" />
+            </el-form-item>
+          
+        
+          
+            <el-form-item label="漏洞厂商">
+              <el-input v-model="searchInfo.vul_manufacturer" placeholder="搜索条件" />
+            </el-form-item>
+          
+        
+          
+            <el-form-item label="漏洞系统">
+              <el-input v-model="searchInfo.vul_system" placeholder="搜索条件" />
+            </el-form-item>
+          
+        
+          
+            <el-form-item label="系统语言">
+              <el-input v-model="searchInfo.language" placeholder="搜索条件" />
+            </el-form-item>
+          
+        
+          
+            <el-form-item label="系统版本">
+              <el-input v-model="searchInfo.version" placeholder="搜索条件" />
+            </el-form-item>
+          
+        
+          
+            <el-form-item label="相关文章">
+              <el-input v-model="searchInfo.link_url" placeholder="搜索条件" />
+            </el-form-item>
+          
+        
+          
+            <el-form-item label="poc类型">
               <el-input v-model="searchInfo.poc_type" placeholder="搜索条件" />
             </el-form-item>
           
         
           
-            <el-form-item label="POC等级">
-              <el-input v-model="searchInfo.poc_level" placeholder="搜索条件" />
+            <el-form-item label="poc内容">
+              <el-input v-model="searchInfo.poc_content" placeholder="搜索条件" />
+            </el-form-item>
+          
+        
+          
+            <el-form-item label="poc参数">
+              <el-input v-model="searchInfo.poc_args" placeholder="搜索条件" />
+            </el-form-item>
+          
+        
+          
+            <el-form-item label="漏洞指纹id">
+              <el-input v-model="searchInfo.vul_finger_id" placeholder="搜索条件" />
             </el-form-item>
           
         
@@ -60,15 +131,57 @@
 
         
           
-            <el-table-column align="left" label="POC名称" prop="poc_name" width="120" />
+            <el-table-column align="left" label="漏洞名称" prop="vul_name" width="120" />
           
         
           
-            <el-table-column align="left" label="POC类型" prop="poc_type" width="120" />
+            <el-table-column align="left" label="漏洞类型" prop="vul_type" width="120" />
           
         
           
-            <el-table-column align="left" label="POC等级" prop="poc_level" width="120" />
+            <el-table-column align="left" label="是否登录" prop="is_login" width="120">
+              <template #default="scope">{{ formatBoolean(scope.row.is_login) }}</template>
+            </el-table-column>
+          
+        
+          
+            <el-table-column align="left" label="漏洞编号" prop="vul_id" width="120" />
+          
+        
+          
+            <el-table-column align="left" label="漏洞厂商" prop="vul_manufacturer" width="120" />
+          
+        
+          
+            <el-table-column align="left" label="漏洞系统" prop="vul_system" width="120" />
+          
+        
+          
+            <el-table-column align="left" label="系统语言" prop="language" width="120" />
+          
+        
+          
+            <el-table-column align="left" label="系统版本" prop="version" width="120" />
+          
+        
+          
+            <el-table-column align="left" label="相关文章" prop="link_url" width="120" />
+          
+        
+          
+            <el-table-column align="left" label="poc类型" prop="poc_type" width="120" />
+          
+        
+          
+            <el-table-column align="left" label="poc内容" prop="poc_content" width="120" />
+          
+        
+          
+            <el-table-column align="left" label="poc参数" prop="poc_args" width="120" />
+          
+        
+          
+            <el-table-column align="left" label="漏洞指纹id" prop="vul_finger_id" width="120" />
           
         
         <el-table-column align="left" label="标签" prop="tags" width="120" />
@@ -97,21 +210,81 @@
       <el-form :model="formData" label-position="right" label-width="80px">
 
       
-        <el-form-item label="POC名称:">
+        <el-form-item label="漏洞名称:">
           
-            <el-input v-model="formData.poc_name" clearable placeholder="请输入" />
+            <el-input v-model="formData.vul_name" clearable placeholder="请输入" />
           
         </el-form-item>
       
-        <el-form-item label="POC类型:">
+        <el-form-item label="漏洞类型:">
+          
+            <el-input v-model="formData.vul_type" clearable placeholder="请输入" />
+          
+        </el-form-item>
+      
+        <el-form-item label="是否登录:">
+          
+            <el-switch v-model="formData.is_login" active-color="#13ce66" inactive-color="#ff4949" active-text="是" inactive-text="否" clearable ></el-switch>
+          
+        </el-form-item>
+      
+        <el-form-item label="漏洞编号:">
+          
+            <el-input v-model="formData.vul_id" clearable placeholder="请输入" />
+          
+        </el-form-item>
+      
+        <el-form-item label="漏洞厂商:">
+          
+            <el-input v-model="formData.vul_manufacturer" clearable placeholder="请输入" />
+          
+        </el-form-item>
+      
+        <el-form-item label="漏洞系统:">
+          
+            <el-input v-model="formData.vul_system" clearable placeholder="请输入" />
+          
+        </el-form-item>
+      
+        <el-form-item label="系统语言:">
+          
+            <el-input v-model="formData.language" clearable placeholder="请输入" />
+          
+        </el-form-item>
+      
+        <el-form-item label="系统版本:">
+          
+            <el-input v-model="formData.version" clearable placeholder="请输入" />
+          
+        </el-form-item>
+      
+        <el-form-item label="相关文章:">
+          
+            <el-input v-model.number="formData.link_url" clearable placeholder="请选择" />
+          
+        </el-form-item>
+      
+        <el-form-item label="poc类型:">
           
             <el-input v-model="formData.poc_type" clearable placeholder="请输入" />
           
         </el-form-item>
       
-        <el-form-item label="POC等级:">
+        <el-form-item label="poc内容:">
           
-            <el-input v-model="formData.poc_level" clearable placeholder="请输入" />
+            <el-input v-model="formData.poc_content" clearable placeholder="请输入" />
+          
+        </el-form-item>
+      
+        <el-form-item label="poc参数:">
+          
+            <el-input v-model.number="formData.poc_args" clearable placeholder="请选择" />
+          
+        </el-form-item>
+      
+        <el-form-item label="漏洞指纹id:">
+          
+            <el-input v-model="formData.vul_finger_id" clearable placeholder="请输入" />
           
         </el-form-item>
       
@@ -157,11 +330,31 @@ import { ref } from 'vue'
 
 
 const formData = ref({ 
-          poc_name: "", 
+          vul_name: "", 
+          
+          vul_type: "", 
+          
+          is_login: false, 
+          
+          vul_id: "", 
+          
+          vul_manufacturer: "", 
+          
+          vul_system: "", 
+          
+          language: "", 
+          
+          version: "", 
+          
+          link_url: [], 
           
           poc_type: "", 
           
-          poc_level: "", 
+          poc_content: "", 
+          
+          poc_args: [], 
+          
+          vul_finger_id: "", 
           
         })
 
@@ -181,6 +374,30 @@ const onReset = () => {
 const onSubmit = () => {
   page.value = 1
   pageSize.value = 10
+  
+      
+  
+      
+  
+      
+        if (searchInfo.value.is_login === ''){
+            searchInfo.value.is_login=null
+        }
+      
+  
+      
+  
+      
+  
+      
+  
+      
+  
+      
+  
+      
+  
+      
   
       
   
@@ -313,7 +530,39 @@ const closeDialog = () => {
     formData.value = {
       
         
-          poc_name: "", 
+          vul_name: "", 
+        
+      
+        
+          vul_type: "", 
+        
+      
+        
+          is_login: false, 
+        
+      
+        
+          vul_id: "", 
+        
+      
+        
+          vul_manufacturer: "", 
+        
+      
+        
+          vul_system: "", 
+        
+      
+        
+          language: "", 
+        
+      
+        
+          version: "", 
+        
+      
+        
+          link_url: [],
         
       
         
@@ -321,7 +570,15 @@ const closeDialog = () => {
         
       
         
-          poc_level: "", 
+          poc_content: "", 
+        
+      
+        
+          poc_args: [],
+        
+      
+        
+          vul_finger_id: "", 
         
       
     }

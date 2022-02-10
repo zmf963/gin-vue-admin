@@ -5,6 +5,7 @@ import (
 	
 	"github.com/flipped-aurora/gin-vue-admin/server/api/v1/project"
 	"github.com/flipped-aurora/gin-vue-admin/server/api/v1/poc_manager"
+	"github.com/flipped-aurora/gin-vue-admin/server/api/v1/finger_manager"
 )
 
 type ApiGroup struct {
@@ -12,6 +13,7 @@ type ApiGroup struct {
 	
 	ProjectApiGroup project.ApiGroup
 	Poc_managerApiGroup poc_manager.ApiGroup
+	Finger_managerApiGroup finger_manager.ApiGroup
 }
 
 var ApiGroupApp = new(ApiGroup)

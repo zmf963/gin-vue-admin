@@ -1,3 +1,13 @@
+/*
+ * @Version: 0.1
+ * @Autor: zmf96
+ * @Email: zmf96@qq.com
+ * @Date: 2022-02-01 21:23:50
+ * @LastEditors: zmf96
+ * @LastEditTime: 2022-02-10 12:24:06
+ * @FilePath: /server/utils/clamis.go
+ * @Description:
+ */
 package utils
 
 import (
@@ -12,9 +22,9 @@ func GetClaims(c *gin.Context) (*systemReq.CustomClaims, error) {
 	j := NewJWT()
 	claims, err := j.ParseToken(token)
 	if err != nil {
-		global.GVA_LOG.Error("从Gin的Context中获取从jwt解析信息失败, 请检查请求头是否存在x-token且claims是否为规定结构")
+		global.GVA_LOG.Warn("从Gin的Context中获取从jwt解析信息失败, 请检查请求头是否存在x-token且claims是否为规定结构")
 	}
-	return claims, err
+	return claims, nil
 }
 
 // 从Gin的Context中获取从jwt解析出来的用户ID

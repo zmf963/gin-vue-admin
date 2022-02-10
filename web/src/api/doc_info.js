@@ -3,7 +3,6 @@ import service from '@/utils/request'
 // @Tags DocInfo
 // @Summary 创建DocInfo
 // @Security ApiKeyAuth
-// @Security BasicAuth
 // @accept application/json
 // @Produce application/json
 // @Param data body model.DocInfo true "创建DocInfo"
@@ -20,7 +19,6 @@ export const createDocInfo = (data) => {
 // @Tags DocInfo
 // @Summary 删除DocInfo
 // @Security ApiKeyAuth
-// @Security BasicAuth
 // @accept application/json
 // @Produce application/json
 // @Param data query model.DocInfo true "删除DocInfo"
@@ -37,7 +35,6 @@ export const deleteDocInfo = (params) => {
 // @Tags DocInfo
 // @Summary 批量删除DocInfo
 // @Security ApiKeyAuth
-// @Security BasicAuth
 // @accept application/json
 // @Produce application/json
 // @Param data body request.IdsReq true "批量删除DocInfo"
@@ -54,7 +51,6 @@ export const deleteDocInfoByIds = (data) => {
 // @Tags DocInfo
 // @Summary 更新DocInfo
 // @Security ApiKeyAuth
-// @Security BasicAuth
 // @accept application/json
 // @Produce application/json
 // @Param data body model.DocInfo true "更新DocInfo"
@@ -71,7 +67,6 @@ export const updateDocInfo = (data) => {
 // @Tags DocInfo
 // @Summary 用id查询DocInfo
 // @Security ApiKeyAuth
-// @Security BasicAuth
 // @accept application/json
 // @Produce application/json
 // @Param data query model.DocInfo true "用id查询DocInfo"
@@ -88,7 +83,6 @@ export const findDocInfo = (params) => {
 // @Tags DocInfo
 // @Summary 分页获取DocInfo列表
 // @Security ApiKeyAuth
-// @Security BasicAuth
 // @accept application/json
 // @Produce application/json
 // @Param data query request.PageInfo true "分页获取DocInfo列表"

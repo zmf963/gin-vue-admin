@@ -3,7 +3,6 @@ import service from '@/utils/request'
 // @Tags PathInfo
 // @Summary 创建PathInfo
 // @Security ApiKeyAuth
-// @Security BasicAuth
 // @accept application/json
 // @Produce application/json
 // @Param data body model.PathInfo true "创建PathInfo"
@@ -20,7 +19,6 @@ export const createPathInfo = (data) => {
 // @Tags PathInfo
 // @Summary 删除PathInfo
 // @Security ApiKeyAuth
-// @Security BasicAuth
 // @accept application/json
 // @Produce application/json
 // @Param data query model.PathInfo true "删除PathInfo"
@@ -37,7 +35,6 @@ export const deletePathInfo = (params) => {
 // @Tags PathInfo
 // @Summary 批量删除PathInfo
 // @Security ApiKeyAuth
-// @Security BasicAuth
 // @accept application/json
 // @Produce application/json
 // @Param data body request.IdsReq true "批量删除PathInfo"
@@ -54,7 +51,6 @@ export const deletePathInfoByIds = (data) => {
 // @Tags PathInfo
 // @Summary 更新PathInfo
 // @Security ApiKeyAuth
-// @Security BasicAuth
 // @accept application/json
 // @Produce application/json
 // @Param data body model.PathInfo true "更新PathInfo"
@@ -71,7 +67,6 @@ export const updatePathInfo = (data) => {
 // @Tags PathInfo
 // @Summary 用id查询PathInfo
 // @Security ApiKeyAuth
-// @Security BasicAuth
 // @accept application/json
 // @Produce application/json
 // @Param data query model.PathInfo true "用id查询PathInfo"
@@ -88,7 +83,6 @@ export const findPathInfo = (params) => {
 // @Tags PathInfo
 // @Summary 分页获取PathInfo列表
 // @Security ApiKeyAuth
-// @Security BasicAuth
 // @accept application/json
 // @Produce application/json
 // @Param data query request.PageInfo true "分页获取PathInfo列表"

@@ -92,8 +92,8 @@ services:
       - 15672:15672   # web UI 管理接口
       - 5672:5672       # 生产者和消费者连接使用的接口
     volumes:
-      - .$PWD/data/rabbitmq/log:/var/log/rabbitmq #挂载 RabbitMQ日志
-      - .$PWD/data/rabbitmq/data:/var/lib/rabbitmq #挂载 RabbitMQ数据
+      - $PWD/data/rabbitmq/log:/var/log/rabbitmq #挂载 RabbitMQ日志
+      - $PWD/data/rabbitmq/data:/var/lib/rabbitmq #挂载 RabbitMQ数据
     environment:
       - RABBITMQ_DEFAULT_USER=hotpot  # 用户名
       - RABBITMQ_DEFAULT_PASS=sCviEv334Vds # 密码 

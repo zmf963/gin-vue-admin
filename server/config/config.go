@@ -4,7 +4,7 @@
  * @Email: zmf96@qq.com
  * @Date: 2022-02-01 21:23:50
  * @LastEditors: zmf96
- * @LastEditTime: 2022-02-10 12:49:17
+ * @LastEditTime: 2022-02-11 17:17:03
  * @FilePath: /server/config/config.go
  * @Description:
  */
@@ -37,6 +37,6 @@ type Server struct {
 	Cors CORS `mapstructure:"cors" json:"cors" yaml:"cors"`
 
 	Mongo Mongo `mapstructure:"mongo" json:"mongo" yaml:"mongo"`
-
 	CaptchaKey CaptchaKey `mapstructure:"captcha-key" json:"captchaKey" yaml:"captcha-key"`
+	Rabbitmq  Rabbitmq  `mapstructure:"rabbitmq" json:"rabbitmq" yaml:"rabbitmq"`
 }

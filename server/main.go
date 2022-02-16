@@ -4,7 +4,7 @@
  * @Email: zmf96@qq.com
  * @Date: 2022-02-01 21:23:50
  * @LastEditors: zmf96
- * @LastEditTime: 2022-02-08 19:02:07
+ * @LastEditTime: 2022-02-11 17:29:15
  * @FilePath: /server/main.go
  * @Description:
  */
@@ -34,6 +34,7 @@ func main() {
 	global.GVA_LOG = core.Zap()                     // 初始化zap日志库
 	global.GVA_DB = initialize.Gorm()               // gorm连接数据库
 	global.Mongo_DB = initialize.MongoInitConnect() // mongo连接数据库
+	global.RabbitMQ = initialize.RabbitmqInit()                        // 初始化rabbitmq
 	initialize.Timer()
 	initialize.DBList()
 	if global.GVA_DB != nil {

@@ -8,36 +8,36 @@ networks:
         - subnet: '177.7.0.0/16'
 
 services:
-  web:
-    build:
-      context: ./web
-      dockerfile: ./Dockerfile
-    container_name: online-web
-    restart: always
-    ports:
-      - '443:443'
-    command: [ 'nginx-debug', '-g', 'daemon off;' ]
-    networks:
-      network:
-        ipv4_address: 177.7.0.11
+  # web:
+  #   build:
+  #     context: ./web
+  #     dockerfile: ./Dockerfile
+  #   container_name: online-web
+  #   restart: always
+  #   ports:
+  #     - '443:443'
+  #   command: [ 'nginx-debug', '-g', 'daemon off;' ]
+  #   networks:
+  #     network:
+  #       ipv4_address: 177.7.0.11
 
-  server:
-    build:
-      context: ./server
-      dockerfile: ./Dockerfile
-    container_name: online-server
-    restart: always
-    ports:
-      - '127.0.0.1:8888:8888'
-    depends_on:
-      - mysql
-      - redis
-    links:
-      - mysql
-      - redis
-    networks:
-      network:
-        ipv4_address: 177.7.0.12
+  # server:
+  #   build:
+  #     context: ./server
+  #     dockerfile: ./Dockerfile
+  #   container_name: online-server
+  #   restart: always
+  #   ports:
+  #     - '127.0.0.1:8888:8888'
+  #   depends_on:
+  #     - mysql
+  #     - redis
+  #   links:
+  #     - mysql
+  #     - redis
+  #   networks:
+  #     network:
+  #       ipv4_address: 177.7.0.12
 
   mysql:
     image: mysql:8.0.21
@@ -47,7 +47,7 @@ services:
     volumes:
       - $PWD/data/mysql/data:/var/lib/mysql
     ports:
-      - "127.0.0.1:3306:3306"  # host物理直接映射端口为13306
+      - 3306:3306  # host物理直接映射端口为13306
     environment:
       MYSQL_DATABASE: 'online' # 初始化启动时要创建的数据库的名称
       MYSQL_ROOT_PASSWORD: 'xsC4sdf43aX' # root管理员用户密码
@@ -89,7 +89,7 @@ services:
     restart: always
     hostname: rabbitmq_host
     ports:
-      - 127.0.0.1:15672:15672   # web UI 管理接口
+      - 15672:15672   # web UI 管理接口
       - 5672:5672       # 生产者和消费者连接使用的接口
     volumes:
       - .$PWD/data/rabbitmq/log:/var/log/rabbitmq #挂载 RabbitMQ日志
@@ -106,10 +106,11 @@ services:
     restart: always
     command: celery flower
     ports:
-      - '127.0.0.1:5555:5555'
+      - '5555:5555'
     environment:
       CELERY_BROKER_URL: pyamqp://hotpot:sCviEv334Vds@177.7.0.16:5672/
       CELERY_RESULT_BACKEND: mongodb://online:43invVDwfsd4@177.7.0.15:27017/online?authSource=admin
     networks:
       network:
         ipv4_address: 177.7.0.17
+        

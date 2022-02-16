@@ -7,8 +7,8 @@ Autor: zmf96
 Email: zmf96@qq.com
 Date: 2022-02-08 17:40:59
 LastEditors: zmf96
-LastEditTime: 2022-02-09 12:04:03
-FilePath: /core/core/tasks.py
+LastEditTime: 2022-02-16 17:57:29
+FilePath: /core/tasks.py
 Description: 
 '''
 
@@ -52,31 +52,32 @@ def nmap_scan(target):
 def icpsearch(content):
     return content
 
+
 @app.task
 def domainsearch(content):
     return content
+
 
 @app.task
 def screenshot(content):
     return content
 
+
 @app.task
 def appsearch(content):
     return content
 
+
 @app.task
-def gettitle(insert_id, url):
-    title, header, body = get_title(url)
-    print(insert_id)
-    print(title)
-    # TODO  保存结果到数据库中
-    save_port_info_url = SAVE_BASE_URL + "save_port_info"
-    body = str(base64.b64encode(body.encode()))
+def gettitle(url):
+    title, header, body,status_code = get_title(url)
     data = {
-        "_id": insert_id,
+        "tool_type": "gettitle",
         "title": title,
+        "url":url,
         "header": str(header),
-        "body": body
+        "body": body,
+        "status": str(status_code)
     }
     return data
 
@@ -85,11 +86,15 @@ def gettitle(insert_id, url):
 def cdncheck(content):
     return content
 
+
 @app.task
 def vscan(content):
     return content
 
 
+@app.task
+def portscan(content):
+    return content
 
 
 if __name__ == '__main__':

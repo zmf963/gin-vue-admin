@@ -1,3 +1,16 @@
+#!/usr/bin/env python
+# coding=utf-8
+
+'''
+Version: 0.1
+Autor: zmf96
+Email: zmf96@qq.com
+Date: 2022-02-08 17:50:22
+LastEditors: zmf96
+LastEditTime: 2022-02-16 18:08:06
+FilePath: /core/plugins/gettitle/gettitle.py
+Description: 
+'''
 import requests
 from requests.models import ReadTimeoutError
 import urllib3
@@ -23,12 +36,12 @@ def get_title(url):
         soup = BeautifulSoup(response.text, 'lxml')
         title = soup.find('title')
         if title and len(title.text) > 0:
-            return title.text, response.headers, response.text
-        return response.text[:100], response.headers, response.text
+            return title.text, response.headers, response.text, response.status_code
+        return response.text[:100], response.headers, response.text, response.status_code
     except requests.exceptions.ReadTimeout as e:
-        return "Timeout", "", ""
+        return "Timeout", "", "", 408
     except requests.exceptions.ConnectTimeout as e:
-        return "Timeout", "", ""
+        return "Timeout", "", "", 408
     except Exception as e:
         return str(e), "", ""
 

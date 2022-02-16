@@ -7,8 +7,8 @@ Autor: zmf96
 Email: zmf96@qq.com
 Date: 2022-02-09 10:27:03
 LastEditors: zmf96
-LastEditTime: 2022-02-09 14:36:37
-FilePath: /core/deply_worker.py
+LastEditTime: 2022-02-10 18:42:37
+FilePath: /deply_worker.py
 Description: 部署worker节点
 '''
 import os
@@ -18,9 +18,9 @@ from fabric import task,Connection,SerialGroup,ThreadingGroup
 from loguru import logger
 
 hosts = [
+    "192.168.31.67",
+    "192.168.31.68",
     "192.168.31.70",
-    "192.168.31.69",
-    "192.168.31.168",
     "192.168.31.87",
 ]
 
@@ -70,11 +70,11 @@ def celery_worker_run(host):
         with c.cd("/opt/core-0.1.0/core"):
             c.run("pwd")
             try:
-                c.run("ps auxww | awk '/celery worker/ {print $2}' | xargs kill -9")
+                c.run("ps auxww | awk '/celery/ {print $2}' | xargs kill -9")
             except Exception as e:
                 logger.warning(e)
-            c.run("poetry run celery  -A tasks worker -l info -Q default,low,medium,height -n default@%h")
-
+            # c.run("poetry run celery  -A tasks worker -l info -c 100 -Q default,low,medium,height -n default@%h")
+            c.run("ps aux | grep celery")
 
 if __name__ == "__main__":
     import threading

@@ -7,16 +7,16 @@ Autor: zmf96
 Email: zmf96@qq.com
 Date: 2022-02-11 16:45:45
 LastEditors: zmf96
-LastEditTime: 2022-02-15 15:14:10
-FilePath: /core/task_watch.py
+LastEditTime: 2022-02-17 17:56:32
+FilePath: /task_watch.py
 Description: 
 '''
 import tasks
 import json
 import pika
 import time
-from config import broker_url
-from log import logger
+from common.config import broker_url
+from common.log import logger
 connection = pika.BlockingConnection(pika.URLParameters(broker_url[2:]))
 channel = connection.channel()
 channel.queue_declare(queue='server:default', durable=False)
@@ -39,9 +39,22 @@ def callback(ch, method, properties, body):
             if tool == "gettitle":
                 for host in task.get("hosts").split(","):
                     for port in task.get("ports").split(","):
-                        res = tasks.gettitle.delay("http://"+host+":"+port)
+                        if "443" in port:
+                            res = tasks.gettitle.delay("https://"+host+":"+port)
+                        else:
+                            res = tasks.gettitle.delay("http://"+host+":"+port)
                         logger.info(res)
                         celery_task_ids.append(res.id)
+            elif tool == "beian2domain":
+                for keyword in task.get("keyword").split(","):
+                    res = tasks.beian2domain.delay(keyword)
+                    logger.info(res)
+                    celery_task_ids.append(res.id)
+            elif tool == "cdncheck":
+                for host in task.get("hosts").split(","):
+                    res = tasks.cdncheck.delay(host)
+                    logger.info(res)
+                    celery_task_ids.append(res.id)
             else:
                 logger.warning("Not support tool: %s" % tool)
         logger.info("celery_task_ids: %s" % celery_task_ids)

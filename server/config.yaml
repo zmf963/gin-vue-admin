@@ -153,4 +153,4 @@ captcha-key:
   captcha-id: 7HShMuUuhsBkOMJEZRmx
   captcha: 712330
 rabbitmq:
-  rabbitmq-uri: amqp://hotpot:sCviEv334Vds@192.168.31.109:5672/
+  rabbitmq-uri: amqp://hotpot:sCviEv334Vds@192.168.31.24:5672/

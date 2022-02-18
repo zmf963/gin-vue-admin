@@ -7,14 +7,14 @@ Autor: zmf96
 Email: zmf96@qq.com
 Date: 2022-02-14 10:37:00
 LastEditors: zmf96
-LastEditTime: 2022-02-14 12:20:51
-FilePath: /core/product.py
+LastEditTime: 2022-02-17 11:10:57
+FilePath: /core/core/product.py
 Description: 
 '''
 
 import pika
 
-from config import broker_url
+from common.config import broker_url
 
 connection = pika.BlockingConnection(pika.URLParameters(broker_url[2:]))
 channel = connection.channel()

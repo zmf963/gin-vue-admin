@@ -33,3 +33,5 @@ data/
 core/.gitignore
 core/dist/
 logs/
+core/t.json
+core/t.py

@@ -7,8 +7,8 @@ Autor: zmf96
 Email: zmf96@qq.com
 Date: 2022-02-08 17:40:59
 LastEditors: zmf96
-LastEditTime: 2022-02-16 17:57:29
-FilePath: /core/tasks.py
+LastEditTime: 2022-02-17 17:39:09
+FilePath: /tasks.py
 Description: 
 '''
 
@@ -16,12 +16,14 @@ import base64
 import json
 
 import requests
-from log import logger
+from common.log import logger
 from celery import Celery
 from requests.packages import urllib3
-import config
-from config import SAVE_BASE_URL, SAVE_Headers
+import common.config as config
+from common.config import SAVE_BASE_URL, SAVE_Headers
 from plugins.gettitle.gettitle import get_title
+from plugins.cdncheck.check_cdn import CheckCDN
+from plugins.subdomain.beian2domain import run_beian2domain
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
@@ -70,23 +72,51 @@ def appsearch(content):
 
 @app.task
 def gettitle(url):
-    title, header, body,status_code = get_title(url)
+    print(url)
+    title, header, body, status_code = get_title(url)
     data = {
         "tool_type": "gettitle",
-        "title": title,
-        "url":url,
-        "header": str(header),
-        "body": body,
-        "status": str(status_code)
+        "data": [
+            {
+                "title": title,
+                "url":url,
+                "header": str(header),
+                "body": body,
+                "status": str(status_code)
+            }
+        ],
+        "status": "complete"
     }
     return data
 
 
 @app.task
-def cdncheck(content):
-    return content
+def cdncheck(host):
+    if isinstance(host, str):
+        host = host.split(",")
+    cc = CheckCDN(host)
+    cc.run()
+    result = []
+    while not cc.queue.empty():
+        result.append(cc.queue.get())
+    data = {
+        "tool_type": "cdncheck",
+        "data": result,
+        "status": "complete"
+    }
+    return data
 
-
+@app.task
+def beian2domain(keyword):
+    result = run_beian2domain(keyword)
+    data = {
+        "tool_type": "beian2domain",
+        "data": result,
+        "status": "complete",
+    }
+    return data
+    
+    
 @app.task
 def vscan(content):
     return content

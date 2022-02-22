@@ -7,8 +7,8 @@ Autor: zmf96
 Email: zmf96@qq.com
 Date: 2022-02-11 16:45:45
 LastEditors: zmf96
-LastEditTime: 2022-02-17 17:56:32
-FilePath: /task_watch.py
+LastEditTime: 2022-02-22 04:29:41
+FilePath: /core/core/task_watch.py
 Description: 
 '''
 import tasks
@@ -35,32 +35,39 @@ def callback(ch, method, properties, body):
     if properties.type == "task":
         task = json.loads(body.decode("utf-8"))
         celery_task_ids = []
-        for tool in task.get("tools"):
-            if tool == "gettitle":
-                for host in task.get("hosts").split(","):
-                    for port in task.get("ports").split(","):
-                        if "443" in port:
-                            res = tasks.gettitle.delay("https://"+host+":"+port)
-                        else:
-                            res = tasks.gettitle.delay("http://"+host+":"+port)
+        tools = task.get("tools",[])
+        if isinstance(tools,list):
+            for tool in tools:
+                if tool == "gettitle":
+                    for host in task.get("hosts").split(","):
+                        for port in task.get("ports").split(","):
+                            if "443" in port:
+                                res = tasks.gettitle.delay("https://"+host+":"+port)
+                            else:
+                                res = tasks.gettitle.delay("http://"+host+":"+port)
+                            logger.info(res)
+                            celery_task_ids.append(res.id)
+                elif tool == "beian2domain":
+                    for keyword in task.get("keyword").split(","):
+                        res = tasks.beian2domain.delay(keyword)
                         logger.info(res)
                         celery_task_ids.append(res.id)
-            elif tool == "beian2domain":
-                for keyword in task.get("keyword").split(","):
-                    res = tasks.beian2domain.delay(keyword)
-                    logger.info(res)
-                    celery_task_ids.append(res.id)
-            elif tool == "cdncheck":
-                for host in task.get("hosts").split(","):
-                    res = tasks.cdncheck.delay(host)
-                    logger.info(res)
-                    celery_task_ids.append(res.id)
-            else:
-                logger.warning("Not support tool: %s" % tool)
-        logger.info("celery_task_ids: %s" % celery_task_ids)
-        task["status"] = "running"
-        task["celery_task_ids"] = celery_task_ids
-        push_message(task)
+                elif tool == "cdncheck":
+                    for host in task.get("hosts").split(","):
+                        res = tasks.cdncheck.delay(host)
+                        logger.info(res)
+                        celery_task_ids.append(res.id)
+                elif tool == "pysubdomain":
+                    for host in task.get("hosts").split(","):
+                        res = tasks.pysubdomain.delay(host)
+                        logger.info(res)
+                        celery_task_ids.append(res.id)
+                else:
+                    logger.warning("Not support tool: %s" % tool)
+            logger.info("celery_task_ids: %s" % celery_task_ids)
+            task["status"] = "running"
+            task["celery_task_ids"] = celery_task_ids
+            push_message(task)
     else:
         print(" [x] Received %r" % body)
     ch.basic_ack(delivery_tag=method.delivery_tag)  # 告诉生产者，消息处理完成

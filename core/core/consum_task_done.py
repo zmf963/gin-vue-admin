@@ -7,8 +7,8 @@ Autor: zmf96
 Email: zmf96@qq.com
 Date: 2022-02-15 14:36:13
 LastEditors: zmf96
-LastEditTime: 2022-02-18 03:29:23
-FilePath: /core/consum_task_done.py
+LastEditTime: 2022-02-22 07:20:33
+FilePath: /core/core/consum_task_done.py
 Description: 
 '''
 
@@ -28,6 +28,78 @@ channel.queue_declare(queue='server:task_done', durable=False)
 threadPool = ThreadPoolExecutor(
     max_workers=10, thread_name_prefix="task_done_")
 
+def consum_gettile(data,task_obj):
+    try:
+        tmp = data.get("url").split("://")[1].split("/")
+        data["hostinfo"] = tmp[0]
+        data["path"] = "/"+"/".join(tmp[1:])
+        data["target_id"] = task_obj.target_id
+        data["project_id"] = task_obj.project_id
+        data["response_size"] = len(data.get("body"))
+        if PathInfo.objects(url=data.get("url")).count() > 0:
+            PathInfo.objects(url=data.get("url")).first().Update(**data)
+        else:
+            PathInfo(**data).Save()
+        if data["path"] == "/":
+            data.pop("path")
+            data.pop("response_size")
+            url = data.pop("url")
+            tmp = data.get("hostinfo").split(":")
+            data["host"] = tmp[0]
+            if len(tmp) > 1:
+                port = tmp[1]
+            elif url.startswith("https://"):
+                port = "443"
+            else:
+                port = "80"
+            data["port"] = port
+            if PortInfo.objects(hostinfo=data.get("hostinfo")).count() > 0:
+                PortInfo.objects(hostinfo=data.get("hostinfo")).first().Update(**data)
+            else:
+                PortInfo(**data).Save()
+    except Exception as e:
+        logger.warning(e)
+
+def consum_cdncheck(data,task_obj):
+    for item in data:
+        logger.info(item)
+        item["target_id"] = task_obj.target_id
+        item["project_id"] = task_obj.project_id
+        cdn = 0
+        if item.get("cdn") != '':
+            cname = item.get("cdn")
+            cdn = 1
+        if Domain.objects(domain=item.get("target")).count() > 0:
+            do = Domain.objects(domain=item.get("target")).first()
+            if item.get("ip") not in do.ips:
+                do.ips.append(item.get("ip"))
+            do.cdn = cdn
+            do.cname = cname
+            do.Save()
+        else:
+            Domain(domain=item.get("target"),cdn=cdn,cname=cname,ips=[item.get("ip")]).Save()
+
+def consum_beian2domain(data,task_obj):
+    for item in data:
+        logger.info(item)
+        tmp = {"domain":item[1],"target_id":task_obj.target_id,"project_id":task_obj.project_id,"tags":[item[0]]}
+        if Domain.objects(domain=item[1]).count() > 0:
+            do = Domain.objects(domain=item[1]).first()
+            if item[0] not in do.tags:
+                do.tags.append(item[0])
+                do.Save()
+        else:
+            Domain(**tmp).Save()
+
+def consum_pysubdomain(data,task_obj):
+    for k,v in data.items():
+        logger.info(k,v)
+        tmp = {"domain":k,"target_id":task_obj.target_id,"project_id":task_obj.project_id,"ips":v}
+        if Domain.objects(domain=k).count() > 0:
+            # do = Domain.objects(domain=k).first()
+            pass
+        else:
+            Domain(**tmp).Save()
 
 def consum_done(task):
     try:
@@ -40,67 +112,13 @@ def consum_done(task):
             logger.info(res)
             if res.get("tool_type") == "gettitle":
                 tmp_data = res["data"][0]
-                try:
-                    tmp = tmp_data.get("url").split("://")[1].split("/")
-                    tmp_data["hostinfo"] = tmp[0]
-                    tmp_data["path"] = "/"+"/".join(tmp[1:])
-                    tmp_data["target_id"] = task_obj.target_id
-                    tmp_data["project_id"] = task_obj.project_id
-                    tmp_data["response_size"] = len(tmp_data.get("body"))
-                    if PathInfo.objects(url=tmp_data.get("url")).count() > 0:
-                        PathInfo.objects(url=tmp_data.get("url")).first().Update(**tmp_data)
-                    else:
-                        PathInfo(**tmp_data).Save()
-                    if tmp_data["path"] == "/":
-                        tmp_data.pop("path")
-                        tmp_data.pop("response_size")
-                        url = tmp_data.pop("url")
-                        tmp = tmp_data.get("hostinfo").split(":")
-                        tmp_data["host"] = tmp[0]
-                        if len(tmp) > 1:
-                            port = tmp[1]
-                        elif url.startswith("https://"):
-                            port = "443"
-                        else:
-                            port = "80"
-                        tmp_data["port"] = port
-                        if PortInfo.objects(hostinfo=tmp_data.get("hostinfo")).count() > 0:
-                            PortInfo.objects(hostinfo=tmp_data.get("hostinfo")).first().Update(**tmp_data)
-                        else:
-                            PortInfo(**tmp_data).Save()
-                except Exception as e:
-                    logger.warning(e)
-
+                consum_gettile(tmp_data,task_obj)
             elif res.get("tool_type") == "cdncheck":
-                for item in res.get("data"):
-                    logger.info(item)
-                    item["target_id"] = task_obj.target_id
-                    item["project_id"] = task_obj.project_id
-                    cdn = 0
-                    if item.get("cdn") != '':
-                        cname = item.get("cdn")
-                        cdn = 1
-                    if Domain.objects(domain=item.get("target")).count() > 0:
-                        do = Domain.objects(domain=item.get("target")).first()
-                        if item.get("ip") not in do.ips:
-                            do.ips.append(item.get("ip"))
-                        do.cdn = cdn
-                        do.cname = cname
-                        do.Save()
-                    else:
-                        Domain(domain=item.get("target"),cdn=cdn,cname=cname,ips=[item.get("ip")]).Save()
-
+                consum_cdncheck(res["data"],task_obj)
             elif res.get("tool_type") == "beian2domain":
-                for item in res.get("data"):
-                    logger.info(item)
-                    tmp = {"domain":item[1],"target_id":task_obj.target_id,"project_id":task_obj.project_id,"tags":[item[0]]}
-                    if Domain.objects(domain=item[1]).count() > 0:
-                        do = Domain.objects(domain=item[1]).first()
-                        if item[0] not in do.tags:
-                            do.tags.append(item[0])
-                            do.Save()
-                    else:
-                        Domain(**tmp).Save()
+                consum_beian2domain(res.get("data"),task_obj)
+            elif res.get("tool_type") == "pysubdomain":
+                consum_pysubdomain(res.get("data"),task_obj)
             else:
                 pass
         task_obj.Update(status="complete")

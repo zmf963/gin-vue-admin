@@ -35,11 +35,11 @@
           
         
           
-            <el-form-item label="工具扩展字段">
+            <!-- <el-form-item label="工具扩展字段">
               <el-input v-model="searchInfo.tool_ext" placeholder="搜索条件" />
             </el-form-item>
           
-        
+         -->
           
             <el-form-item label="状态">
               <el-input v-model="searchInfo.status" placeholder="搜索条件" />
@@ -116,7 +116,7 @@
           
         
           
-            <el-table-column align="left" label="工具扩展字段" prop="tool_ext" width="120" />
+            <!-- <el-table-column align="left" label="工具扩展字段" prop="tool_ext" width="120" /> -->
           
         
           
@@ -183,12 +183,12 @@
       
         <el-form-item label="工具列表:">
           
-            <el-input v-model.number="formData.tools" clearable placeholder="请选择" />
+            <el-input v-model="formData.tools" clearable placeholder="请选择" />
           
         </el-form-item>
       
         <el-form-item label="工具扩展字段:">
-          
+            <el-input v-model="formData.tool_ext" :rows="4" type="textarea" clearable placeholder="请输入" />
         </el-form-item>
       
         <el-form-item label="状态:">
@@ -286,25 +286,7 @@ const onReset = () => {
 const onSubmit = () => {
   page.value = 1
   pageSize.value = 10
-  
-      
-  
-      
-  
-      
-  
-      
-  
-      
-  
-      
-  
-      
-  
-      
-  
-      
-  
+
   getTableData()
 }
 
@@ -470,6 +452,7 @@ const enterDialog = async () => {
       let res
       switch (type.value) {
         case 'create':
+          formData.value.tools = formData.value.tools.split(",")
           res = await createTask(formData.value)
           break
         case 'update':

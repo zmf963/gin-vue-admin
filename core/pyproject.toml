@@ -21,6 +21,7 @@ dnspython = "^2.2.0"
 geoip2 = "^4.5.0"
 termcolor = "^1.1.0"
 dnslib = "^0.9.19"
+subdomain = "^0.1.2"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"

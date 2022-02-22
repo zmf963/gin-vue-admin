@@ -7,8 +7,8 @@ Autor: zmf96
 Email: zmf96@qq.com
 Date: 2022-02-08 17:40:59
 LastEditors: zmf96
-LastEditTime: 2022-02-17 17:39:09
-FilePath: /tasks.py
+LastEditTime: 2022-02-22 04:14:47
+FilePath: /core/core/tasks.py
 Description: 
 '''
 
@@ -24,7 +24,7 @@ from common.config import SAVE_BASE_URL, SAVE_Headers
 from plugins.gettitle.gettitle import get_title
 from plugins.cdncheck.check_cdn import CheckCDN
 from plugins.subdomain.beian2domain import run_beian2domain
-
+from plugins.subdomain.pysubdomain import run_pysubdomain
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 
@@ -115,8 +115,17 @@ def beian2domain(keyword):
         "status": "complete",
     }
     return data
-    
-    
+
+@app.task
+def pysubdomain(domain):
+    result = run_pysubdomain(domain)
+    data = {
+        "tool_type": "pysubdomain",
+        "data": result,
+        "status": "complete",
+    }
+    return data
+
 @app.task
 def vscan(content):
     return content

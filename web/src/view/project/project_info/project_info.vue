@@ -153,13 +153,13 @@
       
         <el-form-item label="目标id列表:">
           
-            <el-input v-model.number="formData.target_ids" clearable placeholder="请选择" />
+            <el-input v-model="formData.target_ids" clearable placeholder="请选择" />
           
         </el-form-item>
       
         <el-form-item label="任务id列表:">
           
-            <el-input v-model.number="formData.task_ids" clearable placeholder="请选择" />
+            <el-input v-model="formData.task_ids" clearable placeholder="请选择" />
           
         </el-form-item>
       
@@ -401,6 +401,13 @@ const closeDialog = () => {
 // 弹窗确定
 const enterDialog = async () => {
       let res
+      console.log(formData.value)
+      if (typeof(formData.value.target_ids) === 'string') {
+        formData.value.target_ids = formData.value.target_ids.split(',')
+      }
+      if (typeof(formData.value.task_ids) === 'string') {
+        formData.value.task_ids = formData.value.task_ids.split(',')
+      }
       switch (type.value) {
         case 'create':
           res = await createProjectInfo(formData.value)

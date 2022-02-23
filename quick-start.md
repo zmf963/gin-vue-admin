@@ -4,7 +4,7 @@
  * @Email: zmf96@qq.com
  * @Date: 2022-02-18 10:31:39
  * @LastEditors: zmf96
- * @LastEditTime: 2022-02-22 07:21:57
+ * @LastEditTime: 2022-02-23 02:50:24
  * @FilePath: /quick-start.md
  * @Description: 
 -->
@@ -111,7 +111,8 @@
 git clone https://github.com/JDArmy/CollaborativePlatform.git
 cd CollaborativePlatform
 
-修改配置文件中的默认密码!!!
+修改配置文件中的默认密码及ip地址 `server/config.docker.yaml` `core/core/common/local_config.py`
+
 docker-compose up -d
 
 # 开发模式下

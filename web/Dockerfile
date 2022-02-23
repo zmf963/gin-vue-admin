@@ -2,7 +2,7 @@ FROM node:16.13.2
 
 WORKDIR /web/
 COPY . .
-
+RUN npm install -g npm@8.5.1
 RUN npm install  --registry=https://registry.npm.taobao.org
 RUN npm run build
 

@@ -1,0 +1,112 @@
+#!/usr/bin/env python
+# coding=utf-8
+
+'''
+Version: 0.1
+Autor: zmf96
+Email: zmf96@qq.com
+Date: 2022-02-23 03:35:06
+LastEditors: zmf96
+LastEditTime: 2022-02-23 07:01:55
+FilePath: /core/core/consum_data_done.py
+Description: 
+'''
+
+from common.log import logger
+from model import Task, PathInfo, Domain, PortInfo
+
+def consum_gettile(data, task_obj):
+    try:
+        tmp = data.get("url").split("://")[1].split("/")
+        data["hostinfo"] = tmp[0]
+        data["path"] = "/"+"/".join(tmp[1:])
+        data["target_id"] = task_obj.target_id
+        data["project_id"] = task_obj.project_id
+        data["response_size"] = len(data.get("body"))
+        if PathInfo.objects(url=data.get("url")).count() > 0:
+            PathInfo.objects(url=data.get("url")).first().Update(**data)
+        else:
+            PathInfo(**data).Save()
+        if data["path"] == "/":
+            data.pop("path")
+            data.pop("response_size")
+            url = data.pop("url")
+            tmp = data.get("hostinfo").split(":")
+            data["host"] = tmp[0]
+            if len(tmp) > 1:
+                port = tmp[1]
+            elif url.startswith("https://"):
+                port = "443"
+            else:
+                port = "80"
+            data["port"] = port
+            if PortInfo.objects(hostinfo=data.get("hostinfo")).count() > 0:
+                PortInfo.objects(hostinfo=data.get(
+                    "hostinfo")).first().Update(**data)
+            else:
+                PortInfo(**data).Save()
+    except Exception as e:
+        logger.warning(task_obj)
+        logger.warning(e)
+
+
+def consum_cdncheck(data, task_obj):
+    for item in data:
+        logger.info(item)
+        item["target_id"] = task_obj.target_id
+        item["project_id"] = task_obj.project_id
+        cdn = 0
+        if item.get("cdn") != '':
+            cname = item.get("cdn")
+            cdn = 1
+        if Domain.objects(domain=item.get("target")).count() > 0:
+            do = Domain.objects(domain=item.get("target")).first()
+            if item.get("ip") not in do.ips:
+                do.ips.append(item.get("ip"))
+            do.cdn = cdn
+            do.cname = cname
+            do.Save()
+        else:
+            Domain(domain=item.get("target"), cdn=cdn,
+                   cname=cname, ips=[item.get("ip")]).Save()
+
+
+def consum_beian2domain(data, task_obj):
+    for item in data:
+        logger.info(item)
+        tmp = {"domain": item[1], "target_id": task_obj.target_id,
+               "project_id": task_obj.project_id, "tags": [item[0]]}
+        if Domain.objects(domain=item[1]).count() > 0:
+            do = Domain.objects(domain=item[1]).first()
+            if item[0] not in do.tags:
+                do.tags.append(item[0])
+                do.Save()
+        else:
+            Domain(**tmp).Save()
+
+
+def consum_pysubdomain(data, task_obj):
+    for k, v in data.items():
+        logger.info(k, v)
+        tmp = {"domain": k, "target_id": task_obj.target_id,
+               "project_id": task_obj.project_id, "ips": v}
+        if Domain.objects(domain=k).count() > 0:
+            # do = Domain.objects(domain=k).first()
+            pass
+        else:
+            Domain(**tmp).Save()
+
+
+def consum_data_done(tool_type, data, task_obj):
+    if tool_type == "gettitle":
+        tmp_data = data[0]
+        consum_gettile(tmp_data, task_obj)
+    elif tool_type == "cdncheck":
+        consum_cdncheck(data, task_obj)
+    elif tool_type == "beian2domain":
+        consum_beian2domain(data, task_obj)
+    elif tool_type == "pysubdomain":
+        consum_pysubdomain(data, task_obj)
+    else:
+        pass
+

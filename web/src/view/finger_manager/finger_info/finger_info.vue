@@ -2,6 +2,10 @@
   <div>
     <div class="gva-search-box">
       <el-form :inline="true" :model="searchInfo" class="demo-form-inline">
+        <el-form-item label="id">
+          <el-input v-model="searchInfo._id" placeholder="搜索条件" />
+        </el-form-item>
+
         <el-form-item label="指纹名称">
           <el-input v-model="searchInfo.name" placeholder="搜索条件" />
         </el-form-item>
@@ -66,7 +70,7 @@
           align="left"
           label="指纹id"
           prop="_id"
-          width="200"
+          width="210"
         />
 
         <el-table-column
@@ -390,7 +394,7 @@ const enterDialog = async () => {
   }
 };
 
-const formatterContent = (row, columne) => {
+const formatterContent = (row) => {
   return JSON.stringify(row.content);
 };
 </script>

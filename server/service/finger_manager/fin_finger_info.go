@@ -114,7 +114,9 @@ func (finger_infoService *FingerInfoService) GetFingerInfoInfoList(fin finger_ma
 	}
 	filter := bson.M{}
 	// TODO 处理搜索条件
-	
+	if !fin.ID_.IsZero() {
+		filter = bson.M{"_id":fin.ID_}
+	}
 	if fin.Name != "" {
 		filter["name"] = bson.M{"$regex": fin.Name }
 	}

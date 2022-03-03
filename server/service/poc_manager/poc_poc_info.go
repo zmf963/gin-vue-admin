@@ -110,7 +110,9 @@ func (poc_infoService *PocInfoService) GetPocInfoInfoList(poc poc_manager.PocInf
 	}
 	filter := bson.M{}
 	// TODO 处理搜索条件
-	
+	if !poc.ID_.IsZero() {
+		filter = bson.M{"_id":poc.ID_}
+	}
 	if poc.VulName != "" {
 		filter["vul_name"] = bson.M{"$regex": poc.VulName }
 	}
@@ -142,7 +144,7 @@ func (poc_infoService *PocInfoService) GetPocInfoInfoList(poc poc_manager.PocInf
 		filter["poc_content"] = bson.M{"$regex": poc.PocContent }
 	}
 	if len(poc.PocArgs) > 0 {
-		filter["poc_args"] = bson.M{"$in": poc.PocArgs }
+		filter["poc_args"] = bson.M{"$regex": poc.PocArgs }
 	}
 	if poc.VulFingerId != "" {
 		filter["vul_finger_id"] = bson.M{"$regex": poc.VulFingerId }

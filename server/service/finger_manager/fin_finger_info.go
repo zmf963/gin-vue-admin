@@ -27,7 +27,9 @@ var FingerInfoServiceApp = new(FingerInfoService)
 //@return: err error
 func (finger_infoService *FingerInfoService) CreateFingerInfo(finger_info finger_manager.FingerInfo) (err error) {
 	global.GVA_LOG.Info("[ CreateFingerInfo]", zap.Any("finger_info", finger_info))
-	finger_info.ID_ = primitive.NewObjectID()
+	if finger_info.ID_.IsZero() {
+		finger_info.ID_ = primitive.NewObjectID()
+	}
 	finger_info.CreateAt = time.Now().Local()
 	finger_info.UpdateAt = time.Now().Local()
 	result, err := global.Mongo_DB.Collection("fin_finger_info").InsertOne(context.TODO(), finger_info)
@@ -107,15 +109,14 @@ func (finger_infoService *FingerInfoService) GetFingerInfoInfoList(fin finger_ma
 			_desc = -1
 		}
 		findOptions.SetSort(map[string]int{order: _desc})
+	} else {
+		findOptions.SetSort(map[string]int{"update_at":-1})
 	}
 	filter := bson.M{}
 	// TODO 处理搜索条件
 	
 	if fin.Name != "" {
 		filter["name"] = bson.M{"$regex": fin.Name }
-	}
-	if fin.Content != "" {
-		filter["content"] = bson.M{"$regex": fin.Content }
 	}
 	if len(fin.LinkVul) > 0 {
 		filter["link_vul"] = bson.M{"$in": fin.LinkVul }

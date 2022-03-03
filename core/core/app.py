@@ -7,7 +7,7 @@ Autor: zmf96
 Email: zmf96@qq.com
 Date: 2022-02-08 18:15:35
 LastEditors: zmf96
-LastEditTime: 2022-02-17 11:16:19
+LastEditTime: 2022-03-02 10:59:30
 FilePath: /core/core/app.py
 Description: 
 '''
@@ -18,7 +18,7 @@ from common.log import logger
 
 if __name__ == '__main__':
     rets = []
-    logger.info(plugins.gettitle.gettitle.get_title("www.baidu.com"))
+    # logger.info(plugins.gettitle.gettitle.get_title("http://www.baidu.com"))
     # for i in range(1):
     #     print(tasks.ping.delay().get())
     #     res = tasks.gettitle.delay("https://baidu.com")
@@ -28,3 +28,5 @@ if __name__ == '__main__':
 
     # for ret in rets:
     #     ret.get()
+    ret = tasks.hotfinger.delay("https://www.baidu.com").get()
+    logger.info(ret)

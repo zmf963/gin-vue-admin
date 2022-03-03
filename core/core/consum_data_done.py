@@ -7,7 +7,7 @@ Autor: zmf96
 Email: zmf96@qq.com
 Date: 2022-02-23 03:35:06
 LastEditors: zmf96
-LastEditTime: 2022-02-23 07:01:55
+LastEditTime: 2022-03-03 02:57:24
 FilePath: /core/core/consum_data_done.py
 Description: 
 '''
@@ -96,6 +96,31 @@ def consum_pysubdomain(data, task_obj):
         else:
             Domain(**tmp).Save()
 
+def consum_hotfinger(data, task_obj):
+    try:
+        tmp = data.get("domain").split("://")[1].split("/")
+        data["hostinfo"] = tmp[0]
+        data["target_id"] = task_obj.target_id
+        data["project_id"] = task_obj.project_id
+        data["products"] = data.pop("fingers")
+        tmp = data.get("hostinfo").split(":")
+        data["host"] = tmp[0]
+        if len(tmp) > 1:
+            port = tmp[1]
+        elif url.startswith("https://"):
+            port = "443"
+        else:
+            port = "80"
+        data["port"] = port
+        print(data)
+        if PortInfo.objects(hostinfo=data.get("hostinfo")).count() > 0:
+            PortInfo.objects(hostinfo=data.get(
+                    "hostinfo")).first().Update(**data)
+        else:
+            PortInfo(**data).Save()
+    except Exception as e:
+        logger.warning(task_obj)
+        logger.warning(e)
 
 def consum_data_done(tool_type, data, task_obj):
     if tool_type == "gettitle":
@@ -107,6 +132,8 @@ def consum_data_done(tool_type, data, task_obj):
         consum_beian2domain(data, task_obj)
     elif tool_type == "pysubdomain":
         consum_pysubdomain(data, task_obj)
+    elif tool_type == "hotfinger":
+        consum_hotfinger(data,task_obj)
     else:
         pass
 

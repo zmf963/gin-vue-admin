@@ -7,8 +7,8 @@ Autor: zmf96
 Email: zmf96@qq.com
 Date: 2022-02-11 16:45:45
 LastEditors: zmf96
-LastEditTime: 2022-02-24 05:00:36
-FilePath: /core/task_watch.py
+LastEditTime: 2022-03-03 03:09:05
+FilePath: /core/core/task_watch.py
 Description: 
 '''
 from concurrent.futures import ThreadPoolExecutor
@@ -58,6 +58,21 @@ def task_worker_run(tools, task):
                 res = tasks.pysubdomain.delay(host)
                 logger.info(res)
                 celery_task_ids.append(res.id)
+        elif tool == "hotfinger":
+            port_str = task.get("ports").strip()
+            if len(port_str) > 0:
+                port_list = port_str.split(",")
+            else:
+                port_list = ["80","443"]
+            print(port_list)
+            for host in task.get("hosts").split(","):
+                for port in port_list:
+                    if "443" in port:
+                        res = tasks.hotfinger.delay("https://"+host+":"+port)
+                    else:
+                        res = tasks.hotfinger.delay("http://"+host+":"+port)
+                    logger.info(res)
+                    celery_task_ids.append(res.id)
         else:
             logger.warning("Not support tool: %s" % tool)
 
@@ -79,7 +94,7 @@ def task_dely(tools, task):
     celery_task_ids = []
     tools_group_sort = [
         {"pysubdomain", "beian2domain"},
-        {"gettitle", "cdncheck"},
+        {"gettitle", "cdncheck","hotfinger"},
     ]
     current_tools = []
     for tool_group in tools_group_sort:
@@ -87,7 +102,7 @@ def task_dely(tools, task):
         if len(tmp) > 0:
             current_tools.append(tmp)
     celery_task_ids = []
-    for current_tool in current_tools[:-1]:
+    for current_tool in current_tools:
         current_ids = task_worker_run(current_tool, task)
         celery_task_ids.extend(current_ids)
 

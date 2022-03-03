@@ -7,7 +7,7 @@ Autor: zmf96
 Email: zmf96@qq.com
 Date: 2022-02-08 17:50:22
 LastEditors: zmf96
-LastEditTime: 2022-02-17 15:06:34
+LastEditTime: 2022-03-02 10:58:18
 FilePath: /core/core/plugins/gettitle/gettitle.py
 Description: 
 '''

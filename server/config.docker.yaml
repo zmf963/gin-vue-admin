@@ -160,3 +160,5 @@ cors:
 captcha-key:
   captcha-id: 7HShMuUuhsBkOMJEZRmx
   captcha: 712330
+rabbitmq:
+  rabbitmq-uri: amqp://hotpot:sCviEv334Vds@177.7.0.16:5672/

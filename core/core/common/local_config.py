@@ -7,8 +7,8 @@ Autor: zmf96
 Email: zmf96@qq.com
 Date: 2022-02-08 12:27:34
 LastEditors: zmf96
-LastEditTime: 2022-02-15 17:37:12
-FilePath: /core/local_config.py
+LastEditTime: 2022-03-04 03:03:04
+FilePath: /core/core/common/local_config.py
 Description: 本地配置文件
 '''
 
@@ -29,7 +29,7 @@ users = {
 FOFA_EMAIL = os.getenv("FOFA_EMAIL") if os.getenv(
     "FOFA_EMAIL") else "johnbrucel11t@gmail.com"
 FOFA_KEYS = os.getenv("FOFA_KEYS") if os.getenv(
-    "FOFA_KEYS") else "2832ba0411deb72467da4e17a0706d65"
+    "FOFA_KEYS") else "3eabbe56603ecd0d17b9d7ab6df9425a"
 
 apikeys = ["hoted2#@cVdAs"]
 

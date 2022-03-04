@@ -7,7 +7,7 @@ Autor: zmf96
 Email: zmf96@qq.com
 Date: 2022-02-11 16:45:45
 LastEditors: zmf96
-LastEditTime: 2022-03-03 03:09:05
+LastEditTime: 2022-03-04 03:24:11
 FilePath: /core/core/task_watch.py
 Description: 
 '''
@@ -73,6 +73,10 @@ def task_worker_run(tools, task):
                         res = tasks.hotfinger.delay("http://"+host+":"+port)
                     logger.info(res)
                     celery_task_ids.append(res.id)
+        elif tool == "fofainfo":
+            res = tasks.fofainfo.delay(task.get("keyword"))
+            logger.info(res)
+            celery_task_ids.append(res.id)
         else:
             logger.warning("Not support tool: %s" % tool)
 
@@ -94,6 +98,7 @@ def task_dely(tools, task):
     celery_task_ids = []
     tools_group_sort = [
         {"pysubdomain", "beian2domain"},
+        {"fofainfo"},
         {"gettitle", "cdncheck","hotfinger"},
     ]
     current_tools = []

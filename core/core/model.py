@@ -7,23 +7,24 @@ Autor: zmf96
 Email: zmf96@qq.com
 Date: 2022-02-15 16:49:13
 LastEditors: zmf96
-LastEditTime: 2022-02-17 19:13:08
-FilePath: /model.py
+LastEditTime: 2022-03-04 03:56:24
+FilePath: /core/core/model.py
 Description: 
 '''
 
 from enum import unique
 from importlib.metadata import requires
 from sqlite3 import InterfaceError, connect
-from mongoengine import connect, DynamicDocument,IntField, StringField, ListField,DictField,DateTimeField,BooleanField
+from mongoengine import connect, DynamicDocument, IntField, StringField, ListField, DictField, DateTimeField, BooleanField
 import datetime
 
 from common.config import MOTOR_URI
 
 connect(host=MOTOR_URI)
 
+
 class Task(DynamicDocument):
-    task_name = StringField(required=True,unique=True)
+    task_name = StringField(required=True, unique=True)
     hosts = StringField()
     ports = StringField()
     keyword = StringField()
@@ -40,20 +41,22 @@ class Task(DynamicDocument):
     delete_at = DateTimeField()
 
     meta = {'collection': 'pro_task'}
+
     def Update(self, **kwargs):
         self.update_at = datetime.datetime.utcnow()
         for k, v in kwargs.items():
             setattr(self, k, v)
         self.save()
-    
+
     def Save(self):
         self.update_at = datetime.datetime.utcnow()
         self.save()
 
+
 class PathInfo(DynamicDocument):
     hostinfo = StringField(required=True)
     path = StringField(requried=True)
-    url = StringField(required=True,unique=True)
+    url = StringField(required=True, unique=True)
     title = StringField()
     status = StringField()
     response_size = IntField()
@@ -66,12 +69,13 @@ class PathInfo(DynamicDocument):
     delete_at = DateTimeField()
 
     meta = {'collection': 'pro_path_info'}
+
     def Update(self, **kwargs):
         self.update_at = datetime.datetime.utcnow()
         for k, v in kwargs.items():
             setattr(self, k, v)
         self.save()
-    
+
     def Save(self):
         self.update_at = datetime.datetime.utcnow()
         self.save()
@@ -96,7 +100,6 @@ class Domain(DynamicDocument):
     target_id_is_verify = BooleanField(defalut=False)
     port_ids = ListField(StringField())
 
-
     tags = ListField(StringField())
     remarks = StringField()
     create_at = DateTimeField(default=datetime.datetime.now())
@@ -104,12 +107,13 @@ class Domain(DynamicDocument):
     delete_at = DateTimeField()
 
     meta = {'collection': 'pro_domain'}
+
     def Update(self, **kwargs):
         self.update_at = datetime.datetime.utcnow()
         for k, v in kwargs.items():
             setattr(self, k, v)
         self.save()
-    
+
     def Save(self):
         self.update_at = datetime.datetime.utcnow()
         self.save()
@@ -128,16 +132,16 @@ class Target(DynamicDocument):
     delete_at = DateTimeField()
 
     meta = {'collection': 'pro_target'}
+
     def Update(self, **kwargs):
         self.update_at = datetime.datetime.utcnow()
         for k, v in kwargs.items():
             setattr(self, k, v)
         self.save()
-    
+
     def Save(self):
         self.update_at = datetime.datetime.utcnow()
         self.save()
-
 
 
 class Project(DynamicDocument):
@@ -155,19 +159,22 @@ class Project(DynamicDocument):
     delete_at = DateTimeField()
 
     meta = {'collection': 'pro_project_info'}
+
     def Update(self, **kwargs):
         self.update_at = datetime.datetime.utcnow()
         for k, v in kwargs.items():
             setattr(self, k, v)
         self.save()
-    
+
     def Save(self):
         self.update_at = datetime.datetime.utcnow()
         self.save()
+
+
 class PortInfo(DynamicDocument):
     port = StringField(required=True)
     host = StringField(required=True)
-    hostinfo = StringField(required=True,unique=True)
+    hostinfo = StringField(required=True, unique=True)
     url = StringField()
     title = StringField()
     favicons = StringField()
@@ -187,12 +194,13 @@ class PortInfo(DynamicDocument):
     delete_at = DateTimeField()
 
     meta = {'collection': 'pro_port_info'}
+
     def Update(self, **kwargs):
         self.update_at = datetime.datetime.utcnow()
         for k, v in kwargs.items():
             setattr(self, k, v)
         self.save()
-    
+
     def Save(self):
         self.update_at = datetime.datetime.utcnow()
         self.save()

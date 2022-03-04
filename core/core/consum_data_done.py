@@ -7,13 +7,14 @@ Autor: zmf96
 Email: zmf96@qq.com
 Date: 2022-02-23 03:35:06
 LastEditors: zmf96
-LastEditTime: 2022-03-03 02:57:24
+LastEditTime: 2022-03-04 04:06:24
 FilePath: /core/core/consum_data_done.py
 Description: 
 '''
 
 from common.log import logger
 from model import Task, PathInfo, Domain, PortInfo
+
 
 def consum_gettile(data, task_obj):
     try:
@@ -96,6 +97,7 @@ def consum_pysubdomain(data, task_obj):
         else:
             Domain(**tmp).Save()
 
+
 def consum_hotfinger(data, task_obj):
     try:
         tmp = data.get("domain").split("://")[1].split("/")
@@ -107,7 +109,7 @@ def consum_hotfinger(data, task_obj):
         data["host"] = tmp[0]
         if len(tmp) > 1:
             port = tmp[1]
-        elif url.startswith("https://"):
+        elif data.get("domain").startswith("https://"):
             port = "443"
         else:
             port = "80"
@@ -115,12 +117,50 @@ def consum_hotfinger(data, task_obj):
         print(data)
         if PortInfo.objects(hostinfo=data.get("hostinfo")).count() > 0:
             PortInfo.objects(hostinfo=data.get(
-                    "hostinfo")).first().Update(**data)
+                "hostinfo")).first().Update(**data)
         else:
             PortInfo(**data).Save()
     except Exception as e:
         logger.warning(task_obj)
         logger.warning(e)
+
+
+def consum_fofainfo(data, task_obj):
+    if data.get("error") == False:
+        for result in data.get("results"):
+            if Domain.objects(domain=result[1]).count() > 0:
+                do = Domain.objects(domain=result[1]).first()
+                if result[3] not in do.ips:
+                    do.ips.append(result[3])
+                do.addr = " ".join(result[5:8])
+                do.cname = result[-1]
+                do.source = "fofa"
+                if result[-2] not in do.tags:
+                    do.tags.append(result[-2])
+                do.Save()
+            else:
+                Domain(domain=result[1], addr=" ".join(result[5:8]),
+                       cname=result[-1], ips=[result[3]], tags=[result[-2]], source="fofa").Save()
+            
+            if ":" in result[1]:
+                hostinfo = result[1]
+            else:
+                hostinfo = result[1] + result[4]
+            if PortInfo.objects(hostinfo=hostinfo).count() > 0:
+                pi = PortInfo.objects(hostinfo=hostinfo).first()
+                pi.title = result[0]
+                pi.port = result[4]
+                if result[2] == "":
+                    pi.host = result[3]
+                else:
+                    pi.host = result[2]
+                if result[-3] not in pi.products:
+                    pi.products.append(result[-3])
+                pi.Save()
+            else:
+                PortInfo(hostinfo=hostinfo, title=result[0], port=result[4], host=result[3], products=[result[-3]]).Save()
+            PortInfo.objects
+
 
 def consum_data_done(tool_type, data, task_obj):
     if tool_type == "gettitle":
@@ -133,7 +173,8 @@ def consum_data_done(tool_type, data, task_obj):
     elif tool_type == "pysubdomain":
         consum_pysubdomain(data, task_obj)
     elif tool_type == "hotfinger":
-        consum_hotfinger(data,task_obj)
+        consum_hotfinger(data, task_obj)
+    elif tool_type == "fofainfo":
+        consum_fofainfo(data, task_obj)
     else:
         pass
-

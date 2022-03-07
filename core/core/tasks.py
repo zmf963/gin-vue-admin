@@ -7,7 +7,7 @@ Autor: zmf96
 Email: zmf96@qq.com
 Date: 2022-02-08 17:40:59
 LastEditors: zmf96
-LastEditTime: 2022-03-04 03:20:39
+LastEditTime: 2022-03-07 03:01:06
 FilePath: /core/core/tasks.py
 Description: 
 '''
@@ -26,8 +26,9 @@ from plugins.cdncheck.check_cdn import CheckCDN
 from plugins.gettitle.gettitle import get_title
 from plugins.subdomain.beian2domain import run_beian2domain
 from plugins.subdomain.pysubdomain import run_pysubdomain
-from plugins.hotfinger.hotfinger.hotfinger import hotfinger_init,run_hotfinger
+from plugins.hotfinger.hotfinger.hotfinger import hotfinger_init, run_hotfinger
 from plugins.fofainfo.fofa import FofaApi
+from emailall.lib import run_emailall
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
@@ -132,6 +133,7 @@ def pysubdomain(domain):
     }
     return data
 
+
 @app.task
 def pysubdomain(domain):
     result = run_pysubdomain(domain)
@@ -141,6 +143,7 @@ def pysubdomain(domain):
         "status": "complete",
     }
     return data
+
 
 @app.task
 def hotfinger(domain):
@@ -153,6 +156,7 @@ def hotfinger(domain):
     }
     return data
 
+
 @app.task
 def fofainfo(keyword):
     fofaapi = FofaApi(config.FOFA_EMAIL, config.FOFA_KEYS)
@@ -163,6 +167,18 @@ def fofainfo(keyword):
         "status": "complete",
     }
     return data
+
+
+@app.task
+def emailall(domain):
+    result = run_emailall(domain)
+    data = {
+        "tool_type": "emailall",
+        "data": list(result),
+        "status": "complete",
+    }
+    return data
+
 
 @app.task
 def vscan(content):

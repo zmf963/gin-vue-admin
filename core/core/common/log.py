@@ -7,8 +7,8 @@ Autor: zmf96
 Email: zmf96@qq.com
 Date: 2022-02-08 17:43:49
 LastEditors: zmf96
-LastEditTime: 2022-02-17 10:46:56
-FilePath: /core/core/plugins/common/log.py
+LastEditTime: 2022-03-04 11:02:28
+FilePath: /core/core/common/log.py
 Description: 
 '''
 
@@ -36,14 +36,16 @@ logfile_fmt = '<light-green>{time:YYYY-MM-DD HH:mm:ss,SSS}</light-green> ' \
               '<blue>{line}</blue> - <level>{message}</level>'
 
 logger.remove()
-logger.level(name='TRACE', color='<cyan><bold>', icon='✏️')
-logger.level(name='DEBUG', color='<blue><bold>', icon='🐞 ')
-logger.level(name='INFOR', no=20, color='<green><bold>', icon='ℹ️')
-logger.level(name='QUITE', no=25, color='<green><bold>', icon='🤫 ')
-logger.level(name='ALERT', no=30, color='<yellow><bold>', icon='⚠️')
-logger.level(name='ERROR', color='<red><bold>', icon='❌️')
-logger.level(name='FATAL', no=50, color='<RED><bold>', icon='☠️')
-
+try:
+    logger.level(name='TRACE', color='<cyan><bold>', icon='✏️')
+    logger.level(name='DEBUG', color='<blue><bold>', icon='🐞 ')
+    logger.level(name='INFOR', no=20, color='<green><bold>', icon='ℹ️')
+    logger.level(name='QUITE', no=25, color='<green><bold>', icon='🤫 ')
+    logger.level(name='ALERT', no=30, color='<yellow><bold>', icon='⚠️')
+    logger.level(name='ERROR', color='<red><bold>', icon='❌️')
+    logger.level(name='FATAL', no=50, color='<RED><bold>', icon='☠️')
+except Exception as e:
+    pass
 # 命令终端日志级别默认为INFOR
 logger.add(sys.stderr, level='INFOR', format=stdout_fmt, enqueue=True)
 # 日志文件默认为级别为DEBUG

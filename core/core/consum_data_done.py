@@ -7,11 +7,12 @@ Autor: zmf96
 Email: zmf96@qq.com
 Date: 2022-02-23 03:35:06
 LastEditors: zmf96
-LastEditTime: 2022-03-04 04:06:24
+LastEditTime: 2022-03-07 03:00:40
 FilePath: /core/core/consum_data_done.py
 Description: 
 '''
 
+from core.model import EmailInfo
 from common.log import logger
 from model import Task, PathInfo, Domain, PortInfo
 
@@ -22,7 +23,6 @@ def consum_gettile(data, task_obj):
         data["hostinfo"] = tmp[0]
         data["path"] = "/"+"/".join(tmp[1:])
         data["target_id"] = task_obj.target_id
-        data["project_id"] = task_obj.project_id
         data["response_size"] = len(data.get("body"))
         if PathInfo.objects(url=data.get("url")).count() > 0:
             PathInfo.objects(url=data.get("url")).first().Update(**data)
@@ -55,7 +55,6 @@ def consum_cdncheck(data, task_obj):
     for item in data:
         logger.info(item)
         item["target_id"] = task_obj.target_id
-        item["project_id"] = task_obj.project_id
         cdn = 0
         if item.get("cdn") != '':
             cname = item.get("cdn")
@@ -75,8 +74,8 @@ def consum_cdncheck(data, task_obj):
 def consum_beian2domain(data, task_obj):
     for item in data:
         logger.info(item)
-        tmp = {"domain": item[1], "target_id": task_obj.target_id,
-               "project_id": task_obj.project_id, "tags": [item[0]]}
+        tmp = {"domain": item[1],
+               "target_id": task_obj.target_id, "tags": [item[0]]}
         if Domain.objects(domain=item[1]).count() > 0:
             do = Domain.objects(domain=item[1]).first()
             if item[0] not in do.tags:
@@ -89,8 +88,7 @@ def consum_beian2domain(data, task_obj):
 def consum_pysubdomain(data, task_obj):
     for k, v in data.items():
         logger.info(k, v)
-        tmp = {"domain": k, "target_id": task_obj.target_id,
-               "project_id": task_obj.project_id, "ips": v}
+        tmp = {"domain": k, "target_id": task_obj.target_id, "ips": v}
         if Domain.objects(domain=k).count() > 0:
             # do = Domain.objects(domain=k).first()
             pass
@@ -103,7 +101,6 @@ def consum_hotfinger(data, task_obj):
         tmp = data.get("domain").split("://")[1].split("/")
         data["hostinfo"] = tmp[0]
         data["target_id"] = task_obj.target_id
-        data["project_id"] = task_obj.project_id
         data["products"] = data.pop("fingers")
         tmp = data.get("hostinfo").split(":")
         data["host"] = tmp[0]
@@ -140,8 +137,10 @@ def consum_fofainfo(data, task_obj):
                 do.Save()
             else:
                 Domain(domain=result[1], addr=" ".join(result[5:8]),
-                       cname=result[-1], ips=[result[3]], tags=[result[-2]], source="fofa").Save()
-            
+                       cname=result[-1], ips=[result[3]], tags=[result[-2]],
+                       source="fofa", target_id=task_obj.target_id
+                       ).Save()
+
             if ":" in result[1]:
                 hostinfo = result[1]
             else:
@@ -158,8 +157,17 @@ def consum_fofainfo(data, task_obj):
                     pi.products.append(result[-3])
                 pi.Save()
             else:
-                PortInfo(hostinfo=hostinfo, title=result[0], port=result[4], host=result[3], products=[result[-3]]).Save()
+                PortInfo(hostinfo=hostinfo, title=result[0], port=result[4],
+                         host=result[3], products=[result[-3]],
+                         target_id=task_obj.target_id).Save()
             PortInfo.objects
+
+
+def consum_emailall(data, task_obj):
+    for email in data:
+        logger.info(email)
+        if EmailInfo.objects(email=email).count() == 0:
+            EmailInfo(email=email, target_id=task_obj.target_id).Save()
 
 
 def consum_data_done(tool_type, data, task_obj):
@@ -176,5 +184,5 @@ def consum_data_done(tool_type, data, task_obj):
         consum_hotfinger(data, task_obj)
     elif tool_type == "fofainfo":
         consum_fofainfo(data, task_obj)
-    else:
-        pass
+    elif tool_type == "emailall":
+        consum_emailall(data, task_obj)

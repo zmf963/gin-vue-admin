@@ -7,7 +7,7 @@ Autor: zmf96
 Email: zmf96@qq.com
 Date: 2022-02-15 16:49:13
 LastEditors: zmf96
-LastEditTime: 2022-03-04 03:56:24
+LastEditTime: 2022-03-07 02:50:08
 FilePath: /core/core/model.py
 Description: 
 '''
@@ -194,6 +194,30 @@ class PortInfo(DynamicDocument):
     delete_at = DateTimeField()
 
     meta = {'collection': 'pro_port_info'}
+
+    def Update(self, **kwargs):
+        self.update_at = datetime.datetime.utcnow()
+        for k, v in kwargs.items():
+            setattr(self, k, v)
+        self.save()
+
+    def Save(self):
+        self.update_at = datetime.datetime.utcnow()
+        self.save()
+
+
+class EmailInfo(DynamicDocument):
+    email = StringField(required=True, unique=True)
+    source = StringField(requried=True)
+    target_id = StringField(required=True)
+
+    tags = ListField(StringField())
+    remarks = StringField()
+    create_at = DateTimeField(default=datetime.datetime.now())
+    update_at = DateTimeField(default=datetime.datetime.now())
+    delete_at = DateTimeField()
+
+    meta = {'collection': 'pro_email_info'}
 
     def Update(self, **kwargs):
         self.update_at = datetime.datetime.utcnow()

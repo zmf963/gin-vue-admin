@@ -7,7 +7,7 @@ Autor: zmf96
 Email: zmf96@qq.com
 Date: 2022-02-11 16:45:45
 LastEditors: zmf96
-LastEditTime: 2022-03-04 03:24:11
+LastEditTime: 2022-03-07 03:00:57
 FilePath: /core/core/task_watch.py
 Description: 
 '''
@@ -63,7 +63,7 @@ def task_worker_run(tools, task):
             if len(port_str) > 0:
                 port_list = port_str.split(",")
             else:
-                port_list = ["80","443"]
+                port_list = ["80", "443"]
             print(port_list)
             for host in task.get("hosts").split(","):
                 for port in port_list:
@@ -77,9 +77,14 @@ def task_worker_run(tools, task):
             res = tasks.fofainfo.delay(task.get("keyword"))
             logger.info(res)
             celery_task_ids.append(res.id)
+        elif tool == "emailall":
+            for host in task.get("hosts").split(","):
+                logger.info(host)
+                res = tasks.emailall.delay(host)
+                logger.info(res)
+                celery_task_ids.append(res.id)
         else:
             logger.warning("Not support tool: %s" % tool)
-
 
     for task_id in celery_task_ids:
         try:
@@ -87,7 +92,7 @@ def task_worker_run(tools, task):
             logger.info(res)
             task_obj = Task.objects(id=task.get("_id")).first()
             consum_data_done(res.get("tool_type"),
-                                 res.get("data"), task_obj)
+                             res.get("data"), task_obj)
         except Exception as e:
             logger.warning(e)
     return celery_task_ids
@@ -99,7 +104,8 @@ def task_dely(tools, task):
     tools_group_sort = [
         {"pysubdomain", "beian2domain"},
         {"fofainfo"},
-        {"gettitle", "cdncheck","hotfinger"},
+        {"gettitle", "cdncheck", "hotfinger"},
+        {"emailall"}
     ]
     current_tools = []
     for tool_group in tools_group_sort:
@@ -113,6 +119,7 @@ def task_dely(tools, task):
 
     return celery_task_ids
 
+
 def worker(task):
     celery_task_ids = []
     tools = task.get("tools", [])
@@ -123,7 +130,8 @@ def worker(task):
         logger.info("celery_task_ids: %s" % celery_task_ids)
         task_obj.Update(status="complete",
                         celery_task_ids=task.get("celery_task_ids"))
-    
+
+
 def callback(ch, method, properties, body):
     logger.info(body)
     if properties.type == "task":
@@ -136,7 +144,7 @@ def callback(ch, method, properties, body):
 
 def start_done():
     channel.basic_qos(prefetch_count=1)
-    channel.basic_consume("server:default", callback,False)
+    channel.basic_consume("server:default", callback, False)
     print(' [*] Waiting for messages. To exit press CTRL+C')
     channel.start_consuming()
 

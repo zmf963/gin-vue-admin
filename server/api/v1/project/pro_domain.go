@@ -4,6 +4,7 @@ import (
     "github.com/flipped-aurora/gin-vue-admin/server/global"
     "github.com/flipped-aurora/gin-vue-admin/server/model/project"
     projectReq "github.com/flipped-aurora/gin-vue-admin/server/model/project/request"
+    projectResp "github.com/flipped-aurora/gin-vue-admin/server/model/project/response"
     "github.com/flipped-aurora/gin-vue-admin/server/model/common/request"
     "github.com/flipped-aurora/gin-vue-admin/server/model/common/response"
     "github.com/gin-gonic/gin"
@@ -88,7 +89,7 @@ func (domainApi *DomainApi) DeleteDomainByIds(c *gin.Context) {
 // @Success 200 {string} string "{"success":true,"data":{},"msg":"更新成功"}"
 // @Router /domain/updateDomain [put]
 func (domainApi *DomainApi) UpdateDomain(c *gin.Context) {
-    var domain project.Domain
+    var domain projectResp.RespDomain
     _ = c.ShouldBindJSON(&domain)
     if err := domainService.UpdateDomain(domain); err != nil {
         global.GVA_LOG.Error("更新失败!", zap.Error(err))

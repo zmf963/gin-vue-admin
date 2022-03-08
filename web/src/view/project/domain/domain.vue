@@ -58,16 +58,16 @@
           <el-input v-model="searchInfo.source" placeholder="搜索条件" />
         </el-form-item>
 
-        <el-form-item label="TargetID">
+        <el-form-item label="TargetName">
           <el-input v-model="searchInfo.target_id" placeholder="搜索条件" />
         </el-form-item>
 
-        <el-form-item label="归属目标是否确认" prop="target_id_is_verify">
+        <!-- <el-form-item label="归属目标是否确认" prop="target_id_is_verify">
           <el-select v-model="searchInfo.target_id_is_verify" clearable placeholder="请选择">
-            <el-option key="true" label="是" value="true"></el-option>
-            <el-option key="false" label="否" value="false"></el-option>
+            <el-option key="true" label="是" value="true" />
+            <el-option key="false" label="否" value="false" />
           </el-select>
-        </el-form-item>
+        </el-form-item> -->
 
         <el-form-item label="端口ID列表">
           <el-input v-model="searchInfo.port_ids" placeholder="搜索条件" />
@@ -196,8 +196,7 @@
           <el-input v-model="formData.os" clearable placeholder="请输入" />
         </el-form-item>
 
-        <el-form-item label="whois信息:"></el-form-item>
-
+        <el-form-item label="whois信息:" />
         <el-form-item label="是否存活:">
           <el-select v-model="formData.alive" placeholder="请选择" style="width:100%" clearable>
             <el-option
@@ -216,8 +215,8 @@
         <el-form-item label="CDN:">
           <el-select v-model="formData.cdn" placeholder="请选择" style="width:100%" clearable>
             <el-option
-              v-for="(item, key) in intOptions"
-              :key="key"
+              v-for="item in intOptions"
+              :key="item.value"
               :label="item.label"
               :value="item.value"
             />
@@ -248,8 +247,8 @@
           <el-input v-model="formData.source" clearable placeholder="请输入" />
         </el-form-item>
 
-        <el-form-item label="TargetID:">
-          <el-input v-model="formData.target_id" clearable placeholder="请输入" />
+        <el-form-item label="TargetName:">
+          <el-input v-model="formData.target_name" clearable placeholder="请输入" />
         </el-form-item>
 
         <el-form-item label="归属目标是否确认:">
@@ -260,7 +259,7 @@
             active-text="是"
             inactive-text="否"
             clearable
-          ></el-switch>
+          />
         </el-form-item>
 
         <el-form-item label="端口ID列表:">
@@ -300,13 +299,13 @@ import {
   getDomainList
 } from '@/api/domain'
 
+import { getTargetList } from '@/api/target'
 // 全量引入格式化工具 请按需保留
 import { formatDate, formatBoolean, filterDict } from '@/utils/format'
 import { ElMessage, ElMessageBox } from 'element-plus'
 import { ref } from 'vue'
 
 // 自动化生成的字典（可能为空）以及字段
-
 
 const formData = ref({
   domain: "",
@@ -323,7 +322,7 @@ const formData = ref({
   isp: "",
   source: "",
   target_id: "",
-  target_id_is_verify: false,
+  target_id_is_verify: undefined,
   port_ids: [],
 })
 
@@ -344,7 +343,7 @@ const onSubmit = () => {
   page.value = 1
   pageSize.value = 10
 
-  if (searchInfo.value.target_id_is_verify === '') {
+  if (searchInfo.value.target_id_is_verify === undefined) {
     searchInfo.value.target_id_is_verify = null
   }
 
@@ -365,6 +364,13 @@ const handleCurrentChange = (val) => {
 
 // 查询
 const getTableData = async () => {
+  console.log(searchInfo.value.target_id)
+  if (searchInfo.value.target_id !== '') {
+    const targetData = await getTargetList({ page: 1, pageSize: 1, target_name: searchInfo.value.target_id })
+    if (targetData.data.list.length > 0) {
+      searchInfo.value.target_id = targetData.data.list[0].target_id
+    }
+  }
   const table = await getDomainList({ page: page.value, pageSize: pageSize.value, ...searchInfo.value })
   if (table.code === 0) {
     tableData.value = table.data.list
@@ -377,7 +383,6 @@ const getTableData = async () => {
 getTableData()
 
 // ============== 表格控制部分结束 ===============
-
 
 // 多选数据
 const multipleSelection = ref([])
@@ -485,7 +490,7 @@ const closeDialog = () => {
     isp: "",
     source: "",
     target_id: "",
-    target_id_is_verify: false,
+    target_id_is_verify: undefined,
     port_ids: [],
   }
 }
@@ -512,6 +517,16 @@ const enterDialog = async () => {
     getTableData()
   }
 }
+const intOptions = [
+  {
+    value: '0',
+    label: '否'
+  },
+  {
+    value: '1',
+    label: '是'
+  }
+]
 </script>
 
 <style>

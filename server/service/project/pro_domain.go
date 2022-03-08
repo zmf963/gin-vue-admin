@@ -66,9 +66,18 @@ func (domainService *DomainService) DeleteDomainByIds(ids []primitive.ObjectID) 
 //@description: 根据id更新Domain
 //@param: domain project.Domain
 //@return: err error
-func (domainService *DomainService) UpdateDomain(domain project.Domain) (err error) {
+func (domainService *DomainService) UpdateDomain(domain response.RespDomain) (err error) {
 	global.GVA_LOG.Debug("[UpdateDomain]", zap.Any("domain", domain))
 	domain.UpdateAt = time.Now().Local()
+	if domain.TargetName != "" {
+		var _target_name project.Target
+		err = global.Mongo_DB.Collection("pro_target").FindOne(context.TODO(), bson.M{"target_name": domain.TargetName}).Decode(&_target_name)
+		if err != nil {
+			global.GVA_LOG.Error("[UpdateDomain]", zap.Error(err))
+			return err
+		}
+		domain.TargetId = _target_name.ID_
+	}
 	result, err := global.Mongo_DB.Collection("pro_domain").UpdateOne(context.TODO(), bson.M{"_id": domain.ID_}, bson.M{"$set": domain})
 	global.GVA_LOG.Debug("[UpdateDomain]", zap.Any("result", result), zap.Any("err", err))
 	return err
@@ -79,10 +88,13 @@ func (domainService *DomainService) UpdateDomain(domain project.Domain) (err err
 //@description: 根据id获取Domain
 //@param: _id primitive.ObjectID
 //@return: err error,  domain project.Domain
-func (domainService *DomainService) GetDomainById(_id primitive.ObjectID) (dom project.Domain, err error) {
+func (domainService *DomainService) GetDomainById(_id primitive.ObjectID) (dom response.RespDomain, err error) {
 	global.GVA_LOG.Debug("[GetDomainById]", zap.Any("id", _id))
 	err = global.Mongo_DB.Collection("pro_domain").FindOne(context.TODO(), bson.M{"_id": _id}).Decode(&dom)
 	global.GVA_LOG.Debug("[GetDomainById]", zap.Any("dom", dom), zap.Any("err", err))
+	var _target_name project.Target
+	err = global.Mongo_DB.Collection("pro_target").FindOne(context.TODO(), bson.M{"_id": dom.TargetId}).Decode(&_target_name)
+	dom.TargetName = _target_name.TargetName
 	return dom, err
 }
 
@@ -156,7 +168,7 @@ func (domainService *DomainService) GetDomainInfoList(dom project.Domain, pageIn
 		bson.M{"$skip": offset},
 		bson.M{"$limit": limit},
 		bson.M{"$lookup": bson.M{"from": "pro_target", "localField": "target_id", "foreignField": "_id", "as": "pro_target"}},
-		bson.M{"$project": bson.M{"domain": 1, "ips": 1, "hostnames": 1, "whois": 1, "alive": 1, "cdn": 1, "target_id": 1, "port_ids": 1, "tags": 1, "create_at": 1, "update_at": 1, "delete_at": 1, "target_name": "$pro_target.target_name"}},
+		bson.M{"$project": bson.M{"domain": 1, "ips": 1, "hostnames": 1,"os":1, "whois": 1, "alive": 1, "cname":1,"cdn": 1,"cird":1,"asn":1,"org":1,"addr":1,"isp":1,"source":1, "target_id": 1, "target_id_is_verify":1, "port_ids": 1, "tags": 1, "create_at": 1, "update_at": 1, "delete_at": 1, "target_name": "$pro_target.target_name"}},
 		bson.M{"$unwind": bson.M{"path": "$target_name", "preserveNullAndEmptyArrays": false}},
 	}
 	if order != "" {
@@ -168,7 +180,6 @@ func (domainService *DomainService) GetDomainInfoList(dom project.Domain, pageIn
 	} else {
 		pipline = append(pipline, bson.M{"$sort": bson.M{"update_at": -1}})
 	}
-
 
 	cur, err := global.Mongo_DB.Collection("pro_domain").Aggregate(context.TODO(), pipline)
 	if err != nil {

@@ -2,10 +2,11 @@ package project
 
 import (
 	"context"
-	"time"
 	"github.com/flipped-aurora/gin-vue-admin/server/global"
-	"github.com/flipped-aurora/gin-vue-admin/server/model/project"
 	"github.com/flipped-aurora/gin-vue-admin/server/model/common/request"
+	"github.com/flipped-aurora/gin-vue-admin/server/model/project/response"
+	"github.com/flipped-aurora/gin-vue-admin/server/model/project"
+	"time"
 	//projectReq "github.com/flipped-aurora/gin-vue-admin/server/model/project/request"
 
 	"go.mongodb.org/mongo-driver/bson"
@@ -18,7 +19,6 @@ type DomainService struct {
 }
 
 var DomainServiceApp = new(DomainService)
-
 
 //@author:
 //@function: CreateDomain
@@ -43,7 +43,7 @@ func (domainService *DomainService) CreateDomain(domain project.Domain) (err err
 //@function: DeleteDomain
 //@description: 删除Domain
 //@param: id
-func (domainService *DomainService)DeleteDomain(_id primitive.ObjectID) (err error) {
+func (domainService *DomainService) DeleteDomain(_id primitive.ObjectID) (err error) {
 	global.GVA_LOG.Debug("[DeleteDomain]", zap.Any("id", _id))
 	result, err := global.Mongo_DB.Collection("pro_domain").DeleteOne(context.TODO(), bson.M{"_id": _id})
 	global.GVA_LOG.Debug("[DeleteDomain]", zap.Any("result", result), zap.Any("err", err))
@@ -55,7 +55,7 @@ func (domainService *DomainService)DeleteDomain(_id primitive.ObjectID) (err err
 //@description: 批量删除Domain
 //@param: ids []string
 //@return: err error
-func (domainService *DomainService)DeleteDomainByIds(ids []primitive.ObjectID) (err error) {
+func (domainService *DomainService) DeleteDomainByIds(ids []primitive.ObjectID) (err error) {
 	global.GVA_LOG.Debug("[DeleteDomainByIds]", zap.Any("ids", ids))
 	result, err := global.Mongo_DB.Collection("pro_domain").DeleteMany(context.TODO(), bson.M{"_id": bson.M{"$in": ids}})
 	global.GVA_LOG.Debug("[DeleteDomainByIds]", zap.Any("result", result), zap.Any("err", err))
@@ -67,14 +67,13 @@ func (domainService *DomainService)DeleteDomainByIds(ids []primitive.ObjectID) (
 //@description: 根据id更新Domain
 //@param: domain project.Domain
 //@return: err error
-func (domainService *DomainService)UpdateDomain(domain project.Domain) (err error) {
+func (domainService *DomainService) UpdateDomain(domain project.Domain) (err error) {
 	global.GVA_LOG.Debug("[UpdateDomain]", zap.Any("domain", domain))
 	domain.UpdateAt = time.Now().Local()
 	result, err := global.Mongo_DB.Collection("pro_domain").UpdateOne(context.TODO(), bson.M{"_id": domain.ID_}, bson.M{"$set": domain})
 	global.GVA_LOG.Debug("[UpdateDomain]", zap.Any("result", result), zap.Any("err", err))
 	return err
 }
-
 
 //@author:
 //@function: GetDomainById
@@ -88,7 +87,6 @@ func (domainService *DomainService) GetDomainById(_id primitive.ObjectID) (dom p
 	return dom, err
 }
 
-
 //@author:
 //@function: GetDomainInfoList
 //@description: 分页获取数据,
@@ -97,7 +95,7 @@ func (domainService *DomainService) GetDomainById(_id primitive.ObjectID) (dom p
 func (domainService *DomainService) GetDomainInfoList(dom project.Domain, pageInfo request.PageInfo, order string, desc bool) (list interface{}, total int64, err error) {
 	limit := pageInfo.PageSize
 	offset := pageInfo.PageSize * (pageInfo.Page - 1)
-	var retList []project.Domain
+	var retList []response.RespDomain
 	var findOptions = options.Find()
 	findOptions.SetLimit(int64(limit))
 	findOptions.SetSkip(int64(offset))
@@ -110,60 +108,67 @@ func (domainService *DomainService) GetDomainInfoList(dom project.Domain, pageIn
 	}
 	filter := bson.M{}
 	// TODO 处理搜索条件
-	
+
 	if dom.Domain != "" {
-		filter["domain"] = bson.M{"$regex": dom.Domain }
+		filter["domain"] = bson.M{"$regex": dom.Domain}
 	}
 	if len(dom.Ips) > 0 {
-		filter["ips"] = bson.M{"$in": dom.Ips }
+		filter["ips"] = bson.M{"$in": dom.Ips}
 	}
 	if len(dom.Hostnames) > 0 {
-		filter["hostnames"] = bson.M{"$in": dom.Hostnames }
+		filter["hostnames"] = bson.M{"$in": dom.Hostnames}
 	}
 	if dom.Os != "" {
-		filter["os"] = bson.M{"$regex": dom.Os }
+		filter["os"] = bson.M{"$regex": dom.Os}
 	}
 	if dom.Cname != "" {
-		filter["cname"] = bson.M{"$regex": dom.Cname }
+		filter["cname"] = bson.M{"$regex": dom.Cname}
 	}
 	if dom.Cidr != "" {
-		filter["cidr"] = bson.M{"$regex": dom.Cidr }
+		filter["cidr"] = bson.M{"$regex": dom.Cidr}
 	}
 	if dom.Asn != "" {
-		filter["asn"] = bson.M{"$regex": dom.Asn }
+		filter["asn"] = bson.M{"$regex": dom.Asn}
 	}
 	if dom.Org != "" {
-		filter["org"] = bson.M{"$regex": dom.Org }
+		filter["org"] = bson.M{"$regex": dom.Org}
 	}
 	if dom.Addr != "" {
-		filter["addr"] = bson.M{"$regex": dom.Addr }
+		filter["addr"] = bson.M{"$regex": dom.Addr}
 	}
 	if dom.Isp != "" {
-		filter["isp"] = bson.M{"$regex": dom.Isp }
+		filter["isp"] = bson.M{"$regex": dom.Isp}
 	}
 	if dom.Source != "" {
-		filter["source"] = bson.M{"$regex": dom.Source }
+		filter["source"] = bson.M{"$regex": dom.Source}
 	}
-	if dom.TargetId != "" {
-		filter["target_id"] = bson.M{"$regex": dom.TargetId }
+	if !dom.TargetId.IsZero(){
+		filter["target_id"] = bson.M{"$regex": dom.TargetId}
 	}
 	if len(dom.PortIds) > 0 {
-		filter["port_ids"] = bson.M{"$in": dom.PortIds }
+		filter["port_ids"] = bson.M{"$in": dom.PortIds}
 	}
 
 	if len(dom.Tags) > 0 {
-		filter["tags"] = bson.M{"$in":dom.Tags }
+		filter["tags"] = bson.M{"$in": dom.Tags}
 	}
 	if dom.Remarks != "" {
-		filter["remarks"] = bson.M{"$regex":dom.Remarks}
+		filter["remarks"] = bson.M{"$regex": dom.Remarks}
 	}
-
+	
 	total, err = global.Mongo_DB.Collection("pro_domain").CountDocuments(context.TODO(), filter)
 	if err != nil {
 		global.GVA_LOG.Error("[GetDomainInfoList]", zap.Error(err))
 		return retList, total, err
 	}
-	cur, err := global.Mongo_DB.Collection("pro_domain").Find(context.TODO(), filter, findOptions)
+
+	pipline := []interface{}{
+		bson.M{"$lookup":bson.M{"from": "pro_target", "localField": "target_id", "foreignField": "_id", "as": "pro_target"}},
+		bson.M{"$project": bson.M{"domain" : 1.0, "ips" : 1, "hostnames" : 1, "whois" : 1, "alive" : 1, "cdn" : 1, "target_id" : 1, "port_ids" : 1, "tags" : 1, "create_at" : 1, "update_at" : 1, "delete_at" : 1, "target_name" : "$pro_target.target_name"}},
+		bson.M{"$unwind":bson.M{"path": "$target_name", "preserveNullAndEmptyArrays": false}},
+	}
+	global.GVA_LOG.Debug("[GetDomainInfoList]", zap.Any("pipline", pipline))
+	cur, err := global.Mongo_DB.Collection("pro_domain").Aggregate(context.TODO(), pipline)
 	if err != nil {
 		return nil, 0, err
 	}

@@ -7,7 +7,7 @@ Autor: zmf96
 Email: zmf96@qq.com
 Date: 2022-02-23 03:35:06
 LastEditors: zmf96
-LastEditTime: 2022-03-07 03:00:40
+LastEditTime: 2022-03-07 10:42:29
 FilePath: /core/core/consum_data_done.py
 Description: 
 '''
@@ -15,7 +15,7 @@ Description:
 from core.model import EmailInfo
 from common.log import logger
 from model import Task, PathInfo, Domain, PortInfo
-
+from bson.objectid import ObjectId
 
 def consum_gettile(data, task_obj):
     try:
@@ -88,7 +88,8 @@ def consum_beian2domain(data, task_obj):
 def consum_pysubdomain(data, task_obj):
     for k, v in data.items():
         logger.info(k, v)
-        tmp = {"domain": k, "target_id": task_obj.target_id, "ips": v}
+        print(task_obj.target_id)
+        tmp = {"domain": k, "target_id": ObjectId(task_obj.target_id), "ips": v}
         if Domain.objects(domain=k).count() > 0:
             # do = Domain.objects(domain=k).first()
             pass

@@ -7,7 +7,7 @@ Autor: zmf96
 Email: zmf96@qq.com
 Date: 2022-02-15 16:49:13
 LastEditors: zmf96
-LastEditTime: 2022-03-07 02:50:08
+LastEditTime: 2022-03-07 09:00:17
 FilePath: /core/core/model.py
 Description: 
 '''
@@ -15,7 +15,7 @@ Description:
 from enum import unique
 from importlib.metadata import requires
 from sqlite3 import InterfaceError, connect
-from mongoengine import connect, DynamicDocument, IntField, StringField, ListField, DictField, DateTimeField, BooleanField
+from mongoengine import connect, DynamicDocument, IntField, StringField, ListField, DictField, DateTimeField, BooleanField, ObjectIdField
 import datetime
 
 from common.config import MOTOR_URI
@@ -96,7 +96,7 @@ class Domain(DynamicDocument):
     addr = StringField()
     isp = StringField()
     source = StringField()
-    target_id = StringField()
+    target_id = ObjectIdField()
     target_id_is_verify = BooleanField(defalut=False)
     port_ids = ListField(StringField())
 

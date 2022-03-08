@@ -4,7 +4,7 @@
  * @Email: zmf96@qq.com
  * @Date: 2022-02-01 21:23:50
  * @LastEditors: zmf96
- * @LastEditTime: 2022-02-15 11:57:13
+ * @LastEditTime: 2022-03-07 09:52:12
  * @FilePath: /server/model/project/pro_task.go
  * @Description:
  */
@@ -21,16 +21,16 @@ import (
 type Task struct {
 	ID_ primitive.ObjectID `json:"_id" bson:"_id"`
 
-	TaskName  string                 `json:"task_name" bson:"task_name"`
-	Hosts     string                 `json:"hosts" bson:"hosts"`
-	Ports     string                 `json:"ports" bson:"ports"`
-	Keyword   string                 `json:"keyword" bson:"keyword"`
-	Tools     []string               `json:"tools" bson:"tools"`
-	ToolExt   map[string]interface{} `json:"tool_ext" bson:"tool_ext"`
-	Status    string                 `json:"status" bson:"status"`
-	ProjectId string                 `json:"project_id" bson:"project_id"`
-	TargetId  string                 `json:"target_id" bson:"target_id"`
-	CeleryTaskIds []string            `json:"celery_task_ids" bson:"celery_task_ids"`
+	TaskName      string                 `json:"task_name" bson:"task_name"`
+	Hosts         string                 `json:"hosts" bson:"hosts"`
+	Ports         string                 `json:"ports" bson:"ports"`
+	Keyword       string                 `json:"keyword" bson:"keyword"`
+	Tools         []string               `json:"tools" bson:"tools"`
+	ToolExt       map[string]interface{} `json:"tool_ext" bson:"tool_ext"`
+	Status        string                 `json:"status" bson:"status"`
+	ProjectId     string                 `json:"project_id" bson:"project_id"`
+	TargetId      string                 `json:"target_id" bson:"target_id"`
+	CeleryTaskIds []string               `json:"celery_task_ids" bson:"celery_task_ids"`
 
 	Tags     []string  `json:"tags" bson:"tags"`
 	Remarks  string    `json:"remarks" bson:"remarks"`

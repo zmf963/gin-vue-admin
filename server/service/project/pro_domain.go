@@ -4,14 +4,13 @@ import (
 	"context"
 	"github.com/flipped-aurora/gin-vue-admin/server/global"
 	"github.com/flipped-aurora/gin-vue-admin/server/model/common/request"
-	"github.com/flipped-aurora/gin-vue-admin/server/model/project/response"
 	"github.com/flipped-aurora/gin-vue-admin/server/model/project"
+	"github.com/flipped-aurora/gin-vue-admin/server/model/project/response"
 	"time"
 	//projectReq "github.com/flipped-aurora/gin-vue-admin/server/model/project/request"
 
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
-	"go.mongodb.org/mongo-driver/mongo/options"
 	"go.uber.org/zap"
 )
 
@@ -96,16 +95,7 @@ func (domainService *DomainService) GetDomainInfoList(dom project.Domain, pageIn
 	limit := pageInfo.PageSize
 	offset := pageInfo.PageSize * (pageInfo.Page - 1)
 	var retList []response.RespDomain
-	var findOptions = options.Find()
-	findOptions.SetLimit(int64(limit))
-	findOptions.SetSkip(int64(offset))
-	if order != "" {
-		_desc := 1
-		if !desc {
-			_desc = -1
-		}
-		findOptions.SetSort(map[string]int{order: _desc})
-	}
+
 	filter := bson.M{}
 	// TODO 处理搜索条件
 
@@ -142,20 +132,19 @@ func (domainService *DomainService) GetDomainInfoList(dom project.Domain, pageIn
 	if dom.Source != "" {
 		filter["source"] = bson.M{"$regex": dom.Source}
 	}
-	if !dom.TargetId.IsZero(){
+	if !dom.TargetId.IsZero() {
 		filter["target_id"] = bson.M{"$regex": dom.TargetId}
 	}
 	if len(dom.PortIds) > 0 {
 		filter["port_ids"] = bson.M{"$in": dom.PortIds}
 	}
-
 	if len(dom.Tags) > 0 {
 		filter["tags"] = bson.M{"$in": dom.Tags}
 	}
 	if dom.Remarks != "" {
 		filter["remarks"] = bson.M{"$regex": dom.Remarks}
 	}
-	
+
 	total, err = global.Mongo_DB.Collection("pro_domain").CountDocuments(context.TODO(), filter)
 	if err != nil {
 		global.GVA_LOG.Error("[GetDomainInfoList]", zap.Error(err))
@@ -163,11 +152,24 @@ func (domainService *DomainService) GetDomainInfoList(dom project.Domain, pageIn
 	}
 
 	pipline := []interface{}{
-		bson.M{"$lookup":bson.M{"from": "pro_target", "localField": "target_id", "foreignField": "_id", "as": "pro_target"}},
-		bson.M{"$project": bson.M{"domain" : 1.0, "ips" : 1, "hostnames" : 1, "whois" : 1, "alive" : 1, "cdn" : 1, "target_id" : 1, "port_ids" : 1, "tags" : 1, "create_at" : 1, "update_at" : 1, "delete_at" : 1, "target_name" : "$pro_target.target_name"}},
-		bson.M{"$unwind":bson.M{"path": "$target_name", "preserveNullAndEmptyArrays": false}},
+		bson.M{"$match": filter},
+		bson.M{"$skip": offset},
+		bson.M{"$limit": limit},
+		bson.M{"$lookup": bson.M{"from": "pro_target", "localField": "target_id", "foreignField": "_id", "as": "pro_target"}},
+		bson.M{"$project": bson.M{"domain": 1, "ips": 1, "hostnames": 1, "whois": 1, "alive": 1, "cdn": 1, "target_id": 1, "port_ids": 1, "tags": 1, "create_at": 1, "update_at": 1, "delete_at": 1, "target_name": "$pro_target.target_name"}},
+		bson.M{"$unwind": bson.M{"path": "$target_name", "preserveNullAndEmptyArrays": false}},
 	}
-	global.GVA_LOG.Debug("[GetDomainInfoList]", zap.Any("pipline", pipline))
+	if order != "" {
+		_desc := 1
+		if !desc {
+			_desc = -1
+		}
+		pipline = append(pipline, bson.M{"$sort": bson.M{order: _desc}})
+	} else {
+		pipline = append(pipline, bson.M{"$sort": bson.M{"update_at": -1}})
+	}
+
+
 	cur, err := global.Mongo_DB.Collection("pro_domain").Aggregate(context.TODO(), pipline)
 	if err != nil {
 		return nil, 0, err

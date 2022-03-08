@@ -21,29 +21,19 @@
           <el-input v-model="searchInfo.remarks" placeholder="搜索条件" />
         </el-form-item>
         <el-form-item>
-          <el-button size="mini" type="primary" icon="search" @click="onSubmit"
-            >查询</el-button
-          >
-          <el-button size="mini" icon="refresh" @click="onReset"
-            >重置</el-button
-          >
+          <el-button size="mini" type="primary" icon="search" @click="onSubmit">查询</el-button>
+          <el-button size="mini" icon="refresh" @click="onReset">重置</el-button>
         </el-form-item>
       </el-form>
     </div>
     <div class="gva-table-box">
       <div class="gva-btn-list">
-        <el-button size="mini" type="primary" icon="plus" @click="openDialog"
-          >新增</el-button
-        >
+        <el-button size="mini" type="primary" icon="plus" @click="openDialog">新增</el-button>
         <el-popover v-model:visible="deleteVisible" placement="top" width="160">
           <p>确定要删除吗？</p>
           <div style="text-align: right; margin-top: 8px">
-            <el-button size="mini" type="text" @click="deleteVisible = false"
-              >取消</el-button
-            >
-            <el-button size="mini" type="primary" @click="onDelete"
-              >确定</el-button
-            >
+            <el-button size="mini" type="text" @click="deleteVisible = false">取消</el-button>
+            <el-button size="mini" type="primary" @click="onDelete">确定</el-button>
           </div>
           <template #reference>
             <el-button
@@ -51,8 +41,7 @@
               size="mini"
               style="margin-left: 10px"
               :disabled="!multipleSelection.length"
-              >删除</el-button
-            >
+            >删除</el-button>
           </template>
         </el-popover>
       </div>
@@ -66,19 +55,9 @@
       >
         <el-table-column type="selection" width="55" />
 
-        <el-table-column
-          align="left"
-          label="指纹id"
-          prop="_id"
-          width="210"
-        />
+        <el-table-column align="left" label="指纹id" prop="_id" width="210" />
 
-        <el-table-column
-          align="left"
-          label="指纹名称"
-          prop="name"
-          width="120"
-        />
+        <el-table-column align="left" label="指纹名称" prop="name" width="120" />
 
         <el-table-column
           align="left"
@@ -88,21 +67,11 @@
           :formatter="formatterContent"
         />
 
-        <el-table-column
-          align="left"
-          label="关联漏洞"
-          prop="link_vul"
-          width="120"
-        />
+        <el-table-column align="left" label="关联漏洞" prop="link_vul" width="120" />
 
         <el-table-column align="left" label="标签" prop="tags" width="120" />
         <el-table-column align="left" label="备注" prop="remarks" width="120" />
-        <el-table-column
-          align="left"
-          label="更新时间"
-          prop="update_at"
-          width="200"
-        />
+        <el-table-column align="left" label="更新时间" prop="update_at" width="200" />
         <el-table-column align="left" fixed="right" label="按钮组">
           <template #default="scope">
             <el-button
@@ -111,15 +80,8 @@
               size="small"
               class="table-button"
               @click="updateFingerInfoFunc(scope.row)"
-              >编辑</el-button
-            >
-            <el-button
-              type="text"
-              icon="delete"
-              size="mini"
-              @click="deleteRow(scope.row)"
-              >删除</el-button
-            >
+            >编辑</el-button>
+            <el-button type="text" icon="delete" size="mini" @click="deleteRow(scope.row)">删除</el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -135,11 +97,7 @@
         />
       </div>
     </div>
-    <el-dialog
-      v-model="dialogFormVisible"
-      :before-close="closeDialog"
-      title="弹窗操作"
-    >
+    <el-dialog v-model="dialogFormVisible" :before-close="closeDialog" title="弹窗操作">
       <el-form :model="formData" label-position="right" label-width="80px">
         <el-form-item label="指纹名称:">
           <el-input v-model="formData.name" clearable placeholder="请输入" />
@@ -156,11 +114,7 @@
         </el-form-item>
 
         <el-form-item label="关联漏洞:">
-          <el-input
-            v-model="formData.link_vul"
-            clearable
-            placeholder="请选择"
-          />
+          <el-input v-model="formData.link_vul" clearable placeholder="请选择" />
         </el-form-item>
 
         <el-form-item label="标签:">
@@ -173,9 +127,7 @@
       <template #footer>
         <div class="dialog-footer">
           <el-button size="small" @click="closeDialog">取 消</el-button>
-          <el-button size="small" type="primary" @click="enterDialog"
-            >确 定</el-button
-          >
+          <el-button size="small" type="primary" @click="enterDialog">确 定</el-button>
         </div>
       </template>
     </el-dialog>

@@ -5,23 +5,18 @@
         <el-form-item label="id">
           <el-input v-model="searchInfo._id" placeholder="搜索条件" />
         </el-form-item>
-
         <el-form-item label="目标名称">
           <el-input v-model="searchInfo.target_name" placeholder="搜索条件" />
         </el-form-item>
-
         <el-form-item label="项目列表">
           <el-input v-model="searchInfo.project_ids" placeholder="搜索条件" />
         </el-form-item>
-
         <el-form-item label="任务列表">
           <el-input v-model="searchInfo.task_ids" placeholder="搜索条件" />
         </el-form-item>
-
         <el-form-item label="域名列表">
           <el-input v-model="searchInfo.domain_ids" placeholder="搜索条件" />
         </el-form-item>
-
         <el-form-item label="标签">
           <el-input v-model="searchInfo.tags" placeholder="搜索条件" />
         </el-form-item>
@@ -62,20 +57,11 @@
         @selection-change="handleSelectionChange"
       >
         <el-table-column type="selection" width="55" />
-        <el-table-column
-          align="left"
-          label="目标id"
-          prop="_id"
-          width="210"
-        />
+        <el-table-column align="left" label="目标id" prop="_id" width="210" />
         <el-table-column align="left" label="目标名称" prop="target_name" width="120" />
-
         <el-table-column align="left" label="项目列表" prop="project_ids" width="120" />
-
         <el-table-column align="left" label="任务列表" prop="task_ids" width="120" />
-
         <el-table-column align="left" label="域名列表" prop="domain_ids" width="120" />
-
         <el-table-column align="left" label="标签" prop="tags" width="120" />
         <el-table-column align="left" label="备注" prop="remarks" width="120" />
         <el-table-column align="left" label="更新时间" prop="update_at" width="200" />
@@ -109,19 +95,15 @@
         <el-form-item label="目标名称:">
           <el-input v-model="formData.target_name" clearable placeholder="请输入" />
         </el-form-item>
-
         <el-form-item label="项目列表:">
           <el-input v-model="formData.project_ids" clearable placeholder="请输入" />
         </el-form-item>
-
         <el-form-item label="任务列表:">
           <el-input v-model.number="formData.task_ids" clearable placeholder="请选择" />
         </el-form-item>
-
         <el-form-item label="域名列表:">
           <el-input v-model.number="formData.domain_ids" clearable placeholder="请选择" />
         </el-form-item>
-
         <el-form-item label="标签:">
           <el-input v-model="formData.tags" clearable placeholder="请输入" />
         </el-form-item>
@@ -162,16 +144,11 @@ import { ref } from 'vue'
 
 // 自动化生成的字典（可能为空）以及字段
 
-
 const formData = ref({
   target_name: "",
-
   project_ids: "",
-
   task_ids: [],
-
   domain_ids: [],
-
 })
 
 // =========== 表格控制部分 ===========
@@ -190,14 +167,6 @@ const onReset = () => {
 const onSubmit = () => {
   page.value = 1
   pageSize.value = 10
-
-
-
-
-
-
-
-
 
   getTableData()
 }
@@ -229,7 +198,6 @@ getTableData()
 
 // ============== 表格控制部分结束 ===============
 
-
 // 多选数据
 const multipleSelection = ref([])
 // 多选
@@ -247,7 +215,6 @@ const deleteRow = (row) => {
     deleteTargetFunc(row)
   })
 }
-
 
 // 批量删除控制标记
 const deleteVisible = ref(false)
@@ -293,7 +260,6 @@ const updateTargetFunc = async (row) => {
   }
 }
 
-
 // 删除行
 const deleteTargetFunc = async (row) => {
   const res = await deleteTarget({ _id: row._id })
@@ -322,23 +288,10 @@ const openDialog = () => {
 const closeDialog = () => {
   dialogFormVisible.value = false
   formData.value = {
-
-
     target_name: "",
-
-
-
     project_ids: "",
-
-
-
     task_ids: [],
-
-
-
     domain_ids: [],
-
-
   }
 }
 // 弹窗确定

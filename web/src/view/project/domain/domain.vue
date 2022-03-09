@@ -62,13 +62,16 @@
           <el-input v-model="searchInfo.target_id" placeholder="搜索条件" />
         </el-form-item>
 
-        <!-- <el-form-item label="归属目标是否确认" prop="target_id_is_verify">
-          <el-select v-model="searchInfo.target_id_is_verify" clearable placeholder="请选择">
-            <el-option key="true" label="是" value="true" />
-            <el-option key="false" label="否" value="false" />
-          </el-select>
-        </el-form-item> -->
-
+        <el-form-item label="只看目标已确认" prop="target_id_is_verify">
+          <el-switch
+            v-model="searchInfo.target_id_is_verify"
+            active-color="#13ce66"
+            inactive-color="#ff4949"
+            active-text="是"
+            inactive-text="否"
+            clearable
+          />
+        </el-form-item>
         <el-form-item label="端口ID列表">
           <el-input v-model="searchInfo.port_ids" placeholder="搜索条件" />
         </el-form-item>
@@ -153,7 +156,7 @@
         <el-table-column align="left" label="标签" prop="tags" width="120" />
         <el-table-column align="left" label="备注" prop="remarks" width="120" />
         <el-table-column align="left" label="更新时间" prop="update_at" width="200" />
-        <el-table-column align="left" label="按钮组">
+        <el-table-column align="left" fixed="right" label="按钮组"  width="120">
           <template #default="scope">
             <el-button
               type="text"
@@ -162,7 +165,7 @@
               class="table-button"
               @click="updateDomainFunc(scope.row)"
             >编辑</el-button>
-            <el-button type="text" icon="delete" size="mini" @click="deleteRow(scope.row)">删除</el-button>
+            <el-button type="text" icon="delete" size="small" @click="deleteRow(scope.row)">删除</el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -345,6 +348,8 @@ const onSubmit = () => {
 
   if (searchInfo.value.target_id_is_verify === undefined) {
     searchInfo.value.target_id_is_verify = null
+  } else {
+    searchInfo.value.target_id_is_verify = Boolean(searchInfo.value.target_id_is_verify)
   }
 
   getTableData()
@@ -371,6 +376,7 @@ const getTableData = async () => {
       searchInfo.value.target_id = targetData.data.list[0].target_id
     }
   }
+  console.log(searchInfo.value.target_id_is_verify)
   const table = await getDomainList({ page: page.value, pageSize: pageSize.value, ...searchInfo.value })
   if (table.code === 0) {
     tableData.value = table.data.list

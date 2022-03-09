@@ -156,7 +156,10 @@ func (domainService *DomainService) GetDomainInfoList(dom project.Domain, pageIn
 	if dom.Remarks != "" {
 		filter["remarks"] = bson.M{"$regex": dom.Remarks}
 	}
-
+	global.GVA_LOG.Info("[GetDomainInfoList]", zap.Any("TargetIdIsVerify", dom.TargetIdIsVerify))
+	if dom.TargetIdIsVerify {
+		filter["target_id_is_verify"] =  dom.TargetIdIsVerify
+	}
 	total, err = global.Mongo_DB.Collection("pro_domain").CountDocuments(context.TODO(), filter)
 	if err != nil {
 		global.GVA_LOG.Error("[GetDomainInfoList]", zap.Error(err))

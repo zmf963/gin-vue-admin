@@ -105,7 +105,19 @@
           <el-input v-model.number="formData.domain_ids" clearable placeholder="请选择" />
         </el-form-item>
         <el-form-item label="标签:">
-          <el-input v-model="formData.tags" clearable placeholder="请输入" />
+          <el-select
+            v-model="formData.tags"
+            placeholder="请选择"
+            multiple
+            filterable
+            allow-create
+            default-first-option
+            :reserve-keyword="false"
+          >
+            <el-option v-for="item in tags" :key="item" :label="item" :value="item">
+              <span style="color: #8492a6">{{ item }}</span>
+            </el-option>
+          </el-select>
         </el-form-item>
         <el-form-item label="备注:">
           <el-input v-model="formData.remarks" clearable placeholder="请输入" />

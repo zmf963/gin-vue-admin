@@ -146,7 +146,6 @@
               :label="item.value"
             >{{ item.label }}</el-checkbox>
           </el-checkbox-group>
-
         </el-form-item>
 
         <el-form-item label="工具扩展字段:">
@@ -163,12 +162,19 @@
           <el-input v-model="formData.status" clearable placeholder="请输入" />
         </el-form-item>
 
-        <el-form-item label="项目:">
+        <!-- <el-form-item label="项目:">
           <el-input v-model="formData.project_id" clearable placeholder="请输入" />
-        </el-form-item>
+        </el-form-item>-->
 
         <el-form-item label="目标:">
-          <el-input v-model="formData.target_id" clearable placeholder="请输入" />
+          <el-select v-model="formData.target_id" filterable placeholder="Select">
+            <el-option
+              v-for="item in targetOptions"
+              :key="item.value"
+              :label="item.label"
+              :value="item.value"
+            ></el-option>
+          </el-select>
         </el-form-item>
 
         <el-form-item label="标签:">
@@ -255,7 +261,7 @@ const handleCurrentChange = (val) => {
 }
 
 // 查询
-const getTableData = async() => {
+const getTableData = async () => {
   const table = await getTaskList({ page: page.value, pageSize: pageSize.value, ...searchInfo.value })
   if (table.code === 0) {
     tableData.value = table.data.list
@@ -291,7 +297,7 @@ const deleteRow = (row) => {
 const deleteVisible = ref(false)
 
 // 多选删除
-const onDelete = async() => {
+const onDelete = async () => {
   const ids = []
   if (multipleSelection.value.length === 0) {
     ElMessage({
@@ -322,7 +328,7 @@ const onDelete = async() => {
 const type = ref('')
 
 // 更新行
-const updateTaskFunc = async(row) => {
+const updateTaskFunc = async (row) => {
   const res = await findTask({ _id: row._id })
   type.value = 'update'
   if (res.code === 0) {
@@ -332,7 +338,7 @@ const updateTaskFunc = async(row) => {
 }
 
 // 删除行
-const deleteTaskFunc = async(row) => {
+const deleteTaskFunc = async (row) => {
   const res = await deleteTask({ _id: row._id })
   if (res.code === 0) {
     ElMessage({
@@ -370,7 +376,7 @@ const closeDialog = () => {
   }
 }
 // 弹窗确定
-const enterDialog = async() => {
+const enterDialog = async () => {
   let res
   console.log(formData.value.tools)
   switch (type.value) {
@@ -412,7 +418,25 @@ const toolOptions = [{
 }, {
   'label': 'gettitle',
   'value': 'gettitle'
+}, {
+  'label': 'emailall',
+  'value': 'emailall'
 }]
+
+const targetOptions = [
+  {
+    value: '6215e1d61860650d7dc848f6',
+    label: 'jd',
+  },
+  {
+    value: '6228675d499847b816504147',
+    label: 'test',
+  },
+  {
+    value: '62286bd7499847b81650414a',
+    label: '默认',
+  }
+]
 </script>
 
 <style>

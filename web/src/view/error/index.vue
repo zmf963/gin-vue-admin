@@ -1,3 +1,13 @@
+<!--
+ * @Version: 0.1
+ * @Autor: zmf96
+ * @Email: zmf96@qq.com
+ * @Date: 2022-02-17 13:36:08
+ * @LastEditors: zmf96
+ * @LastEditTime: 2022-03-09 06:04:38
+ * @FilePath: /src/view/error/index.vue
+ * @Description: 
+-->
 <template>
   <div>
     <div class="big">
@@ -6,7 +16,7 @@
         <p>页面被神秘力量吸走了，请联系我们修复</p>
         <p style="font-size:18px;line-height:40px;">常见问题为菜单未分配仪表盘，可自行分配仪表盘或修改默认路由</p>
         <p>↓</p>
-        <img src="../../assets/qm.png" class="leftPic">
+        <img src="../../assets/logo.png" class="leftPic">
       </div>
     </div>
   </div>

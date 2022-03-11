@@ -59,7 +59,7 @@
                 <a href="https://github.com/flipped-aurora">
                   <img
                     class="org-img dom-center"
-                    src="@/assets/flipped-aurora.png"
+                    src="@/assets/logo.png"
                     alt="flipped-aurora"
                   >
                 </a>

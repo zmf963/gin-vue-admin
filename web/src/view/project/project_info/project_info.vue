@@ -2,46 +2,46 @@
   <div>
     <div class="gva-search-box">
       <el-form :inline="true" :model="searchInfo" class="demo-form-inline">
+        <el-form-item label="项目名称">
+          <el-input v-model="searchInfo.project_name" placeholder="搜索条件" />
+        </el-form-item>
 
-        
-          
-            <el-form-item label="项目名称">
-              <el-input v-model="searchInfo.project_name" placeholder="搜索条件" />
-            </el-form-item>
-          
-        
-          
-            <el-form-item label="项目描述">
-              <el-input v-model="searchInfo.project_desc" placeholder="搜索条件" />
-            </el-form-item>
-          
-        
-          
-            <el-form-item label="开始时间">
-              <el-input v-model="searchInfo.start_time" placeholder="搜索条件" />
-            </el-form-item>
-          
-        
-          
-            <el-form-item label="结束时间">
-              <el-input v-model="searchInfo.end_time" placeholder="搜索条件" />
-            </el-form-item>
-          
-        
-          
-            <el-form-item label="目标id列表">
-              <el-input v-model="searchInfo.target_ids" placeholder="搜索条件" />
-            </el-form-item>
-          
-        
-          
-            <el-form-item label="任务id列表">
-              <el-input v-model="searchInfo.task_ids" placeholder="搜索条件" />
-            </el-form-item>
-          
-        
+        <el-form-item label="项目描述">
+          <el-input v-model="searchInfo.project_desc" placeholder="搜索条件" />
+        </el-form-item>
+
+        <el-form-item label="开始时间">
+          <el-input v-model="searchInfo.start_time" placeholder="搜索条件" />
+        </el-form-item>
+
+        <el-form-item label="结束时间">
+          <el-input v-model="searchInfo.end_time" placeholder="搜索条件" />
+        </el-form-item>
+
+        <!-- <el-form-item label="目标id列表">
+          <el-input v-model="searchInfo.target_ids" placeholder="搜索条件" />
+        </el-form-item>
+
+        <el-form-item label="任务id列表">
+          <el-input v-model="searchInfo.task_ids" placeholder="搜索条件" />
+        </el-form-item>-->
+
         <el-form-item label="标签">
-          <el-input v-model="searchInfo.tags" placeholder="搜索条件" />
+          <!-- <el-input v-model="searchInfo.tags" placeholder="搜索条件" />
+           -->
+          <el-select
+            v-model="searchInfo.tags"
+            placeholder="请选择"
+            multiple
+            filterable
+            allow-create
+            default-first-option
+            :reserve-keyword="false"
+          >
+            <el-option v-for="item in tags" :key="item" :label="item" :value="item">
+              <span style="color: #8492a6">{{ item }}</span>
+            </el-option>
+          </el-select>
         </el-form-item>
         <el-form-item label="备注">
           <el-input v-model="searchInfo.remarks" placeholder="搜索条件" />
@@ -53,121 +53,133 @@
       </el-form>
     </div>
     <div class="gva-table-box">
-        <div class="gva-btn-list">
-            <el-button size="mini" type="primary" icon="plus" @click="openDialog">新增</el-button>
-            <el-popover v-model:visible="deleteVisible" placement="top" width="160">
-            <p>确定要删除吗？</p>
-            <div style="text-align: right; margin-top: 8px;">
-                <el-button size="mini" type="text" @click="deleteVisible = false">取消</el-button>
-                <el-button size="mini" type="primary" @click="onDelete">确定</el-button>
-            </div>
-            <template #reference>
-                <el-button icon="delete" size="mini" style="margin-left: 10px;" :disabled="!multipleSelection.length">删除</el-button>
-            </template>
-            </el-popover>
-        </div>
-        <el-table
+      <div class="gva-btn-list">
+        <el-button size="mini" type="primary" icon="plus" @click="openDialog">新增</el-button>
+        <el-popover v-model:visible="deleteVisible" placement="top" width="160">
+          <p>确定要删除吗？</p>
+          <div style="text-align: right; margin-top: 8px;">
+            <el-button size="mini" type="text" @click="deleteVisible = false">取消</el-button>
+            <el-button size="mini" type="primary" @click="onDelete">确定</el-button>
+          </div>
+          <template #reference>
+            <el-button
+              icon="delete"
+              size="mini"
+              style="margin-left: 10px;"
+              :disabled="!multipleSelection.length"
+            >删除</el-button>
+          </template>
+        </el-popover>
+      </div>
+      <el-table
         ref="multipleTable"
         style="width: 100%"
         tooltip-effect="dark"
         :data="tableData"
         row-key="ID"
         @selection-change="handleSelectionChange"
-        >
+      >
         <el-table-column type="selection" width="55" />
 
-        
-          
-            <el-table-column align="left" label="项目名称" prop="project_name" width="120" />
-          
-        
-          
-            <el-table-column align="left" label="项目描述" prop="project_desc" width="120" />
-          
-        
-          
-            <el-table-column align="left" label="开始时间" prop="start_time" width="200" />
-          
-        
-          
-            <el-table-column align="left" label="结束时间" prop="end_time" width="200" />
-          
-        
-          
-            <el-table-column align="left" label="目标id列表" prop="target_ids" width="120" />
-          
-        
-          
-            <el-table-column align="left" label="任务id列表" prop="task_ids" width="120" />
-          
-        
-        <el-table-column align="left" label="标签" prop="tags" width="120" />
+        <el-table-column align="left" label="项目名称" prop="project_name" width="120" />
+
+        <el-table-column align="left" label="项目描述" prop="project_desc" width="200" />
+
+        <el-table-column align="left" label="开始时间" prop="start_time" width="200" />
+
+        <el-table-column align="left" label="结束时间" prop="end_time" width="200" />
+
+        <!-- <el-table-column align="left" label="目标列表" prop="target_ids" width="120" /> -->
+
+        <!-- <el-table-column align="left" label="任务id列表" prop="task_ids" width="120" /> -->
+
+        <el-table-column align="left" label="标签" prop="tags" width="120">
+          <template #default="scope">
+            <el-tag v-for="tag in scope.row.tags" :key="tag">{{ tag }}&nbsp;</el-tag>
+          </template>
+        </el-table-column>
         <el-table-column align="left" label="备注" prop="remarks" width="120" />
         <el-table-column align="left" label="更新时间" prop="update_at" width="200" />
         <el-table-column align="left" label="按钮组">
-            <template #default="scope">
-            <el-button type="text" icon="edit" size="small" class="table-button" @click="updateProjectInfoFunc(scope.row)">编辑</el-button>
+          <template #default="scope">
+            <el-button
+              type="text"
+              icon="edit"
+              size="small"
+              class="table-button"
+              @click="updateProjectInfoFunc(scope.row)"
+            >编辑</el-button>
             <el-button type="text" icon="delete" size="mini" @click="deleteRow(scope.row)">删除</el-button>
-            </template>
+          </template>
         </el-table-column>
-        </el-table>
-        <div class="gva-pagination">
-            <el-pagination
-            layout="total, sizes, prev, pager, next, jumper"
-            :current-page="page"
-            :page-size="pageSize"
-            :page-sizes="[10, 3, 5, 15, 30, 50, 100]"
-            :total="total"
-            @current-change="handleCurrentChange"
-            @size-change="handleSizeChange"
-            />
-        </div>
+      </el-table>
+      <div class="gva-pagination">
+        <el-pagination
+          layout="total, sizes, prev, pager, next, jumper"
+          :current-page="page"
+          :page-size="pageSize"
+          :page-sizes="[10, 3, 5, 15, 30, 50, 100]"
+          :total="total"
+          @current-change="handleCurrentChange"
+          @size-change="handleSizeChange"
+        />
+      </div>
     </div>
     <el-dialog v-model="dialogFormVisible" :before-close="closeDialog" title="弹窗操作">
       <el-form :model="formData" label-position="right" label-width="80px">
-
-      
         <el-form-item label="项目名称:">
-          
-            <el-input v-model="formData.project_name" clearable placeholder="请输入" />
-          
+          <el-input v-model="formData.project_name" clearable placeholder="请输入" />
         </el-form-item>
-      
+
         <el-form-item label="项目描述:">
-          
-            <el-input v-model="formData.project_desc" clearable placeholder="请输入" />
-          
+          <el-input v-model="formData.project_desc" clearable placeholder="请输入" />
         </el-form-item>
-      
+
         <el-form-item label="开始时间:">
-          
-            <el-date-picker v-model="formData.start_time" type="date" style="width:100%" placeholder="选择日期" clearable />
-          
+          <el-date-picker
+            v-model="formData.start_time"
+            type="datetime"
+            style="width:100%"
+            placeholder="选择日期"
+            clearable
+          />
         </el-form-item>
-      
+
         <el-form-item label="结束时间:">
-          
-            <el-date-picker v-model="formData.end_time" type="date" style="width:100%" placeholder="选择日期" clearable />
-          
+          <el-date-picker
+            v-model="formData.end_time"
+            type="datetime"
+            style="width:100%"
+            placeholder="选择日期"
+            clearable
+          />
         </el-form-item>
-      
-        <el-form-item label="目标id列表:">
-          
-            <el-input v-model="formData.target_ids" clearable placeholder="请选择" />
-          
-        </el-form-item>
-      
-        <el-form-item label="任务id列表:">
-          
-            <el-input v-model="formData.task_ids" clearable placeholder="请选择" />
-          
-        </el-form-item>
-      
+
+        <!-- <el-form-item label="目标列表:">
+          <el-input v-model="formData.target_ids" clearable placeholder="请选择" />
+        </el-form-item>-->
+
+        <!-- <el-form-item label="任务id列表:">
+          <el-input v-model="formData.task_ids" clearable placeholder="请选择" />
+        </el-form-item>-->
+
         <el-form-item label="标签:">
-            <el-input v-model="formData.tags" clearable placeholder="请输入" />
+          <el-select
+            v-model="formData.tags"
+            placeholder="请选择"
+            multiple
+            filterable
+            allow-create
+            default-first-option
+            :reserve-keyword="false"
+          >
+            <el-option v-for="item in tags" :key="item" :label="item" :value="item">
+              <span style="color: #8492a6">{{ item }}</span>
+            </el-option>
+          </el-select>
         </el-form-item>
         <el-form-item label="备注:">
-            <el-input v-model="formData.remarks" clearable placeholder="请输入" />
+          <el-input v-model="formData.remarks" clearable placeholder="请输入" />
         </el-form-item>
       </el-form>
       <template #footer>
@@ -197,27 +209,21 @@ import {
 } from '@/api/project_info'
 
 // 全量引入格式化工具 请按需保留
-import {  formatDate, formatBoolean, filterDict } from '@/utils/format'
+import { formatDate, formatBoolean, filterDict } from '@/utils/format'
 import { ElMessage, ElMessageBox } from 'element-plus'
 import { ref } from 'vue'
 
 // 自动化生成的字典（可能为空）以及字段
 
 
-const formData = ref({ 
-          project_name: "", 
-          
-          project_desc: "", 
-          
-          start_time: new Date(), 
-          
-          end_time: new Date(), 
-          
-          target_ids: [], 
-          
-          task_ids: [], 
-          
-        })
+const formData = ref({
+  project_name: "",
+  project_desc: "",
+  start_time: new Date(),
+  end_time: new Date(),
+  target_ids: [],
+  task_ids: [],
+})
 
 // =========== 表格控制部分 ===========
 const page = ref(1)
@@ -235,19 +241,6 @@ const onReset = () => {
 const onSubmit = () => {
   page.value = 1
   pageSize.value = 10
-  
-      
-  
-      
-  
-      
-  
-      
-  
-      
-  
-      
-  
   getTableData()
 }
 
@@ -264,7 +257,10 @@ const handleCurrentChange = (val) => {
 }
 
 // 查询
-const getTableData = async() => {
+const getTableData = async () => {
+  if (typeof searchInfo.value.tags === 'string') {
+    searchInfo.value.tags = searchInfo.value.tags.split(',')
+  }
   const table = await getProjectInfoList({ page: page.value, pageSize: pageSize.value, ...searchInfo.value })
   if (table.code === 0) {
     tableData.value = table.data.list
@@ -283,79 +279,79 @@ getTableData()
 const multipleSelection = ref([])
 // 多选
 const handleSelectionChange = (val) => {
-    multipleSelection.value = val
+  multipleSelection.value = val
 }
 
 // 删除行
 const deleteRow = (row) => {
-    ElMessageBox.confirm('确定要删除吗?', '提示', {
-        confirmButtonText: '确定',
-        cancelButtonText: '取消',
-        type: 'warning'
-    }).then(() => {
-            deleteProjectInfoFunc(row)
-        })
-    }
+  ElMessageBox.confirm('确定要删除吗?', '提示', {
+    confirmButtonText: '确定',
+    cancelButtonText: '取消',
+    type: 'warning'
+  }).then(() => {
+    deleteProjectInfoFunc(row)
+  })
+}
 
 
 // 批量删除控制标记
 const deleteVisible = ref(false)
 
 // 多选删除
-const onDelete = async() => {
-      const ids = []
-      if (multipleSelection.value.length === 0) {
-        ElMessage({
-          type: 'warning',
-          message: '请选择要删除的数据'
-        })
-        return
-      }
-      multipleSelection.value &&
-        multipleSelection.value.map(item => {
-          ids.push(item._id)
-        })
-      const res = await deleteProjectInfoByIds({ ids })
-      if (res.code === 0) {
-        ElMessage({
-          type: 'success',
-          message: '删除成功'
-        })
-        if (tableData.value.length === ids.length && page.value > 1) {
-          page.value--
-        }
-        deleteVisible.value = false
-        getTableData()
-      }
+const onDelete = async () => {
+  const ids = []
+  if (multipleSelection.value.length === 0) {
+    ElMessage({
+      type: 'warning',
+      message: '请选择要删除的数据'
+    })
+    return
+  }
+  multipleSelection.value &&
+    multipleSelection.value.map(item => {
+      ids.push(item._id)
+    })
+  const res = await deleteProjectInfoByIds({ ids })
+  if (res.code === 0) {
+    ElMessage({
+      type: 'success',
+      message: '删除成功'
+    })
+    if (tableData.value.length === ids.length && page.value > 1) {
+      page.value--
     }
+    deleteVisible.value = false
+    getTableData()
+  }
+}
 
 // 行为控制标记（弹窗内部需要增还是改）
 const type = ref('')
 
 // 更新行
-const updateProjectInfoFunc = async(row) => {
-    const res = await findProjectInfo({ _id: row._id })
-    type.value = 'update'
-    if (res.code === 0) {
-        formData.value = res.data.reproject_info
-        dialogFormVisible.value = true
-    }
+const updateProjectInfoFunc = async (row) => {
+  const res = await findProjectInfo({ _id: row._id })
+  type.value = 'update'
+  if (res.code === 0) {
+    formData.value = res.data.reproject_info
+    dialogFormVisible.value = true
+  }
 }
 
 
 // 删除行
 const deleteProjectInfoFunc = async (row) => {
-    const res = await deleteProjectInfo({ _id: row._id })
-    if (res.code === 0) {
-        ElMessage({
-                type: 'success',
-                message: '删除成功'
-            })
-            if (tableData.value.length === 1 && page.value > 1) {
-            page.value--
-        }
-        getTableData()
+  const res = await deleteProjectInfo({ _id: row._id })
+  if (res.code === 0) {
+    ElMessage({
+      type: 'success',
+      message: '删除成功'
+    })
+    if (tableData.value.length === 1 && page.value > 1) {
+      page.value--
     }
+    getTableData()
+  }
 }
 
 // 弹窗控制标记
@@ -363,70 +359,53 @@ const dialogFormVisible = ref(false)
 
 // 打开弹窗
 const openDialog = () => {
-    type.value = 'create'
-    dialogFormVisible.value = true
+  type.value = 'create'
+  dialogFormVisible.value = true
 }
 
 // 关闭弹窗
 const closeDialog = () => {
-    dialogFormVisible.value = false
-    formData.value = {
-      
-        
-          project_name: "", 
-        
-      
-        
-          project_desc: "", 
-        
-      
-        
-          start_time: new Date(), 
-        
-      
-        
-          end_time: new Date(), 
-        
-      
-        
-          target_ids: [],
-        
-      
-        
-          task_ids: [],
-        
-      
-    }
+  dialogFormVisible.value = false
+  formData.value = {
+    project_name: "",
+    project_desc: "",
+    start_time: new Date(),
+    end_time: new Date(),
+    target_ids: [],
+    task_ids: [],
+    tags: [],
+    remarks: ""
+  }
 }
 // 弹窗确定
 const enterDialog = async () => {
-      let res
-      console.log(formData.value)
-      if (typeof(formData.value.target_ids) === 'string') {
-        formData.value.target_ids = formData.value.target_ids.split(',')
-      }
-      if (typeof(formData.value.task_ids) === 'string') {
-        formData.value.task_ids = formData.value.task_ids.split(',')
-      }
-      switch (type.value) {
-        case 'create':
-          res = await createProjectInfo(formData.value)
-          break
-        case 'update':
-          res = await updateProjectInfo(formData.value)
-          break
-        default:
-          res = await createProjectInfo(formData.value)
-          break
-      }
-      if (res.code === 0) {
-        ElMessage({
-          type: 'success',
-          message: '创建/更改成功'
-        })
-        closeDialog()
-        getTableData()
-      }
+  let res
+  console.log(formData.value)
+  if (typeof (formData.value.target_ids) === 'string') {
+    formData.value.target_ids = formData.value.target_ids.split(',')
+  }
+  if (typeof (formData.value.task_ids) === 'string') {
+    formData.value.task_ids = formData.value.task_ids.split(',')
+  }
+  switch (type.value) {
+    case 'create':
+      res = await createProjectInfo(formData.value)
+      break
+    case 'update':
+      res = await updateProjectInfo(formData.value)
+      break
+    default:
+      res = await createProjectInfo(formData.value)
+      break
+  }
+  if (res.code === 0) {
+    ElMessage({
+      type: 'success',
+      message: '创建/更改成功'
+    })
+    closeDialog()
+    getTableData()
+  }
 }
 </script>
 

@@ -4,7 +4,7 @@
 
 const config = {
   appName: '协同平台',
-  appLogo: '#',
+  appLogo: '/src/assets/logo.png',
   showViteLogo: true
 } 
 

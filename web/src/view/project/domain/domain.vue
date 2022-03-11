@@ -125,7 +125,13 @@
 
         <el-table-column align="left" label="操作系统" prop="os" width="120" />
 
-        <el-table-column align="left" label="whois信息" prop="whois" width="120" />
+        <el-table-column
+          align="left"
+          label="whois信息"
+          prop="whois"
+          width="120"
+          :formatter="formatterWhois"
+        />
 
         <el-table-column align="left" label="是否存活" prop="alive" width="120" />
 
@@ -156,7 +162,7 @@
         <el-table-column align="left" label="标签" prop="tags" width="120" />
         <el-table-column align="left" label="备注" prop="remarks" width="120" />
         <el-table-column align="left" label="更新时间" prop="update_at" width="200" />
-        <el-table-column align="left" fixed="right" label="按钮组"  width="120">
+        <el-table-column align="left" fixed="right" label="按钮组" width="120">
           <template #default="scope">
             <el-button
               type="text"
@@ -199,7 +205,7 @@
           <el-input v-model="formData.os" clearable placeholder="请输入" />
         </el-form-item>
 
-        <el-form-item label="whois信息:" />
+        <!-- <el-form-item label="whois信息:" /> -->
         <el-form-item label="是否存活:">
           <el-select v-model="formData.alive" placeholder="请选择" style="width:100%" clearable>
             <el-option
@@ -370,12 +376,13 @@ const handleCurrentChange = (val) => {
 // 查询
 const getTableData = async () => {
   console.log(searchInfo.value.target_id)
-  if (searchInfo.value.target_id !== '') {
-    const targetData = await getTargetList({ page: 1, pageSize: 1, target_name: searchInfo.value.target_id })
-    if (targetData.data.list.length > 0) {
-      searchInfo.value.target_id = targetData.data.list[0].target_id
-    }
-  }
+  // if (searchInfo.value.target_id !== '') {
+  //   const targetData = await getTargetList({ page: 1, pageSize: 1, target_name: searchInfo.value.target_name })
+  //   if (targetData.data.list.length > 0) {
+  //     searchInfo.value.target_id = targetData.data.list[0].target_id
+  //   }
+  // }
+  // console.log(searchInfo.value.target_id)
   console.log(searchInfo.value.target_id_is_verify)
   const table = await getDomainList({ page: page.value, pageSize: pageSize.value, ...searchInfo.value })
   if (table.code === 0) {
@@ -533,6 +540,10 @@ const intOptions = [
     label: '是'
   }
 ]
+
+const formatterWhois = (row) => {
+  return JSON.stringify(row.content);
+};
 </script>
 
 <style>

@@ -2,10 +2,10 @@ package finger_manager
 
 import (
 	"context"
-	"time"
 	"github.com/flipped-aurora/gin-vue-admin/server/global"
-	"github.com/flipped-aurora/gin-vue-admin/server/model/finger_manager"
 	"github.com/flipped-aurora/gin-vue-admin/server/model/common/request"
+	"github.com/flipped-aurora/gin-vue-admin/server/model/finger_manager"
+	"time"
 	//finger_managerReq "github.com/flipped-aurora/gin-vue-admin/server/model/finger_manager/request"
 
 	"go.mongodb.org/mongo-driver/bson"
@@ -18,7 +18,6 @@ type FingerInfoService struct {
 }
 
 var FingerInfoServiceApp = new(FingerInfoService)
-
 
 //@author:
 //@function: CreateFingerInfo
@@ -45,7 +44,7 @@ func (finger_infoService *FingerInfoService) CreateFingerInfo(finger_info finger
 //@function: DeleteFingerInfo
 //@description: 删除FingerInfo
 //@param: id
-func (finger_infoService *FingerInfoService)DeleteFingerInfo(_id primitive.ObjectID) (err error) {
+func (finger_infoService *FingerInfoService) DeleteFingerInfo(_id primitive.ObjectID) (err error) {
 	global.GVA_LOG.Debug("[DeleteFingerInfo]", zap.Any("id", _id))
 	result, err := global.Mongo_DB.Collection("fin_finger_info").DeleteOne(context.TODO(), bson.M{"_id": _id})
 	global.GVA_LOG.Debug("[DeleteFingerInfo]", zap.Any("result", result), zap.Any("err", err))
@@ -57,7 +56,7 @@ func (finger_infoService *FingerInfoService)DeleteFingerInfo(_id primitive.Objec
 //@description: 批量删除FingerInfo
 //@param: ids []string
 //@return: err error
-func (finger_infoService *FingerInfoService)DeleteFingerInfoByIds(ids []primitive.ObjectID) (err error) {
+func (finger_infoService *FingerInfoService) DeleteFingerInfoByIds(ids []primitive.ObjectID) (err error) {
 	global.GVA_LOG.Debug("[DeleteFingerInfoByIds]", zap.Any("ids", ids))
 	result, err := global.Mongo_DB.Collection("fin_finger_info").DeleteMany(context.TODO(), bson.M{"_id": bson.M{"$in": ids}})
 	global.GVA_LOG.Debug("[DeleteFingerInfoByIds]", zap.Any("result", result), zap.Any("err", err))
@@ -69,14 +68,13 @@ func (finger_infoService *FingerInfoService)DeleteFingerInfoByIds(ids []primitiv
 //@description: 根据id更新FingerInfo
 //@param: finger_info finger_manager.FingerInfo
 //@return: err error
-func (finger_infoService *FingerInfoService)UpdateFingerInfo(finger_info finger_manager.FingerInfo) (err error) {
+func (finger_infoService *FingerInfoService) UpdateFingerInfo(finger_info finger_manager.FingerInfo) (err error) {
 	global.GVA_LOG.Debug("[UpdateFingerInfo]", zap.Any("finger_info", finger_info))
 	finger_info.UpdateAt = time.Now().Local()
 	result, err := global.Mongo_DB.Collection("fin_finger_info").UpdateOne(context.TODO(), bson.M{"_id": finger_info.ID_}, bson.M{"$set": finger_info})
 	global.GVA_LOG.Debug("[UpdateFingerInfo]", zap.Any("result", result), zap.Any("err", err))
 	return err
 }
-
 
 //@author:
 //@function: GetFingerInfoById
@@ -89,7 +87,6 @@ func (finger_infoService *FingerInfoService) GetFingerInfoById(_id primitive.Obj
 	global.GVA_LOG.Debug("[GetFingerInfoById]", zap.Any("fin", fin), zap.Any("err", err))
 	return fin, err
 }
-
 
 //@author:
 //@function: GetFingerInfoInfoList
@@ -110,25 +107,25 @@ func (finger_infoService *FingerInfoService) GetFingerInfoInfoList(fin finger_ma
 		}
 		findOptions.SetSort(map[string]int{order: _desc})
 	} else {
-		findOptions.SetSort(map[string]int{"update_at":-1})
+		findOptions.SetSort(map[string]int{"update_at": -1})
 	}
 	filter := bson.M{}
 	// TODO 处理搜索条件
 	if !fin.ID_.IsZero() {
-		filter = bson.M{"_id":fin.ID_}
+		filter = bson.M{"_id": fin.ID_}
 	}
 	if fin.Name != "" {
-		filter["name"] = bson.M{"$regex": fin.Name }
+		filter["name"] = bson.M{"$regex": fin.Name}
 	}
 	if len(fin.LinkVul) > 0 {
-		filter["link_vul"] = bson.M{"$in": fin.LinkVul }
+		filter["link_vul"] = bson.M{"$in": fin.LinkVul}
 	}
 
 	if len(fin.Tags) > 0 {
-		filter["tags"] = bson.M{"$in":fin.Tags }
+		filter["tags"] = bson.M{"$in": fin.Tags}
 	}
 	if fin.Remarks != "" {
-		filter["remarks"] = bson.M{"$regex":fin.Remarks}
+		filter["remarks"] = bson.M{"$regex": fin.Remarks}
 	}
 
 	total, err = global.Mongo_DB.Collection("fin_finger_info").CountDocuments(context.TODO(), filter)

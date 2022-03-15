@@ -2,10 +2,10 @@ package project
 
 import (
 	"context"
-	"time"
 	"github.com/flipped-aurora/gin-vue-admin/server/global"
-	"github.com/flipped-aurora/gin-vue-admin/server/model/project"
 	"github.com/flipped-aurora/gin-vue-admin/server/model/common/request"
+	"github.com/flipped-aurora/gin-vue-admin/server/model/project"
+	"time"
 	//projectReq "github.com/flipped-aurora/gin-vue-admin/server/model/project/request"
 
 	"go.mongodb.org/mongo-driver/bson"
@@ -18,7 +18,6 @@ type TargetService struct {
 }
 
 var TargetServiceApp = new(TargetService)
-
 
 //@author:
 //@function: CreateTarget
@@ -43,7 +42,7 @@ func (targetService *TargetService) CreateTarget(target project.Target) (err err
 //@function: DeleteTarget
 //@description: 删除Target
 //@param: id
-func (targetService *TargetService)DeleteTarget(_id primitive.ObjectID) (err error) {
+func (targetService *TargetService) DeleteTarget(_id primitive.ObjectID) (err error) {
 	global.GVA_LOG.Debug("[DeleteTarget]", zap.Any("id", _id))
 	result, err := global.Mongo_DB.Collection("pro_target").DeleteOne(context.TODO(), bson.M{"_id": _id})
 	global.GVA_LOG.Debug("[DeleteTarget]", zap.Any("result", result), zap.Any("err", err))
@@ -55,7 +54,7 @@ func (targetService *TargetService)DeleteTarget(_id primitive.ObjectID) (err err
 //@description: 批量删除Target
 //@param: ids []string
 //@return: err error
-func (targetService *TargetService)DeleteTargetByIds(ids []primitive.ObjectID) (err error) {
+func (targetService *TargetService) DeleteTargetByIds(ids []primitive.ObjectID) (err error) {
 	global.GVA_LOG.Debug("[DeleteTargetByIds]", zap.Any("ids", ids))
 	result, err := global.Mongo_DB.Collection("pro_target").DeleteMany(context.TODO(), bson.M{"_id": bson.M{"$in": ids}})
 	global.GVA_LOG.Debug("[DeleteTargetByIds]", zap.Any("result", result), zap.Any("err", err))
@@ -67,14 +66,13 @@ func (targetService *TargetService)DeleteTargetByIds(ids []primitive.ObjectID) (
 //@description: 根据id更新Target
 //@param: target project.Target
 //@return: err error
-func (targetService *TargetService)UpdateTarget(target project.Target) (err error) {
+func (targetService *TargetService) UpdateTarget(target project.Target) (err error) {
 	global.GVA_LOG.Debug("[UpdateTarget]", zap.Any("target", target))
 	target.UpdateAt = time.Now().Local()
 	result, err := global.Mongo_DB.Collection("pro_target").UpdateOne(context.TODO(), bson.M{"_id": target.ID_}, bson.M{"$set": target})
 	global.GVA_LOG.Debug("[UpdateTarget]", zap.Any("result", result), zap.Any("err", err))
 	return err
 }
-
 
 //@author:
 //@function: GetTargetById
@@ -87,7 +85,6 @@ func (targetService *TargetService) GetTargetById(_id primitive.ObjectID) (tar p
 	global.GVA_LOG.Debug("[GetTargetById]", zap.Any("tar", tar), zap.Any("err", err))
 	return tar, err
 }
-
 
 //@author:
 //@function: GetTargetInfoList
@@ -107,22 +104,24 @@ func (targetService *TargetService) GetTargetInfoList(tar project.Target, pageIn
 			_desc = -1
 		}
 		findOptions.SetSort(map[string]int{order: _desc})
+	} else {
+		findOptions.SetSort(map[string]int{"update_at": -1})
 	}
 	filter := bson.M{}
 	// TODO 处理搜索条件
-	
+
 	if tar.TargetName != "" {
-		filter["target_name"] = bson.M{"$regex": tar.TargetName }
+		filter["target_name"] = bson.M{"$regex": tar.TargetName}
 	}
 	if len(tar.DomainList) > 0 {
-		filter["domain_list"] = bson.M{"$in": tar.DomainList }
+		filter["domain_list"] = bson.M{"$in": tar.DomainList}
 	}
 
 	if len(tar.Tags) > 0 {
-		filter["tags"] = bson.M{"$in":tar.Tags }
+		filter["tags"] = bson.M{"$in": tar.Tags}
 	}
 	if tar.Remarks != "" {
-		filter["remarks"] = bson.M{"$regex":tar.Remarks}
+		filter["remarks"] = bson.M{"$regex": tar.Remarks}
 	}
 
 	total, err = global.Mongo_DB.Collection("pro_target").CountDocuments(context.TODO(), filter)

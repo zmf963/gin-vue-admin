@@ -8,14 +8,8 @@
         <el-form-item label="目标名称">
           <el-input v-model="searchInfo.target_name" placeholder="搜索条件" />
         </el-form-item>
-        <el-form-item label="项目列表">
-          <el-input v-model="searchInfo.project_ids" placeholder="搜索条件" />
-        </el-form-item>
-        <el-form-item label="任务列表">
-          <el-input v-model="searchInfo.task_ids" placeholder="搜索条件" />
-        </el-form-item>
         <el-form-item label="域名列表">
-          <el-input v-model="searchInfo.domain_ids" placeholder="搜索条件" />
+          <el-input v-model="searchInfo.domain_list" placeholder="搜索条件" />
         </el-form-item>
         <el-form-item label="标签">
           <el-input v-model="searchInfo.tags" placeholder="搜索条件" />
@@ -58,10 +52,8 @@
       >
         <el-table-column type="selection" width="55" />
         <el-table-column align="left" label="目标id" prop="_id" width="210" />
-        <el-table-column align="left" label="目标名称" prop="target_name" width="120" />
-        <el-table-column align="left" label="项目列表" prop="project_ids" width="120" />
-        <el-table-column align="left" label="任务列表" prop="task_ids" width="120" />
-        <el-table-column align="left" label="域名列表" prop="domain_ids" width="120" />
+        <el-table-column align="left" label="目标名称" prop="target_name" width="200" />
+        <el-table-column align="left" label="域名列表" prop="domain_list" width="120" />
         <el-table-column align="left" label="标签" prop="tags" width="120" />
         <el-table-column align="left" label="备注" prop="remarks" width="120" />
         <el-table-column align="left" label="更新时间" prop="update_at" width="200" />
@@ -94,12 +86,6 @@
       <el-form :model="formData" label-position="right" label-width="80px">
         <el-form-item label="目标名称:">
           <el-input v-model="formData.target_name" clearable placeholder="请输入" />
-        </el-form-item>
-        <el-form-item label="项目列表:">
-          <el-input v-model="formData.project_ids" clearable placeholder="请输入" />
-        </el-form-item>
-        <el-form-item label="任务列表:">
-          <el-input v-model.number="formData.task_ids" clearable placeholder="请选择" />
         </el-form-item>
         <el-form-item label="域名列表:">
           <el-input v-model.number="formData.domain_ids" clearable placeholder="请选择" />
@@ -158,9 +144,8 @@ import { ref } from 'vue'
 
 const formData = ref({
   target_name: "",
-  project_ids: "",
-  task_ids: [],
-  domain_ids: [],
+
+  domain_list: [],
 })
 
 // =========== 表格控制部分 ===========

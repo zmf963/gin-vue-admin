@@ -52,12 +52,12 @@
       >
         <el-table-column type="selection" width="55" />
         <el-table-column align="left" label="目标id" prop="_id" width="210" />
-        <el-table-column align="left" label="目标名称" prop="target_name" width="200" />
-        <el-table-column align="left" label="域名列表" prop="domain_list" width="120" />
-        <el-table-column align="left" label="标签" prop="tags" width="120" />
+        <el-table-column align="left" label="目标名称" prop="target_name" width="150" />
+        <el-table-column align="left" label="域名列表" prop="domain_list" width="300" />
+        <el-table-column align="left" label="标签" prop="tags" width="300" />
         <el-table-column align="left" label="备注" prop="remarks" width="120" />
         <el-table-column align="left" label="更新时间" prop="update_at" width="200" />
-        <el-table-column align="left" label="按钮组">
+        <el-table-column align="left" label="按钮组" fixed="right">
           <template #default="scope">
             <el-button
               type="text"
@@ -88,7 +88,21 @@
           <el-input v-model="formData.target_name" clearable placeholder="请输入" />
         </el-form-item>
         <el-form-item label="域名列表:">
-          <el-input v-model.number="formData.domain_ids" clearable placeholder="请选择" />
+          <el-select
+            v-model="formData.domain_list"
+            placeholder="请输入"
+            multiple
+            filterable
+            allow-create
+            default-first-option
+            :reserve-keyword="false"
+            size="large"
+            style="width: 99%"
+          >
+            <el-option v-for="item in domain_list" :key="item" :label="item" :value="item">
+              <span style="color: #8492a6">{{ item }}</span>
+            </el-option>
+          </el-select>
         </el-form-item>
         <el-form-item label="标签:">
           <el-select
@@ -99,6 +113,8 @@
             allow-create
             default-first-option
             :reserve-keyword="false"
+            style="width: 99%"
+            size="large"
           >
             <el-option v-for="item in tags" :key="item" :label="item" :value="item">
               <span style="color: #8492a6">{{ item }}</span>
@@ -106,7 +122,7 @@
           </el-select>
         </el-form-item>
         <el-form-item label="备注:">
-          <el-input v-model="formData.remarks" clearable placeholder="请输入" />
+          <el-input v-model="formData.remarks" type="textarea" clearable placeholder="请输入" />
         </el-form-item>
       </el-form>
       <template #footer>

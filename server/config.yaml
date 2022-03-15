@@ -25,6 +25,9 @@ captcha:
   key-long: 6
   img-width: 240
   img-height: 80
+captcha-key:
+  captcha-id: 7HShMuUuhsBkOMJEZRmx
+  captcha: "712330"
 casbin:
   model-path: ./resource/rbac_model.conf
 cors:
@@ -75,7 +78,7 @@ hua-wei-obs:
 jwt:
   expires-time: 604800
   issuer: qmPlus
-  signing-key: 946f96d3-69c3-44bd-bbe0-909cfbf145c5
+  signing-key: e025b1e2-2abf-49a3-84fc-f89f8c61f2e9
 local:
   path: uploads/file
 mongo:
@@ -111,6 +114,8 @@ qiniu:
   access-key: ""
   secret-key: ""
   use-cdn-domains: false
+rabbitmq:
+  rabbitmq-uri: amqp://hotpot:sCviEv334Vds@192.168.31.24:5672/
 redis:
   db: 0
   addr: 127.0.0.1:6379
@@ -149,8 +154,3 @@ zap:
   encode-level: LowercaseColorLevelEncoder
   stacktrace-key: stacktrace
   log-in-console: true
-captcha-key:
-  captcha-id: 7HShMuUuhsBkOMJEZRmx
-  captcha: 712330
-rabbitmq:
-  rabbitmq-uri: amqp://hotpot:sCviEv334Vds@192.168.31.24:5672/

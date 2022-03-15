@@ -114,14 +114,8 @@ func (targetService *TargetService) GetTargetInfoList(tar project.Target, pageIn
 	if tar.TargetName != "" {
 		filter["target_name"] = bson.M{"$regex": tar.TargetName }
 	}
-	if tar.ProjectIds != "" {
-		filter["project_ids"] = bson.M{"$regex": tar.ProjectIds }
-	}
-	if len(tar.TaskIds) > 0 {
-		filter["task_ids"] = bson.M{"$in": tar.TaskIds }
-	}
-	if len(tar.DomainIds) > 0 {
-		filter["domain_ids"] = bson.M{"$in": tar.DomainIds }
+	if len(tar.DomainList) > 0 {
+		filter["domain_list"] = bson.M{"$in": tar.DomainList }
 	}
 
 	if len(tar.Tags) > 0 {

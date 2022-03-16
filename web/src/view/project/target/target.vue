@@ -57,15 +57,9 @@
         <el-table-column align="left" label="标签" prop="tags" width="300" />
         <el-table-column align="left" label="备注" prop="remarks" width="120" />
         <el-table-column align="left" label="更新时间" prop="update_at" width="200" />
-        <el-table-column align="left" label="按钮组" fixed="right">
+        <el-table-column align="left" label="按钮组" fixed="right" width="120">
           <template #default="scope">
-            <el-button
-              type="text"
-              icon="edit"
-              size="small"
-              class="table-button"
-              @click="updateTargetFunc(scope.row)"
-            >编辑</el-button>
+            <el-button type="text" icon="edit" size="mini" @click="updateTargetFunc(scope.row)">编辑</el-button>
             <el-button type="text" icon="delete" size="mini" @click="deleteRow(scope.row)">删除</el-button>
           </template>
         </el-table-column>
@@ -96,7 +90,6 @@
             allow-create
             default-first-option
             :reserve-keyword="false"
-            size="large"
             style="width: 99%"
           >
             <el-option v-for="item in domain_list" :key="item" :label="item" :value="item">
@@ -114,7 +107,6 @@
             default-first-option
             :reserve-keyword="false"
             style="width: 99%"
-            size="large"
           >
             <el-option v-for="item in tags" :key="item" :label="item" :value="item">
               <span style="color: #8492a6">{{ item }}</span>
@@ -160,8 +152,9 @@ import { ref } from 'vue'
 
 const formData = ref({
   target_name: "",
-
   domain_list: [],
+  tags: [],
+  remarks: "",
 })
 
 // =========== 表格控制部分 ===========
@@ -180,7 +173,12 @@ const onReset = () => {
 const onSubmit = () => {
   page.value = 1
   pageSize.value = 10
-
+  if (typeof searchInfo.value.domain_list === "string") {
+    searchInfo.value.domain_list = searchInfo.value.domain_list.split(",");
+  }
+  if (typeof searchInfo.value.tags === "string") {
+    searchInfo.value.tags = searchInfo.value.tags.split(",");
+  }
   getTableData()
 }
 

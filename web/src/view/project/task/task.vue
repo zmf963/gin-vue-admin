@@ -84,8 +84,6 @@
 
         <el-table-column align="left" label="工具列表" prop="tools" width="120" />
 
-        <!-- <el-table-column align="left" label="工具扩展字段" prop="tool_ext" width="120" /> -->
-
         <el-table-column align="left" label="状态" prop="status" width="120" />
 
         <el-table-column align="left" label="项目" prop="project_name" width="120" />
@@ -95,7 +93,7 @@
         <el-table-column align="left" label="标签" prop="tags" width="120" />
         <el-table-column align="left" label="备注" prop="remarks" width="120" />
         <el-table-column align="left" label="更新时间" prop="update_at" width="200" />
-        <el-table-column align="left" label="按钮组">
+        <el-table-column align="left" label="按钮组" fixed="right" width="120">
           <template #default="scope">
             <el-button
               type="text"
@@ -162,17 +160,26 @@
           <el-input v-model="formData.status" clearable placeholder="请输入" />
         </el-form-item>
 
-        <!-- <el-form-item label="项目:">
-          <el-input v-model="formData.project_id" clearable placeholder="请输入" />
-        </el-form-item>-->
-
         <el-form-item label="目标:">
-          <el-select v-model="formData.target_id" filterable placeholder="Select">
+          <el-select
+            v-model="formData.target_id"
+            default-first-option
+            filterable
+            placeholder="请选择目标"
+            multiple
+            allow-create
+            remote
+            clearable
+            :reserve-keyword="false"
+            :remote-method="targetMethod"
+            :loading="targetLoading"
+            style="width: 99%"
+          >
             <el-option
               v-for="item in targetOptions"
-              :key="item.value"
-              :label="item.label"
-              :value="item.value"
+              :key="item._id"
+              :label="item.target_name"
+              :value="item._id"
             ></el-option>
           </el-select>
         </el-form-item>
@@ -210,10 +217,14 @@ import {
   getTaskList
 } from '@/api/task'
 
+import {
+  getTargetList
+} from '@/api/target'
+
 // 全量引入格式化工具 请按需保留
 import { formatDate, formatBoolean, filterDict } from '@/utils/format'
 import { ElMessage, ElMessageBox } from 'element-plus'
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 
 // 自动化生成的字典（可能为空）以及字段
 
@@ -423,20 +434,26 @@ const toolOptions = [{
   'value': 'emailall'
 }]
 
-const targetOptions = [
-  {
-    value: '6215e1d61860650d7dc848f6',
-    label: 'jd',
-  },
-  {
-    value: '6228675d499847b816504147',
-    label: 'test',
-  },
-  {
-    value: '62286bd7499847b81650414a',
-    label: '默认',
+const targetOptions = ref([])
+const targetLoading = ref(false)
+
+const targetMethod = async (query) => {
+  console.log(query)
+  if (query) {
+    targetLoading.value = true
+    console.log(query)
+    let _targetList = await getTargetList({ page: 1, pageSize: 20, target_name: query })
+    if (_targetList.code === 0) {
+      setTimeout(() => {
+        targetLoading.value = false
+        targetOptions.value = _targetList.data.list
+      }, 200)
+    }
+  } else {
+    targetOptions.value = []
   }
-]
+}
+
 </script>
 
 <style>

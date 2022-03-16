@@ -17,6 +17,7 @@ from common.log import logger
 from model import Task, PathInfo, Domain, PortInfo
 from bson.objectid import ObjectId
 
+
 def consum_gettile(data, task_obj):
     try:
         tmp = data.get("url").split("://")[1].split("/")
@@ -89,7 +90,8 @@ def consum_pysubdomain(data, task_obj):
     for k, v in data.items():
         logger.info(k, v)
         print(task_obj.target_id)
-        tmp = {"domain": k, "target_id": ObjectId(task_obj.target_id), "ips": v}
+        tmp = {"domain": k, "target_id": ObjectId(
+            task_obj.target_id), "ips": v}
         if Domain.objects(domain=k).count() > 0:
             # do = Domain.objects(domain=k).first()
             pass

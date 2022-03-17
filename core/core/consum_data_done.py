@@ -9,7 +9,7 @@ Date: 2022-02-23 03:35:06
 LastEditors: zmf96
 LastEditTime: 2022-03-07 10:42:29
 FilePath: /core/core/consum_data_done.py
-Description: 
+Description:
 '''
 
 from core.model import EmailInfo
@@ -23,7 +23,7 @@ def consum_gettile(data, task_obj):
         tmp = data.get("url").split("://")[1].split("/")
         data["hostinfo"] = tmp[0]
         data["path"] = "/"+"/".join(tmp[1:])
-        data["target_id"] = task_obj.target_id
+        data["target_id"] = task_obj.get("target_id")
         data["response_size"] = len(data.get("body"))
         if PathInfo.objects(url=data.get("url")).count() > 0:
             PathInfo.objects(url=data.get("url")).first().Update(**data)
@@ -55,7 +55,7 @@ def consum_gettile(data, task_obj):
 def consum_cdncheck(data, task_obj):
     for item in data:
         logger.info(item)
-        item["target_id"] = task_obj.target_id
+        item["target_id"] = task_obj.get("target_id")
         cdn = 0
         if item.get("cdn") != '':
             cname = item.get("cdn")
@@ -76,7 +76,7 @@ def consum_beian2domain(data, task_obj):
     for item in data:
         logger.info(item)
         tmp = {"domain": item[1],
-               "target_id": task_obj.target_id, "tags": [item[0]]}
+               "target_id": task_obj.get("target_id"), "tags": [item[0]]}
         if Domain.objects(domain=item[1]).count() > 0:
             do = Domain.objects(domain=item[1]).first()
             if item[0] not in do.tags:
@@ -89,13 +89,10 @@ def consum_beian2domain(data, task_obj):
 def consum_pysubdomain(data, task_obj):
     for k, v in data.items():
         logger.info(k, v)
-        print(task_obj.target_id)
+        logger.info(task_obj.get("target_id"))
         tmp = {"domain": k, "target_id": ObjectId(
-            task_obj.target_id), "ips": v}
-        if Domain.objects(domain=k).count() > 0:
-            # do = Domain.objects(domain=k).first()
-            pass
-        else:
+            task_obj.get("target_id")), "ips": v}
+        if Domain.objects(domain=k).count() <= 0:
             Domain(**tmp).Save()
 
 
@@ -125,46 +122,52 @@ def consum_hotfinger(data, task_obj):
         logger.warning(e)
 
 
+def _consum_fofainfo_domain(result, task_obj):
+    if Domain.objects(domain=result[1]).count() > 0:
+        do = Domain.objects(domain=result[1]).first()
+        if result[3] not in do.ips:
+            do.ips.append(result[3])
+        do.addr = " ".join(result[5:8])
+        do.cname = result[-1]
+        do.source = "fofa"
+        if result[-2] not in do.tags:
+            do.tags.append(result[-2])
+        do.Save()
+    else:
+        Domain(domain=result[1], addr=" ".join(result[5:8]),
+               cname=result[-1], ips=[result[3]], tags=[result[-2]],
+               source="fofa", target_id=task_obj.target_id
+               ).Save()
+
+
+def _consum_fofainfo_portinfo(result, task_obj):
+    if ":" in result[1]:
+        hostinfo = result[1]
+    else:
+        hostinfo = result[1] + result[4]
+    
+    if PortInfo.objects(hostinfo=hostinfo).count() > 0:
+        pi = PortInfo.objects(hostinfo=hostinfo).first()
+        pi.title = result[0]
+        pi.port = result[4]
+        if result[2] == "":
+            pi.host = result[3]
+        else:
+            pi.host = result[2]
+        if result[-3] not in pi.products:
+            pi.products.append(result[-3])
+        pi.Save()
+    else:
+        PortInfo(hostinfo=hostinfo, title=result[0], port=result[4],
+                 host=result[3], products=[result[-3]],
+                 target_id=task_obj.target_id).Save()
+
+
 def consum_fofainfo(data, task_obj):
     if data.get("error") == False:
         for result in data.get("results"):
-            if Domain.objects(domain=result[1]).count() > 0:
-                do = Domain.objects(domain=result[1]).first()
-                if result[3] not in do.ips:
-                    do.ips.append(result[3])
-                do.addr = " ".join(result[5:8])
-                do.cname = result[-1]
-                do.source = "fofa"
-                if result[-2] not in do.tags:
-                    do.tags.append(result[-2])
-                do.Save()
-            else:
-                Domain(domain=result[1], addr=" ".join(result[5:8]),
-                       cname=result[-1], ips=[result[3]], tags=[result[-2]],
-                       source="fofa", target_id=task_obj.target_id
-                       ).Save()
-
-            if ":" in result[1]:
-                hostinfo = result[1]
-            else:
-                hostinfo = result[1] + result[4]
-            if PortInfo.objects(hostinfo=hostinfo).count() > 0:
-                pi = PortInfo.objects(hostinfo=hostinfo).first()
-                pi.title = result[0]
-                pi.port = result[4]
-                if result[2] == "":
-                    pi.host = result[3]
-                else:
-                    pi.host = result[2]
-                if result[-3] not in pi.products:
-                    pi.products.append(result[-3])
-                pi.Save()
-            else:
-                PortInfo(hostinfo=hostinfo, title=result[0], port=result[4],
-                         host=result[3], products=[result[-3]],
-                         target_id=task_obj.target_id).Save()
-            PortInfo.objects
-
+            _consum_fofainfo_domain(result, task_obj)
+            _consum_fofainfo_portinfo(result, task_obj)
 
 def consum_emailall(data, task_obj):
     for email in data:

@@ -30,9 +30,25 @@ channel.queue_declare(queue='server:default', durable=False)
 threadPoolTaskWatch = ThreadPoolExecutor(
     max_workers=16, thread_name_prefix="task_watch_")
 
+# 6. 消费任务结果
+
+
+def consum_task_date(celery_task_ids, task):
+    for task_id in celery_task_ids:
+        try:
+            res = tasks.app.AsyncResult(task_id).get()
+            logger.info(res)
+            consum_data_done(res.get("tool_type"),
+                             res.get("data"), task)
+        except Exception as e:
+            logger.warning(e)
+
+# 5. 向celery worker节点，分发任务
+
 
 def task_worker_run(tools, task):
     celery_task_ids = []
+    # TODO: 优化代码！
     for tool in tools:
         if tool == "gettitle":
             for host in task.get("hosts").split(","):
@@ -86,16 +102,10 @@ def task_worker_run(tools, task):
         else:
             logger.warning("Not support tool: %s" % tool)
 
-    for task_id in celery_task_ids:
-        try:
-            res = tasks.app.AsyncResult(task_id).get()
-            logger.info(res)
-            task_obj = Task.objects(id=task.get("_id")).first()
-            consum_data_done(res.get("tool_type"),
-                             res.get("data"), task_obj)
-        except Exception as e:
-            logger.warning(e)
+    consum_task_date(celery_task_ids, task)
     return celery_task_ids
+
+# 4. tool分组
 
 
 def task_dely(tools, task):
@@ -119,6 +129,8 @@ def task_dely(tools, task):
 
     return celery_task_ids
 
+# 3. 添加工作worker
+
 
 def worker(task):
     celery_task_ids = []
@@ -131,6 +143,8 @@ def worker(task):
         task_obj.Update(status="complete",
                         celery_task_ids=task.get("celery_task_ids"))
 
+# 2. 消费task消息
+
 
 def callback(ch, method, properties, body):
     logger.info(body)
@@ -140,6 +154,8 @@ def callback(ch, method, properties, body):
     else:
         print(" [x] Received %r" % body)
     ch.basic_ack(delivery_tag=method.delivery_tag)  # 告诉生产者，消息处理完成
+
+# 1. 启动
 
 
 def start_done():

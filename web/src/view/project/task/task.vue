@@ -166,7 +166,6 @@
             default-first-option
             filterable
             placeholder="请选择目标"
-            multiple
             allow-create
             remote
             clearable

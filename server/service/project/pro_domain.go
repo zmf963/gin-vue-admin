@@ -2,11 +2,13 @@ package project
 
 import (
 	"context"
+	"time"
+
 	"github.com/flipped-aurora/gin-vue-admin/server/global"
 	"github.com/flipped-aurora/gin-vue-admin/server/model/common/request"
 	"github.com/flipped-aurora/gin-vue-admin/server/model/project"
 	"github.com/flipped-aurora/gin-vue-admin/server/model/project/response"
-	"time"
+
 	//projectReq "github.com/flipped-aurora/gin-vue-admin/server/model/project/request"
 
 	"go.mongodb.org/mongo-driver/bson"
@@ -158,7 +160,7 @@ func (domainService *DomainService) GetDomainInfoList(dom project.Domain, pageIn
 	}
 	global.GVA_LOG.Info("[GetDomainInfoList]", zap.Any("TargetIdIsVerify", dom.TargetIdIsVerify))
 	if dom.TargetIdIsVerify {
-		filter["target_id_is_verify"] =  dom.TargetIdIsVerify
+		filter["target_id_is_verify"] = dom.TargetIdIsVerify
 	}
 	total, err = global.Mongo_DB.Collection("pro_domain").CountDocuments(context.TODO(), filter)
 	if err != nil {
@@ -171,7 +173,7 @@ func (domainService *DomainService) GetDomainInfoList(dom project.Domain, pageIn
 		bson.M{"$skip": offset},
 		bson.M{"$limit": limit},
 		bson.M{"$lookup": bson.M{"from": "pro_target", "localField": "target_id", "foreignField": "_id", "as": "pro_target"}},
-		bson.M{"$project": bson.M{"domain": 1, "ips": 1, "hostnames": 1,"os":1, "whois": 1, "alive": 1, "cname":1,"cdn": 1,"cird":1,"asn":1,"org":1,"addr":1,"isp":1,"source":1, "target_id": 1, "target_id_is_verify":1, "port_ids": 1, "tags": 1, "create_at": 1, "update_at": 1, "delete_at": 1, "target_name": "$pro_target.target_name"}},
+		bson.M{"$project": bson.M{"domain": 1, "ips": 1, "hostnames": 1, "os": 1, "whois": 1, "alive": 1, "cname": 1, "cdn": 1, "cird": 1, "asn": 1, "org": 1, "addr": 1, "isp": 1, "source": 1, "target_id": 1, "target_id_is_verify": 1, "port_ids": 1, "tags": 1, "create_at": 1, "update_at": 1, "delete_at": 1, "target_name": "$pro_target.target_name"}},
 		bson.M{"$unwind": bson.M{"path": "$target_name", "preserveNullAndEmptyArrays": false}},
 	}
 	if order != "" {

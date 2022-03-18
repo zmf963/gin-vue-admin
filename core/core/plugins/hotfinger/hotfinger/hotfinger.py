@@ -57,6 +57,7 @@ class PathHotFinger:
         self.body_md5 = ''
         self.status_code = 0
         self.fingers = []
+        self.requests_session = requests.Session()
 
     def run(self, url, fingers):
         self.url = url
@@ -68,7 +69,7 @@ class PathHotFinger:
 
     def _get_webpage(self):
         try:
-            resp = requests.get(self.url, headers=self.requests_headers(
+            resp = self.requests_session.get(self.url, headers=self.requests_headers(
             ), verify=False, timeout=10, allow_redirects=True)
             self.response = resp
             _bs = BeautifulSoup(resp.text, 'html5lib')  # 创建BeautifulSoup对象
@@ -125,7 +126,7 @@ class PathHotFinger:
                     self.fingers.append(name)
                     break
                 elif cr_ret == 0:
-                    ErrFingers.append({name:content})
+                    ErrFingers.append({name: content})
         # 只有一个条件的情况  1
         elif '||' not in content and '&&' not in content and '(' not in content:
             if self._check_rule(content):
@@ -138,7 +139,7 @@ class PathHotFinger:
                 if cr_ret == True:
                     num += 1
                 elif cr_ret == 0:
-                    ErrFingers.append({name:content})
+                    ErrFingers.append({name: content})
             if num == len(content.split('&&')):
                 self.fingers.append(name)
         else:
@@ -152,7 +153,7 @@ class PathHotFinger:
                             if cr_ret == True:
                                 num += 1
                             elif cr_ret == 0:
-                                ErrFingers.append({name:content})
+                                ErrFingers.append({name: content})
                         if num == len(rule.split('&&')):
                             self.fingers.append(name)
                             break
@@ -162,7 +163,7 @@ class PathHotFinger:
                             self.fingers.append(name)
                             break
                         elif cr_ret == 0:
-                            ErrFingers.append({name:content})
+                            ErrFingers.append({name: content})
             else:
                 # 并条件下存在与条件： 1&&2&&(3||4)
                 for rule in content.split('&&'):
@@ -173,13 +174,13 @@ class PathHotFinger:
                             if cr_ret == True:
                                 num += 1
                             elif cr_ret == 0:
-                                ErrFingers.append({name:content})
+                                ErrFingers.append({name: content})
                     else:
                         cr_ret = self._check_rule(rule)
                         if cr_ret == True:
                             num += 1
                         elif cr_ret == 0:
-                            ErrFingers.append({name:content})
+                            ErrFingers.append({name: content})
                 if num == len(content.split('&&')):
                     self.fingers.append(name)
 
@@ -254,8 +255,9 @@ class HotFinger:
             self.fingers.extend(path_hot_finger.fingers)
             self.pages[path] = path_hot_finger
 
+
 def hotfinger_init(fingers=[]):
-    if fingers  == []:
+    if fingers == []:
         with open(os.path.join(basedir, "data", "hotfinger_v1.json"), "r", encoding='utf-8') as f:
             fingers = json.load(f)
     logger.info("指纹数量"+str(len(fingers)))
@@ -267,19 +269,21 @@ def hotfinger_init(fingers=[]):
                 path_finger[path].append({item["name"]: finger})
             else:
                 path_finger[path] = [{item["name"]: finger}]
-    
+
+
 def run_hotfinger(url):
     hf = HotFinger()
     hf.run(url)
     return {
-        "domain":url,
-        "fingers":hf.fingers
+        "domain": url,
+        "fingers": hf.fingers
     }
 
 
 def async_run(urls: list) -> list:
     with ThreadPoolExecutor(max_workers=5) as executor:
-        future_to_url = {executor.submit(run_hotfinger, url): url for url in urls}
+        future_to_url = {executor.submit(
+            run_hotfinger, url): url for url in urls}
         for future in as_completed(future_to_url):
             logger.info(future_to_url[future])
             logger.info(future.result()["fingers"])
@@ -291,12 +295,11 @@ if __name__ == '__main__':
     parser.add_argument("-v", "--version",
                         action='version', version="0.1.0")
     parser.add_argument("-d", "--domain", type=str,
-                        help='目标域名,eg: https://www.baidu.com,https://bing.com',required=True)
+                        help='目标域名,eg: https://www.baidu.com,https://bing.com', required=True)
     args = parser.parse_args()
     logger.info("开始加载指纹库")
-    init()
     urls = args.domain.split(",")
     print(urls)
     async_run(urls)
-    with open("errfinger.json","w",encoding='utf-8') as f:
-        json.dump(ErrFingers, f, indent=4,ensure_ascii=False)
+    with open("errfinger.json", "w", encoding='utf-8') as f:
+        json.dump(ErrFingers, f, indent=4, ensure_ascii=False)

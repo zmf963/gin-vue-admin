@@ -18,12 +18,12 @@ from model import Task, PathInfo, Domain, PortInfo
 from bson.objectid import ObjectId
 
 
-def consum_gettile(data, task_obj):
+def consum_gettile(data, task_dict):
     try:
         tmp = data.get("url").split("://")[1].split("/")
         data["hostinfo"] = tmp[0]
         data["path"] = "/"+"/".join(tmp[1:])
-        data["target_id"] = task_obj.get("target_id")
+        data["target_id"] = task_dict.get("target_id")
         data["response_size"] = len(data.get("body"))
         if PathInfo.objects(url=data.get("url")).count() > 0:
             PathInfo.objects(url=data.get("url")).first().Update(**data)
@@ -48,14 +48,14 @@ def consum_gettile(data, task_obj):
             else:
                 PortInfo(**data).Save()
     except Exception as e:
-        logger.warning(task_obj)
+        logger.warning(task_dict)
         logger.warning(e)
 
 
-def consum_cdncheck(data, task_obj):
+def consum_cdncheck(data, task_dict):
     for item in data:
         logger.info(item)
-        item["target_id"] = task_obj.get("target_id")
+        item["target_id"] = task_dict.get("target_id")
         cdn = 0
         if item.get("cdn") != '':
             cname = item.get("cdn")
@@ -72,11 +72,11 @@ def consum_cdncheck(data, task_obj):
                    cname=cname, ips=[item.get("ip")]).Save()
 
 
-def consum_beian2domain(data, task_obj):
+def consum_beian2domain(data, task_dict):
     for item in data:
         logger.info(item)
         tmp = {"domain": item[1],
-               "target_id": task_obj.get("target_id"), "tags": [item[0]]}
+               "target_id": task_dict.get("target_id"), "tags": [item[0]]}
         if Domain.objects(domain=item[1]).count() > 0:
             do = Domain.objects(domain=item[1]).first()
             if item[0] not in do.tags:
@@ -86,21 +86,21 @@ def consum_beian2domain(data, task_obj):
             Domain(**tmp).Save()
 
 
-def consum_pysubdomain(data, task_obj):
+def consum_pysubdomain(data, task_dict):
     for k, v in data.items():
         logger.info(k, v)
-        logger.info(task_obj.get("target_id"))
+        logger.info(task_dict.get("target_id"))
         tmp = {"domain": k, "target_id": ObjectId(
-            task_obj.get("target_id")), "ips": v}
+            task_dict.get("target_id")), "ips": v}
         if Domain.objects(domain=k).count() <= 0:
             Domain(**tmp).Save()
 
 
-def consum_hotfinger(data, task_obj):
+def consum_hotfinger(data, task_dict):
     try:
         tmp = data.get("domain").split("://")[1].split("/")
         data["hostinfo"] = tmp[0]
-        data["target_id"] = task_obj.target_id
+        data["target_id"] = task_dict["target_id"]
         data["products"] = data.pop("fingers")
         tmp = data.get("hostinfo").split(":")
         data["host"] = tmp[0]
@@ -118,11 +118,11 @@ def consum_hotfinger(data, task_obj):
         else:
             PortInfo(**data).Save()
     except Exception as e:
-        logger.warning(task_obj)
+        logger.warning(task_dict)
         logger.warning(e)
 
 
-def _consum_fofainfo_domain(result, task_obj):
+def _consum_fofainfo_domain(result, task_dict):
     if Domain.objects(domain=result[1]).count() > 0:
         do = Domain.objects(domain=result[1]).first()
         if result[3] not in do.ips:
@@ -136,11 +136,11 @@ def _consum_fofainfo_domain(result, task_obj):
     else:
         Domain(domain=result[1], addr=" ".join(result[5:8]),
                cname=result[-1], ips=[result[3]], tags=[result[-2]],
-               source="fofa", target_id=task_obj.target_id
+               source="fofa", target_id=task_dict["target_id"]
                ).Save()
 
 
-def _consum_fofainfo_portinfo(result, task_obj):
+def _consum_fofainfo_portinfo(result, task_dict):
     if ":" in result[1]:
         hostinfo = result[1]
     else:
@@ -160,35 +160,35 @@ def _consum_fofainfo_portinfo(result, task_obj):
     else:
         PortInfo(hostinfo=hostinfo, title=result[0], port=result[4],
                  host=result[3], products=[result[-3]],
-                 target_id=task_obj.target_id).Save()
+                 target_id=task_dict["target_id"]).Save()
 
 
-def consum_fofainfo(data, task_obj):
+def consum_fofainfo(data, task_dict):
     if data.get("error") == False:
         for result in data.get("results"):
-            _consum_fofainfo_domain(result, task_obj)
-            _consum_fofainfo_portinfo(result, task_obj)
+            _consum_fofainfo_domain(result, task_dict)
+            _consum_fofainfo_portinfo(result, task_dict)
 
-def consum_emailall(data, task_obj):
+def consum_emailall(data, task_dict):
     for email in data:
         logger.info(email)
         if EmailInfo.objects(email=email).count() == 0:
-            EmailInfo(email=email, target_id=task_obj.target_id).Save()
+            EmailInfo(email=email, target_id=task_dict["target_id"]).Save()
 
 
-def consum_data_done(tool_type, data, task_obj):
+def consum_data_done(tool_type, data, task_dict):
     if tool_type == "gettitle":
         tmp_data = data[0]
-        consum_gettile(tmp_data, task_obj)
+        consum_gettile(tmp_data, task_dict)
     elif tool_type == "cdncheck":
-        consum_cdncheck(data, task_obj)
+        consum_cdncheck(data, task_dict)
     elif tool_type == "beian2domain":
-        consum_beian2domain(data, task_obj)
+        consum_beian2domain(data, task_dict)
     elif tool_type == "pysubdomain":
-        consum_pysubdomain(data, task_obj)
+        consum_pysubdomain(data, task_dict)
     elif tool_type == "hotfinger":
-        consum_hotfinger(data, task_obj)
+        consum_hotfinger(data, task_dict)
     elif tool_type == "fofainfo":
-        consum_fofainfo(data, task_obj)
+        consum_fofainfo(data, task_dict)
     elif tool_type == "emailall":
-        consum_emailall(data, task_obj)
+        consum_emailall(data, task_dict)

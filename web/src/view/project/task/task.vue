@@ -83,7 +83,13 @@
         <el-table-column align="left" label="关键字" prop="keyword" width="120" />
 
         <el-table-column align="left" label="工具列表" prop="tools" width="120" />
-
+        <el-table-column
+          align="left"
+          label="工具扩展字段"
+          prop="tool_ext"
+          width="260"
+          :formatter="formatterToolExt"
+        />
         <el-table-column align="left" label="状态" prop="status" width="120" />
 
         <el-table-column align="left" label="项目" prop="project_name" width="120" />
@@ -343,6 +349,7 @@ const updateTaskFunc = async (row) => {
   type.value = 'update'
   if (res.code === 0) {
     formData.value = res.data.retask
+    formData.value.tool_ext = JSON.stringify(res.data.retask.tool_ext)
     dialogFormVisible.value = true
   }
 }
@@ -389,6 +396,7 @@ const closeDialog = () => {
 const enterDialog = async () => {
   let res
   console.log(formData.value.tools)
+  formData.value.tool_ext = JSON.parse(formData.value.tool_ext);
   switch (type.value) {
     case 'create':
       res = await createTask(formData.value)
@@ -452,6 +460,10 @@ const targetMethod = async (query) => {
     targetOptions.value = []
   }
 }
+
+const formatterToolExt = (row) => {
+  return JSON.stringify(row.tool_ext);
+};
 
 </script>
 

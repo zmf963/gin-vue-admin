@@ -29,7 +29,7 @@ var TaskServiceApp = new(TaskService)
 //@param: task model.Task
 //@return: err error
 func (taskService *TaskService) CreateTask(task project.Task) (err error) {
-	global.GVA_LOG.Info("[ CreateTask]", zap.Any("task", task))
+	global.GVA_LOG.Info("[CreateTask]", zap.Any("task", task))
 	task.ID_ = primitive.NewObjectID()
 	task.CreateAt = time.Now().Local()
 	task.UpdateAt = time.Now().Local()

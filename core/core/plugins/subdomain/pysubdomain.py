@@ -14,11 +14,13 @@ Description:
 
 from subdomain.subdomain import SubDomain
 
+
 def run_pysubdomain(domain):
     sd = SubDomain(({'deep': 1, 'domain': domain,
                    'dictname': 'test.txt'}))
     sd.run()
     return sd.results
+
 
 if __name__ == '__main__':
     domain = 'baidu.com'

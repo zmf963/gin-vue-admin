@@ -10,18 +10,23 @@ try:
 except Exception as e:
     print(e)
 
-headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64; rv:46.0) Gecko/20100101 Firefox/46.0'}
+headers = {
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64; rv:46.0) Gecko/20100101 Firefox/46.0'}
 
 # www.beianbeian.com
+
+
 def beianbeianApi(domain):
     logger.info('Load beianbeianApi: '+domain)
     # 获取备案ID
     beianId = ''
     url = 'http://www.beianbeian.com/s-0/{}.html'.format(domain)
     try:
-        res = requests.get(url=url, headers=headers, allow_redirects=False, verify=False, timeout=10)
+        res = requests.get(url=url, headers=headers,
+                           allow_redirects=False, verify=False, timeout=10)
     except Exception as e:
-        logger.warning('[error] http://www.beianbeian.com is die \n{}'.format(e.args))
+        logger.warning(
+            '[error] http://www.beianbeian.com is die \n{}'.format(e.args))
         return []
 
     text = res.text
@@ -44,9 +49,11 @@ def beianbeianApi(domain):
     tempDict = {}
     # url = r'http://www.beianbeian.com/search-1/%E6%B5%99B2-20080224.html'
     try:
-        res = requests.get(url=beianSearchUrl, headers=headers, allow_redirects=False, verify=False, timeout=10)
+        res = requests.get(url=beianSearchUrl, headers=headers,
+                           allow_redirects=False, verify=False, timeout=10)
     except Exception as e:
-        logger.warning('[error] request : {}\n{}'.format(beianSearchUrl, e.args))
+        logger.warning('[error] request : {}\n{}'.format(
+            beianSearchUrl, e.args))
         return []
     text = res.text
     soup = BeautifulSoup(text, 'html.parser')
@@ -66,6 +73,8 @@ def beianbeianApi(domain):
     return beianbeianNewDomains
 
 # icp.chinaz.com
+
+
 def chinazApi(domain):
 
     # 解析chinaz返回结果的json数据
@@ -76,7 +85,8 @@ def chinazApi(domain):
             companyName = result['webName']
             newDomain = result['host']
             time = result['verifyTime']
-            chinazNewDomains.append((companyName, newDomain, time))     # [('城市产业服务平台', 'cloudfoshan.com', '2020-06-09'), ('城市产业服务平台', 'cloudguangzhou.com', '2020-06-09')]
+            # [('城市产业服务平台', 'cloudfoshan.com', '2020-06-09'), ('城市产业服务平台', 'cloudguangzhou.com', '2020-06-09')]
+            chinazNewDomains.append((companyName, newDomain, time))
         chinazNewDomains = list(set(chinazNewDomains))
         return chinazNewDomains
 
@@ -87,7 +97,8 @@ def chinazApi(domain):
     # 获取域名的公司名字
     url = r'http://icp.chinaz.com/{}'.format(domain)
     try:
-        res = requests.get(url=url, headers=headers, allow_redirects=False, verify=False, timeout=10)
+        res = requests.get(url=url, headers=headers,
+                           allow_redirects=False, verify=False, timeout=10)
     except Exception as e:
         logger.info('[error] request : {}\n{}'.format(url, e.args))
         return [], []
@@ -108,7 +119,8 @@ def chinazApi(domain):
     url = 'http://icp.chinaz.com/Home/PageData'
     data = 'pageNo=1&pageSize=20&Kw=' + companyNameUrlEncode
     try:
-        res = requests.post(url=url, headers=headers, data=data, allow_redirects=False, verify=False, timeout=10)
+        res = requests.post(url=url, headers=headers, data=data,
+                            allow_redirects=False, verify=False, timeout=10)
     except Exception as e:
         ('[error] request : {}\n{}'.format(url, e.args))
         return [], []
@@ -127,12 +139,12 @@ def chinazApi(domain):
         logger.info('请求第{}页'.format(page))
         data = 'pageNo={}&pageSize=20&Kw='.format(page) + companyNameUrlEncode
         try:
-            res = requests.post(url=url, headers=headers, data=data, allow_redirects=False, verify=False, timeout=10)
+            res = requests.post(url=url, headers=headers, data=data,
+                                allow_redirects=False, verify=False, timeout=10)
             json_ret = json.loads(res.text)
             tempList.extend(parse_json(json_ret))
         except Exception as e:
             logger.info('[error] request : {}\n{}'.format(url, e.args))
-
 
     for each in tempList:
         if each[1] not in tempDict:
@@ -157,9 +169,11 @@ def run_beian2domain(domain):
     logger.info('去重后共计{}个顶级域名'.format(len(beianNewDomains)))
     return beianNewDomains
 
+
 if __name__ == '__main__':
     try:
-        import os,sys
+        import os
+        import sys
         basedir = os.path.dirname(os.path.abspath(__file__))
         sys.path.append(os.path.abspath(os.path.join(basedir, '../../')))
         from common.log import logger
@@ -167,5 +181,5 @@ if __name__ == '__main__':
     except Exception as e:
         print(e)
     icp = '京ICP证030173号'
-    icp = '京ICP备11041704号'
+    icp = '京ICP备11011765号'
     logger.info(run_beian2domain(icp))

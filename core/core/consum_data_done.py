@@ -20,8 +20,20 @@ from bson.objectid import ObjectId
 
 def consum_gettile(data, task_dict):
     try:
+        print(task_dict)
         tmp = data.get("url").split("://")[1].split("/")
+        logger.info(task_dict.get("target_id"))
         data["hostinfo"] = tmp[0]
+        domain = tmp[0]
+        if ":" in  tmp[0]:
+            domain = tmp[0].split(":")[0]
+            
+        _domain_dict = {"domain": domain, "target_id": ObjectId(
+            task_dict.get("target_id"))}
+        if Domain.objects(domain=domain).count() <= 0:
+            logger.info(_domain_dict)
+            Domain(**_domain_dict).Save()
+
         data["path"] = "/"+"/".join(tmp[1:])
         data["target_id"] = task_dict.get("target_id")
         data["response_size"] = len(data.get("body"))

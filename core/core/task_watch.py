@@ -39,6 +39,7 @@ def consum_task_date(celery_task_ids, task):
     for task_id in celery_task_ids:
         # try:
         res = tasks.app.AsyncResult(task_id).get()
+        logger.info(task)
         consum_data_done(res.get("tool_type"),
                          res.get("data"), task)
         # except Exception as e:
@@ -59,7 +60,7 @@ def get_tool_url_list(task: object, tool_name: str) -> List[str]:
                 return url_list
     except Exception as e:
         logger.error(e)
-    return get_url_list_from_host_port_list(host_list,port_list)
+    return get_url_list_from_host_port_list(host_list, port_list)
 
 # 5. 向celery worker节点，分发任务
 

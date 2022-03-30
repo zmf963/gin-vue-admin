@@ -7,28 +7,22 @@ Autor: zmf96
 Email: zmf96@qq.com
 Date: 2022-02-08 18:15:35
 LastEditors: zmf96
-LastEditTime: 2022-03-04 11:08:21
+LastEditTime: 2022-03-30 20:19:51
 FilePath: /core/core/app.py
 Description: 
 '''
 
 import tasks
-import plugins
-from common.log import logger
+from cp_common.log import logger
 
 if __name__ == '__main__':
     rets = []
-    # logger.info(plugins.gettitle.gettitle.get_title("http://www.baidu.com"))
-    # for i in range(1):
-    #     print(tasks.ping.delay().get())
-    #     res = tasks.gettitle.delay("https://baidu.com")
-    #     rets.append(res)
-    #     # res = tasks.icpsearch.delay("https://baidu.com")
-    #     # rets.append(res)
-
-    # for ret in rets:
-    #     ret.get()
-    # ret = tasks.hotfinger.delay("https://www.baidu.com").get()
-    # ret = tasks.fofainfo.delay("vulhub.org.cn").get()
-    ret = tasks.emailall.delay("jd.com").get()
-    logger.info(ret)
+    for _ in range(10):
+        ret = tasks.ping.delay()
+        rets.append(ret)
+        ret = tasks.worker_entry.delay("gettitle",url_list=["http://bing.com:80"])
+        ret = tasks.worker_entry.delay("hotfinger",url_list=["http://bing.com:80","http://vulhub.org.cn"])
+        rets.append(ret)
+        
+    for ret in rets:
+        logger.info(ret.get())

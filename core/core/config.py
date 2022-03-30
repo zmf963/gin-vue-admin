@@ -1,0 +1,54 @@
+#!/usr/bin/env python
+# coding=utf-8
+
+'''
+Version: 0.1
+Autor: zmf96
+Email: zmf96@qq.com
+Date: 2022-02-08 12:27:29
+LastEditors: zmf96
+LastEditTime: 2022-03-30 19:55:23
+FilePath: /core/core/config.py
+Description: 配置文件模板,实际配置文件local_config.py请参考此文件
+'''
+import os
+import hashlib
+
+
+def hash_password(salt, password):
+    salted = password + salt
+    return hashlib.sha512(salted.encode("utf-8")).hexdigest()
+
+
+users = {
+    "zvdw3": hash_password("9582aa2eaea3423c8f8d4749351e5378", "38zhVSzd"),
+    "b4Vdd": hash_password("9582aa2eaea3423c8f8d4749351e5378", "485DVzd3"),
+    "ff5Zf": hash_password("9582aa2eaea3423c8f8d4749351e5378", "485DVzd2")
+}
+
+FOFA_EMAIL = os.getenv("FOFA_EMAIL") if os.getenv(
+    "FOFA_EMAIL") else "johnbrucel11t@gmail.com"
+FOFA_KEYS = os.getenv("FOFA_KEYS") if os.getenv(
+    "FOFA_KEYS") else "3eabbe56603ecd0d17b9d7ab6df9425a"
+
+apikeys = ["hoted2#@cVdAs"]
+
+MOTOR_URI = "mongodb://online:43invVDwfsd4@192.168.31.24:27017/online?authSource=admin"
+
+
+broker_url = "pyamqp://hotpot:sCviEv334Vds@192.168.31.24:5672/"
+result_backend = MOTOR_URI
+task_serializer = 'json'
+result_expires = 60 * 60 * 24
+accept_content = ["json"]
+task_default_queue = "default"
+timezone = 'Asia/Shanghai'
+
+
+
+MODULE_LIST = ["subdomain","hotfinger"]
+
+try:
+    from local_config import *
+except Exception as e:
+    print(e)

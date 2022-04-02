@@ -8,11 +8,13 @@ authors = ["zmf963 <zmf96@qq.com>"]
 python = "^3.8"
 rich = "^12.0.0"
 loguru = "^0.6.0"
-requests = "^2.27.1"
 mongoengine = "^0.24.1"
 bs4 = "^0.0.1"
 celery = "^5.2.3"
 pika = "^1.2.0"
+pyppeteer = "^1.0.2"
+subdomain = "^0.1.4"
+hotfinger = "^0.1.2"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"

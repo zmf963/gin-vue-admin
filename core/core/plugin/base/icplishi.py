@@ -31,8 +31,8 @@ class PluginClass(Plugin, Requests):
     ]
 
     def __init__(self, **kwargs) -> None:
-        super().__init__(**kwargs)
-        super(PluginClass, self).__init__(kwargs)
+        super(PluginClass, self).__init__(**kwargs)
+        super(Plugin, self).__init__()
         self.BASEURL = "https://icplishi.com/"
         self.domain_list = []
         self.target = kwargs["keyword"]
@@ -108,7 +108,7 @@ class PluginClass(Plugin, Requests):
             self.get_domain(r.text)
         self.domain_list = list(set(self.domain_list))
         for domain in self.domain_list:
-            self.results.append({"domain": {"doamin": domain, "source": "icplishi"}})
+            self.results.append({"domain": {"domain": domain, "source": "icplishi"}})
 
     @staticmethod
     def vaildator_args(kwargs):

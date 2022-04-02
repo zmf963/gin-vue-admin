@@ -422,18 +422,17 @@ const toolOptions = [{
   'label': 'pysubdomain',
   'value': 'pysubdomain'
 }, {
-  'label': 'beian2domain',
-  'value': 'beian2domain'
+  'label': 'icplishi',
+  'value': 'icplishi'
 }, {
   'label': 'hotfinger',
   'value': 'hotfinger'
-}, {
-  'label': 'cdncheck',
-  'value': 'cdncheck'
-}, {
-  'label': 'fofainfo',
-  'value': 'fofainfo'
-}, {
+},
+{
+  "label": "screenshot",
+  "value": "screenshot",
+},
+{
   'label': 'gettitle',
   'value': 'gettitle'
 }, {

@@ -262,7 +262,7 @@ curl --location --request POST 'http://127.0.0.1:8080/api/task/createTask' \
 --header 'x-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVVUlEIjoiNzQ1ZDllNWMtOTA2NC00NDRlLTg2NGMtNDUxZDkyYWVmNDE3IiwiSUQiOjEsIlVzZXJuYW1lIjoiYWRtaW4iLCJOaWNrTmFtZSI6Iui2hee6p-euoeeQhuWRmCIsIkF1dGhvcml0eUlkIjoiODg4IiwiQnVmZmVyVGltZSI6MCwiZXhwIjoxNjQ2MTE3MzM3LCJpc3MiOiJxbVBsdXMiLCJuYmYiOjE2NDU1MTE1Mzd9.ds_UkWLbRB09xTkMEUm_kN6bpUXv7aoew3BbD8GV0CI' \
 --header 'Content-Type: application/json' \
 --data-raw '{
-    "task_name": "pysubdoamin_001",
+    "task_name": "pysubdomain_001",
     "hosts": "jd.com",
     "ports": "",
     "keyword": "",

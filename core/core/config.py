@@ -7,7 +7,7 @@ Autor: zmf96
 Email: zmf96@qq.com
 Date: 2022-02-08 12:27:29
 LastEditors: zmf96
-LastEditTime: 2022-03-30 19:55:23
+LastEditTime: 2022-03-31 19:29:24
 FilePath: /core/core/config.py
 Description: 配置文件模板,实际配置文件local_config.py请参考此文件
 '''

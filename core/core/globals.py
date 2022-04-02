@@ -101,4 +101,9 @@ def load_plugin_from_pip(plugin_dir):
 
 
 load_plugin()
+
 print(PLUGIN_OBJECT)
+if __name__ == "__main__":
+    for k,v in PLUGIN_OBJECT.items():
+        print(k)
+        print(v.usage)

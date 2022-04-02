@@ -3,68 +3,68 @@
     <div class="gva-search-box">
       <el-form :inline="true" :model="searchInfo" class="demo-form-inline">
         <el-form-item label="域名">
-          <el-input v-model="searchInfo.domain" placeholder="搜索条件" />
+          <el-input v-model.trim="searchInfo.domain" placeholder="搜索条件" @keyup.enter.native="onSubmit" />
         </el-form-item>
 
         <el-form-item label="IPS">
-          <el-input v-model="searchInfo.ips" placeholder="搜索条件" />
+          <el-input v-model.trim="searchInfo.ips" placeholder="搜索条件" @keyup.enter.native="onSubmit" />
         </el-form-item>
 
         <el-form-item label="HostNams">
-          <el-input v-model="searchInfo.hostnames" placeholder="搜索条件" />
+          <el-input v-model.trim="searchInfo.hostnames" placeholder="搜索条件" @keyup.enter.native="onSubmit" />
         </el-form-item>
 
         <el-form-item label="操作系统">
-          <el-input v-model="searchInfo.os" placeholder="搜索条件" />
+          <el-input v-model.trim="searchInfo.os" placeholder="搜索条件" @keyup.enter.native="onSubmit" />
         </el-form-item>
 
         <el-form-item label="whois信息">
-          <el-input v-model="searchInfo.whois" placeholder="搜索条件" />
+          <el-input v-model.trim="searchInfo.whois" placeholder="搜索条件" @keyup.enter.native="onSubmit" />
         </el-form-item>
 
         <el-form-item label="是否存活">
-          <el-input v-model="searchInfo.alive" placeholder="搜索条件" />
+          <el-input v-model.trim="searchInfo.alive" placeholder="搜索条件" @keyup.enter.native="onSubmit" />
         </el-form-item>
 
         <el-form-item label="cname">
-          <el-input v-model="searchInfo.cname" placeholder="搜索条件" />
+          <el-input v-model.trim="searchInfo.cname" placeholder="搜索条件" @keyup.enter.native="onSubmit" />
         </el-form-item>
 
         <el-form-item label="CDN">
-          <el-input v-model="searchInfo.cdn" placeholder="搜索条件" />
+          <el-input v-model.trim="searchInfo.cdn" placeholder="搜索条件" @keyup.enter.native="onSubmit" />
         </el-form-item>
 
         <el-form-item label="cidr">
-          <el-input v-model="searchInfo.cidr" placeholder="搜索条件" />
+          <el-input v-model.trim="searchInfo.cidr" placeholder="搜索条件" @keyup.enter.native="onSubmit" />
         </el-form-item>
 
         <el-form-item label="ASN">
-          <el-input v-model="searchInfo.asn" placeholder="搜索条件" />
+          <el-input v-model.trim="searchInfo.asn" placeholder="搜索条件" @keyup.enter.native="onSubmit" />
         </el-form-item>
 
         <el-form-item label="ORG">
-          <el-input v-model="searchInfo.org" placeholder="搜索条件" />
+          <el-input v-model.trim="searchInfo.org" placeholder="搜索条件" @keyup.enter.native="onSubmit" />
         </el-form-item>
 
         <el-form-item label="地址">
-          <el-input v-model="searchInfo.addr" placeholder="搜索条件" />
+          <el-input v-model.trim="searchInfo.addr" placeholder="搜索条件" @keyup.enter.native="onSubmit" />
         </el-form-item>
 
         <el-form-item label="ISP">
-          <el-input v-model="searchInfo.isp" placeholder="搜索条件" />
+          <el-input v-model.trim="searchInfo.isp" placeholder="搜索条件" @keyup.enter.native="onSubmit" />
         </el-form-item>
 
         <el-form-item label="来源">
-          <el-input v-model="searchInfo.source" placeholder="搜索条件" />
+          <el-input v-model.trim="searchInfo.source" placeholder="搜索条件" @keyup.enter.native="onSubmit" />
         </el-form-item>
 
         <el-form-item label="TargetName">
-          <el-input v-model="searchInfo.target_id" placeholder="搜索条件" />
+          <el-input v-model.trim="searchInfo.target_id" placeholder="搜索条件" @keyup.enter.native="onSubmit" />
         </el-form-item>
 
         <el-form-item label="只看目标已确认" prop="target_id_is_verify">
           <el-switch
-            v-model="searchInfo.target_id_is_verify"
+            v-model.trim="searchInfo.target_id_is_verify"
             active-color="#13ce66"
             inactive-color="#ff4949"
             active-text="是"
@@ -73,14 +73,14 @@
           />
         </el-form-item>
         <el-form-item label="端口ID列表">
-          <el-input v-model="searchInfo.port_ids" placeholder="搜索条件" />
+          <el-input v-model.trim="searchInfo.port_ids" placeholder="搜索条件" @keyup.enter.native="onSubmit" />
         </el-form-item>
 
         <el-form-item label="标签">
-          <el-input v-model="searchInfo.tags" placeholder="搜索条件" />
+          <el-input v-model.trim="searchInfo.tags" placeholder="搜索条件" />
         </el-form-item>
         <el-form-item label="备注">
-          <el-input v-model="searchInfo.remarks" placeholder="搜索条件" />
+          <el-input v-model.trim="searchInfo.remarks" placeholder="搜索条件" />
         </el-form-item>
         <el-form-item>
           <el-button size="mini" type="primary" icon="search" @click="onSubmit">查询</el-button>

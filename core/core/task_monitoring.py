@@ -45,7 +45,7 @@ def consum_task_data(celery_task_ids, task):
             result_list = tasks.app.AsyncResult(task_id).get()
             logger.info(task)
             for result in result_list:
-                logger.info(result)
+                # logger.info(result)
                 for k, v in result.items():
                     if k in MODEL_OBJECT:
                         v["target_id"] = task.get("target_id")
@@ -107,9 +107,9 @@ def task_dely(tools, task):
     tools = set(tools)
     celery_task_ids = []
     tools_group_sort = [
-        {"pysubdomain", "beian2domain"},
+        {"pysubdomain", "beian2domain","icplishi"},
         {"fofainfo"},
-        {"gettitle", "cdncheck", "hotfinger"},
+        {"gettitle", "screenshot","cdncheck", "hotfinger"},
         {"emailall"},
     ]
     current_tools = []

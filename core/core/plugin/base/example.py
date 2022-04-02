@@ -28,7 +28,8 @@ class PluginClass(Plugin, Requests):
     version = "0.1.0"
 
     def __init__(self, **kwargs):
-        super().__init__(kwargs)
+        super(PluginClass, self).__init__(**kwargs)
+        super(Plugin, self).__init__()
 
     def run(self):
         self.logger.info(self.kwargs)

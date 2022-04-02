@@ -23,7 +23,7 @@ class PluginClass(Plugin, Requests):
         {
             "name": "url_list",
             "type": "List[str]",
-            "usage": '域名列表，eg: ["http://baidu.com","http://bing.com"]',
+            "usage": 'Url列表，eg: ["http://baidu.com","http://bing.com"]',
         }
     ]
     plugin_name = "gettitle"
@@ -31,7 +31,6 @@ class PluginClass(Plugin, Requests):
     version = "0.1.0"
 
     def __init__(self, **kwargs):
-        print(kwargs)
         super(PluginClass, self).__init__(**kwargs)
         super(Plugin, self).__init__()
 

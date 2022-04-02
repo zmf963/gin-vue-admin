@@ -134,8 +134,9 @@
         <el-table-column align="left" label="标签" prop="tags" width="120" />
         <el-table-column align="left" label="备注" prop="remarks" width="120" />
         <el-table-column align="left" label="更新时间" prop="update_at" width="200" />
-        <el-table-column align="left" label="按钮组">
+        <el-table-column align="left"  fixed="right" label="按钮组" witdh="180">
           <template #default="scope">
+           <el-button type="text" icon="edit" size="small" @click="dealwithRow(scope.row)">已阅</el-button>
             <el-button
               type="text"
               icon="edit"
@@ -330,6 +331,11 @@ const multipleSelection = ref([])
 // 多选
 const handleSelectionChange = (val) => {
   multipleSelection.value = val
+}
+
+// 已处理按钮
+const dealwithRow = (row) => {
+  console.log(row)
 }
 
 // 删除行

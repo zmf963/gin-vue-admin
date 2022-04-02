@@ -3,15 +3,27 @@
     <div class="gva-search-box">
       <el-form :inline="true" :model="searchInfo" class="demo-form-inline">
         <el-form-item label="域名">
-          <el-input v-model.trim="searchInfo.domain" placeholder="搜索条件" @keyup.enter.native="onSubmit" />
+          <el-input
+            v-model.trim="searchInfo.domain"
+            placeholder="搜索条件"
+            @keyup.enter.native="onSubmit"
+          />
         </el-form-item>
 
         <el-form-item label="IPS">
-          <el-input v-model.trim="searchInfo.ips" placeholder="搜索条件" @keyup.enter.native="onSubmit" />
+          <el-input
+            v-model.trim="searchInfo.ips"
+            placeholder="搜索条件"
+            @keyup.enter.native="onSubmit"
+          />
         </el-form-item>
 
         <el-form-item label="HostNams">
-          <el-input v-model.trim="searchInfo.hostnames" placeholder="搜索条件" @keyup.enter.native="onSubmit" />
+          <el-input
+            v-model.trim="searchInfo.hostnames"
+            placeholder="搜索条件"
+            @keyup.enter.native="onSubmit"
+          />
         </el-form-item>
 
         <el-form-item label="操作系统">
@@ -19,47 +31,91 @@
         </el-form-item>
 
         <el-form-item label="whois信息">
-          <el-input v-model.trim="searchInfo.whois" placeholder="搜索条件" @keyup.enter.native="onSubmit" />
+          <el-input
+            v-model.trim="searchInfo.whois"
+            placeholder="搜索条件"
+            @keyup.enter.native="onSubmit"
+          />
         </el-form-item>
 
         <el-form-item label="是否存活">
-          <el-input v-model.trim="searchInfo.alive" placeholder="搜索条件" @keyup.enter.native="onSubmit" />
+          <el-input
+            v-model.trim="searchInfo.alive"
+            placeholder="搜索条件"
+            @keyup.enter.native="onSubmit"
+          />
         </el-form-item>
 
         <el-form-item label="cname">
-          <el-input v-model.trim="searchInfo.cname" placeholder="搜索条件" @keyup.enter.native="onSubmit" />
+          <el-input
+            v-model.trim="searchInfo.cname"
+            placeholder="搜索条件"
+            @keyup.enter.native="onSubmit"
+          />
         </el-form-item>
 
         <el-form-item label="CDN">
-          <el-input v-model.trim="searchInfo.cdn" placeholder="搜索条件" @keyup.enter.native="onSubmit" />
+          <el-input
+            v-model.trim="searchInfo.cdn"
+            placeholder="搜索条件"
+            @keyup.enter.native="onSubmit"
+          />
         </el-form-item>
 
         <el-form-item label="cidr">
-          <el-input v-model.trim="searchInfo.cidr" placeholder="搜索条件" @keyup.enter.native="onSubmit" />
+          <el-input
+            v-model.trim="searchInfo.cidr"
+            placeholder="搜索条件"
+            @keyup.enter.native="onSubmit"
+          />
         </el-form-item>
 
         <el-form-item label="ASN">
-          <el-input v-model.trim="searchInfo.asn" placeholder="搜索条件" @keyup.enter.native="onSubmit" />
+          <el-input
+            v-model.trim="searchInfo.asn"
+            placeholder="搜索条件"
+            @keyup.enter.native="onSubmit"
+          />
         </el-form-item>
 
         <el-form-item label="ORG">
-          <el-input v-model.trim="searchInfo.org" placeholder="搜索条件" @keyup.enter.native="onSubmit" />
+          <el-input
+            v-model.trim="searchInfo.org"
+            placeholder="搜索条件"
+            @keyup.enter.native="onSubmit"
+          />
         </el-form-item>
 
         <el-form-item label="地址">
-          <el-input v-model.trim="searchInfo.addr" placeholder="搜索条件" @keyup.enter.native="onSubmit" />
+          <el-input
+            v-model.trim="searchInfo.addr"
+            placeholder="搜索条件"
+            @keyup.enter.native="onSubmit"
+          />
         </el-form-item>
 
         <el-form-item label="ISP">
-          <el-input v-model.trim="searchInfo.isp" placeholder="搜索条件" @keyup.enter.native="onSubmit" />
+          <el-input
+            v-model.trim="searchInfo.isp"
+            placeholder="搜索条件"
+            @keyup.enter.native="onSubmit"
+          />
         </el-form-item>
 
         <el-form-item label="来源">
-          <el-input v-model.trim="searchInfo.source" placeholder="搜索条件" @keyup.enter.native="onSubmit" />
+          <el-input
+            v-model.trim="searchInfo.source"
+            placeholder="搜索条件"
+            @keyup.enter.native="onSubmit"
+          />
         </el-form-item>
 
         <el-form-item label="TargetName">
-          <el-input v-model.trim="searchInfo.target_id" placeholder="搜索条件" @keyup.enter.native="onSubmit" />
+          <el-input
+            v-model.trim="searchInfo.target_id"
+            placeholder="搜索条件"
+            @keyup.enter.native="onSubmit"
+          />
         </el-form-item>
 
         <el-form-item label="只看目标已确认" prop="target_id_is_verify">
@@ -73,7 +129,11 @@
           />
         </el-form-item>
         <el-form-item label="端口ID列表">
-          <el-input v-model.trim="searchInfo.port_ids" placeholder="搜索条件" @keyup.enter.native="onSubmit" />
+          <el-input
+            v-model.trim="searchInfo.port_ids"
+            placeholder="搜索条件"
+            @keyup.enter.native="onSubmit"
+          />
         </el-form-item>
 
         <el-form-item label="标签">
@@ -117,7 +177,7 @@
       >
         <el-table-column type="selection" width="55" />
 
-        <el-table-column align="left" label="域名" prop="domain" width="120" />
+        <el-table-column align="left" label="域名" prop="domain" width="160" />
 
         <el-table-column align="left" label="IPS" prop="ips" width="120" />
 
@@ -162,8 +222,9 @@
         <el-table-column align="left" label="标签" prop="tags" width="120" />
         <el-table-column align="left" label="备注" prop="remarks" width="120" />
         <el-table-column align="left" label="更新时间" prop="update_at" width="200" />
-        <el-table-column align="left" fixed="right" label="按钮组" width="120">
+        <el-table-column align="left" fixed="right" label="按钮组" width="180">
           <template #default="scope">
+            <el-button type="text" icon="edit" size="small" @click="dealwithRow(scope.row)">处理</el-button>
             <el-button
               type="text"
               icon="edit"
@@ -404,6 +465,24 @@ const handleSelectionChange = (val) => {
   multipleSelection.value = val
 }
 
+// 已处理按钮
+const dealwithRow = async (row) => {
+  let res = await findDomain({ _id: row._id })
+  console.log(res.data.redomain)
+  type.value = 'update'
+  if (res.code === 0) {
+    if (res.data.redomain.tags instanceof Array) {
+      res.data.redomain.tags.push("已阅")
+    } else {
+      res.data.redomain.tags = ["已阅"]
+    }
+  }
+  console.log(res.data.redomain)
+  res = await updateDomain(res.data.redomain)
+  console.log("dealwithRow updateDomain ", res.data.redomain)
+}
+
+
 // 删除行
 const deleteRow = (row) => {
   ElMessageBox.confirm('确定要删除吗?', '提示', {
@@ -510,6 +589,10 @@ const closeDialog = () => {
 // 弹窗确定
 const enterDialog = async () => {
   let res
+  console.log(formData.value);
+  if (typeof formData.value.tags === "string") {
+    formData.value.tags = formData.value.tags.split(",");
+  }
   switch (type.value) {
     case 'create':
       res = await createDomain(formData.value)

@@ -129,11 +129,12 @@ func (port_infoService *PortInfoService) GetPortInfoInfoList(por project.PortInf
 	if por.Favicons != "" {
 		filter["favicons"] = bson.M{"$regex": por.Favicons }
 	}
-	if por.Screenshot != "" {
-		filter["screenshot"] = bson.M{"$regex": por.Screenshot }
-	}
 	if len(por.Products) > 0 {
-		filter["products"] = bson.M{"$in": por.Products }
+		// filter["products"] = bson.M{"$in": por.Products }
+		for _, v := range por.Products {
+			
+			filter["products"] = bson.M{"$regex": v }
+		}
 	}
 	if len(por.Protocols) > 0 {
 		filter["protocols"] = bson.M{"$in": por.Protocols }

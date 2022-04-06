@@ -3,62 +3,138 @@
     <div class="gva-search-box">
       <el-form :inline="true" :model="searchInfo" class="demo-form-inline">
         <el-form-item label="端口">
-          <el-input v-model.trim="searchInfo.port" placeholder="搜索条件"  @keyup.enter.native="onSubmit" />
+          <el-input
+            v-model.trim="searchInfo.port"
+            placeholder="搜索条件"
+            @keyup.enter.native="onSubmit"
+          />
         </el-form-item>
 
         <el-form-item label="host">
-          <el-input v-model.trim="searchInfo.host" placeholder="搜索条件" @keyup.enter.native="onSubmit" />
+          <el-input
+            v-model.trim="searchInfo.host"
+            placeholder="搜索条件"
+            @keyup.enter.native="onSubmit"
+          />
         </el-form-item>
 
         <el-form-item label="hostinfo">
-          <el-input v-model.trim="searchInfo.hostinfo" placeholder="搜索条件" @keyup.enter.native="onSubmit" />
+          <el-input
+            v-model.trim="searchInfo.hostinfo"
+            placeholder="搜索条件"
+            @keyup.enter.native="onSubmit"
+          />
         </el-form-item>
 
         <el-form-item label="url">
-          <el-input v-model.trim="searchInfo.url" placeholder="搜索条件"  @keyup.enter.native="onSubmit" />
+          <el-input
+            v-model.trim="searchInfo.url"
+            placeholder="搜索条件"
+            @keyup.enter.native="onSubmit"
+          />
         </el-form-item>
 
         <el-form-item label="标题">
-          <el-input v-model.trim="searchInfo.title" placeholder="搜索条件"  @keyup.enter.native="onSubmit" />
+          <el-input
+            v-model.trim="searchInfo.title"
+            placeholder="搜索条件"
+            @keyup.enter.native="onSubmit"
+          />
         </el-form-item>
 
         <el-form-item label="favicons">
-          <el-input v-model.trim="searchInfo.favicons" placeholder="搜索条件"  @keyup.enter.native="onSubmit" />
+          <el-input
+            v-model.trim="searchInfo.favicons"
+            placeholder="搜索条件"
+            @keyup.enter.native="onSubmit"
+          />
         </el-form-item>
 
         <el-form-item label="products">
-          <el-input v-model.trim="searchInfo.products" placeholder="搜索条件"  @keyup.enter.native="onSubmit" />
+          <el-select
+            v-model="searchInfo.products"
+            default-first-option
+            filterable
+            placeholder="请选择"
+            allow-create
+            remote
+            clearable
+            multiple
+            :reserve-keyword="false"
+            :remote-method="productsMethod"
+            :loading="productsLoading"
+            style="width: 99%"
+          >
+            <el-option
+              v-for="item in productsOptions"
+              :key="item"
+              :label="item"
+              :value="item"
+            ></el-option>
+          </el-select>
         </el-form-item>
 
         <el-form-item label="protocols">
-          <el-input v-model.trim="searchInfo.protocols" placeholder="搜索条件"  @keyup.enter.native="onSubmit" />
+          <el-input
+            v-model.trim="searchInfo.protocols"
+            placeholder="搜索条件"
+            @keyup.enter.native="onSubmit"
+          />
         </el-form-item>
 
         <el-form-item label="端口是否开放">
-          <el-input v-model.trim="searchInfo.alive" placeholder="搜索条件"  @keyup.enter.native="onSubmit" />
+          <el-input
+            v-model.trim="searchInfo.alive"
+            placeholder="搜索条件"
+            @keyup.enter.native="onSubmit"
+          />
         </el-form-item>
 
         <el-form-item label="banner">
-          <el-input v-model.trim="searchInfo.banner" placeholder="搜索条件"  @keyup.enter.native="onSubmit" />
+          <el-input
+            v-model.trim="searchInfo.banner"
+            placeholder="搜索条件"
+            @keyup.enter.native="onSubmit"
+          />
         </el-form-item>
 
         <el-form-item label="状态">
-          <el-input v-model.trim="searchInfo.status" placeholder="搜索条件"  @keyup.enter.native="onSubmit" />
+          <el-input
+            v-model.trim="searchInfo.status"
+            placeholder="搜索条件"
+            @keyup.enter.native="onSubmit"
+          />
         </el-form-item>
 
         <el-form-item label="domain_id">
-          <el-input v-model.trim="searchInfo.domain_id" placeholder="搜索条件"  @keyup.enter.native="onSubmit" />
+          <el-input
+            v-model.trim="searchInfo.domain_id"
+            placeholder="搜索条件"
+            @keyup.enter.native="onSubmit"
+          />
         </el-form-item>
 
         <el-form-item label="path_ids">
-          <el-input v-model.trim="searchInfo.path_ids" placeholder="搜索条件"  @keyup.enter.native="onSubmit" />
+          <el-input
+            v-model.trim="searchInfo.path_ids"
+            placeholder="搜索条件"
+            @keyup.enter.native="onSubmit"
+          />
         </el-form-item>
 
         <el-form-item label="标签">
-          <el-input v-model.trim="searchInfo.tags" placeholder="搜索条件"  @keyup.enter.native="onSubmit" />
+          <el-input
+            v-model.trim="searchInfo.tags"
+            placeholder="搜索条件"
+            @keyup.enter.native="onSubmit"
+          />
         </el-form-item>
         <el-form-item label="备注">
-          <el-input v-model.trim="searchInfo.remarks" placeholder="搜索条件"  @keyup.enter.native="onSubmit" />
+          <el-input
+            v-model.trim="searchInfo.remarks"
+            placeholder="搜索条件"
+            @keyup.enter.native="onSubmit"
+          />
         </el-form-item>
         <el-form-item>
           <el-button size="mini" type="primary" icon="search" @click="onSubmit">查询</el-button>
@@ -134,9 +210,9 @@
         <el-table-column align="left" label="标签" prop="tags" width="120" />
         <el-table-column align="left" label="备注" prop="remarks" width="120" />
         <el-table-column align="left" label="更新时间" prop="update_at" width="200" />
-        <el-table-column align="left"  fixed="right" label="按钮组" witdh="180">
+        <el-table-column align="left" fixed="right" label="按钮组" witdh="180">
           <template #default="scope">
-           <el-button type="text" icon="edit" size="small" @click="dealwithRow(scope.row)">已阅</el-button>
+            <el-button type="text" icon="edit" size="small" @click="dealwithRow(scope.row)">已阅</el-button>
             <el-button
               type="text"
               icon="edit"
@@ -182,12 +258,23 @@
           <el-input v-model="formData.title" clearable placeholder="请输入" />
         </el-form-item>
 
-        <el-form-item label="favicons:">
-          <el-input v-model="formData.favicons" clearable placeholder="请输入" />
-        </el-form-item>
-
         <el-form-item label="products:">
-          <el-input v-model.number="formData.products" clearable placeholder="请选择" />
+          <el-select
+            v-model="formData.products"
+            default-first-option
+            filterable
+            placeholder="请选择"
+            allow-create
+            remote
+            clearable
+            multiple
+            :reserve-keyword="false"
+            :remote-method="productsMethod"
+            :loading="productsLoading"
+            style="width: 99%"
+          >
+            <el-option v-for="item in productsOptions" :key="item" :label="item" :value="item"></el-option>
+          </el-select>
         </el-form-item>
 
         <el-form-item label="protocols:">
@@ -295,6 +382,11 @@ const onReset = () => {
 const onSubmit = () => {
   page.value = 1
   pageSize.value = 10
+  console.log('搜索', searchInfo.value)
+  if (typeof searchInfo.value.products === "string") {
+    searchInfo.value.products = searchInfo.value.products.split(",");
+  }
+  console.log(searchInfo.value.products)
   getTableData()
 }
 
@@ -462,6 +554,48 @@ const enterDialog = async () => {
     getTableData()
   }
 }
+
+
+const productsOptions = ref([])
+const productsLoading = ref(false)
+
+const productsMethod = async (query) => {
+  console.log(query)
+  if (query) {
+    productsLoading.value = true
+    let _portList = await getPortInfoList({ page: 1, pageSize: 20, products: [query] })
+    if (_portList.code === 0) {
+      setTimeout(() => {
+        productsLoading.value = false
+        var i;
+        for (i in _portList.data.list) {
+          var tag
+          for (tag of _portList.data.list[i].products) {
+            console.log("==" + tag)
+            if (tag.includes(query)) {
+              productsOptions.value.push(tag)
+            }
+          }
+        }
+        productsOptions.value = [...new Set(productsOptions.value)]
+        console.log(productsLoading.value)
+      }, 200)
+    }
+  } else {
+    productsOptions.value = []
+  }
+}
+
+const intOptions = [
+  {
+    value: '0',
+    label: '否'
+  },
+  {
+    value: '1',
+    label: '是'
+  }
+]
 </script>
 
 <style>

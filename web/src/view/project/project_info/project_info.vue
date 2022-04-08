@@ -10,25 +10,7 @@
           <el-input v-model="searchInfo.project_desc" placeholder="搜索条件" />
         </el-form-item>
 
-        <el-form-item label="开始时间">
-          <el-input v-model="searchInfo.start_time" placeholder="搜索条件" />
-        </el-form-item>
-
-        <el-form-item label="结束时间">
-          <el-input v-model="searchInfo.end_time" placeholder="搜索条件" />
-        </el-form-item>
-
-        <!-- <el-form-item label="目标id列表">
-          <el-input v-model="searchInfo.target_ids" placeholder="搜索条件" />
-        </el-form-item>
-
-        <el-form-item label="任务id列表">
-          <el-input v-model="searchInfo.task_ids" placeholder="搜索条件" />
-        </el-form-item>-->
-
         <el-form-item label="标签">
-          <!-- <el-input v-model="searchInfo.tags" placeholder="搜索条件" />
-           -->
           <el-select
             v-model="searchInfo.tags"
             placeholder="请选择"
@@ -38,7 +20,7 @@
             default-first-option
             :reserve-keyword="false"
           >
-            <el-option v-for="item in tags" :key="item" :label="item" :value="item">
+            <el-option v-for="item in searchInfo.tags" :key="item" :label="item" :value="item">
               <span style="color: #8492a6">{{ item }}</span>
             </el-option>
           </el-select>
@@ -53,78 +35,67 @@
       </el-form>
     </div>
     <div class="gva-table-box">
-      <div class="gva-btn-list">
-        <el-button size="mini" type="primary" icon="plus" @click="openDialog">新增</el-button>
-        <el-popover v-model:visible="deleteVisible" placement="top" width="160">
-          <p>确定要删除吗？</p>
-          <div style="text-align: right; margin-top: 8px;">
-            <el-button size="mini" type="text" @click="deleteVisible = false">取消</el-button>
-            <el-button size="mini" type="primary" @click="onDelete">确定</el-button>
-          </div>
-          <template #reference>
-            <el-button
-              icon="delete"
-              size="mini"
-              style="margin-left: 10px;"
-              :disabled="!multipleSelection.length"
-            >删除</el-button>
-          </template>
-        </el-popover>
-      </div>
-      <el-table
-        ref="multipleTable"
-        style="width: 100%"
-        tooltip-effect="dark"
-        :data="tableData"
-        row-key="ID"
-        @selection-change="handleSelectionChange"
-      >
-        <el-table-column type="selection" width="55" />
-
-        <el-table-column align="left" label="项目名称" prop="project_name" width="120" />
-
-        <el-table-column align="left" label="项目描述" prop="project_desc" width="200" />
-
-        <el-table-column align="left" label="开始时间" prop="start_time" width="200" />
-
-        <el-table-column align="left" label="结束时间" prop="end_time" width="200" />
-
-        <!-- <el-table-column align="left" label="目标列表" prop="target_ids" width="120" /> -->
-
-        <!-- <el-table-column align="left" label="任务id列表" prop="task_ids" width="120" /> -->
-
-        <el-table-column align="left" label="标签" prop="tags" width="120">
-          <template #default="scope">
-            <el-tag v-for="tag in scope.row.tags" :key="tag">{{ tag }}&nbsp;</el-tag>
-          </template>
-        </el-table-column>
-        <el-table-column align="left" label="备注" prop="remarks" width="120" />
-        <el-table-column align="left" label="更新时间" prop="update_at" width="200" />
-        <el-table-column align="left" label="按钮组">
-          <template #default="scope">
-            <el-button
-              type="text"
-              icon="edit"
-              size="small"
-              class="table-button"
-              @click="updateProjectInfoFunc(scope.row)"
-            >编辑</el-button>
-            <el-button type="text" icon="delete" size="mini" @click="deleteRow(scope.row)">删除</el-button>
-          </template>
-        </el-table-column>
-      </el-table>
-      <div class="gva-pagination">
-        <el-pagination
-          layout="total, sizes, prev, pager, next, jumper"
-          :current-page="page"
-          :page-size="pageSize"
-          :page-sizes="[10, 3, 5, 15, 30, 50, 100]"
-          :total="total"
-          @current-change="handleCurrentChange"
-          @size-change="handleSizeChange"
-        />
-      </div>
+      <el-row :gutter="20">
+        <el-col :span="5">
+          <el-card :span="5" class="card-add">
+            <el-button icon="plus" style="height: 260px; min-width: 230px;" @click="openDialog">新增</el-button>
+          </el-card>
+        </el-col>
+        <el-col v-for="pro in tableData" :span="5">
+          <el-card shadow="hover" class="mycard">
+            <template #header>
+              <div class="card-header">
+                <span class="card-title">
+                  <el-icon>
+                    <collection />
+                  </el-icon>
+                  &nbsp;{{ pro.project_name }}
+                </span>
+                <div calss="card-button">
+                  <el-button
+                    type="text"
+                    icon="edit"
+                    size="mini"
+                    @click="updateProjectInfoFunc(pro)"
+                  >编辑</el-button>
+                  <el-button type="text" icon="delete" size="mini" @click="deleteRow(pro)">删除</el-button>
+                </div>
+              </div>
+            </template>
+            <el-button size="mini" type="success" @click="onTarget(pro)">目标：{{ pro.target_names }}</el-button>
+            <el-button size="mini" type="info" @click="onTask(pro)">任务：{{ pro.task_names }}</el-button>
+            <el-button size="mini" type="warning" @click="onDetails(pro)"> 详情</el-button>
+            <router-link :to="'/layout/project/target/'"></router-link>
+            <br />
+            时间：{{ pro.start_time }} ~
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ pro.end_time }}
+            <br />
+            描述：{{ pro.project_desc }}
+            <br />
+            <br />标签：
+            <el-tag v-for="tag in pro.tags" :key="tag" size="mini" type="info">{{ tag }}&nbsp;</el-tag>
+            <br />
+            备注：{{ pro.remarks }}
+            <br />
+            &nbsp;&nbsp;{{ pro.update_at }}
+            {{pro}}
+          </el-card>
+        </el-col>
+      </el-row>
     </div>
+
+    <div class="gva-pagination">
+      <el-pagination
+        layout="total, sizes, prev, pager, next, jumper"
+        :current-page="page"
+        :page-size="pageSize"
+        :page-sizes="[3, 7, 11, 15, 27, 50, 100]"
+        :total="total"
+        @current-change="handleCurrentChange"
+        @size-change="handleSizeChange"
+      />
+    </div>
+
     <el-dialog v-model="dialogFormVisible" :before-close="closeDialog" title="弹窗操作">
       <el-form :model="formData" label-position="right" label-width="80px">
         <el-form-item label="项目名称:">
@@ -155,9 +126,9 @@
           />
         </el-form-item>
 
-        <!-- <el-form-item label="目标列表:">
+        <el-form-item label="目标列表:">
           <el-input v-model="formData.target_ids" clearable placeholder="请选择" />
-        </el-form-item>-->
+        </el-form-item>
 
         <!-- <el-form-item label="任务id列表:">
           <el-input v-model="formData.task_ids" clearable placeholder="请选择" />
@@ -173,7 +144,7 @@
             default-first-option
             :reserve-keyword="false"
           >
-            <el-option v-for="item in tags" :key="item" :label="item" :value="item">
+            <el-option v-for="item in formData.tags" :key="item" :label="item" :value="item">
               <span style="color: #8492a6">{{ item }}</span>
             </el-option>
           </el-select>
@@ -212,6 +183,8 @@ import {
 import { formatDate, formatBoolean, filterDict } from '@/utils/format'
 import { ElMessage, ElMessageBox } from 'element-plus'
 import { ref } from 'vue'
+//导入router
+import router from '@/router'
 
 // 自动化生成的字典（可能为空）以及字段
 
@@ -228,7 +201,7 @@ const formData = ref({
 // =========== 表格控制部分 ===========
 const page = ref(1)
 const total = ref(0)
-const pageSize = ref(10)
+const pageSize = ref(3)
 const tableData = ref([])
 const searchInfo = ref({})
 
@@ -240,7 +213,7 @@ const onReset = () => {
 // 搜索
 const onSubmit = () => {
   page.value = 1
-  pageSize.value = 10
+  pageSize.value = 3
   getTableData()
 }
 
@@ -407,7 +380,74 @@ const enterDialog = async () => {
     getTableData()
   }
 }
+
+const onTarget = (row) => {
+  router.push({
+    path: '/layout/project/target',
+    query: {
+      project_id: row._id
+    }
+  })
+}
+
+const onTask = (row) => {
+  console.log(row)
+  console.log(row._id)
+  router.push(
+    {
+      path: '/layout/project/task',
+      query: {
+        project_id: row._id
+      }
+    }
+  )
+}
+
+const onDetails = (row) => {
+  router.push({
+    path: '/layout/project/project_details',
+    query: {
+      project_id: row._id
+    }
+  })
+}
+
 </script>
 
 <style>
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: right;
+  font-size: 14px;
+}
+
+.card-button {
+  justify-content: right;
+}
+
+.card-title {
+  font-size: 20px;
+  color: rgb(60, 46, 104);
+}
+
+.card-add {
+  margin-top: 25px;
+  height: 300px;
+  border-radius: 10px;
+}
+
+.mycard {
+  margin-top: 25px;
+  height: 300px;
+  border-radius: 10px;
+}
+
+.text {
+  font-size: 14px;
+}
+
+.item {
+  margin-bottom: 2px;
+}
 </style>

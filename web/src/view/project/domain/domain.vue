@@ -224,7 +224,7 @@
         <el-table-column align="left" label="更新时间" prop="update_at" width="200" />
         <el-table-column align="left" fixed="right" label="按钮组" width="180">
           <template #default="scope">
-            <el-button type="text" icon="edit" size="small" @click="dealwithRow(scope.row)">处理</el-button>
+            <el-button type="text" icon="edit" size="small" @click="dealwithRow(scope.row)">已阅</el-button>
             <el-button
               type="text"
               icon="edit"

@@ -147,6 +147,7 @@ import {
 import { formatDate, formatBoolean, filterDict } from '@/utils/format'
 import { ElMessage, ElMessageBox } from 'element-plus'
 import { ref } from 'vue'
+import { useRoute } from 'vue-router'
 
 // 自动化生成的字典（可能为空）以及字段
 
@@ -164,9 +165,19 @@ const pageSize = ref(10)
 const tableData = ref([])
 const searchInfo = ref({})
 
+const route = useRoute()
+if (route.query.project_id) {
+  searchInfo.value.project_id = route.query.project_id
+  console.log(searchInfo.value)
+}
+
 // 重置
 const onReset = () => {
   searchInfo.value = {}
+  if (route.query.project_id) {
+    console.log(searchInfo.value)
+    searchInfo.value.project_id = route.query.project_id
+  }
 }
 
 // 搜索

@@ -30,7 +30,28 @@
         </el-form-item>
 
         <el-form-item label="目标">
-          <el-input v-model="searchInfo.target_id" placeholder="搜索条件" />
+          <!-- <el-input v-model="searchInfo.target_id" placeholder="搜索条件" />
+           -->
+          <el-select
+            v-model="searchInfo.target_id"
+            default-first-option
+            filterable
+            placeholder="请选择目标"
+            allow-create
+            remote
+            clearable
+            :reserve-keyword="false"
+            :remote-method="targetMethod"
+            :loading="targetLoading"
+            style="width: 99%"
+          >
+            <el-option
+              v-for="item in targetOptions"
+              :key="item._id"
+              :label="item.target_name"
+              :value="item._id"
+            ></el-option>
+          </el-select>
         </el-form-item>
 
         <el-form-item label="标签">
@@ -126,7 +147,7 @@
     </div>
     <el-dialog v-model="dialogFormVisible" :before-close="closeDialog" title="弹窗操作">
       <el-form :model="formData" label-position="right" label-width="80px">
-        <el-form-item label="任务名称:">
+        <el-form-item label="任务名称:" class="required">
           <el-input v-model="formData.task_name" clearable placeholder="请输入" />
         </el-form-item>
 
@@ -166,7 +187,7 @@
           <el-input v-model="formData.status" clearable placeholder="请输入" />
         </el-form-item>
 
-        <el-form-item label="目标:">
+        <el-form-item label="目标:" class="required">
           <el-select
             v-model="formData.target_id"
             default-first-option
@@ -184,6 +205,29 @@
               v-for="item in targetOptions"
               :key="item._id"
               :label="item.target_name"
+              :value="item._id"
+            ></el-option>
+          </el-select>
+        </el-form-item>
+
+        <el-form-item label="项目:" class="required">
+          <el-select
+            v-model="formData.project_id"
+            default-first-option
+            filterable
+            placeholder="请选择项目"
+            allow-create
+            remote
+            clearable
+            :reserve-keyword="false"
+            :remote-method="projectMethod"
+            :loading="projectLoading"
+            style="width: 99%"
+          >
+            <el-option
+              v-for="item in projectOptions"
+              :key="item._id"
+              :label="item.project_name"
               :value="item._id"
             ></el-option>
           </el-select>
@@ -226,10 +270,15 @@ import {
   getTargetList
 } from '@/api/target'
 
+import {
+  getProjectInfoList
+} from '@/api/project_info'
+
 // 全量引入格式化工具 请按需保留
 import { formatDate, formatBoolean, filterDict } from '@/utils/format'
 import { ElMessage, ElMessageBox } from 'element-plus'
 import { ref, onMounted } from 'vue'
+import {useRoute} from "vue-router"
 
 // 自动化生成的字典（可能为空）以及字段
 
@@ -251,9 +300,19 @@ const pageSize = ref(10)
 const tableData = ref([])
 const searchInfo = ref({})
 
+const route = useRoute()
+if (route.query.project_id) {
+  searchInfo.value.project_id = route.query.project_id
+  console.log(searchInfo.value)
+}
+
 // 重置
 const onReset = () => {
   searchInfo.value = {}
+  if (route.query.project_id) {
+    searchInfo.value.project_id = route.query.project_id
+    console.log(searchInfo.value)
+  }
 }
 
 // 搜索
@@ -459,6 +518,28 @@ const targetMethod = async (query) => {
     targetOptions.value = []
   }
 }
+
+const projectOptions = ref([])
+const projectLoading = ref(false)
+
+const projectMethod = async (query) => {
+  console.log(query)
+  if (query) {
+    projectLoading.value = true
+    console.log(query)
+    let _targetList = await getProjectInfoList({ page: 1, pageSize: 20, project_name: query })
+    if (_targetList.code === 0) {
+      setTimeout(() => {
+        projectLoading.value = false
+        projectOptions.value = _targetList.data.list
+      }, 200)
+    }
+  } else {
+    projectOptions.value = []
+  }
+}
+
+
 
 const formatterToolExt = (row) => {
   return JSON.stringify(row.tool_ext);

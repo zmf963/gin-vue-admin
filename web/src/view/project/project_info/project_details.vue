@@ -1,6 +1,5 @@
 <template>
     <div>
-        {{project_id}}
         <div class="gva-table-box">
             <el-row :gutter="24">
                 <el-col :span="6">
@@ -38,12 +37,9 @@
             </el-row>
 
             <el-row :gutter="24">
-                <el-col :span="12">目标
+                <el-col :span="12">目标</el-col>
 
-                </el-col>
-
-                <el-col :span="12">文档列表
-                </el-col>
+                <el-col :span="12">文档列表</el-col>
             </el-row>
 
             <div>
@@ -62,7 +58,7 @@
                     </el-table>
                     <div>
                         <el-pagination
-                            layout="taskTotal, sizes, prev, pager, next, jumper"
+                            layout="total, sizes, prev, pager, next, jumper"
                             :current-page="taskPage"
                             :page-size="taskPageSize"
                             :page-sizes="[7, 3, 5, 15, 30, 50, 100]"
@@ -122,10 +118,7 @@ const taskPageSize = ref(5)
 
 
 const route = useRoute()
-if (route.query.project_id) {
-    project_id = route.query.project_id
-    console.log(project_id)
-}
+
 
 const taskHandleSizeChange = (val) => {
     taskPageSize.value = val
@@ -141,8 +134,10 @@ const taskHandleCurrentChange = (val) => {
 
 // 查询
 const getTaskData = async () => {
+    project_id = route.query.project_id
+    console.log("--------------", project_id)
     const table = await getTaskList({ page: taskPage.value, pageSize: taskPageSize.value, project_id: project_id })
-    console.log(table)
+    console.log("========", table)
     if (table.code === 0) {
         taskData.value = table.data.list
         taskTotal.value = table.data.total
@@ -158,10 +153,10 @@ const getTargetData = async () => {
     const table = await getTaskList({ page: taskPage.value, pageSize: taskPageSize.value })
     console.log(table)
     if (table.code === 0) {
-        taskData.value = table.data.list
-        taskTotal.value = table.data.total
-        taskPage.value = table.data.page
-        taskPageSize.value = table.data.pageSize
+        targetData.value = table.data.list
+        targetTotal.value = table.data.total
+        targetPage.value = table.data.page
+        targetPageSize.value = table.data.pageSize
     }
 }
 
@@ -180,8 +175,6 @@ const onTarget = (row) => {
 }
 
 const onTask = (row) => {
-    console.log(row)
-    console.log(row._id)
     router.push(
         {
             path: '/layout/project/task',

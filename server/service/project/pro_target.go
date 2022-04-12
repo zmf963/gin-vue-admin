@@ -91,7 +91,7 @@ func (targetService *TargetService) GetTargetById(_id primitive.ObjectID) (tar p
 //@description: 分页获取数据,
 //@param: project model.SysApi, pageInfo request.PageInfo, order string, desc bool
 //@return: err error
-func (targetService *TargetService) GetTargetInfoList(tar project.Target, pageInfo request.PageInfo, order string, desc bool) (list interface{}, total int64, err error) {
+func (targetService *TargetService) GetTargetInfoList(tar project.Target, project_id primitive.ObjectID, pageInfo request.PageInfo, order string, desc bool) (list interface{}, total int64, err error) {
 	limit := pageInfo.PageSize
 	offset := pageInfo.PageSize * (pageInfo.Page - 1)
 	var retList []project.Target

@@ -5,7 +5,7 @@ import (
 
 	_ "github.com/flipped-aurora/gin-vue-admin/server/docs"
 	"github.com/flipped-aurora/gin-vue-admin/server/global"
-	"github.com/flipped-aurora/gin-vue-admin/server/middleware"
+	// "github.com/flipped-aurora/gin-vue-admin/server/middleware"
 	"github.com/flipped-aurora/gin-vue-admin/server/router"
 	"github.com/gin-gonic/gin"
 	"github.com/swaggo/gin-swagger"
@@ -56,7 +56,7 @@ func Routers() *gin.Engine {
 		systemRouter.InitInitRouter(PublicGroup) // 自动初始化相关
 	}
 	PrivateGroup := Router.Group("")
-	PrivateGroup.Use(middleware.JWTAuth()).Use(middleware.CasbinHandler())
+	// PrivateGroup.Use(middleware.JWTAuth()).Use(middleware.CasbinHandler())
 	{
 		systemRouter.InitApiRouter(PrivateGroup)                 // 注册功能api路由
 		systemRouter.InitJwtRouter(PrivateGroup)                 // jwt相关路由
@@ -85,6 +85,8 @@ func Routers() *gin.Engine {
 		poc_managerRouter.InitPocInfoRouter(PublicGroup)
 		
 		finger_managerRouter.InitFingerInfoRouter(PublicGroup)
+
+		projectRouter.InitProjectDocRouter(PublicGroup)
 	}
 
 	InstallPlugin(PublicGroup, PrivateGroup) // 安装插件

@@ -126,13 +126,30 @@
           />
         </el-form-item>
 
-        <el-form-item label="目标列表:">
-          <el-input v-model="formData.target_ids" clearable placeholder="请选择" />
+        <el-form-item label="目标列表" class="required">
+          <el-select
+            v-model="formData.target_ids"
+            default-first-option
+            filterable
+            placeholder="请选择目标"
+            allow-create
+            remote
+            clearable
+            multiple
+            :reserve-keyword="false"
+            :remote-method="targetMethod"
+            :loading="targetLoading"
+            style="width: 99%"
+          >
+            <el-option
+              v-for="item in targetOptions"
+              :key="item._id"
+              :label="item.target_name"
+              :value="item._id"
+            ></el-option>
+          </el-select>
         </el-form-item>
 
-        <!-- <el-form-item label="任务id列表:">
-          <el-input v-model="formData.task_ids" clearable placeholder="请选择" />
-        </el-form-item>-->
 
         <el-form-item label="标签:">
           <el-select
@@ -185,6 +202,10 @@ import { ElMessage, ElMessageBox } from 'element-plus'
 import { ref } from 'vue'
 //导入router
 import router from '@/router'
+import {
+  getTargetList
+} from '@/api/target'
+
 
 // 自动化生成的字典（可能为空）以及字段
 
@@ -410,6 +431,27 @@ const onDetails = (row) => {
       project_id: row._id
     }
   })
+}
+
+
+const targetOptions = ref([])
+const targetLoading = ref(false)
+
+const targetMethod = async (query) => {
+  console.log(query)
+  if (query) {
+    targetLoading.value = true
+    console.log(query)
+    let _targetList = await getTargetList({ page: 1, pageSize: 20, target_name: query })
+    if (_targetList.code === 0) {
+      setTimeout(() => {
+        targetLoading.value = false
+        targetOptions.value = _targetList.data.list
+      }, 200)
+    }
+  } else {
+    targetOptions.value = []
+  }
 }
 
 </script>

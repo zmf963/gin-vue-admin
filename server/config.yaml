@@ -5,15 +5,6 @@ aliyun-oss:
   bucket-name: yourBucketName
   bucket-url: yourBucketUrl
   base-path: yourBasePath
-autocode:
-  root: /opt/code/gin-vue-admin
-  server-api: /api/v1/autocode
-  server-router: /router/autocode
-  server-service: /service/autocode
-  web: /web/src
-  web-api: /api
-  web-form: /view
-  web-table: /view
 aws-s3:
   bucket: xxxxx-10005608
   region: ap-shanghai
@@ -76,9 +67,7 @@ hua-wei-obs:
   access-key: you-access-key
   secret-key: you-secret-key
 jwt:
-  expires-time: 604800
-  issuer: qmPlus
-  signing-key: e025b1e2-2abf-49a3-84fc-f89f8c61f2e9
+  signing-key: 23e1386f-79fd-4615-8447-b6a61a450c81
 local:
   path: uploads/file
 mongo:
@@ -88,7 +77,7 @@ mysql:
   path: 127.0.0.1
   port: "3306"
   config: charset=utf8mb4&parseTime=True&loc=Local
-  db-name: online
+  db-name: gva
   username: root
   password: xsC4sdf43aX
   max-idle-conns: 0

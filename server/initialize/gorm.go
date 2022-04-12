@@ -1,3 +1,13 @@
+/*
+ * @Version: 0.1
+ * @Autor: zmf96
+ * @Email: zmf96@qq.com
+ * @Date: 2022-02-17 21:36:08
+ * @LastEditors: zmf96
+ * @LastEditTime: 2022-04-12 21:26:39
+ * @FilePath: /initialize/gorm.go
+ * @Description:
+ */
 package initialize
 
 import (

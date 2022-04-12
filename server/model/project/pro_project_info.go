@@ -4,8 +4,8 @@
  * @Email: zmf96@qq.com
  * @Date: 2022-02-17 13:36:08
  * @LastEditors: zmf96
- * @LastEditTime: 2022-03-09 07:25:02
- * @FilePath: /model/project/pro_project_info.go
+ * @LastEditTime: 2022-04-08 23:25:41
+ * @FilePath: /server/model/project/pro_project_info.go
  * @Description:
  */
 // 自动生成模板project
@@ -21,12 +21,12 @@ import (
 type ProjectInfo struct {
 	ID_ primitive.ObjectID `json:"_id" bson:"_id"`
 
-	ProjectName string    `json:"project_name" bson:"project_name"`
-	ProjectDesc string    `json:"project_desc" bson:"project_desc"`
-	StartTime   time.Time `json:"start_time" bson:"start_time"`
-	EndTime     time.Time `json:"end_time" bson:"end_time"`
-	TargetIds   []string  `json:"target_ids" bson:"target_ids"`
-	TaskIds     []string  `json:"task_ids" bson:"task_ids"`
+	ProjectName string               `json:"project_name" bson:"project_name"`
+	ProjectDesc string               `json:"project_desc" bson:"project_desc"`
+	StartTime   time.Time            `json:"start_time" bson:"start_time"`
+	EndTime     time.Time            `json:"end_time" bson:"end_time"`
+	TargetIds   []primitive.ObjectID `json:"target_ids" bson:"target_ids"`
+	TaskIds     []string             `json:"task_ids" bson:"task_ids"`
 
 	Tags     []string  `json:"tags" bson:"tags"`
 	Remarks  string    `json:"remarks" bson:"remarks"`

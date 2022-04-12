@@ -85,8 +85,10 @@ func (project_infoService *ProjectInfoService) GetProjectInfoById(_id primitive.
 	global.GVA_LOG.Debug("[GetProjectInfoById]", zap.Any("id", _id))
 	err = global.Mongo_DB.Collection("pro_project_info").FindOne(context.TODO(), bson.M{"_id": _id}).Decode(&pro)
 	global.GVA_LOG.Debug("[GetProjectInfoById]", zap.Any("pro", pro), zap.Any("err", err))
+	global.GVA_LOG.Debug("[GetProjectInfoById]", zap.Any("targetIds", pro.TargetIds))
 	return pro, err
 }
+
 
 
 //@author:
